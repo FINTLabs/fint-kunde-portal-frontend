@@ -20,7 +20,7 @@ pipeline {
         stage('Build backend') {
             when { branch 'master' }
             steps {
-                build 'FINTprosjektet/fint-kunde-portal-backend/master'
+                build job: 'FINTprosjektet/fint-kunde-portal-backend/master', wait: false
             }
         }
     }
