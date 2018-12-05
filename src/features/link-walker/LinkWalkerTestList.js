@@ -17,8 +17,6 @@ import TrafficLight from "../../common/status/TrafficLight";
 import Typography from "@material-ui/core/Typography";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import Tooltip from "@material-ui/core/Tooltip/Tooltip";
-import CvsReport from "./CvsReport";
-import Filesaver from 'file-saver';
 
 const styles = (theme) => ({
     root: {
@@ -83,22 +81,14 @@ class LinkWalkerTestList extends Component {
             });
     };
 
-    showTestView = (test) => {
+    getDownloadUrl = (test) => {
+
         const {organisationName, clientConfig} = this.props;
-        LinkWalkerApi.getFailedTestResults(clientConfig.linkwalkerBaseUrl, organisationName, test.id)
-            .then(([response, json]) => {
-                if (response.status === 200) {
-                    this.setState({
-                        showLinkWalkerTestView: true,
-                        test: json
-                    });
-                }
+        return `${clientConfig.linkwalkerBaseUrl}/api/tests/links/${organisationName}/${test.id}/download`;
 
-            });
-    };
 
-    downloadReport = (test) => {
 
+        /*
         const {organisationName, clientConfig} = this.props;
         LinkWalkerApi.getAllTestResults(clientConfig.linkwalkerBaseUrl, organisationName, test.id)
             .then(([response, json]) => {
@@ -111,6 +101,7 @@ class LinkWalkerTestList extends Component {
                 }
 
             });
+            */
 
 
     };
@@ -162,14 +153,20 @@ class LinkWalkerTestList extends Component {
                                         <TableCell>{test.reason}</TableCell>
                                         <TableCell numeric>{test.remaining}</TableCell>
                                         <TableCell>
-                                            <Tooltip
-                                                placement='top'
-                                                title='Last ned rapport'
-                                            >
-                                                <IconButton component="span" onClick={() => this.downloadReport(test)}>
-                                                    <DownloadReportIcon/>
-                                                </IconButton>
-                                            </Tooltip>
+                                            {(test.status !== 'RUNNING') &&
+                                            (
+                                                <Tooltip
+                                                    placement='top'
+                                                    title='Last ned rapport'
+                                                >
+                                                    <a href={this.getDownloadUrl(test)}>
+                                                    <IconButton component="span">
+                                                        <DownloadReportIcon/>
+                                                    </IconButton>
+                                                    </a>
+                                                </Tooltip>
+                                            )
+                                            }
                                         </TableCell>
                                     </TableRow>
                                 );
