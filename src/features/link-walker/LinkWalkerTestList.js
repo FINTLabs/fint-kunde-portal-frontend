@@ -10,158 +10,188 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import ClearIcon from "@material-ui/icons/Clear";
+import DownloadReportIcon from '@material-ui/icons/GetApp';
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import LinkWalkerTestView from "./LinkWalkerTestView";
 import TrafficLight from "../../common/status/TrafficLight";
 import Typography from "@material-ui/core/Typography";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 const styles = (theme) => ({
-  root: {
-    width: "90%",
-    overflowX: "auto"
-  },
-  table: {
-    minWidth: 700
-  },
-  statusFailed: {
-    color: "red"
-  },
-  statusRunning: {
-    color: "#f4a142"
-  },
-  statusOk: {
-    color: "green"
-  },
-  button: {
-    margin: theme.spacing.unit
-  },
-  title: {
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
-  },
-  help: {
-    margin: theme.spacing.unit / 2,
-  }
+    root: {
+        width: "90%",
+        overflowX: "auto"
+    },
+    table: {
+        minWidth: 700
+    },
+    statusFailed: {
+        color: "red"
+    },
+    statusRunning: {
+        color: "#f4a142"
+    },
+    statusOk: {
+        color: "green"
+    },
+    button: {
+        margin: theme.spacing.unit
+    },
+    title: {
+        paddingLeft: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit
+    },
+    help: {
+        margin: theme.spacing.unit / 2,
+    }
 });
 
 class LinkWalkerTestList extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showLinkWalkerTestView: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            showLinkWalkerTestView: false
+        };
+    }
+
+    getStatusClass = (status) => {
+        if (status === "OK") return this.props.classes.statusOk;
+        if (status === "RUNNING") return this.props.classes.statusRunning;
+        if (status === "FAILED") return this.props.classes.statusFailed;
     };
-  }
 
-  getStatusClass = (status) => {
-    if (status === "OK") return this.props.classes.statusOk;
-    if (status === "RUNNING") return this.props.classes.statusRunning;
-    if (status === "FAILED") return this.props.classes.statusFailed;
-  };
+    refreshTestList = () => {
+        const {organisationName, clientConfig} = this.props;
+        this.props.fetchLinkWalkerTests(clientConfig.linkwalkerBaseUrl, organisationName);
+    };
 
-  refreshTestList = () => {
-    const {organisationName, clientConfig} = this.props;
-    this.props.fetchLinkWalkerTests(clientConfig.linkwalkerBaseUrl, organisationName);
-  };
+    clearTests = () => {
+        const {organisationName, clientConfig} = this.props;
+        LinkWalkerApi.clearTests(clientConfig.linkwalkerBaseUrl, organisationName)
+            .then((response) => {
+                if (response.status === 200) {
+                    this.props.notify("Testloggen ble slette!");
+                    this.props.fetchLinkWalkerTests(clientConfig.linkwalkerBaseUrl, organisationName);
+                }
+                else {
+                    this.props.notify("Oh shit, noe gikk galt!");
+                }
+            });
+    };
 
-  clearTests = () => {
-    const {organisationName, clientConfig} = this.props;
-    LinkWalkerApi.clearTests(clientConfig.linkwalkerBaseUrl, organisationName)
-      .then((response) => {
-        if (response.status === 200) {
-          this.props.notify("Testloggen ble slette!");
-          this.props.fetchLinkWalkerTests(clientConfig.linkwalkerBaseUrl, organisationName);
-        }
-        else {
-          this.props.notify("Oh shit, noe gikk galt!");
-        }
-      });
-  };
+    getDownloadUrl = (test) => {
 
-  showTestView = (test) => {
-    const {organisationName, clientConfig} = this.props;
-    LinkWalkerApi.getFailedTestResults(clientConfig.linkwalkerBaseUrl, organisationName, test.id)
-      .then(([response, json]) => {
-        if (response.status === 200) {
-          this.setState({
-            showLinkWalkerTestView: true,
-            test: json
-          });
-        }
-
-      });
-  };
-
-  closeTestView = () => {
-    this.setState({showLinkWalkerTestView: false});
-  };
+        const {organisationName, clientConfig} = this.props;
+        return `${clientConfig.linkwalkerBaseUrl}/api/tests/links/${organisationName}/${test.id}/download`;
 
 
-  render() {
 
-    const {tests, classes} = this.props;
-    return (
-      <div className={classes.root}>
-        <div className={classes.help}>
-          <FeatureHelperText>
-            En relasjonstest sjekker at alle relasjonene i en komponent virker.
-          </FeatureHelperText>
-        </div>
-        <Typography variant="headline" className={classes.title}>Relasjonstest</Typography>
+        /*
+        const {organisationName, clientConfig} = this.props;
+        LinkWalkerApi.getAllTestResults(clientConfig.linkwalkerBaseUrl, organisationName, test.id)
+            .then(([response, json]) => {
+                if (response.status === 200) {
+                    console.log(json);
+                    const report = CvsReport.getExcelReport(json);
 
-        <IconButton className={classes.button} aria-label="Refresh" color="primary"
-                    onClick={() => this.refreshTestList()}>
-          <RefreshIcon/>
-        </IconButton>
-        <IconButton className={classes.button} aria-label="Refresh" color="primary"
-                    onClick={() => this.clearTests()}>
-          <ClearIcon/>
-        </IconButton>
-        <Paper>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Status</TableCell>
-                <TableCell>Tid</TableCell>
-                <TableCell>Ressurs</TableCell>
-                <TableCell>Beskrivelse av feil</TableCell>
-                <TableCell numeric>Gjenstående sjekker</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tests.map(test => {
-                return (
-                  <TableRow key={test.id} hover onClick={() => this.showTestView(test)}>
-                    <TableCell><TrafficLight status={test.status}/></TableCell>
-                    <TableCell>{test.time}</TableCell>
-                    <TableCell>{test.testRequest.baseUrl + test.testRequest.endpoint}</TableCell>
-                    <TableCell>{test.reason}</TableCell>
-                    <TableCell numeric>{test.remaining}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
+                    Filesaver.saveAs(new Blob([report], {type: "application/octet-stream"}), 'test.xlsx');
 
-        <LinkWalkerTestView
-          showLinkWalkerTestView={this.state.showLinkWalkerTestView}
-          closeTestView={this.closeTestView}
-          test={this.state.test}
-          organisationName={this.props.organisationName}
-          clientConfig={this.props.clientConfig}
+                }
+
+            });
+            */
 
 
-      />
-      </div>
-    );
-  }
+    };
+
+    closeTestView = () => {
+        this.setState({showLinkWalkerTestView: false});
+    };
+
+
+    render() {
+
+        const {tests, classes} = this.props;
+        return (
+            <div className={classes.root}>
+                <div className={classes.help}>
+                    <FeatureHelperText>
+                        En relasjonstest sjekker at alle relasjonene i en komponent virker.
+                    </FeatureHelperText>
+                </div>
+                <Typography variant="headline" className={classes.title}>Relasjonstest</Typography>
+
+                <IconButton className={classes.button} aria-label="Refresh" color="primary"
+                            onClick={() => this.refreshTestList()}>
+                    <RefreshIcon/>
+                </IconButton>
+                <IconButton className={classes.button} aria-label="Refresh" color="primary"
+                            onClick={() => this.clearTests()}>
+                    <ClearIcon/>
+                </IconButton>
+                <Paper>
+                    <Table className={classes.table}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Status</TableCell>
+                                <TableCell>Tid</TableCell>
+                                <TableCell>Ressurs</TableCell>
+                                <TableCell>Beskrivelse av feil</TableCell>
+                                <TableCell numeric>Gjenstående sjekker</TableCell>
+                                <TableCell>Last ned rapport</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {tests.map(test => {
+                                return (
+                                    <TableRow key={test.id} hover>
+                                        <TableCell><TrafficLight status={test.status}/></TableCell>
+                                        <TableCell>{test.time}</TableCell>
+                                        <TableCell>{test.testRequest.baseUrl + test.testRequest.endpoint}</TableCell>
+                                        <TableCell>{test.reason}</TableCell>
+                                        <TableCell numeric>{test.remaining}</TableCell>
+                                        <TableCell>
+                                            {(test.status !== 'RUNNING') &&
+                                            (
+                                                <Tooltip
+                                                    placement='top'
+                                                    title='Last ned rapport'
+                                                >
+                                                    <a href={this.getDownloadUrl(test)}>
+                                                    <IconButton component="span">
+                                                        <DownloadReportIcon/>
+                                                    </IconButton>
+                                                    </a>
+                                                </Tooltip>
+                                            )
+                                            }
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </Paper>
+
+                <LinkWalkerTestView
+                    showLinkWalkerTestView={this.state.showLinkWalkerTestView}
+                    closeTestView={this.closeTestView}
+                    test={this.state.test}
+                    organisationName={this.props.organisationName}
+                    clientConfig={this.props.clientConfig}
+
+
+                />
+            </div>
+        );
+    }
 }
 
 LinkWalkerTestList.propTypes = {
-  classes: PropTypes.any.isRequired,
-  tests: PropTypes.any.isRequired
+    classes: PropTypes.any.isRequired,
+    tests: PropTypes.any.isRequired
 };
 
 export default withStyles(styles)(LinkWalkerTestList);
