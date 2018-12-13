@@ -137,7 +137,7 @@ class AppMenu extends React.Component {
             </IconButton>
             <img src="/fint.svg" alt="logo" className={classes.logo}/>
             <Typography variant="title" color="inherit" noWrap className={classes.flex}>
-              Kunde Portal
+              Kundeportal
             </Typography>
             <OrganisationSelector/>
           </Toolbar>
