@@ -45,11 +45,13 @@ class AppProvider extends Component {
                 return response.json();
             })
             .then(json => {
+                const cookieOrganisation = cookies.get('organisation') || json[0];
+                const updatedOrganisation = json.filter(org => org.dn === cookieOrganisation.dn)[0];
+                cookies.set('organisation', updatedOrganisation, {path: '/'});
                 this.setState({
                     organisations: json,
-                    currentOrganisation: json[0],
+                    currentOrganisation: updatedOrganisation,
                 });
-                cookies.set('organisation', json[0], {path: '/'});
             });
 
         ClientConfigApi.fetchClientConfig()
