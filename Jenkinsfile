@@ -11,8 +11,8 @@ pipeline {
             when { branch 'master' }
             steps {
                 withDockerRegistry([credentialsId: 'fintlabs.azurecr.io', url: 'https://fintlabs.azurecr.io']) {
-                    sh "docker tag ${GIT_COMMIT} fintlabs.azurecr.io/kunde-portal-frontend:build-${BUILD_NUMBER}"
-                    sh "docker push fintlabs.azurecr.io/kunde-portal-frontend:build-${BUILD_NUMBER}"
+                    sh "docker tag ${GIT_COMMIT} fintlabs.azurecr.io/kunde-portal-frontend:build.${BUILD_NUMBER}"
+                    sh "docker push fintlabs.azurecr.io/kunde-portal-frontend:build.${BUILD_NUMBER}"
                 }
             }
         }
