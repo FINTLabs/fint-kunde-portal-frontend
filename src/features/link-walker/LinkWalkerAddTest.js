@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, withStyles,} from "@material-ui/core";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, withStyles, Fab} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import PropTypes from 'prop-types';
@@ -101,8 +101,8 @@ class LinkWalkerAddTest extends React.Component {
     return (
       <div>
         <div>
-          <Button variant="fab" color="secondary" className={classes.addButton}
-                  onClick={this.openAddDialog}><Add/></Button>
+          <Fab color="secondary" className={classes.addButton}
+                  onClick={this.openAddDialog}><Add/></Fab>
           <Dialog
             open={this.state.showLinkWalkerAddTest}
             onClose={this.handleAddClient}
@@ -149,10 +149,10 @@ class LinkWalkerAddTest extends React.Component {
 
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleCancel} variant="raised" color="primary">
+              <Button onClick={this.handleCancel} variant="contained" color="primary">
                 Avbryt
               </Button>
-              <Button disabled={!this.isFormValid()} onClick={() => this.addTest()} variant="raised" color="primary">
+              <Button disabled={!this.isFormValid()} onClick={() => this.addTest()} variant="contained" color="primary">
                 Kjør test
               </Button>
             </DialogActions>

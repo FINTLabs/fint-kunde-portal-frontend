@@ -33,8 +33,8 @@ const styles = theme => ({
     backgroundColor: green[500],
   },
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1),
   },
   listItem: {
     borderBottom: '1px dashed lightgray',

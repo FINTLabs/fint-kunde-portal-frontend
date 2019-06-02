@@ -10,7 +10,7 @@ import {
   Tooltip,
   withStyles
 } from "@material-ui/core";
-import { ContentCopy } from "@material-ui/icons";
+import ContentCopy from "@material-ui/icons/FileCopy";
 import ClientApi from "../../../data/api/ClientApi";
 import * as PasswordGenerator from "generate-password";
 import GetSecretIcon from "@material-ui/icons/GetApp";
@@ -38,15 +38,15 @@ const styles = theme => ({
     width: '100%',
   },
   close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    width: theme.spacing(4),
+    height: theme.spacing(4),
   },
   copyAllAuthButtonIcon: {
-    marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 2,
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   gotoAssetButton: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   }
 });
 
@@ -261,7 +261,7 @@ class ClientTabAuthenticationInformation extends React.Component {
               />
             </FormControl>
           ) : (
-            <Button className={classes.gotoAssetButton} variant="raised" color="primary" size="small" fullWidth component={Link} to="/assets">
+            <Button className={classes.gotoAssetButton} variant="contained" color="primary" size="small" fullWidth component={Link} to="/assets">
               Klienten har ikke tilordnet en ressursId. Klikk her for å legge til en ressursId.
             </Button>
           )
@@ -270,7 +270,7 @@ class ClientTabAuthenticationInformation extends React.Component {
 
         < CopyToClipboard text={JSON.stringify(this.state.allAuthInfo, null, 2)}
                           onCopy={() => this.props.notify('Kopiert')}>
-          <Button variant="raised" className={classes.copyAllAuthButtonIcon}>
+          <Button variant="contained" className={classes.copyAllAuthButtonIcon}>
             <ContentCopy/>
             Kopier autentiseringsinformasjon
           </Button>

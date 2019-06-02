@@ -23,14 +23,14 @@ const styles = (theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: theme.spacing.unit * 5,
+    marginBottom: theme.spacing(5),
   },
   legalContactList: {
     width: '75%',
   },
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1),
   },
   listItem: {
     borderBottom: '1px dashed lightgray',
@@ -97,7 +97,7 @@ class LegalList extends React.Component {
               Ordinære driftsmeldinger sendes på epost. Kritiske driftmeldinger sendes på epost og SMS.
             </p>
           </FeatureHelperText>
-          <Typography variant="headline" className={classes.title}>Juridisk kontakt</Typography>
+          <Typography variant="h5" className={classes.title}>Juridisk kontakt</Typography>
           <Divider/>
           <List>
             <ListItem className={classes.listItem} key={legalContact.dn}>

@@ -30,8 +30,8 @@ const styles = theme => ({
     width: "75%"
   },
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1)
   },
   listItem: {
     borderBottom: "1px dashed lightgray"
@@ -134,7 +134,7 @@ class ClientList extends Component {
                 om endepunkter må oppgis til den som skal installere og konfigurere integrasjonen.
               </p>
             </FeatureHelperText>
-            <Typography variant="headline" className={classes.title}>Klienter</Typography>
+            <Typography variant="h5" className={classes.title}>Klienter</Typography>
             <Divider/>
             <List>
               {clients.map((client) =>

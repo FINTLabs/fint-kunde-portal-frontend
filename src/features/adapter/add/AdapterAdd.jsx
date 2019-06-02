@@ -1,8 +1,16 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, withStyles,} from "@material-ui/core";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  withStyles,
+  Fab
+} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import {Add} from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import AdapterApi from "../../../data/api/AdapterApi";
 import AssetApi from "../../../data/api/AssetApi";
@@ -11,80 +19,88 @@ const styles = () => ({
   addButton: {
     margin: 0,
     top: 100,
-    left: 'auto',
-    bottom: 'auto',
+    left: "auto",
+    bottom: "auto",
     right: 50,
-    position: 'fixed',
+    position: "fixed"
   }
-
 });
 
 class AdapterAdd extends React.Component {
-  updateAdapterState = (event) => {
+  updateAdapterState = event => {
     const field = event.target.name;
     const adapter = this.state.adapter;
     adapter[field] = event.target.value;
-    return this.setState({adapter: adapter});
+    return this.setState({ adapter: adapter });
   };
 
   handleAddAdapter = () => {
-
     AdapterApi.createAdapter(this.state.adapter, this.props.organisation.name)
       .then(response => {
         if (response.status === 201) {
           this.props.afterAdd();
           this.props.notify("Adapteret ble opprettet");
-        }
-        else if (response.status === 302) {
-          this.props.notify(`Adapteret "${this.state.adapter.name}" finnes fra før av. `);
-        }
-        else {
-          this.props.notify("Oisann, dette gikk ikke helt etter planen! Prøv igjen ;)");
+        } else if (response.status === 302) {
+          this.props.notify(
+            `Adapteret "${this.state.adapter.name}" finnes fra før av. `
+          );
+        } else {
+          this.props.notify(
+            "Oisann, dette gikk ikke helt etter planen! Prøv igjen ;)"
+          );
         }
         this.setState({
           showAdapterAdd: false,
           notify: true,
-          adapter: this.getEmptyAdapter(),
+          adapter: this.getEmptyAdapter()
         });
       })
       .catch(() => {
-        this.props.notify("Oisann, dette gikk ikke helt etter planen! Prøv igjen ;)");
+        this.props.notify(
+          "Oisann, dette gikk ikke helt etter planen! Prøv igjen ;)"
+        );
       });
   };
 
-  usernameIsValid = (valid) => {
-    this.setState({usernameIsValid: valid});
+  usernameIsValid = valid => {
+    this.setState({ usernameIsValid: valid });
   };
 
   openAddDialog = () => {
-    AssetApi.getPrimaryAsset(this.props.organisation.name)
-      .then(([response, json]) => {
+    AssetApi.getPrimaryAsset(this.props.organisation.name).then(
+      ([response, json]) => {
         if (response.status === 200) {
           this.setState({
             showAdapterAdd: true,
             notify: false,
             realm: `@adapter.${json.assetId}`
           });
+        } else {
+          this.props.notify(
+            "Det oppstod problemer med å hente primær ressurs id."
+          );
         }
-        else {
-          this.props.notify("Det oppstod problemer med å hente primær ressurs id.");
-        }
-      });
+      }
+    );
   };
 
   handleCancel = () => {
-    this.setState({showAdapterAdd: false, notify: false});
+    this.setState({ showAdapterAdd: false, notify: false });
   };
 
   getEmptyAdapter = () => {
     return {
-      name: '',
-      shortDescription: '',
-      note: '',
+      name: "",
+      shortDescription: "",
+      note: ""
     };
   };
   isFormValid = () => {
-    return (this.state.usernameIsValid && this.state.adapter.shortDescription.length > 0 && this.state.adapter.note.length > 0)
+    return (
+      this.state.usernameIsValid &&
+      this.state.adapter.shortDescription.length > 0 &&
+      this.state.adapter.note.length > 0
+    );
   };
 
   constructor(props, context) {
@@ -92,17 +108,22 @@ class AdapterAdd extends React.Component {
     this.state = {
       adapter: this.getEmptyAdapter(),
       showAdapterAdd: false,
-      usernameIsValid: false,
+      usernameIsValid: false
     };
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <div>
-          <Button variant="fab" color="secondary" className={classes.addButton}
-                  onClick={this.openAddDialog}><Add/></Button>
+          <Fab
+            color="secondary"
+            className={classes.addButton}
+            onClick={this.openAddDialog}
+          >
+            <Add />
+          </Fab>
           <Dialog
             open={this.state.showAdapterAdd}
             onClose={this.handleAddAdapter}
@@ -112,7 +133,8 @@ class AdapterAdd extends React.Component {
             <DialogTitle id="form-dialog-title">Nytt adapter</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Vennligst fyll ut de obligatoriske feltene for å legge til ny adapter.
+                Vennligst fyll ut de obligatoriske feltene for å legge til ny
+                adapter.
               </DialogContentText>
               <UsernameValidationInput
                 title="Brukernavn"
@@ -139,28 +161,29 @@ class AdapterAdd extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleCancel} variant="raised" color="primary">
+              <Button
+                onClick={this.handleCancel}
+                variant="contained"
+                color="primary"
+              >
                 Avbryt
               </Button>
-              <Button disabled={!this.isFormValid()} onClick={this.handleAddAdapter} variant="raised" color="primary">
+              <Button
+                disabled={!this.isFormValid()}
+                onClick={this.handleAddAdapter}
+                variant="contained"
+                color="primary"
+              >
                 Legg til
               </Button>
             </DialogActions>
           </Dialog>
         </div>
       </div>
-    )
+    );
   }
 }
-
 
 AdapterAdd.propTypes = {};
 
 export default withStyles(styles)(AdapterAdd);
-
-
-
-
-
-
-

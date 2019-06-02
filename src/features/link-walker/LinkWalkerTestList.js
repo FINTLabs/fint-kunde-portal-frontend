@@ -36,14 +36,14 @@ const styles = (theme) => ({
         color: "green"
     },
     button: {
-        margin: theme.spacing.unit
+        margin: theme.spacing(1)
     },
     title: {
-        paddingLeft: theme.spacing.unit,
-        paddingBottom: theme.spacing.unit
+        paddingLeft: theme.spacing(1),
+        paddingBottom: theme.spacing(1)
     },
     help: {
-        margin: theme.spacing.unit / 2,
+        margin: theme.spacing(1) / 2,
     }
 });
 
@@ -121,7 +121,7 @@ class LinkWalkerTestList extends Component {
                         En relasjonstest sjekker at alle relasjonene i en komponent virker.
                     </FeatureHelperText>
                 </div>
-                <Typography variant="headline" className={classes.title}>Relasjonstest</Typography>
+                <Typography variant="h5" className={classes.title}>Relasjonstest</Typography>
 
                 <IconButton className={classes.button} aria-label="Refresh" color="primary"
                             onClick={() => this.refreshTestList()}>
@@ -139,7 +139,7 @@ class LinkWalkerTestList extends Component {
                                 <TableCell>Tid</TableCell>
                                 <TableCell>Ressurs</TableCell>
                                 <TableCell>Beskrivelse av feil</TableCell>
-                                <TableCell numeric>Gjenstående sjekker</TableCell>
+                                <TableCell align="right">Gjenstående sjekker</TableCell>
                                 <TableCell>Last ned rapport</TableCell>
                             </TableRow>
                         </TableHead>

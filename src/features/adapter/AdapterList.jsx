@@ -29,8 +29,8 @@ const styles = theme => ({
     width: "75%"
   },
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1)
   },
   listItem: {
     borderBottom: "1px dashed lightgray"
@@ -133,7 +133,7 @@ class AdapterList extends Component {
                 om endepunkter må oppgis til den som skal installere og konfigurere adapteret.
               </p>
             </FeatureHelperText>
-            <Typography variant="headline" className={classes.title}>Adapter</Typography>
+            <Typography variant="h5" className={classes.title}>Adapter</Typography>
             <Divider/>
             <List>
               {adapters.map((adapter) =>

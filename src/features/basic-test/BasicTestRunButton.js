@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
-import Button from '@material-ui/core/Button';
+import {Fab} from '@material-ui/core';
 import RunIcon from '@material-ui/icons/PlayArrow';
 
 const styles = theme => ({
@@ -14,7 +14,7 @@ const styles = theme => ({
     float: 'right',
   },
   wrapper: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     position: 'relative',
   },
   buttonSuccess: {
@@ -60,15 +60,14 @@ class BasicTestRunButton extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.wrapper}>
-          <Button
-            variant="fab"
+          <Fab
             color="primary"
             className={buttonClassname}
             onClick={this.props.onClick}
             disabled={this.props.disabled || loading}
           >
             <RunIcon/>
-          </Button>
+          </Fab>
           {loading && <CircularProgress size={68} className={classes.fabProgress}/>}
         </div>
       </div>

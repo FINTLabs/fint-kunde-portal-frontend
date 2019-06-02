@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper/Paper";
+import { withStyles, Paper } from "@material-ui/core";
 import classNames from "classnames";
 
 const styles = theme => ({
 
   helpText: {
-    marginBottom: theme.spacing.unit * 2,
-    padding: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(2),
     backgroundColor: theme.palette.grey[300],
     fontFamily: theme.typography.body1.fontFamily,
     fontSize: theme.typography.body1.fontSize,
@@ -23,7 +22,7 @@ const styles = theme => ({
     }
   },
   closeButtonContainer: {
-    height: theme.spacing.unit * 1.5
+    height: theme.spacing(1.5)
   },
   hide: {
     display: "none"

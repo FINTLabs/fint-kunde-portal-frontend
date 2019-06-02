@@ -109,11 +109,11 @@ class AssetView extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-            <Button onClick={this.handleCancel} variant="raised" color="secondary">
+            <Button onClick={this.handleCancel} variant="contained" color="secondary">
                 {this.state.showUpdateButton ? 'Avbryt' : 'Lukk'}
              </Button>
               {this.state.showUpdateButton ? (
-             <Button onClick={this.handleUpdate} variant="raised" color="secondary">
+             <Button onClick={this.handleUpdate} variant="contained" color="secondary">
                   Oppdater
              </Button>) : null}
 

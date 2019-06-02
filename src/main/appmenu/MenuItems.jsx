@@ -13,7 +13,9 @@ import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 
 const menuLink = {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "inherit"
+
 };
 
 export const MENU_ITEMS = (

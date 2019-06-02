@@ -1,51 +1,56 @@
-import React, {Component} from "react";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from "@material-ui/core";
+import React, { Component } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  withStyles,
+  Fab
+} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import ContactApi from "../../../data/api/ContactApi";
 import PropTypes from "prop-types";
 
-
-const styles = (theme) => ({
+const styles = theme => ({
   createContactButton: {
-    margin: theme.spacing.unit,
-    top: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3,
-    position: 'absolute',
+    margin: theme.spacing(1),
+    top: theme.spacing(2),
+    right: theme.spacing(3),
+    position: "absolute"
   },
   dialogContent: {
-    marginRight: theme.spacing.unit,
-    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1)
   }
 });
 
 class ContactNew extends Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
       contact: {},
-      open: false,
+      open: false
     };
   }
 
   openCreateDialog = () => {
     this.setState({
-      open: true,
-    })
+      open: true
+    });
   };
 
   handleCancel = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
-  updateContactState = (event) => {
-
+  updateContactState = event => {
     const field = event.target.name;
 
     const contact = this.state.contact;
     contact[field] = event.target.value;
-    return this.setState({contact: contact});
+    return this.setState({ contact: contact });
   };
 
   createContact = () => {
@@ -53,11 +58,10 @@ class ContactNew extends Component {
       .then(response => {
         if (response.status === 201) {
           this.props.notify("Kontakten ble opprettet");
-        }
-        else {
+        } else {
           this.props.notify("Kontakten finnes fra før");
         }
-        this.setState({open: false});
+        this.setState({ open: false });
         this.props.onClose(this.state.contact);
       })
       .catch(() => {
@@ -67,17 +71,27 @@ class ContactNew extends Component {
 
   isFormValid = () => {
     const contact = this.state.contact;
-    return contact.nin && contact.firstName && contact.lastName && contact.mail && contact.mobile;
+    return (
+      contact.nin &&
+      contact.firstName &&
+      contact.lastName &&
+      contact.mail &&
+      contact.mobile
+    );
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div>
-        <Button onClick={() => this.openCreateDialog()} variant="fab" color="primary" aria-label="add"
-                className={classes.createContactButton}>
-          <AddIcon/>
-        </Button>
+        <Fab
+          onClick={() => this.openCreateDialog()}
+          color="primary"
+          aria-label="add"
+          className={classes.createContactButton}
+        >
+          <AddIcon />
+        </Fab>
         <Dialog
           open={this.state.open}
           onClose={this.handleCancel}
@@ -85,7 +99,6 @@ class ContactNew extends Component {
         >
           <DialogTitle id="form-dialog-title">Kontakt</DialogTitle>
           <DialogContent className={classes.dialogContent}>
-
             <TextField
               name="nin"
               label="Fødselsnummer"
@@ -121,13 +134,16 @@ class ContactNew extends Component {
               fullWidth
               onChange={this.updateContactState}
             />
-
           </DialogContent>
           <DialogActions>
             <Button onClick={() => this.handleCancel()} color="primary">
               Avbryt
             </Button>
-            <Button disabled={!this.isFormValid()} onClick={() => this.createContact()} color="primary">
+            <Button
+              disabled={!this.isFormValid()}
+              onClick={() => this.createContact()}
+              color="primary"
+            >
               Opprett
             </Button>
           </DialogActions>

@@ -6,10 +6,10 @@ import {withContext} from "../../data/context/withContext";
 
 const styles = (theme) => ({
   root: {
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(1),
   },
   organsationIcon: {
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
   }
 });
 

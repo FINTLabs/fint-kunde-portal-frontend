@@ -10,7 +10,6 @@ import {
   Tooltip,
   withStyles
 } from "@material-ui/core";
-import { ContentCopy } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import AdapterApi from "../../../data/api/AdapterApi";
 import * as PasswordGenerator from "generate-password";
@@ -19,6 +18,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import { withContext } from "../../../data/context/withContext";
 import { Link } from "react-router-dom";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
+import  ContentCopy  from '@material-ui/icons/FileCopy';
 
 
 const styles = theme => ({
@@ -38,15 +38,15 @@ const styles = theme => ({
     width: '100%',
   },
   close: {
-    width: theme.spacing.unit * 4,
-    height: theme.spacing.unit * 4,
+    width: theme.spacing(4),
+    height: theme.spacing(4),
   },
   copyAllAuthButtonIcon: {
-    marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 2,
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   gotoAssetButton: {
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
   },
 });
 
@@ -262,7 +262,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
               />
             </FormControl>
           ) : (
-            <Button className={classes.gotoAssetButton} variant="raised" color="primary" size="small" fullWidth component={Link} to="/assets">
+            <Button className={classes.gotoAssetButton} variant="contained" color="primary" size="small" fullWidth component={Link} to="/assets">
               Adapteret har ikke tilordnet en ressursId. Klikk her for å legge til en ressursId.
             </Button>
           )
@@ -271,7 +271,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
 
         <CopyToClipboard text={JSON.stringify(this.state.allAuthInfo, null, 2)}
                          onCopy={() => this.props.notify('Kopiert')}>
-          <Button variant="raised" className={classes.copyAllAuthButtonIcon}>
+          <Button variant="contained" className={classes.copyAllAuthButtonIcon}>
             <ContentCopy/>
             Kopier autentiseringsinformasjon
           </Button>

@@ -9,15 +9,15 @@ const styles = (theme) => ({
   message: {
     //border: "dotted 1px gray",
     backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 4,
-    marginBottom: theme.spacing.unit * 2,
+    padding: theme.spacing(1),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
     color: theme.palette.primary.contrastText,
     minHeight: "10px",
     minWidth: "500px"
   },
   logo: {
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing(2),
     height: "25%",
     width: "25%"
   }
@@ -36,7 +36,7 @@ class NoGoMessage extends Component {
             {this.props.message}
           </Grid>
         </Paper>
-        <Button href={this.props.gotoUrl} fullWidth variant="raised" color="secondary">{this.props.buttonTitle}</Button>
+        <Button href={this.props.gotoUrl} fullWidth variant="contained" color="secondary">{this.props.buttonTitle}</Button>
       </React.Fragment>
     );
   }

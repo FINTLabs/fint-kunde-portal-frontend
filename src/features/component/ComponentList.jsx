@@ -38,8 +38,8 @@ const styles = theme => ({
   },
 
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1)
   },
   listItem: {
     borderBottom: "1px dashed lightgray"
@@ -205,7 +205,7 @@ class ComponentList extends Component {
               administreres av FINT.
             </p>
           </FeatureHelperText>
-          <Typography variant="headline" className={classes.title}>Komponenter</Typography>
+          <Typography variant="h5" className={classes.title}>Komponenter</Typography>
           <Divider/>
           <List>
             {components.map((component) =>

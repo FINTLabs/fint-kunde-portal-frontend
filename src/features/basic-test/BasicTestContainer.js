@@ -33,11 +33,11 @@ const styles = (theme) => ({
     width: "75%"
   },
   formControls: {
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing(1)
   },
   formActions: {
     display: "inline-block",
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
     borderBottom: "lightgray dotted 1px",
     width: "100%"
   },
@@ -223,7 +223,7 @@ class BasicTestContainer extends Component {
             </p>
           </FeatureHelperText>
           <div className={classes.title}>
-            <Typography variant="headline">Basistest</Typography>
+            <Typography variant="h5">Basistest</Typography>
           </div>
           <div className={classes.formControls}>
             <ComponentSelector
@@ -267,7 +267,7 @@ class BasicTestContainer extends Component {
 
                       <TableRow>
                         <TableCell><TrafficLight status={healthResult.status}/></TableCell>
-                        <TableCell padding='dense'><Typography variant="subheading">{healthResult.message}</Typography></TableCell>
+                        <TableCell size="small"><Typography variant="subtitle1">{healthResult.message}</Typography></TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>

@@ -179,10 +179,10 @@ class LinkWalkerTestView extends React.Component {
 
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={() => this.downloadTestToJson(test)} variant="raised" color="primary">
+                            <Button onClick={() => this.downloadTestToJson(test)} variant="contained" color="primary">
                                 Last ned test rapport (.csv)
                             </Button>
-                            <Button onClick={this.handleClose} variant="raised" color="primary">
+                            <Button onClick={this.handleClose} variant="contained" color="primary">
                                 Ok
                             </Button>
                         </DialogActions>

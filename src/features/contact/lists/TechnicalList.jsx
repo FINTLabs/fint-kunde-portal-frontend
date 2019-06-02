@@ -32,8 +32,8 @@ const styles = (theme) => ({
     width: '75%',
   },
   title: {
-    paddingLeft: theme.spacing.unit * 3,
-    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing(3),
+    paddingBottom: theme.spacing(1),
   },
   listItem: {
     borderBottom: '1px dashed lightgray',
@@ -137,7 +137,7 @@ class TechnicalList extends React.Component {
           notify={this.props.notify}
         />
         <div className={classes.technicalContactList}>
-          <Typography variant="headline" className={classes.title}>Teknisk kontakter</Typography>
+          <Typography variant="h5" className={classes.title}>Teknisk kontakter</Typography>
           <Divider/>
           <List>
             {technicalContacts.map((contact) =>

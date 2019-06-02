@@ -7,8 +7,8 @@ import {withStyles} from "@material-ui/core";
 const styles = (theme) => ({
   primaryAsset: {
     backgroundColor: theme.palette.secondary.light,
-    padding: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
+    padding: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   }
 });
 

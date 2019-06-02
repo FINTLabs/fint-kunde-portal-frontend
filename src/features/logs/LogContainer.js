@@ -13,8 +13,8 @@ const styles = (theme) => ({
     justifyContent: 'center',
   },
   title: {
-    paddingLeft: theme.spacing.unit * 50,
-    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing(50),
+    paddingBottom: theme.spacing(1),
   },
   searchInput: {
     width: '50%',
@@ -60,7 +60,7 @@ class LogContainer extends React.Component {
     const {classes} = this.props;
     return (
       <div>
-        <Typography variant="headline" className={classes.title}>Logs</Typography>
+        <Typography variant="h5" className={classes.title}>Logs</Typography>
         <div className={classes.root}>
           <Input
             autoFocus

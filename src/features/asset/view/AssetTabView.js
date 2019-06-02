@@ -61,7 +61,7 @@ class AssetTabView extends React.Component {
             onChange={this.handleChange}
             indicatorColor="primary"
             textColor="primary"
-            fullWidth
+            variant="fullWidth"
           >
             <Tab label="Generelt"/>
             <Tab label="Adapters"/>

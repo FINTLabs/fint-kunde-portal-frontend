@@ -11,7 +11,7 @@ const styles = (theme) => ({
     color: theme.palette.primary.main,
     fontSize: '80px',
     float: 'left',
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
   },
   text: {}
 });
@@ -57,10 +57,10 @@ class WarningMessageBox extends React.Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => this.handleClose(true)} variant="raised" color="primary" autoFocus>
+            <Button onClick={() => this.handleClose(true)} variant="contained" color="primary" autoFocus>
               Ja
             </Button>
-            <Button onClick={() => this.handleClose(false)} variant="raised" color="primary">
+            <Button onClick={() => this.handleClose(false)} variant="contained" color="primary">
               Nei
             </Button>
           </DialogActions>
