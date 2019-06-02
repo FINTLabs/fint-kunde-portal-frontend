@@ -31,21 +31,30 @@ export function fetchClientError() {
 }
 
 export function createKlientSuccess(client) {
-  return {type: CREATE_CLIENT_SUCCESS, client}
+  return {
+    type: CREATE_CLIENT_SUCCESS,
+    client
+  }
 }
 
 export function updateKlientSuccess(klient) {
-  return {type: UPDATE_CLIENT_SUCCESS, klient}
+  return {
+    type: UPDATE_CLIENT_SUCCESS,
+    klient
+  }
 }
 
 
 export function addKlientToComponentSuccess(klient) {
-  return {type: CREATE_CLIENT_SUCCESS, klient}
+  return {
+    type: CREATE_CLIENT_SUCCESS,
+    klient
+  }
 }
 
 export function deleteKlientFromComponentSuccess(klient) {
-  return {type: DELETE_CLIENT_SUCCESS, klient}
+  return {
+    type: DELETE_CLIENT_SUCCESS,
+    klient
+  }
 }
-
-
-

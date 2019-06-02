@@ -20,9 +20,9 @@ class TestAuthApi {
   static clearAuth(baseUrl, organisationName) {
     const url = `${baseUrl}/api/tests/auth/clear/${organisationName}`; //.concat(org);
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin'
-    })
+        method: 'GET',
+        credentials: 'same-origin'
+      })
       .then(response => Promise.all([response]));
   }
 

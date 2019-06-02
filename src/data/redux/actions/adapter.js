@@ -9,43 +9,51 @@ import {
 
 
 export function fetchAdapersSuccess(payload) {
-  return {type: FETCH_ADAPTERS_SUCCESS, payload}
+  return {
+    type: FETCH_ADAPTERS_SUCCESS,
+    payload
+  }
 }
 
 export function fetchAdaptersError() {
-  return {type: FETCH_ADAPTERS_ERROR}
+  return {
+    type: FETCH_ADAPTERS_ERROR
+  }
 }
 
 
 export function createAdapterSuccess(adapter) {
-  return {type: CREATE_ADAPTER_SUCCESS, adapter}
+  return {
+    type: CREATE_ADAPTER_SUCCESS,
+    adapter
+  }
 }
 
 export function updateAdapterSuccess(adapter) {
-  return {type: UPDATE_ADAPTER_SUCCESS, adapter}
+  return {
+    type: UPDATE_ADAPTER_SUCCESS,
+    adapter
+  }
 }
 
 
 export function deleteAdapterSuccess(adapter) {
-  return {type: DELETE_ADAPTER_SUCCESS, adapter}
+  return {
+    type: DELETE_ADAPTER_SUCCESS,
+    adapter
+  }
 }
 
 export function addAdapterToComponentSuccess(adapter) {
-  return {type: CREATE_ADAPTER_SUCCESS, adapter}
+  return {
+    type: CREATE_ADAPTER_SUCCESS,
+    adapter
+  }
 }
 
 export function removeAdapterFromComponentSuccess(adapter) {
-  return {type: REMOVE_ADAPTER_FROM_COMPONENT, adapter}
+  return {
+    type: REMOVE_ADAPTER_FROM_COMPONENT,
+    adapter
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-

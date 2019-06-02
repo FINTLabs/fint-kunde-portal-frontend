@@ -62,47 +62,78 @@ export function fetchOrganisationError() {
 }
 
 export function linkComponentToOrganisationSuccess(api) {
-  return {type: LINK_COMPONENT_TO_ORGANISATION_SUCCESS, api}
+  return {
+    type: LINK_COMPONENT_TO_ORGANISATION_SUCCESS,
+    api
+  }
 }
 
 export function linkComponentToOrganisationError(error) {
-  return {type: LINK_COMPONENT_TO_ORGANISATION_ERROR, error}
+  return {
+    type: LINK_COMPONENT_TO_ORGANISATION_ERROR,
+    error
+  }
 }
 
 export function unlinkComponentFromOrganisationSuccess(api) {
-  return {type: UNLINK_COMPONENT_FROM_ORGANISATION_SUCCESS, api}
+  return {
+    type: UNLINK_COMPONENT_FROM_ORGANISATION_SUCCESS,
+    api
+  }
 }
 
 export function removeTechnicalContactSuccess(response) {
-  return {type: REMOVE_TECHNICAL_CONTACT_SUCCESS, response}
+  return {
+    type: REMOVE_TECHNICAL_CONTACT_SUCCESS,
+    response
+  }
 }
 
 export function removeTechnicalContactError(error) {
-  return {type: REMOVE_TECHNICAL_CONTACT_ERROR, error}
+  return {
+    type: REMOVE_TECHNICAL_CONTACT_ERROR,
+    error
+  }
 }
 
 export function addTechnicalContactSuccess(response) {
-  return {type: ADD_TECHNICAL_CONTACT_SUCCESS, response}
+  return {
+    type: ADD_TECHNICAL_CONTACT_SUCCESS,
+    response
+  }
 }
 
 export function addTechnicalContactError(error) {
-  return {type: ADD_TECHNICAL_CONTACT_ERROR, error}
+  return {
+    type: ADD_TECHNICAL_CONTACT_ERROR,
+    error
+  }
 }
 
 export function setLegalContactSuccess(response) {
-  return {type: SET_LEGAL_CONTACT_SUCCESS, response}
+  return {
+    type: SET_LEGAL_CONTACT_SUCCESS,
+    response
+  }
 }
 
 export function setLegalContactError(error) {
-  return {type: SET_LEGAL_CONTACT_ERROR, error}
+  return {
+    type: SET_LEGAL_CONTACT_ERROR,
+    error
+  }
 }
 
 export function unsetLegalContactSuccess(response) {
-  return {type: UNSET_LEGAL_CONTACT_SUCCESS, response}
+  return {
+    type: UNSET_LEGAL_CONTACT_SUCCESS,
+    response
+  }
 }
 
 export function unsetLegalContactError(error) {
-  return {type: UNSET_LEGAL_CONTACT_ERROR, error}
+  return {
+    type: UNSET_LEGAL_CONTACT_ERROR,
+    error
+  }
 }
-
-

@@ -8,6 +8,8 @@ describe('allReducer', function () {
         type: "FETCH_CLIENT_SUCCESS",
         posts: undefined
       })
-    ).toEqual({"posts": undefined})
+    ).toEqual({
+      "posts": undefined
+    })
   })
 });

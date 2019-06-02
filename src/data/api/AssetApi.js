@@ -2,19 +2,19 @@ class AssetApi {
 
   static fetchAssets(organisation) {
     const url = `/api/assets/${organisation}/`;
-	  return fetch(url, {
-	    method: 'GET',
-      credentials: 'same-origin'
-	  })
+    return fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin'
+      })
       .then(response => Promise.all([response, response.json()]));
 
   }
 
   static getPrimaryAsset(organisation) {
     return fetch(`/api/assets/${organisation}/primary`, {
-      method: 'GET',
-      credentials: 'same-origin'
-    })
+        method: 'GET',
+        credentials: 'same-origin'
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 
@@ -61,7 +61,7 @@ class AssetApi {
   }
 
 
-static deleteAsset(asset, organisation) {
+  static deleteAsset(asset, organisation) {
     const request = new Request(`/api/assets/${organisation}/${asset.name}`, {
       method: 'DELETE',
       credentials: 'same-origin',
@@ -75,7 +75,7 @@ static deleteAsset(asset, organisation) {
   }
 
 
-static addAdapterToAsset(adapter, asset, organisation) {
+  static addAdapterToAsset(adapter, asset, organisation) {
 
     const request = new Request(`/api/assets/${organisation}/${asset.name}/adapters/${adapter.name}`, {
       method: 'PUT',
@@ -94,7 +94,7 @@ static addAdapterToAsset(adapter, asset, organisation) {
       return error;
     });
   }
-static deleteAdapterFromAsset(adapter, asset, organisation) {
+  static deleteAdapterFromAsset(adapter, asset, organisation) {
 
     const request = new Request(`/api/assets/${organisation}/${asset.name}/adapters/${adapter.name}`, {
       method: 'DELETE',
@@ -108,7 +108,7 @@ static deleteAdapterFromAsset(adapter, asset, organisation) {
     });
   }
 
-static addClientToAsset(client, asset, organisation) {
+  static addClientToAsset(client, asset, organisation) {
     const request = new Request(`/api/assets/${organisation.name}/${asset.name}/clients/${client.name}`, {
       method: 'PUT',
       headers: {
@@ -126,7 +126,7 @@ static addClientToAsset(client, asset, organisation) {
       return error;
     });
   }
-static deleteClientFromAsset(client, asset, organisation) {
+  static deleteClientFromAsset(client, asset, organisation) {
 
     const request = new Request(`/api/assets/${organisation.name}/${asset.name}/clients/${client.name}`, {
       method: 'DELETE',

@@ -1,5 +1,8 @@
 import ComponentApi from "../../api/ComponentApi";
-import {fetchComponentsError, fetchComponentsSuccess} from "../actions/component";
+import {
+  fetchComponentsError,
+  fetchComponentsSuccess
+} from "../actions/component";
 
 export function fetchComponents() {
 
@@ -7,8 +10,7 @@ export function fetchComponents() {
     return ComponentApi.getApis().then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchComponentsSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchComponentsError());
       }
     })

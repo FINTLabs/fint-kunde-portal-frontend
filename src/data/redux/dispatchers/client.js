@@ -6,7 +6,9 @@ import {
   fetchClientSuccess,
   updateKlientSuccess
 } from "../actions/client";
-import {DELETE_CLIENT_SUCCESS} from "../actions/types";
+import {
+  DELETE_CLIENT_SUCCESS
+} from "../actions/types";
 import ClientApi from "../../api/ClientApi";
 
 
@@ -16,8 +18,7 @@ export function fetchClients(organisation) {
     return ClientApi.getKlienter(organisation).then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchClientSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchClientError());
       }
     })
@@ -30,7 +31,7 @@ export function createClient(client, organisation) {
       dispatch(createKlientSuccess(responseKlient));
       return responseKlient;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -41,13 +42,16 @@ export function updateClient(client, organisation) {
       dispatch(updateKlientSuccess(responseClient));
       return responseClient;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
 
 export function deleteKlientSuccess(client) {
-  return {type: DELETE_CLIENT_SUCCESS, client}
+  return {
+    type: DELETE_CLIENT_SUCCESS,
+    client
+  }
 }
 
 export function deleteClient(klient, organisation) {
@@ -55,7 +59,7 @@ export function deleteClient(klient, organisation) {
     return ClientApi.deleteKlient(klient, organisation).then(() => {
       dispatch(deleteKlientSuccess(klient));
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   }
 }
@@ -67,7 +71,7 @@ export function addClientToComponent(klient) {
       dispatch(addKlientToComponentSuccess(responseKlient));
       return responseKlient;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -78,7 +82,7 @@ export function deleteClientFromComponent(klient) {
       dispatch(deleteKlientFromComponentSuccess(klient));
       return;
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   }
 }

@@ -2,21 +2,25 @@ import AssetApi from "../../api/AssetApi";
 import {
   addClientToAssetSuccess,
   createAssetSuccess,
-  deleteAssetSuccess, deleteClientFromAssetSuccess,
+  deleteAssetSuccess,
+  deleteClientFromAssetSuccess,
   fetchAssetError,
   fetchAssetsSuccess,
   updateAssetSuccess
 } from "../actions/assets";
-import {fetchClients} from "./client";
-import {fetchAdapters} from "./adapter";
+import {
+  fetchClients
+} from "./client";
+import {
+  fetchAdapters
+} from "./adapter";
 
 export function fetchAssets(org) {
   return (dispatch) => {
     return AssetApi.fetchAssets(org).then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchAssetsSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchAssetError());
       }
     })
@@ -29,7 +33,7 @@ export function createAsset(asset, org) {
       dispatch(createAssetSuccess(responseAsset));
       return responseAsset;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -40,7 +44,7 @@ export function updateAsset(asset, org) {
       dispatch(updateAssetSuccess(responseAsset));
       return responseAsset;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -51,7 +55,7 @@ export function deleteAsset(asset, org) {
       dispatch(deleteAssetSuccess(asset));
       return;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -62,7 +66,7 @@ export function deleteAdapterFromAsset(adapter, asset, org) {
       fetchAssets(org);
       fetchAdapters(org);
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   };
 }
@@ -73,7 +77,7 @@ export function addAdapterToAsset(adapter, asset, org) {
       fetchAssets(org);
       fetchAdapters(org);
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   }
 }
@@ -85,7 +89,7 @@ export function deleteClientFromAsset(client, asset, org) {
       fetchAssets(org);
       fetchClients(org);
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   };
 }
@@ -97,9 +101,7 @@ export function addClientToAsset(client, asset, org) {
       fetchAssets(org);
       fetchClients(org);
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   }
 }
-
-

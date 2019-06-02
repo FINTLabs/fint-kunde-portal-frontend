@@ -1,4 +1,7 @@
-import {FETCH_CLIENT_ERROR, FETCH_LINKWALKER_TESTS_SUCCESS} from "./types";
+import {
+  FETCH_CLIENT_ERROR,
+  FETCH_LINKWALKER_TESTS_SUCCESS
+} from "./types";
 
 
 export function fetchLinkWalkerTestsSuccess(payload) {
