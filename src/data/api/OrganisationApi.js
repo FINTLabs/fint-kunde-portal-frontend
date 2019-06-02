@@ -20,9 +20,9 @@ class OrganisationApi {
     const url = `/api/organisations/${organisation}/`;
 
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-    })
+        method: 'GET',
+        credentials: 'same-origin',
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 

@@ -8,13 +8,19 @@ import {
 export default function adapter(state = [], action) {
   switch (action.type) {
     case FETCH_ADAPTERS_SUCCESS:
-      return {...state, adapters: action.payload};
+      return {
+        ...state, adapters: action.payload
+      };
     case UPDATE_ADAPTER_SUCCESS:
       return state;
     case CREATE_ADAPTER_SUCCESS:
-      return {...state, adapters: [...state.adapters, action.adapter]};
+      return {
+        ...state, adapters: [...state.adapters, action.adapter]
+      };
     case DELETE_ADAPTER_SUCCESS:
-      return {...state, adapters: state.adapters.filter(adapter => action.adapter !== adapter)};
+      return {
+        ...state, adapters: state.adapters.filter(adapter => action.adapter !== adapter)
+      };
     default:
       return state
   }

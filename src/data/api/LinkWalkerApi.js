@@ -3,27 +3,27 @@ class LinkWalkerApi {
   static getTests(baseUrl, organisationName) {
     const url = `${baseUrl}/api/tests/links/${organisationName}`;
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-    })
+        method: 'GET',
+        credentials: 'same-origin',
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 
   static getFailedTestResults(baseUrl, organisationName, id) {
     const url = `${baseUrl}/api/tests/links/${organisationName}/${id}?status=FAILED`;
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-    })
+        method: 'GET',
+        credentials: 'same-origin',
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 
   static getAllTestResults(baseUrl, organisationName, id) {
     const url = `${baseUrl}/api/tests/links/${organisationName}/${id}`;
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin',
-    })
+        method: 'GET',
+        credentials: 'same-origin',
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 

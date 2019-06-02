@@ -42,7 +42,7 @@ const styles = theme => ({
 });
 
 class AdapterList extends Component {
-  editAdapter = (adapter) => {
+  editAdapter = adapter => {
     this.setState({
       open: true,
       adapterToEdit: adapter
@@ -51,11 +51,11 @@ class AdapterList extends Component {
   onCloseEdit = () => {
     this.setState({ open: false });
   };
-  updateAdapter = (adapter) => {
+  updateAdapter = adapter => {
     const { currentOrganisation } = this.props.context;
     this.props.updateAdapter(adapter, currentOrganisation.name);
   };
-  deleteAdapter = (adapter) => {
+  deleteAdapter = adapter => {
     const { currentOrganisation } = this.props.context;
     this.props.deleteAdapter(adapter, currentOrganisation.name);
     this.setState({
@@ -64,17 +64,19 @@ class AdapterList extends Component {
     });
   };
 
-  askToDelete = (adapter) => {
+  askToDelete = adapter => {
     this.setState({
       askToDelete: true,
-      message: `Er du sikker på at du vil slette '${adapter.name}'? Endringen kan ikke tilbakestilles!`,
-      adapterToDelete: adapter,
+      message: `Er du sikker på at du vil slette '${
+        adapter.name
+      }'? Endringen kan ikke tilbakestilles!`,
+      adapterToDelete: adapter
     });
   };
 
-  onCloseDelete = (confirmed) => {
+  onCloseDelete = confirmed => {
     this.setState({
-      askToDelete: false,
+      askToDelete: false
     });
 
     if (confirmed) {
@@ -98,9 +100,8 @@ class AdapterList extends Component {
       notify: false,
       adapterDeletedName: null,
       askToDelete: false,
-      message: '',
+      message: ""
     };
-
   }
 
   render() {
@@ -113,7 +114,6 @@ class AdapterList extends Component {
           showNotification={this.state.notify}
           message={`Adapter ${this.state.adapterDeletedName} ble slettet!`}
           onClose={this.onCloseNotification}
-
         />
         <WarningMessageBox
           show={this.state.askToDelete}
@@ -124,23 +124,28 @@ class AdapterList extends Component {
           <div className={classes.componentList}>
             <FeatureHelperText>
               <p>
-                Ett adapter er påloggingsinformasjon som brukes av fagsystem-adapterne for å få tilgang til en komponent.
-                Dette kan f.eks. Visma Enterprise eller Unit4 (Evry).
+                Ett adapter er påloggingsinformasjon som brukes av
+                fagsystem-adapterne for å få tilgang til en komponent. Dette kan
+                f.eks. Visma Enterprise eller Unit4 (Evry).
               </p>
               <p>
-                Adaptere må registreres før fagsystem-adapteret kan tas i bruk. Et adapter må få opprettet påloggingsinformasjon
-                og bli gitt tilgang til de komponentene det skal levere data for. Påloggingsinformasjonen og informasjon
-                om endepunkter må oppgis til den som skal installere og konfigurere adapteret.
+                Adaptere må registreres før fagsystem-adapteret kan tas i bruk.
+                Et adapter må få opprettet påloggingsinformasjon og bli gitt
+                tilgang til de komponentene det skal levere data for.
+                Påloggingsinformasjonen og informasjon om endepunkter må oppgis
+                til den som skal installere og konfigurere adapteret.
               </p>
             </FeatureHelperText>
-            <Typography variant="h5" className={classes.title}>Adapter</Typography>
-            <Divider/>
+            <Typography variant="h5" className={classes.title}>
+              Adapter
+            </Typography>
+            <Divider />
             <List>
-              {adapters.map((adapter) =>
+              {adapters.map(adapter => (
                 <ListItem className={classes.listItem} key={adapter.dn}>
                   <ListItemAvatar>
                     <Avatar className={classes.itemAvatar}>
-                      <InsertLink/>
+                      <InsertLink />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
@@ -148,15 +153,21 @@ class AdapterList extends Component {
                     secondary={adapter.name}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton aria-label="Edit" onClick={() => this.editAdapter(adapter)}>
-                      <Edit/>
+                    <IconButton
+                      aria-label="Edit"
+                      onClick={() => this.editAdapter(adapter)}
+                    >
+                      <Edit />
                     </IconButton>
-                    <IconButton aria-label="Delete" onClick={() => this.askToDelete(adapter)}>
-                      <Delete/>
+                    <IconButton
+                      aria-label="Delete"
+                      onClick={() => this.askToDelete(adapter)}
+                    >
+                      <Delete />
                     </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
-              )}
+              ))}
             </List>
           </div>
         </div>
@@ -169,14 +180,10 @@ class AdapterList extends Component {
       </div>
     );
   }
-
 }
 
 AdapterList.propTypes = {
   adapters: PropTypes.array.isRequired
 };
 
-
 export default withStyles(styles)(withContext(AdapterList));
-
-

@@ -20,60 +20,59 @@ import blue from "@material-ui/core/colors/blue";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import ContactView from "../view/ContactView";
-import {withContext} from "../../../data/context/withContext";
+import { withContext } from "../../../data/context/withContext";
 
-
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center"
   },
   technicalContactList: {
-    width: '75%',
+    width: "75%"
   },
   title: {
     paddingLeft: theme.spacing(3),
-    paddingBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   },
   listItem: {
-    borderBottom: '1px dashed lightgray',
+    borderBottom: "1px dashed lightgray"
   },
   itemAvatar: {
-    color: '#fff',
-    backgroundColor: theme.palette.secondary.main,
+    color: "#fff",
+    backgroundColor: theme.palette.secondary.main
   },
   removeIcon: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.light
   },
   setLegalIcon: {
-    color: blue[700],
-  },
+    color: blue[700]
+  }
 });
 
 class TechnicalList extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
       askToRemoveContact: false,
       showContact: false,
       contact: {},
-      message: ''
+      message: ""
     };
   }
 
-  askToRemoveContact = (contact) => {
+  askToRemoveContact = contact => {
     this.setState({
       askToRemoveContact: true,
-      message: `Er du sikker på at du vil fjerne ${contact.firstName} ${contact.lastName} fra organisasjonen?`,
-      contact: contact,
+      message: `Er du sikker på at du vil fjerne ${contact.firstName} ${
+        contact.lastName
+      } fra organisasjonen?`,
+      contact: contact
     });
   };
 
-  onCloseRemoveContact = (confirmed) => {
+  onCloseRemoveContact = confirmed => {
     this.setState({
-      askToRemoveContact: false,
+      askToRemoveContact: false
     });
 
     if (confirmed) {
@@ -81,48 +80,57 @@ class TechnicalList extends React.Component {
     }
   };
 
-  removeContact = (contact) => {
-    OrganisationApi.removeTechnicalContact(contact, this.props.context.currentOrganisation.name).then(response => {
-      this.props.notify(`${contact.firstName} ${contact.lastName} ble fjernet.`);
-      this.props.fetchTechnicalContacts();
-    }).catch(error => {
-      alert(error);
-    });
+  removeContact = contact => {
+    OrganisationApi.removeTechnicalContact(
+      contact,
+      this.props.context.currentOrganisation.name
+    )
+      .then(response => {
+        this.props.notify(
+          `${contact.firstName} ${contact.lastName} ble fjernet.`
+        );
+        this.props.fetchTechnicalContacts();
+      })
+      .catch(error => {
+        alert(error);
+      });
   };
 
-  showContact = (contact) => {
+  showContact = contact => {
     this.setState({
       contact: contact,
-      showContact: true,
+      showContact: true
     });
-
   };
 
   onCloseContactView = () => {
     this.setState({
-      showContact: false,
+      showContact: false
       //contact: null,
     });
   };
 
-  setLegalContact = (contact) => {
-    OrganisationApi.unsetLegalContact(this.props.legalContact, this.props.context.currentOrganisation.name)
+  setLegalContact = contact => {
+    OrganisationApi.unsetLegalContact(
+      this.props.legalContact,
+      this.props.context.currentOrganisation.name
+    )
       .then(() => {
-        OrganisationApi.setLegalContact(contact, this.props.context.currentOrganisation.name)
+        OrganisationApi.setLegalContact(
+          contact,
+          this.props.context.currentOrganisation.name
+        )
           .then(() => {
             this.props.notify("Juridisk ansvarlig er oppdatert.");
             this.props.afterUpdateLegalContact();
           })
-          .catch(error => {
-          });
+          .catch(error => {});
       })
-      .catch(error => {
-      });
-
+      .catch(error => {});
   };
 
   render() {
-    const {classes, technicalContacts} = this.props;
+    const { classes, technicalContacts } = this.props;
     return (
       <div className={classes.root}>
         <WarningMessageBox
@@ -137,14 +145,16 @@ class TechnicalList extends React.Component {
           notify={this.props.notify}
         />
         <div className={classes.technicalContactList}>
-          <Typography variant="h5" className={classes.title}>Teknisk kontakter</Typography>
-          <Divider/>
+          <Typography variant="h5" className={classes.title}>
+            Teknisk kontakter
+          </Typography>
+          <Divider />
           <List>
-            {technicalContacts.map((contact) =>
+            {technicalContacts.map(contact => (
               <ListItem className={classes.listItem} key={contact.dn}>
                 <ListItemAvatar>
                   <Avatar className={classes.itemAvatar}>
-                    <ContactIcon/>
+                    <ContactIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -152,19 +162,27 @@ class TechnicalList extends React.Component {
                   secondary={contact.lastName}
                 />
                 <ListItemSecondaryAction>
-
-                  <IconButton aria-label="Remove" onClick={() => this.askToRemoveContact(contact)}>
-                    <RemoveIcon className={classes.removeIcon}/>
+                  <IconButton
+                    aria-label="Remove"
+                    onClick={() => this.askToRemoveContact(contact)}
+                  >
+                    <RemoveIcon className={classes.removeIcon} />
                   </IconButton>
-                  <IconButton aria-label="Legal" onClick={() => this.setLegalContact(contact)}>
-                    <SetLegalIcon className={classes.setLegalIcon}/>
+                  <IconButton
+                    aria-label="Legal"
+                    onClick={() => this.setLegalContact(contact)}
+                  >
+                    <SetLegalIcon className={classes.setLegalIcon} />
                   </IconButton>
-                  <IconButton aria-label="Settings" onClick={() => this.showContact(contact)}>
-                    <EditIcon/>
+                  <IconButton
+                    aria-label="Settings"
+                    onClick={() => this.showContact(contact)}
+                  >
+                    <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
-              </ListItem>,
-            )}
+              </ListItem>
+            ))}
           </List>
         </div>
       </div>

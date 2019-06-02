@@ -8,7 +8,9 @@ import {
   unlinkComponentFromOrganisationSuccess
 } from "../actions/organisation";
 import OrganisationApi from "../../api/OrganisationApi";
-import {fetchComponents} from "./component";
+import {
+  fetchComponents
+} from "./component";
 
 export function fetchTechnicalContacts(organisation) {
 
@@ -16,8 +18,7 @@ export function fetchTechnicalContacts(organisation) {
     return OrganisationApi.getTechnicalContacts(organisation).then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchTechnicalContactsSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchTechnicalContactsError());
       }
     })
@@ -30,8 +31,7 @@ export function fetchLegalContact(organisation) {
     return OrganisationApi.getLegalContact(organisation).then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchLegalContactSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchLegalContactError());
       }
     })
@@ -72,7 +72,7 @@ export function unlinkComponentFromOrganisation(api) {
       fetchComponents();
       //return responseApi;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }

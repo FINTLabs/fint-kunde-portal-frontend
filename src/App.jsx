@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-//import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Main from "./main/Main";
-
 
 const theme = createMuiTheme({
   palette: {
@@ -22,40 +20,13 @@ const theme = createMuiTheme({
   }
 });
 
-
-/*
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#efefef',
-      main: '#bdbdbd',
-      dark: '#8d8d8d',
-      contrastText: '#000',
-    },
-    secondary: {
-      light: '#95C81F',
-      main: '#b71c1c',
-      dark: '#148478',
-      contrastText: '#fff',
-    },
-  },
-
-});
-*/
-
 class App extends Component {
-
-
-  componentDidMount() {
-    //this.props.fetchApis(this.props.org)
-  }
-
+  componentDidMount() {}
 
   render() {
-
     return (
       <MuiThemeProvider theme={theme}>
-        <Main/>
+        <Main />
       </MuiThemeProvider>
     );
   }
@@ -63,9 +34,4 @@ class App extends Component {
 
 App.propTypes = {};
 
-export default (App);
-
-
-
-
-
+export default App;

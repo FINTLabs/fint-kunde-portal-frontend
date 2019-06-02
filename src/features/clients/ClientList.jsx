@@ -43,7 +43,7 @@ const styles = theme => ({
 });
 
 class ClientList extends Component {
-  editClient = (client) => {
+  editClient = client => {
     this.setState({
       open: true,
       clientToEdit: client
@@ -52,11 +52,11 @@ class ClientList extends Component {
   onCloseEdit = () => {
     this.setState({ open: false });
   };
-  updateClient = (client) => {
+  updateClient = client => {
     const { currentOrganisation } = this.props.context;
     this.props.updateClient(client, currentOrganisation.name);
   };
-  deleteClient = (client) => {
+  deleteClient = client => {
     const { currentOrganisation } = this.props.context;
     this.props.deleteClient(client, currentOrganisation.name);
     this.setState({
@@ -65,15 +65,17 @@ class ClientList extends Component {
     });
   };
 
-  askToDelete = (client) => {
+  askToDelete = client => {
     this.setState({
       askToDelete: true,
-      message: `Er du sikker på at du vil slette '${client.name}'? Endringen kan ikke tilbakestilles!`,
+      message: `Er du sikker på at du vil slette '${
+        client.name
+      }'? Endringen kan ikke tilbakestilles!`,
       clientToDelete: client
     });
   };
 
-  onCloseDelete = (confirmed) => {
+  onCloseDelete = confirmed => {
     this.setState({
       askToDelete: false
     });
@@ -99,9 +101,8 @@ class ClientList extends Component {
       notify: false,
       clientDeletedName: null,
       askToDelete: false,
-      message: '',
+      message: ""
     };
-
   }
 
   render() {
@@ -114,7 +115,6 @@ class ClientList extends Component {
           showNotification={this.state.notify}
           message={`Klienten ${this.state.clientDeletedName} ble slettet!`}
           onClose={this.onCloseNotification}
-
         />
         <WarningMessageBox
           show={this.state.askToDelete}
@@ -125,23 +125,28 @@ class ClientList extends Component {
           <div className={classes.componentList}>
             <FeatureHelperText>
               <p>
-                En klient er påloggingsinformasjon som brukes av en integrasjon for å få tilgang til en komponent.
-                Dette kan f.eks. være et IDM system, eller en integrasjonsbuss (BizTalk).
+                En klient er påloggingsinformasjon som brukes av en integrasjon
+                for å få tilgang til en komponent. Dette kan f.eks. være et IDM
+                system, eller en integrasjonsbuss (BizTalk).
               </p>
               <p>
-                Klienten må registreres før integrasjonen kan taes i bruk. En integrasjon må få opprettet påloggingsinformasjon
-                og bli gitt tilgang til de komponentene det skal levere data for. Påloggingsinformasjonen og informasjon
-                om endepunkter må oppgis til den som skal installere og konfigurere integrasjonen.
+                Klienten må registreres før integrasjonen kan taes i bruk. En
+                integrasjon må få opprettet påloggingsinformasjon og bli gitt
+                tilgang til de komponentene det skal levere data for.
+                Påloggingsinformasjonen og informasjon om endepunkter må oppgis
+                til den som skal installere og konfigurere integrasjonen.
               </p>
             </FeatureHelperText>
-            <Typography variant="h5" className={classes.title}>Klienter</Typography>
-            <Divider/>
+            <Typography variant="h5" className={classes.title}>
+              Klienter
+            </Typography>
+            <Divider />
             <List>
-              {clients.map((client) =>
+              {clients.map(client => (
                 <ListItem className={classes.listItem} key={client.dn}>
                   <ListItemAvatar>
                     <Avatar className={classes.itemAvatar}>
-                      <ClientIcon/>
+                      <ClientIcon />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText
@@ -149,15 +154,21 @@ class ClientList extends Component {
                     secondary={client.name}
                   />
                   <ListItemSecondaryAction>
-                    <IconButton aria-label="Edit" onClick={() => this.editClient(client)}>
-                      <Edit/>
+                    <IconButton
+                      aria-label="Edit"
+                      onClick={() => this.editClient(client)}
+                    >
+                      <Edit />
                     </IconButton>
-                    <IconButton aria-label="Delete" onClick={() => this.askToDelete(client)}>
-                      <Delete/>
+                    <IconButton
+                      aria-label="Delete"
+                      onClick={() => this.askToDelete(client)}
+                    >
+                      <Delete />
                     </IconButton>
                   </ListItemSecondaryAction>
                 </ListItem>
-              )}
+              ))}
             </List>
           </div>
         </div>
@@ -170,14 +181,10 @@ class ClientList extends Component {
       </div>
     );
   }
-
 }
 
 ClientList.propTypes = {
   clients: PropTypes.array.isRequired
 };
 
-
 export default withStyles(styles)(withContext(ClientList));
-
-

@@ -3,12 +3,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withStyles } from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
-import { createAdapter, deleteAdapter, fetchAdapters, updateAdapter } from "../../data/redux/dispatchers/adapter";
+import {
+  createAdapter,
+  deleteAdapter,
+  fetchAdapters,
+  updateAdapter
+} from "../../data/redux/dispatchers/adapter";
 import AdapterList from "./AdapterList";
 import AdapterAdd from "./add/AdapterAdd";
 import { withContext } from "../../data/context/withContext";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
-
 
 const styles = () => ({
   root: {}
@@ -34,7 +38,7 @@ class AdapterContainer extends React.Component {
     }
   }
 
-  notify = (message) => {
+  notify = message => {
     this.setState({
       notify: true,
       notifyMessage: message
@@ -53,8 +57,11 @@ class AdapterContainer extends React.Component {
   };
 
   render() {
-    if (this.props.adapters === undefined || this.props.context.currentOrganisation === undefined) {
-      return <LoadingProgress/>;
+    if (
+      this.props.adapters === undefined ||
+      this.props.context.currentOrganisation === undefined
+    ) {
+      return <LoadingProgress />;
     } else {
       return this.renderAdapters();
     }
@@ -70,17 +77,17 @@ class AdapterContainer extends React.Component {
           onClose={this.onCloseNotification}
         />
 
-        <AdapterList adapters={this.props.adapters}
-                     updateAdapter={this.props.updateAdapter}
-                     deleteAdapter={this.props.deleteAdapter}
+        <AdapterList
+          adapters={this.props.adapters}
+          updateAdapter={this.props.updateAdapter}
+          deleteAdapter={this.props.deleteAdapter}
         />
-        <AdapterAdd organisation={this.props.context.currentOrganisation}
-                    notify={this.notify}
-                    afterAdd={this.afterAddAdapter}
+        <AdapterAdd
+          organisation={this.props.context.currentOrganisation}
+          notify={this.notify}
+          afterAdd={this.afterAddAdapter}
         />
       </div>
-
-
     );
   }
 }
@@ -88,7 +95,6 @@ class AdapterContainer extends React.Component {
 AdapterContainer.propTypes = {};
 
 function mapStateToProps(state) {
-
   return {
     adapters: state.adapter.adapters,
     components: state.component.components
@@ -96,12 +102,20 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchAdapters: fetchAdapters,
-    updateAdapter: updateAdapter,
-    deleteAdapter: deleteAdapter,
-    createAdapter: createAdapter
-  }, dispatch);
+  return bindActionCreators(
+    {
+      fetchAdapters: fetchAdapters,
+      updateAdapter: updateAdapter,
+      deleteAdapter: deleteAdapter,
+      createAdapter: createAdapter
+    },
+    dispatch
+  );
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(withContext(AdapterContainer)));
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withContext(AdapterContainer))
+);

@@ -1,4 +1,7 @@
-import {FETCH_COMPONENTS_ERROR, FETCH_COMPONENTS_SUCCESS} from "./types";
+import {
+  FETCH_COMPONENTS_ERROR,
+  FETCH_COMPONENTS_SUCCESS
+} from "./types";
 
 
 export function fetchComponentsSuccess(payload) {
@@ -13,4 +16,3 @@ export function fetchComponentsError() {
     type: FETCH_COMPONENTS_ERROR,
   }
 }
-

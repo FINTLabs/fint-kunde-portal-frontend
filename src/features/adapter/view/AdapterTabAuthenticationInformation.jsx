@@ -18,51 +18,49 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import { withContext } from "../../../data/context/withContext";
 import { Link } from "react-router-dom";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import  ContentCopy  from '@material-ui/icons/FileCopy';
-
+import ContentCopy from "@material-ui/icons/FileCopy";
 
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    width: '100%',
+    width: "100%"
   },
   oauthSecret: {
-    width: '100%',
+    width: "100%"
   },
   auth: {
-    marginTop: '0px',
-    marginBottom: '10px',
-    padding: '10px',
+    marginTop: "0px",
+    marginBottom: "10px",
+    padding: "10px"
   },
   authSecret: {
-    width: '100%',
+    width: "100%"
   },
   close: {
     width: theme.spacing(4),
-    height: theme.spacing(4),
+    height: theme.spacing(4)
   },
   copyAllAuthButtonIcon: {
     marginRight: theme.spacing(1),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   gotoAssetButton: {
-    marginTop: theme.spacing(1),
-  },
+    marginTop: theme.spacing(1)
+  }
 });
 
 class AdapterTabAuthenticationInformation extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       allAuthInfo: {
         username: this.props.adapter.name,
-        password: '**********',
+        password: "**********",
         clientId: this.props.adapter.clientId,
-        openIdSecret: ' ',
-        scope: 'fint-client',
-        idpUri: 'https://idp.felleskomponent.no/nidp/oauth/nam/token',
-        assetIds: this.props.adapter.assetIds,
+        openIdSecret: " ",
+        scope: "fint-client",
+        idpUri: "https://idp.felleskomponent.no/nidp/oauth/nam/token",
+        assetIds: this.props.adapter.assetIds
       },
       askToResetPassword: false,
       message: ""
@@ -70,13 +68,15 @@ class AdapterTabAuthenticationInformation extends React.Component {
   }
 
   getOpenIdSecret = () => {
-
-    AdapterApi.getOpenIdSecret(this.props.adapter, this.props.context.currentOrganisation.name).then(data => {
+    AdapterApi.getOpenIdSecret(
+      this.props.adapter,
+      this.props.context.currentOrganisation.name
+    ).then(data => {
       let allAuthInfo = this.state.allAuthInfo;
       allAuthInfo.openIdSecret = data;
       this.setState({
-        allAuthInfo: allAuthInfo,
-      })
+        allAuthInfo: allAuthInfo
+      });
     });
   };
 
@@ -85,39 +85,40 @@ class AdapterTabAuthenticationInformation extends React.Component {
       length: 32,
       numbers: true,
       symbols: false,
-      strict: true,
+      strict: true
     });
   };
 
   setPassword = () => {
-
     let password = this.generatePassord();
 
-
-    AdapterApi.setPassword(this.props.adapter, password, this.props.context.currentOrganisation.name)
-      .then(response => {
-        if (response.status === 200) {
-          let allAuthInfo = this.state.allAuthInfo;
-          allAuthInfo.password = password;
-          this.setState({
-            allAuthInfo: allAuthInfo,
-          });
-        }
-      });
-
+    AdapterApi.setPassword(
+      this.props.adapter,
+      password,
+      this.props.context.currentOrganisation.name
+    ).then(response => {
+      if (response.status === 200) {
+        let allAuthInfo = this.state.allAuthInfo;
+        allAuthInfo.password = password;
+        this.setState({
+          allAuthInfo: allAuthInfo
+        });
+      }
+    });
   };
 
   askToResetPassword = () => {
     this.setState({
       askToResetPassword: true,
-      message: 'Er du sikker på at du vil sette nytt passord? Hvis du gjør det må alle som ' +
-        'bruker autentiseringsinformasjonen få det nye passordet og konfigurere tjenesten sin på nytt!'
+      message:
+        "Er du sikker på at du vil sette nytt passord? Hvis du gjør det må alle som " +
+        "bruker autentiseringsinformasjonen få det nye passordet og konfigurere tjenesten sin på nytt!"
     });
   };
 
-  onCloseAskResetPassword = (confirmed) => {
+  onCloseAskResetPassword = confirmed => {
     this.setState({
-      askToResetPassword: false,
+      askToResetPassword: false
     });
 
     if (confirmed) {
@@ -126,8 +127,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
   };
 
   render() {
-
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div>
         <WarningMessageBox
@@ -146,18 +146,17 @@ class AdapterTabAuthenticationInformation extends React.Component {
             disabled
             endAdornment={
               <InputAdornment position="end">
-                <CopyToClipboard text={this.props.adapter.name}
-                                 onCopy={() => this.props.notify('Kopiert')}
+                <CopyToClipboard
+                  text={this.props.adapter.name}
+                  onCopy={() => this.props.notify("Kopiert")}
                 >
                   <IconButton>
-                    <ContentCopy/>
+                    <ContentCopy />
                   </IconButton>
                 </CopyToClipboard>
               </InputAdornment>
             }
           />
-
-
         </FormControl>
 
         <FormControl className={classes.authSecret}>
@@ -166,20 +165,30 @@ class AdapterTabAuthenticationInformation extends React.Component {
             disabled
             margin="dense"
             id="adornment-password"
-            type={this.state.allAuthInfo.password === 'topsecret' ? 'password' : 'text'}
+            type={
+              this.state.allAuthInfo.password === "topsecret"
+                ? "password"
+                : "text"
+            }
             value={this.state.allAuthInfo.password}
             endAdornment={
               <InputAdornment position="end">
-                <Tooltip id="tooltip-fab" title="Trykk for å generere nytt passord">
+                <Tooltip
+                  id="tooltip-fab"
+                  title="Trykk for å generere nytt passord"
+                >
                   <IconButton onClick={() => this.askToResetPassword()}>
-                    <RefreshIcon/>
+                    <RefreshIcon />
                   </IconButton>
                 </Tooltip>
-                <CopyToClipboard text={this.state.allAuthInfo.password}
-                                 onCopy={() => this.props.notify('Kopiert')}
+                <CopyToClipboard
+                  text={this.state.allAuthInfo.password}
+                  onCopy={() => this.props.notify("Kopiert")}
                 >
-                  <IconButton disabled={this.state.allAuthInfo.password === 'topsecret'}>
-                    <ContentCopy/>
+                  <IconButton
+                    disabled={this.state.allAuthInfo.password === "topsecret"}
+                  >
+                    <ContentCopy />
                   </IconButton>
                 </CopyToClipboard>
               </InputAdornment>
@@ -197,20 +206,22 @@ class AdapterTabAuthenticationInformation extends React.Component {
             disabled
             endAdornment={
               <InputAdornment position="end">
-                <CopyToClipboard text={this.state.allAuthInfo.clientId}
-                                 onCopy={() => this.props.notify('Kopiert')}
+                <CopyToClipboard
+                  text={this.state.allAuthInfo.clientId}
+                  onCopy={() => this.props.notify("Kopiert")}
                 >
                   <IconButton>
-                    <ContentCopy/>
+                    <ContentCopy />
                   </IconButton>
                 </CopyToClipboard>
               </InputAdornment>
             }
           />
         </FormControl>
-        <FormControl className={classes.oauthSecret}
-        >
-          <InputLabel htmlFor="adornment-password">Klient Hemmelighet</InputLabel>
+        <FormControl className={classes.oauthSecret}>
+          <InputLabel htmlFor="adornment-password">
+            Klient Hemmelighet
+          </InputLabel>
           <Input
             id="adornment-password"
             disabled
@@ -220,16 +231,20 @@ class AdapterTabAuthenticationInformation extends React.Component {
             rows="2"
             endAdornment={
               <InputAdornment position="end">
-                <Tooltip id="tooltip-fab" title="Trykk for å hente hemmligheten">
+                <Tooltip
+                  id="tooltip-fab"
+                  title="Trykk for å hente hemmligheten"
+                >
                   <IconButton onClick={() => this.getOpenIdSecret()}>
-                    <GetSecretIcon/>
+                    <GetSecretIcon />
                   </IconButton>
                 </Tooltip>
-                <CopyToClipboard text={this.state.allAuthInfo.openIdSecret}
-                                 onCopy={() => this.props.notify('Kopiert')}
+                <CopyToClipboard
+                  text={this.state.allAuthInfo.openIdSecret}
+                  onCopy={() => this.props.notify("Kopiert")}
                 >
                   <IconButton>
-                    <ContentCopy/>
+                    <ContentCopy />
                   </IconButton>
                 </CopyToClipboard>
               </InputAdornment>
@@ -237,42 +252,55 @@ class AdapterTabAuthenticationInformation extends React.Component {
           />
         </FormControl>
 
-        {this.props.adapter.assetIds.length > 0 ?
-          (
-            <FormControl className={classes.authSecret}>
-              <InputLabel htmlFor="name">RessursId'er</InputLabel>
+        {this.props.adapter.assetIds.length > 0 ? (
+          <FormControl className={classes.authSecret}>
+            <InputLabel htmlFor="name">RessursId'er</InputLabel>
 
-              <Input
-                margin="dense"
-                id="asset-id"
-                name="asset-id"
-                value={this.props.adapter.assetIds ? this.props.adapter.assetIds : 'Ingen ressursId er tilknyttet enda!'}
-                disabled
-                endAdornment={
-                  <InputAdornment position="end">
-                    <CopyToClipboard text={this.props.adapter.assetIds}
-                                     onCopy={() => this.props.notify('Kopiert')}
-                    >
-                      <IconButton>
-                        <ContentCopy/>
-                      </IconButton>
-                    </CopyToClipboard>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          ) : (
-            <Button className={classes.gotoAssetButton} variant="contained" color="primary" size="small" fullWidth component={Link} to="/assets">
-              Adapteret har ikke tilordnet en ressursId. Klikk her for å legge til en ressursId.
-            </Button>
-          )
-        }
+            <Input
+              margin="dense"
+              id="asset-id"
+              name="asset-id"
+              value={
+                this.props.adapter.assetIds
+                  ? this.props.adapter.assetIds
+                  : "Ingen ressursId er tilknyttet enda!"
+              }
+              disabled
+              endAdornment={
+                <InputAdornment position="end">
+                  <CopyToClipboard
+                    text={this.props.adapter.assetIds}
+                    onCopy={() => this.props.notify("Kopiert")}
+                  >
+                    <IconButton>
+                      <ContentCopy />
+                    </IconButton>
+                  </CopyToClipboard>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+        ) : (
+          <Button
+            className={classes.gotoAssetButton}
+            variant="contained"
+            color="primary"
+            size="small"
+            fullWidth
+            component={Link}
+            to="/assets"
+          >
+            Adapteret har ikke tilordnet en ressursId. Klikk her for å legge til
+            en ressursId.
+          </Button>
+        )}
 
-
-        <CopyToClipboard text={JSON.stringify(this.state.allAuthInfo, null, 2)}
-                         onCopy={() => this.props.notify('Kopiert')}>
+        <CopyToClipboard
+          text={JSON.stringify(this.state.allAuthInfo, null, 2)}
+          onCopy={() => this.props.notify("Kopiert")}
+        >
           <Button variant="contained" className={classes.copyAllAuthButtonIcon}>
-            <ContentCopy/>
+            <ContentCopy />
             Kopier autentiseringsinformasjon
           </Button>
         </CopyToClipboard>
@@ -283,8 +311,9 @@ class AdapterTabAuthenticationInformation extends React.Component {
 
 AdapterTabAuthenticationInformation.propTypes = {
   adapter: PropTypes.object.isRequired,
-  notify: PropTypes.func.isRequired,
-
+  notify: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(withContext(AdapterTabAuthenticationInformation));
+export default withStyles(styles)(
+  withContext(AdapterTabAuthenticationInformation)
+);

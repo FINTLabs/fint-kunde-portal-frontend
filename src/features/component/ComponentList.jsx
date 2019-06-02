@@ -27,7 +27,6 @@ import AddButton from "../../common/button/AddButton";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import Sort from "../../common/utils/Sort";
 
-
 const styles = theme => ({
   root: {
     display: "flex",
@@ -51,49 +50,59 @@ const styles = theme => ({
 });
 
 class ComponentList extends Component {
-  askToLinkComponent = (component) => {
+  askToLinkComponent = component => {
     this.setState({
       askLink: true,
-      message: "Vil du legge til komponenten:  " + component.description + " til organisasjonen?",
+      message:
+        "Vil du legge til komponenten:  " +
+        component.description +
+        " til organisasjonen?",
       component: component
     });
   };
-  askToUnLinkComponent = (component) => {
+  askToUnLinkComponent = component => {
     this.setState({
       askUnLink: true,
-      message: "Er du sikker på at du vil fjerne komponenten:  " + component.description + " fra organisasjonen?",
+      message:
+        "Er du sikker på at du vil fjerne komponenten:  " +
+        component.description +
+        " fra organisasjonen?",
       component: component
     });
   };
-  linkComponent = (component) => {
+  linkComponent = component => {
     const { context } = this.props;
 
-    OrganisationApi.linkComponent(component, context.currentOrganisation.name).then(responseApi => {
-      this.setState({
-        notify: true,
-        notifyMessage: `${component.description} ble lagt til!`
+    OrganisationApi.linkComponent(component, context.currentOrganisation.name)
+      .then(responseApi => {
+        this.setState({
+          notify: true,
+          notifyMessage: `${component.description} ble lagt til!`
+        });
+        context.refresh();
+        this.props.fetchComponents();
+      })
+      .catch(error => {
+        alert(error);
       });
-      context.refresh();
-      this.props.fetchComponents();
-    }).catch(error => {
-      alert(error);
-    });
   };
-  unlinkComponent = (component) => {
+  unlinkComponent = component => {
     const { context } = this.props;
 
-    OrganisationApi.unlinkComponent(component, context.currentOrganisation.name).then(responseApi => {
-      this.setState({
-        notify: true,
-        notifyMessage: `${component.description} ble fjernet!`
+    OrganisationApi.unlinkComponent(component, context.currentOrganisation.name)
+      .then(responseApi => {
+        this.setState({
+          notify: true,
+          notifyMessage: `${component.description} ble fjernet!`
+        });
+        context.refresh();
+        this.props.fetchComponents();
+      })
+      .catch(error => {
+        alert(error);
       });
-      context.refresh();
-      this.props.fetchComponents();
-    }).catch(error => {
-      alert(error);
-    });
   };
-  onCloseLink = (confirmed) => {
+  onCloseLink = confirmed => {
     this.setState({
       askLink: false
     });
@@ -102,7 +111,7 @@ class ComponentList extends Component {
       this.linkComponent(this.state.component);
     }
   };
-  onCloseUnLink = (confirmed) => {
+  onCloseUnLink = confirmed => {
     this.setState({
       askUnLink: false
     });
@@ -117,7 +126,7 @@ class ComponentList extends Component {
       notifyMessage: ""
     });
   };
-  showComponent = (component) => {
+  showComponent = component => {
     this.setState({
       showComponent: true,
       component: component
@@ -129,26 +138,34 @@ class ComponentList extends Component {
       component: null
     });
   };
-  isLinkedToOrganisation = (component) => {
+  isLinkedToOrganisation = component => {
     let componentOrganisations = component.organisations;
 
     for (let i = 0; i < componentOrganisations.length; i++) {
-      if (componentOrganisations[i].toLowerCase() === this.props.organisation.dn.toLowerCase()) {
+      if (
+        componentOrganisations[i].toLowerCase() ===
+        this.props.organisation.dn.toLowerCase()
+      ) {
         return true;
       }
     }
     return false;
   };
 
-  renderAddRemove = (component) => {
+  renderAddRemove = component => {
     return (
       <React.Fragment>
-        {this.isLinkedToOrganisation(component) ?
-          (<RemoveButton onClick={() => this.askToUnLinkComponent(component)}
-                         title="Fjerne komponent fra organisasjonen"/>)
-          :
-          (<AddButton onClick={() => this.askToLinkComponent(component)} title="Legge komponent til organisasjonen"/>)
-        }
+        {this.isLinkedToOrganisation(component) ? (
+          <RemoveButton
+            onClick={() => this.askToUnLinkComponent(component)}
+            title="Fjerne komponent fra organisasjonen"
+          />
+        ) : (
+          <AddButton
+            onClick={() => this.askToLinkComponent(component)}
+            title="Legge komponent til organisasjonen"
+          />
+        )}
       </React.Fragment>
     );
   };
@@ -185,7 +202,8 @@ class ComponentList extends Component {
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
-          onClose={this.onCloseNotification}/>
+          onClose={this.onCloseNotification}
+        />
         <ComponentsView
           component={this.state.component}
           show={this.state.showComponent}
@@ -193,26 +211,26 @@ class ComponentList extends Component {
         />
         <div className={classes.componentList}>
           <FeatureHelperText>
+            <p>En komponent er en løsning fra FINT.</p>
             <p>
-              En komponent er en løsning fra FINT.
-            </p>
-            <p>
-              For at organisasjonen skal kunne ta i bruk en løsning fra FINT
-              må den legges til organisasjonen.
+              For at organisasjonen skal kunne ta i bruk en løsning fra FINT må
+              den legges til organisasjonen.
             </p>
             <p>
               Komponenter som er merket Åpne Data/Felles kan ikke legges til. De
               administreres av FINT.
             </p>
           </FeatureHelperText>
-          <Typography variant="h5" className={classes.title}>Komponenter</Typography>
-          <Divider/>
+          <Typography variant="h5" className={classes.title}>
+            Komponenter
+          </Typography>
+          <Divider />
           <List>
-            {components.map((component) =>
+            {components.map(component => (
               <ListItem className={classes.listItem} key={component.dn}>
                 <ListItemAvatar>
                   <Avatar className={classes.itemAvatar}>
-                    <ComponentIcon/>
+                    <ComponentIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -220,19 +238,24 @@ class ComponentList extends Component {
                   secondary={component.basePath}
                 />
                 <ListItemSecondaryAction>
-                  {component.openData && <OpenDataLabel/>}
-                  {component.common && <CommonComponentLabel/>}
-                  {(!component.openData || !component.common || organisation.name === "fintlabs_no") && this.renderAddRemove(component)}
-                  <IconButton aria-label="Settings" onClick={() => this.showComponent(component)}>
-                    <SettingsIcon/>
+                  {component.openData && <OpenDataLabel />}
+                  {component.common && <CommonComponentLabel />}
+                  {(!component.openData ||
+                    !component.common ||
+                    organisation.name === "fintlabs_no") &&
+                    this.renderAddRemove(component)}
+                  <IconButton
+                    aria-label="Settings"
+                    onClick={() => this.showComponent(component)}
+                  >
+                    <SettingsIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
-            )}
+            ))}
           </List>
         </div>
       </div>
-
     );
   }
 }
@@ -245,7 +268,4 @@ ComponentList.propTypes = {
   organisation: PropTypes.any.isRequired
 };
 
-
 export default withStyles(styles)(withContext(ComponentList));
-
-

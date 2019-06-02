@@ -8,27 +8,35 @@ import {
 
 
 export function fetchContactsSuccess(payload) {
-  return {type: FETCH_CONTACTS_SUCCESS, payload}
+  return {
+    type: FETCH_CONTACTS_SUCCESS,
+    payload
+  }
 }
 
 export function fetchContactError() {
-  return {type: FETCH_CONTACTS_ERROR}
+  return {
+    type: FETCH_CONTACTS_ERROR
+  }
 }
 
 export function deleteContactSuccess(payload) {
-  return {type: DELETE_CONTACT_SUCCESS, payload}
+  return {
+    type: DELETE_CONTACT_SUCCESS,
+    payload
+  }
 }
 
 export function createContactSuccess(payload) {
-  return {type: CREATE_CONTACT_SUCCESS, payload}
+  return {
+    type: CREATE_CONTACT_SUCCESS,
+    payload
+  }
 }
 
 export function updateKontaktSuccess(payload) {
-  return {type: UPDATE_CONTACT_SUCCESS, payload}
+  return {
+    type: UPDATE_CONTACT_SUCCESS,
+    payload
+  }
 }
-
-
-
-
-
-

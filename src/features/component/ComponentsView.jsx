@@ -309,10 +309,9 @@ class ComponentsView extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return <div />;
     }
-    else {
-      return(<div/>);
-    };
   }
 }
 

@@ -18,61 +18,55 @@ import blue from "@material-ui/core/colors/blue";
 import ContactView from "../view/ContactView";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 
-
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: theme.spacing(5),
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: theme.spacing(5)
   },
   legalContactList: {
-    width: '75%',
+    width: "75%"
   },
   title: {
     paddingLeft: theme.spacing(3),
-    paddingBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   },
   listItem: {
-    borderBottom: '1px dashed lightgray',
+    borderBottom: "1px dashed lightgray"
   },
   itemAvatar: {
-    color: '#fff',
-    backgroundColor: theme.palette.secondary.main,
+    color: "#fff",
+    backgroundColor: theme.palette.secondary.main
   },
   removeIcon: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.light
   },
   setLegalIcon: {
-    color: blue[700],
-  },
+    color: blue[700]
+  }
 });
 
 class LegalList extends React.Component {
-
-
   constructor(props) {
     super(props);
-    this.state = {showContact: false};
+    this.state = { showContact: false };
   }
 
   showContact = () => {
     this.setState({
-      showContact: true,
+      showContact: true
     });
-
   };
 
   onCloseContactView = () => {
     this.setState({
-      showContact: false,
+      showContact: false
       //contact: null,
     });
   };
 
-
-
   render() {
-    const {classes, legalContact} = this.props;
+    const { classes, legalContact } = this.props;
     return (
       <div className={classes.root}>
         <ContactView
@@ -83,27 +77,26 @@ class LegalList extends React.Component {
         />
         <div className={classes.legalContactList}>
           <FeatureHelperText>
+            <p>Kontakter er personer som har tilgang til kundeportalen.</p>
+            <p>En juridisk kontakt er den som har det merkantile ansvaret.</p>
             <p>
-              Kontakter er personer som har tilgang til kundeportalen.
+              Tekniske kontakter er organisasjonens FINT administratorer. De vil
+              få driftsmeldinger tilsendt ved behov.
             </p>
             <p>
-              En juridisk kontakt er den som har det merkantile ansvaret.
-            </p>
-            <p>
-              Tekniske kontakter er organisasjonens FINT administratorer.
-              De vil få driftsmeldinger tilsendt ved behov.
-            </p>
-            <p>
-              Ordinære driftsmeldinger sendes på epost. Kritiske driftmeldinger sendes på epost og SMS.
+              Ordinære driftsmeldinger sendes på epost. Kritiske driftmeldinger
+              sendes på epost og SMS.
             </p>
           </FeatureHelperText>
-          <Typography variant="h5" className={classes.title}>Juridisk kontakt</Typography>
-          <Divider/>
+          <Typography variant="h5" className={classes.title}>
+            Juridisk kontakt
+          </Typography>
+          <Divider />
           <List>
             <ListItem className={classes.listItem} key={legalContact.dn}>
               <ListItemAvatar>
                 <Avatar className={classes.itemAvatar}>
-                  <ContactIcon/>
+                  <ContactIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
@@ -111,13 +104,15 @@ class LegalList extends React.Component {
                 secondary={legalContact.lastName}
               />
               <ListItemSecondaryAction>
-                <IconButton aria-label="Settings" onClick={() => this.showContact()}>
-                  <EditIcon/>
+                <IconButton
+                  aria-label="Settings"
+                  onClick={() => this.showContact()}
+                >
+                  <EditIcon />
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
           </List>
-
         </div>
       </div>
     );
@@ -125,6 +120,6 @@ class LegalList extends React.Component {
 }
 
 LegalList.propTypes = {
-  legalContact: PropTypes.object.isRequired,
+  legalContact: PropTypes.object.isRequired
 };
 export default withStyles(styles)(LegalList);

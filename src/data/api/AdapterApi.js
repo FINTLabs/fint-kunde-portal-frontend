@@ -3,9 +3,9 @@ class AdapterApi {
   static getAdapters(organisation) {
     const url = `/api/adapters/${organisation}`; //.concat(org);
     return fetch(url, {
-      method: 'GET',
-      credentials: 'same-origin'
-    })
+        method: 'GET',
+        credentials: 'same-origin'
+      })
       .then(response => Promise.all([response, response.json()]));
   }
 
@@ -107,16 +107,14 @@ class AdapterApi {
 
   static getOpenIdSecret(adapter, organisation) {
 
-    const request = new Request(`/api/adapters/${organisation}/${adapter.name}/secret`,
-      {
-        method: 'GET',
-        credentials: 'same-origin',
-      });
+    const request = new Request(`/api/adapters/${organisation}/${adapter.name}/secret`, {
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     return fetch(request)
       .then(response => {
-          return response.text();
-        }
-      )
+        return response.text();
+      })
       .catch(error => {
         return error
       });

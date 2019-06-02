@@ -12,8 +12,7 @@ export function fetchContacts() {
     return ContactApi.fetchContacts().then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchContactsSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchContactError());
       }
     })
@@ -26,7 +25,7 @@ export function createContact(kontakt) {
       dispatch(createContactSuccess(response));
       return response;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -37,7 +36,7 @@ export function updateContact(kontakt) {
       dispatch(updateKontaktSuccess(response));
       return response;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -47,7 +46,7 @@ export function deleteContact(kontakt) {
     return ContactApi.deleteContact(kontakt).then(() => {
       dispatch(deleteContactSuccess(kontakt));
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   }
 }

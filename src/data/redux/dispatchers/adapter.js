@@ -6,7 +6,9 @@ import {
   fetchAdaptersError,
   updateAdapterSuccess
 } from "../actions/adapter";
-import {fetchComponents} from "./component";
+import {
+  fetchComponents
+} from "./component";
 
 
 export function deleteAdapterFromComponent(adapter, component, org) {
@@ -18,7 +20,7 @@ export function deleteAdapterFromComponent(adapter, component, org) {
       fetchComponents();
       //return;
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   };
 }
@@ -29,7 +31,7 @@ export function deleteAdapter(adapter, org) {
       dispatch(deleteAdapterSuccess(adapter));
       return;
     }).catch(error => {
-      throw(error);
+      throw (error);
     })
   }
 }
@@ -42,7 +44,7 @@ export function addAdapterToComponent(adapter, component, org) {
       fetchComponents();
       //return responseAdapter;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   }
 }
@@ -54,7 +56,7 @@ export function updateAdapter(adapter, organisation) {
       return responseAdapter;
 
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -65,7 +67,7 @@ export function createAdapter(adapter, org) {
       dispatch(createAdapterSuccess(responseAdapter));
       return responseAdapter;
     }).catch(error => {
-      throw(error);
+      throw (error);
     });
   };
 }
@@ -76,8 +78,7 @@ export function fetchAdapters(org) {
     return AdapterApi.getAdapters(org).then(([response, json]) => {
       if (response.status === 200) {
         dispatch(fetchAdapersSuccess(json));
-      }
-      else {
+      } else {
         dispatch(fetchAdaptersError());
       }
     })
