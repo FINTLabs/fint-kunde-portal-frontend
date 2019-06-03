@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import AppMenu from "./appmenu/AppMenu";
 import MeApi from "../data/api/MeApi";
 import NoGoContainer from "../features/nogo/NoGoContainer";
-import Provider from "react-redux/es/components/Provider";
+import {Provider} from "react-redux";
 import store from "../data/redux/store/configure-store";
 import { CookiesProvider } from "react-cookie";
 import AppProvider from "../data/context/AppProvider";
