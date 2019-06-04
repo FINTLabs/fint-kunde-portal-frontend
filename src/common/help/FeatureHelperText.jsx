@@ -51,18 +51,6 @@ class FeatureHelperText extends Component {
         <Paper className={classes.helpText}>{this.props.children}</Paper>
       </div>
     );
-    /*
-    return (
-      <div className={classHidden}>
-        <Paper className={classes.helpText}>
-          <div className={classes.closeButtonContainer}>
-            <CloseIcon className={classes.closeButton} onClick={() => this.close()}/>
-          </div>
-          {this.props.children}
-        </Paper>
-      </div>
-    );
-    */
   }
 }
 

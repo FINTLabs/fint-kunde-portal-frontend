@@ -28,7 +28,6 @@ class AutoHideNotification extends React.Component {
         open: nextProps.showNotification
       };
     }
-
     return null;
   }
 

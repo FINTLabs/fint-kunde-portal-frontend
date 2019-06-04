@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import { IconButton, withStyles } from "@material-ui/core";
-import AddIcon from "../../../node_modules/@material-ui/icons/AddCircle";
+import AddIcon from "@material-ui/icons/AddCircle";
 
 const styles = theme => ({
   addIcon: {

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature component it matches the snapshot 1`] = `
+<div
+  aria-describedby={null}
+  className="MuiChip-root OpenDataLabel-chip-1 MuiChip-colorPrimary"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  title="Dette er åpne data som ikke trenger å tilordnes organisasjonen. Denne komponenten trenger ikke adapter eller klienter."
+>
+  <div
+    className="MuiAvatar-root MuiChip-avatar OpenDataLabel-avatar-2 MuiChip-avatarColorPrimary MuiAvatar-colorDefault"
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root MuiChip-avatarChildren"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+      <path
+        d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"
+      />
+    </svg>
+  </div>
+  <span
+    className="MuiChip-label"
+  >
+    Åpne Data
+  </span>
+</div>
+`;

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component should match snapshot 1`] = `
+<div>
+  <div
+    aria-describedby={null}
+    className="MuiCircularProgress-root TrafficLight-progress-4 MuiCircularProgress-colorSecondary MuiCircularProgress-indeterminate"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="progressbar"
+    style={
+      Object {
+        "height": 30,
+        "width": 30,
+      }
+    }
+    title="RUNNING"
+  >
+    <svg
+      className="MuiCircularProgress-svg"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={Object {}}
+      />
+    </svg>
+  </div>
+</div>
+`;

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature component it matches the snapshot 1`] = `
+<div
+  className="MuiFormControl-root MuiFormControl-fullWidth"
+>
+  <label
+    className="MuiFormLabel-root MuiInputLabel-root UsernameValidationInput-label-2 MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
+    data-shrink={false}
+    htmlFor="test"
+  >
+    test
+    <span
+      className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+    >
+       
+      *
+    </span>
+  </label>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline UsernameValidationInput-input-3 MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        autoFocus={true}
+        className="MuiInputBase-input MuiInput-input"
+        disabled={false}
+        name="test"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={true}
+        type="text"
+      />
+    </div>
+    <span
+      className="MuiTypography-root UsernameValidationInput-realm-1 MuiTypography-caption"
+    >
+      @dummy.no
+    </span>
+  </div>
+  <p
+    className="MuiFormHelperText-root Mui-required"
+  >
+    
+  </p>
+</div>
+`;
