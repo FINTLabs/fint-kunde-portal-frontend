@@ -18,7 +18,6 @@ class ClientSelector extends Component {
   render() {
     const { name, value, clients, classes, disabled } = this.props;
     let selectableClients = clients.filter(c => c.assetId !== null);
-
     return (
       <div>
         <FormControl

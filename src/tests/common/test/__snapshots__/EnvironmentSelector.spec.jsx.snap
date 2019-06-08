@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Enviornment selector should match snapshot 1`] = `
+<div>
+  <div
+    className="MuiFormControl-root MuiFormControl-fullWidth"
+  >
+    <label
+      className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled Mui-required Mui-required"
+      data-shrink={true}
+      htmlFor="test"
+    >
+      Miljø
+      <span
+        className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+      >
+         
+        *
+      </span>
+    </label>
+    <div
+      className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+      onClick={[Function]}
+    >
+      <div
+        className="MuiSelect-root"
+      >
+        <div
+          aria-haspopup="true"
+          aria-pressed="false"
+          className="MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+          id="select-test"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          
+        </div>
+        <input
+          id="test"
+          name="test"
+          type="hidden"
+          value="test"
+        />
+        <svg
+          aria-hidden="true"
+          className="MuiSvgIcon-root MuiSelect-icon"
+          focusable="false"
+          role="presentation"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
