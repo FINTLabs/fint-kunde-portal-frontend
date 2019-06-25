@@ -9,6 +9,7 @@ import RelationTestIcon from "@material-ui/icons/TrendingFlat";
 import BasicTestIcon from "@material-ui/icons/Done";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
+import ContactSupport from "@material-ui/icons/ContactSupport"
 import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 
@@ -84,7 +85,16 @@ export const MENU_ITEMS = (
         </ListItemIcon>
         <ListItemText primary="Relasjonstest" />
       </ListItem>
+        <Divider/>
     </Link>
+      <Link to="/support/issue" style={menuLink}>
+          <ListItem button>
+              <ListItemIcon>
+                  <ContactSupport />
+              </ListItemIcon>
+              <ListItemText primary="Opprett support sak" />
+          </ListItem>
+      </Link>
     <Divider />
     <a href="https://idp.felleskomponent.no/nidp/app/logout" style={menuLink}>
       <ListItem button>
