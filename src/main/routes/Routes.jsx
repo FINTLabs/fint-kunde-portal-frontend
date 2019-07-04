@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import ClientsContainer from "../../features/clients/ClientsContainer";
 import Dashboard from "../../features/dashboard/Dashboard";
-import Support from "../../features/support/Support";
+import SupportContainer from "../../features/support/SupportContainer";
 import ComponentContainer from "../../features/component/ComponentContainer";
 import AdapterContainer from "../../features/adapter/AdapterContainer";
 import ContactContainer from "../../features/contact/ContactContainer";
@@ -22,9 +22,9 @@ class Routes extends React.Component {
         <Route path="/assets" component={AssetContainer} />
         <Route path="/components" component={ComponentContainer} />
         <Route path="/logs" component={LogContainer} />
-        <Route path="/support" component={Support} />
         <Route path="/test/linkwalker" component={LinkWalkerContainer} />
         <Route path="/test/basic" component={BasicTestContainer} />
+        <Route path="/support/issue" component={SupportContainer} />
       </div>
     );
   }
