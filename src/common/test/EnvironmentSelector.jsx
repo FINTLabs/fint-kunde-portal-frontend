@@ -1,43 +1,59 @@
-import React, { Component } from "react";
+import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Input from "@material-ui/core/Input";
 import PropTypes from "prop-types";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import {makeStyles} from "@material-ui/core";
 
-class EnvironmentSelector extends Component {
-  render() {
-    const { name, value } = this.props;
+const useStyles = makeStyles(theme => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    }
+}));
+
+export default function EnvironmentSelector(props) {
+    const classes = useStyles();
+    const {name, value} = props;
+
+    const inputLabel = React.useRef();
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current.offsetWidth);
+    }, []);
 
     return (
-      <div>
-        <FormControl fullWidth required>
-          <InputLabel htmlFor={name}>Miljø</InputLabel>
-          <Select
-            value={value}
-            onChange={this.props.handleChange}
-            input={<Input name={name} id={name} />}
-          >
-            <MenuItem value="https://play-with-fint.felleskomponent.no">
-              Play-With-FINT
-            </MenuItem>
-            <MenuItem value="https://beta.felleskomponent.no">Beta</MenuItem>
-            <MenuItem value="https://beta1.felleskomponent.no">Beta1</MenuItem>
-            <MenuItem value="https://api.felleskomponent.no">
-              Produksjon
-            </MenuItem>
-          </Select>
+        <FormControl
+            fullWidth
+            required
+            variant="outlined"
+            className={classes.formControl}
+        >
+            <InputLabel ref={inputLabel} htmlFor={name}>Miljø</InputLabel>
+            <Select
+                value={value}
+                onChange={props.handleChange}
+                input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+            >
+                <MenuItem value="https://play-with-fint.felleskomponent.no">
+                    Play-With-FINT
+                </MenuItem>
+                <MenuItem value="https://beta.felleskomponent.no">Beta</MenuItem>
+                <MenuItem value="https://beta1.felleskomponent.no">Beta1</MenuItem>
+                <MenuItem value="https://api.felleskomponent.no">
+                    Produksjon
+                </MenuItem>
+            </Select>
         </FormControl>
-      </div>
     );
-  }
+
 }
 
 EnvironmentSelector.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+    handleChange: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
 };
 
-export default EnvironmentSelector;
