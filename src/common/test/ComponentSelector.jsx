@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 export default function ComponentSelector(props) {
 
     const classes = useStyles();
-    const {name, value, components, disabled, required} = props;
+    const {name, value, components, disabled, required, error = false} = props;
 
     const inputLabel = React.useRef();
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -32,6 +32,7 @@ export default function ComponentSelector(props) {
             fullWidth
             required={required}
             className={classes.formControl}
+            error={error}
         >
             <InputLabel ref={inputLabel} htmlFor={name}>Komponent</InputLabel>
             <Select

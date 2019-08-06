@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function OutlinedSelector(props) {
     const classes = useStyles();
-    const {name, title, value, data} = props;
+    const {name, title, value, data, disabled = false} = props;
 
     const inputLabel = React.useRef();
     const [labelWidth, setLabelWidth] = React.useState(0);
@@ -26,7 +26,7 @@ export default function OutlinedSelector(props) {
     }, []);
 
     return (
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.formControl} disabled={disabled}>
             <InputLabel ref={inputLabel} htmlFor={name}>
                 {title}
             </InputLabel>

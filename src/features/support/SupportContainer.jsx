@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Divider, Typography, withStyles} from "@material-ui/core";
+import {Divider, Grid, Typography, withStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import {withContext} from "../../data/context/withContext";
@@ -68,12 +68,16 @@ class SupportContainer extends Component {
             description: "",
             ticketTypes: [],
             ticketPriorities: [],
-            ticketType: "incident",
+            ticketType: "question",
             ticketPriority: "low",
             meSupportId: 0,
             ticketSubmitted: false,
             ticketStatusUrl: "",
             newTicket: {},
+            formError: false,
+            componentError: false,
+            descriptionError: false,
+            shortDescriptionError: false,
         };
     }
 
@@ -136,9 +140,8 @@ class SupportContainer extends Component {
     getTicket = () => {
         const {currentOrganisation} = this.props.context;
         let tags = [currentOrganisation.name];
-        if (this.state.solution === "kunde-portal") {
-            tags.push(this.state.solution);
-        } else {
+        tags.push(this.state.solution);
+        if (this.state.solution === "felleskomponent") {
             tags.push(this.state.component)
         }
 
@@ -158,22 +161,21 @@ class SupportContainer extends Component {
     };
 
     submitTicket = () => {
-        ZenDeskApi.createTicket(this.getTicket()).then((response) => {
-            if (response.status === 202) {
-
-                console.log(response.headers.get("location"));
-
-                this.setState(
-                    {
-                        ticketStatusUrl: response.headers.get("location"), ticketSubmitted: true,
-                    }
-                );
-
-                //this.notify("Saken er opprettet. Du vil få en epost.")
-            } else {
-                this.notify("Oisann, det gikk ikke helt etter planen. Prøv igjen :)")
-            }
-        })
+        if (this.isTicketValid()) {
+            ZenDeskApi.createTicket(this.getTicket()).then((response) => {
+                if (response.status === 202) {
+                    this.setState(
+                        {
+                            ticketStatusUrl: response.headers.get("location"), ticketSubmitted: true,
+                        }
+                    );
+                } else {
+                    this.notify("Oisann, det gikk ikke helt etter planen. Prøv igjen :)")
+                }
+            });
+        } else {
+            this.notify("Alle felter merket med * må fylles ut.");
+        }
     };
 
     componentDidMount() {
@@ -202,20 +204,61 @@ class SupportContainer extends Component {
         let change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);
+
+        if (e.target.value === "question") {
+            this.setState({
+                ticketPriority: "low",
+            });
+        }
+    };
+
+    getTicketTypeHelpText = type => {
+        if (this.state.ticketTypes.length > 0) {
+            return this.state.ticketTypes.filter((o) => o.value === type)[0].help;
+        }
+    };
+
+    getTicketPriorityHelpText = type => {
+        if (this.state.ticketPriorities.length > 0) {
+            return this.state.ticketPriorities.filter((o) => o.value === type)[0].help;
+        }
     };
 
     disableComponentSelect = () => {
         return this.state.solution !== "felleskomponent";
     };
 
+    isTicketValid = () => {
+
+        let valid = true;
+        if (this.state.solution === "felleskomponent") {
+            valid = this.state.description && this.state.shortDescription && this.state.component;
+        } else {
+            valid = this.state.description && this.state.shortDescription;
+        }
+
+        this.validateForm(valid);
+
+        return valid;
+    };
+
+    validateForm = (valid) => {
+        this.setState({
+            formError: !valid,
+            descriptionError: !this.state.description,
+            shortDescriptionError: !this.state.shortDescription,
+            componentError: this.state.solution === "felleskomponent" ? !this.state.component : false
+        });
+    };
+
+
     renderSubmitted() {
         return (
             <ReactPolling
                 url={this.state.ticketStatusUrl}
-                interval={2000} // in milliseconds(ms)
-                retryCount={5} // this is optional
+                interval={2000}
+                retryCount={5}
                 onSuccess={(response) => this.setState({newTicket: response})}
-                onFailure={() => this.notify("Oisann! Vi fikk ikke til å opprette saken. Vennligst prøv igjen. ")} // this is optional
                 method={'GET'}
                 render={({startPolling, stopPolling, isPolling}) => {
                     if (isPolling) {
@@ -254,7 +297,6 @@ class SupportContainer extends Component {
 
     renderTicketForm() {
         const {classes} = this.props;
-
         return (
             <div className={classes.root}>
                 <AutoHideNotification
@@ -265,6 +307,9 @@ class SupportContainer extends Component {
                 <div className={classes.content}>
                     <Typography variant="h5" className={classes.title}>
                         Opprett support sak
+                    </Typography>
+                    <Typography variant="body1" className={classes.title}>
+                        Våre åpningstider er mandag til fredag 08:00 - 15:30
                     </Typography>
                     <Divider/>
                     <div className={classes.ticketForm}>
@@ -285,27 +330,51 @@ class SupportContainer extends Component {
                                     handleChange={this.handleChange}
                                     name={"component"}
                                     value={this.state.component}
+                                    required={this.state.solution === "felleskomponent"}
+                                    error={this.state.componentError}
                                 />
                             </div>
 
                         </RadioGroup>
 
                         <Box borderTop={1} borderBottom={1} pt={1} pb={1} borderColor="grey.400">
-                            <OutlinedSelector
-                                data={this.state.ticketTypes}
-                                value={this.state.ticketType}
-                                onChange={this.handleChange}
-                                title="Type"
-                                name="ticketType"
-                            />
+                            <Grid container>
+                                <Grid item xs={2}>
+                                    <OutlinedSelector
+                                        data={this.state.ticketTypes}
+                                        value={this.state.ticketType}
+                                        onChange={this.handleChange}
+                                        title="Velg type"
+                                        name="ticketType"
+                                    />
+                                </Grid>
+                                <Grid item xs={10}>
+                                    <Box m={2}
+                                         dangerouslySetInnerHTML={{__html: this.getTicketTypeHelpText(this.state.ticketType)}}/>
+                                </Grid>
+                            </Grid>
 
-                            <OutlinedSelector
-                                data={this.state.ticketPriorities}
-                                value={this.state.ticketPriority}
-                                onChange={this.handleChange}
-                                title="Prioritet"
-                                name="ticketPriority"
-                            />
+                            <Box m={2}>
+                                <Divider/>
+                            </Box>
+
+                            <Grid container>
+                                <Grid item xs={2}>
+                                    <OutlinedSelector
+                                        data={this.state.ticketPriorities}
+                                        value={this.state.ticketPriority}
+                                        onChange={this.handleChange}
+                                        title="Velg prioritet"
+                                        name="ticketPriority"
+                                        disabled={this.state.ticketType === "question"}
+                                    />
+                                </Grid>
+                                <Grid item xs={10}>
+                                    <Box m={2}
+                                         dangerouslySetInnerHTML={{__html: this.getTicketPriorityHelpText(this.state.ticketPriority)}}/>
+                                </Grid>
+                            </Grid>
+
                         </Box>
 
                         <TextField
@@ -318,6 +387,7 @@ class SupportContainer extends Component {
                             variant="outlined"
                             fullWidth
                             required
+                            error={this.state.shortDescriptionError}
                         />
                         <TextField
                             id="description"
@@ -331,6 +401,7 @@ class SupportContainer extends Component {
                             rows={10}
                             fullWidth
                             required
+                            error={this.state.descriptionError}
                         />
                     </div>
                     <div className={classes.buttons}>
@@ -350,7 +421,6 @@ class SupportContainer extends Component {
 
     render() {
         if (this.state.ticketSubmitted) return this.renderSubmitted();
-        //else return
         return this.renderTicketForm();
     }
 }
