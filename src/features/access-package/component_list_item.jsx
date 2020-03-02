@@ -7,7 +7,9 @@ import List from "@material-ui/core/List";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import CollectionIcon from "@material-ui/icons/HorizontalSplit";
 import ModifyIcon from "@material-ui/icons/Edit";
+import ReadIcon from "@material-ui/icons/ChromeReaderMode";
 import {Checkbox, makeStyles} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,31 +24,29 @@ const useStyles = makeStyles(theme => ({
     listItemText: {
         color: "black",
     },
+    deleteButton:{
+        backgroundColor: theme.palette.primary.main,
+    }
 }));
 
 const ComponentListItem = (props) => {
-    const {primary, secondary} = props;
+    const {primary, secondary, onClick} = props;
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        checkedA: false,
-        checkedB: false,
-    });
-    const handleChange = name => event => {
-        setState({...state, [name]: event.target.checked});
-    };
+
     return (
         <div>
             <ListItem>
                 <ListItemText className={classes.listItemText} primary={primary} secondary={secondary}/>
-                <Switch
-                    checked={state.checkedA}
-                    onChange={handleChange('checkedA')}
-                    value="checkedA"
-                    inputProps={{'aria-label': 'secondary checkbox'}}
-                />
+                <Button className={classes.deleteButton} size="small" onClick={() => onClick(primary)}>Ta bort</Button>
             </ListItem>
-            <Collapse in={state.checkedA} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+                <List component="div" disablePadding dense={true}>
+                    <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                           <ReadIcon></ReadIcon>
+                        </ListItemIcon>
+                        <ListItemText primary="Lese"/>
+                        <Checkbox/>
+                    </ListItem>
                     <ListItem button className={classes.nested}>
                         <ListItemIcon>
                             <CollectionIcon />
@@ -58,11 +58,10 @@ const ComponentListItem = (props) => {
                         <ListItemIcon>
                             <ModifyIcon/>
                         </ListItemIcon>
-                        <ListItemText primary="Modify"/>
+                        <ListItemText primary="Oppdatering"/>
                         <Checkbox/>
                     </ListItem>
                 </List>
-            </Collapse>
         </div>
     );
 };

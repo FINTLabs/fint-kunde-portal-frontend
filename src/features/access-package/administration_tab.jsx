@@ -10,29 +10,106 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Switch from "@material-ui/core/Switch";
 import Collapse from "@material-ui/core/Collapse";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import AddIcon from "@material-ui/icons/Add";
 import CollectionIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import {Box, Checkbox, makeStyles} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import Fab from "@material-ui/core/Fab";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import DialogContent from "@material-ui/core/DialogContent";
+import capitalize from "@material-ui/core/utils/capitalize";
+import {array} from "prop-types";
+import {WifiRounded} from "@material-ui/icons";
 
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        maxWidth: 360,
+        maxWidth: 400,
         backgroundColor: theme.palette.background.paper,
     },
     nested: {
         paddingLeft: theme.spacing(4),
     },
+    tabPanel: {
+        display: "flex",
+        flexDirection: "row",
+    },
+    fab: {
+        margin: "16px",
+    },
+    fabListItem: {
+        display:"flex",
+    }
 }));
 
 const AdministrationTab = () => {
     const classes = useStyles();
-
     const [state, setState] = React.useState({
         checkedA: false,
         checkedB: false,
     });
+    const [items, setItemState] = React.useState(
+        [
+            {checked: false, selected: false, primary: "administrativenhet", secondary: "/administrasjon/arkiv/administrativenhet"},
+            {checked: false, selected: false, primary: "administrativenhet", secondary: "/administrasjon/arkiv/administrativenhet"},
+            {checked: false, selected: false, primary: "arkivressurs", secondary: "/administrasjon/arkiv/arkivressurs"},
+            {checked: false, selected: false, primary: "autorisasjon", secondary: "/administrasjon/arkiv/autorisasjon"},
+            {checked: false, selected: false, primary: "dokumentfil", secondary: "/administrasjon/arkiv/dokumentfil"},
+            {checked: false, selected: false, primary: "dokumentstatus", secondary: "/administrasjon/arkiv/dokumentstatus"},
+            {checked: false, selected: false, primary: "dokumenttype", secondary: "/administrasjon/arkiv/dokumenttype"},
+            {checked: false, selected: false, primary: "journalposttype", secondary: "/administrasjon/arkiv/journalposttype"},
+            {checked: false, selected: false, primary: "journalstatus", secondary: "/administrasjon/arkiv/journalstatus"},
+            {checked: false, selected: false, primary: "klasse", secondary: "/administrasjon/arkiv/klasse"},
+            {checked: false, selected: false, primary: "klassifikasjonssystem", secondary: "/administrasjon/arkiv/klassifikasjonssystem"},
+            {checked: false, selected: false, primary: "korrespondansepart", secondary: "/administrasjon/arkiv/korrespondansepart"},
+            {checked: false, selected: false, primary: "korrespondanseparttype", secondary: "/administrasjon/arkiv/korrespondanseparttype"},
+            {checked: false, selected: false, primary: "merknadstype", secondary: "/administrasjon/arkiv/merknadstype"},
+            {checked: false, selected: false, primary: "partrolle", secondary: "/administrasjon/arkiv/partrolle"},
+            {checked: false, selected: false, primary: "rolle", secondary: "/administrasjon/arkiv/rolle"},
+            {checked: false, selected: false, primary: "sak", secondary: "/administrasjon/arkiv/sak"},
+            {checked: false, selected: false, primary: "saksstatus", secondary: "/administrasjon/arkiv/saksstatus"},
+            {checked: false, selected: false, primary: "skjermingshjemmel", secondary: "/administrasjon/arkiv/skjermingshjemmel"},
+            {checked: false, selected: false, primary: "tilgang", secondary: "/administrasjon/arkiv/tilgang"},
+            {checked: false, selected: false, primary: "tilgangsrestriksjon", secondary: "/administrasjon/arkiv/tilgangsrestriksjon"},
+            {checked: false, selected: false, primary: "tilknyttetregistreringsom", secondary: "/administrasjon/arkiv/tilknyttetregistreringsom"},
+            {checked: false, selected: false, primary: "variantformat", secondary: "/administrasjon/arkiv/variantformat"}
+        ]
+    );
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        const newArray = items.slice(0, items.length);
+        items.forEach((item, index )=> {
+            newArray[index].selected = items[index].checked;
+        });
+        setItemState(newArray);
+    };
+    const handleComponentSelected = (index) => {
+        const newArray = items.slice(0, items.length);
+        newArray[index].checked = !items[index].checked;
+        setItemState(newArray);
+    };
+    const removeItem = (primary) =>{
+        console.log("REMOVE ", primary);
+        const newArray = items.slice(0, items.length);
+        newArray.map(item =>{
+            if (capitalize(item.primary) === primary){
+                item.checked = false;
+                item.selected = false;
+            }
+        })
+        setItemState(newArray);
+    }
 
     const handleChange = name => event => {
         setState({...state, [name]: event.target.checked});
@@ -81,27 +158,56 @@ const AdministrationTab = () => {
                 </Tabs>
             </AppBar>
             <TabPanel value={secondaryTabValue} index={0}>
-                <List
-                    component="nav"
-                    aria-labelledby="nested-list-subheader"
-                    subheader={
-                        <ListSubheader component="div" id="nested-list-subheader">
-                            Velg rettigheter
-                        </ListSubheader>
-                    }
-                    className={classes.root}
+                <div className={classes.tabPanel}>
+
+                    <Fab className={classes.fab} variant="extended" onClick={handleClickOpen}>
+                        <AddIcon/>
+                        Legg til
+                    </Fab>
+
+                    <List
+                        component="nav"
+                        aria-labelledby="nested-list-subheader"
+                        subheader={
+                            <ListSubheader component="div" id="nested-list-subheader">
+                                Velg rettigheter
+                            </ListSubheader>
+                        }
+                        className={classes.root}
+                        dense={true}
+                    >
+                        {items.map(item => {
+                            if (item.selected) {
+                                return <ComponentListItem onClick={removeItem} primary={capitalize(item.primary)} secondary={item.secondary}/>
+                            }
+                        })}
+                    </List>
+                </div>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                 >
-                    <ComponentListItem primary={"Arbeidsforhold"} secondary={"/administrasjon/person/arbeidsforhold"}/>
-                    <ComponentListItem primary={"Fastlønn"} secondary={"/administrasjon/person/fastlonn"}/>
-                    <ComponentListItem primary={"Fasttillegg"} secondary={"/administrasjon/person/fasttillegg"}/>
-                    <ComponentListItem primary={"Fravær"} secondary={"/administrasjon/person/fravar"}/>
-                    <ComponentListItem primary={"Kontaktperson"} secondary={"/administrasjon/person/kontaktperson"}/>
-                    <ComponentListItem primary={"Person"} secondary={"/administrasjon/person/person"}/>
-                    <ComponentListItem primary={"Personalressurs"} secondary={"/administrasjon/person/personalressurs"}/>
-                    <ComponentListItem primary={"Variabellønn"} secondary={"/administrasjon/person/variabellonn"}/>
-
-
-                </List>
+                    <DialogTitle id="alert-dialog-title">{"Velg tilganger"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            <List component="nav">
+                                {items.map((item, index) => {
+                                    return <div className={classes.fabListItem}>
+                                        <ListItem>{capitalize(item.primary)}</ListItem>
+                                        <Checkbox checked={item.checked} onChange={() => handleComponentSelected(index)}/>
+                                    </div>
+                                })}
+                            </List>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            Velg
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </TabPanel>
             <TabPanel value={secondaryTabValue} index={1}>
                 <List
