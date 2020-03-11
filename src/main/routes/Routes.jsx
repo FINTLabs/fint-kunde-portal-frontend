@@ -10,7 +10,7 @@ import AssetContainer from "../../features/asset/AssetContainer";
 import LogContainer from "../../features/logs/LogContainer";
 import LinkWalkerContainer from "../../features/link-walker/LinkWalkerContainer";
 import BasicTestContainer from "../../features/basic-test/BasicTestContainer";
-import AccessPackageContainer from "../../features/access-package/access_package_container";
+import AccessPackageContainer from "../../features/access-package/access_package_container_new";
 
 class Routes extends React.Component {
   render() {

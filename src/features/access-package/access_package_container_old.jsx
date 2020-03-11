@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const AccessPackageContainer = () => {
+const AccessPackageContainerOld = () => {
     const classes = useStyles();
     const [mainTabValue, setMainTabValue] = React.useState(0);
 
@@ -86,4 +86,4 @@ const AccessPackageContainer = () => {
     );
 };
 
-export default AccessPackageContainer;
+export default AccessPackageContainerOld;
