@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {
     Avatar,
@@ -9,15 +9,17 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
+    makeStyles,
+    Typography
 } from "@material-ui/core";
 import {Delete, Edit} from "@material-ui/icons";
 import LockIcon from "@material-ui/icons/Lock";
-import {withContext} from "../../data/context/withContext";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
+import {useDispatch, useSelector} from "react-redux";
+import {getAccessPackage, updateAccessPackage} from "../../data/redux/actions/access_package";
+import EditAccessPackage from "./edit/edit_access_package";
 
-const styles = theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         justifyContent: "center"
@@ -36,93 +38,39 @@ const styles = theme => ({
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
     }
-});
+}));
 
-class AccessPackageList extends Component {
-    editClient = accessPackage => {
-        this.setState({
-            open: true,
-            clientToEdit: accessPackage
-        });
-    };
-    onCloseEdit = () => {
-        this.setState({open: false});
-    };
-    updateClient = client => {
-        const {currentOrganisation} = this.props.context;
-        this.props.updateClient(client, currentOrganisation.name);
-    };
-    deleteClient = accessPackage => {
-        const {currentOrganisation} = this.props.context;
-        this.props.deleteClient(accessPackage, currentOrganisation.name);
-        this.setState({
-            notify: true,
-            clientDeletedName: accessPackage.name
-        });
-    };
+const AccessPackageList = () => {
+    const classes = useStyles();
+    const dispatch= useDispatch();
+    const packages = useSelector(state => state.access_package.accessPackages);
+    const [editOpen, setEditOpen]= useState(false);
 
-    askToDelete = client => {
-        this.setState({
-            askToDelete: true,
-            message: `Er du sikker på at du vil slette '${
-                client.name
-            }'? Endringen kan ikke tilbakestilles!`,
-            clientToDelete: client
-        });
+    useEffect(() => {
+            dispatch(getAccessPackage());
+        },[]
+    );
+
+    AccessPackageList.propTypes = {
+        clients: PropTypes.array.isRequired
     };
-
-    onCloseDelete = confirmed => {
-        this.setState({
-            askToDelete: false
-        });
-
-        if (confirmed) {
-            this.deleteClient(this.state.clientToDelete);
-        }
-    };
-
-    onCloseNotification = () => {
-        this.setState({
-            notify: false
-        });
-    };
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            clientToEdit: null,
-            clientToDelete: null,
-            open: false,
-            notify: false,
-            clientDeletedName: null,
-            askToDelete: false,
-            message: ""
-        };
+    function deleteAccessPackage(accessPackage){
+        const newArray = [...packages];
+        newArray.splice( newArray.indexOf(accessPackage), 1);
+        dispatch(updateAccessPackage(newArray));
     }
 
-    render() {
-        const {classes} = this.props;
-        const packages = [
-            {
-                packageId: 1,
-                shortDescription: "Full Tilgang",
-                name: "full_tilgang_til_alt_access_package@fint.no",
+    function handleEditClose() {
+        console.log("handleEditClose");
+        setEditOpen(false);
+    }
 
-            },
-            {
-                packageId: 2,
-                shortDescription: "Visma Inschool-tilgang",
-                name: "visma_inschool_access_package@fint.no",
+    function openEdit() {
+        console.log("openEdit");
+        setEditOpen(true);
+    }
 
-            },
-            {
-                packageId: 3,
-                shortDescription: "Vigo BAS-tilgang",
-                name: "vigo_bas_access_package@fint.no",
-
-            }
-        ];
-
+    if (packages && packages.length > 0){
         return (
             <div>
                 <div className={classes.root}>
@@ -153,13 +101,13 @@ class AccessPackageList extends Component {
                                     <ListItemSecondaryAction>
                                         <IconButton
                                             aria-label="Edit"
-                                            onClick={() => this.editClient(accessPackage)}
+                                            onClick={openEdit}
                                         >
                                             <Edit/>
                                         </IconButton>
                                         <IconButton
                                             aria-label="Delete"
-                                            onClick={() => this.askToDelete(accessPackage)}
+                                            onClick={() => deleteAccessPackage(accessPackage) }
                                         >
                                             <Delete/>
                                         </IconButton>
@@ -167,15 +115,14 @@ class AccessPackageList extends Component {
                                 </ListItem>
                             ))}
                         </List>
+                        <EditAccessPackage open={editOpen} handleClose={handleEditClose}/>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+);
+    }else{
+    return (<></>);
+        }
 
-AccessPackageList.propTypes = {
-    clients: PropTypes.array.isRequired
 };
-
-export default withStyles(styles)(withContext(AccessPackageList));
+export default AccessPackageList;

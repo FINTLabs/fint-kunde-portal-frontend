@@ -8,6 +8,7 @@ import adapter from "../reducers/adapter";
 import contact from "../reducers/contact";
 import asset from "../reducers/asset";
 import linkwalker from "../reducers/linkwalker";
+import access_package from "../reducers/access_package";
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -21,9 +22,10 @@ const store = createStore(
         contact,
         asset,
         linkwalker,
+        access_package,
     }),
     /* preloadedState, */ composeEnhancers(
-    applyMiddleware(thunkMiddleware, logger))
+        applyMiddleware(thunkMiddleware, logger))
 );
 
 export default store;

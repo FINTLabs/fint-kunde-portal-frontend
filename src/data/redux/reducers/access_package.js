@@ -1,21 +1,34 @@
+import {ADD_ACCESS_PACKAGE, GET_ACCESS_PACKAGES, UPDATE_ACCESS_PACKAGE} from "../actions/types";
 
 export default function client(state = [], action) {
     switch (action.type) {
-        case FETCH_CLIENT_REQUEST:
-            return state;
-        case FETCH_CLIENT_SUCCESS:
+        case GET_ACCESS_PACKAGES:
             return {
-                ...state, clients: action.payload
+                ...state, accessPackages: [
+                    {
+                        packageId: "full_tilgang_til_alt_ap",
+                        shortDescription: "Full Tilgang til alt",
+                        name: "full_tilgang_til_alt_ap",
+                    },
+                    {
+                        packageId: "visma_inschool_ap",
+                        shortDescription: "Visma Inschool tilgang",
+                        name: "visma_inschool_ap",
+                    },
+                    {
+                        packageId: "vigo_bas_ap",
+                        shortDescription: "Vigo BAS-tilgang",
+                        name: "vigo_bas_ap",
+                    }
+                ]
             };
-        case UPDATE_CLIENT_SUCCESS:
-            return state;
-        case CREATE_CLIENT_SUCCESS:
+        case ADD_ACCESS_PACKAGE:
             return {
-                ...state, clients: [...state.clients, action.client]
+                ...state , accessPackages: action.payload
             };
-        case DELETE_CLIENT_SUCCESS:
+        case UPDATE_ACCESS_PACKAGE:
             return {
-                ...state, clients: state.clients.filter(client => action.client !== client)
+                ...state , accessPackages: action.payload
             };
         default:
             return state

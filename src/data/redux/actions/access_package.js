@@ -1,17 +1,17 @@
-import {CREATE_ACCESS_PACKAGE, DELETE_ACCESS_PACKAGE, GET_ACCESS_PACKAGES} from "./types";
+import {ADD_ACCESS_PACKAGE, GET_ACCESS_PACKAGES, UPDATE_ACCESS_PACKAGE} from "./types";
 
 
-export function createAccessPackage(accessPackage) {
+export function addAccessPackage(accessPackage) {
     return {
-        type: CREATE_ACCESS_PACKAGE,
-        accessPackage
+        type: ADD_ACCESS_PACKAGE,
+        payload: accessPackage
     }
 }
 
-export function deleteAccessPackage(accessPackage) {
+export function updateAccessPackage(accessPackage) {
     return {
-        type: DELETE_ACCESS_PACKAGE,
-        accessPackage
+        type: UPDATE_ACCESS_PACKAGE,
+        payload: accessPackage
     }
 }
 export function getAccessPackage() {
