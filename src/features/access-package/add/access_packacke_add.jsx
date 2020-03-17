@@ -49,7 +49,7 @@ const AccessPackackeAdd = () => {
     function handleCreatePackage() {
         setOpen(false);
         const newPackage = {
-            packageId: shortDescription,
+            id: shortDescription,
             shortDescription: name,
             name: shortDescription,
         };

@@ -16,8 +16,13 @@ import {Delete, Edit} from "@material-ui/icons";
 import LockIcon from "@material-ui/icons/Lock";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {getAccessPackage, updateAccessPackage} from "../../data/redux/actions/access_package";
+import {
+    getAccessPackage,
+    setSelectedForEditingPackage,
+    updateAccessPackage
+} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
+import {fetchComponents} from "../../data/redux/dispatchers/component";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,6 +53,7 @@ const AccessPackageList = () => {
 
     useEffect(() => {
             dispatch(getAccessPackage());
+            dispatch(fetchComponents());
         },[]
     );
 
@@ -65,9 +71,11 @@ const AccessPackageList = () => {
         setEditOpen(false);
     }
 
-    function openEdit() {
+    function openEdit(id) {
         console.log("openEdit");
+        console.log(" ", id);
         setEditOpen(true);
+        dispatch(setSelectedForEditingPackage(id));
     }
 
     if (packages && packages.length > 0){
@@ -88,7 +96,7 @@ const AccessPackageList = () => {
                         <Divider/>
                         <List>
                             {packages.map(accessPackage => (
-                                <ListItem className={classes.listItem} key={accessPackage.packageId}>
+                                <ListItem className={classes.listItem} key={accessPackage.id}>
                                     <ListItemAvatar>
                                         <Avatar className={classes.itemAvatar}>
                                             <LockIcon/>
@@ -101,7 +109,7 @@ const AccessPackageList = () => {
                                     <ListItemSecondaryAction>
                                         <IconButton
                                             aria-label="Edit"
-                                            onClick={openEdit}
+                                            onClick={() => openEdit(accessPackage.id)}
                                         >
                                             <Edit/>
                                         </IconButton>

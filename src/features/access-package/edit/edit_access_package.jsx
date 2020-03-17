@@ -19,8 +19,8 @@ import {Add} from "@material-ui/icons";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
-import {fetchComponents} from "../../../data/redux/dispatchers/component";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateSelectedComponents} from "../../../data/redux/actions/access_package";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -54,18 +54,60 @@ const EditAccessPackage = (props) => {
     const classes = useStyles();
     const [environment, setEnvironment] = useState(0);
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
-    const components = useSelector(state => state.component);
-    console.log(components.components);
+    const components = useSelector(state => state.component.components);
+    const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
+    const accessPackages = useSelector(state => state.access_package.accessPackages);
+    const dispatch = useDispatch();
 
-    function openComponentSelector(){
+    let selectedAccessPackage = undefined;
+    accessPackages.filter(function (ap) {
+        if (ap.id === selectedForEditingId) {
+            selectedAccessPackage = ap;
+        }
+    });
+
+    function openComponentSelector() {
         setComponentSelectorOpen(true);
     }
+
     function handleChangeEnvironment(event) {
         setEnvironment(event.target.value);
     }
 
     function handleCloseComponentSelector() {
         setComponentSelectorOpen(false);
+    }
+
+    function chooseComponent(event, dn) {
+        const newArray = [...accessPackages];
+        let found = newArray.find(function (entry) {
+            return entry.id === selectedForEditingId;
+        });
+        console.log("found: ", found);
+        if (found) {
+            const accessPackageIndex = newArray.indexOf(found);
+            console.log("accessPackageIndex: ", accessPackageIndex);
+            let componentFound = newArray[accessPackageIndex].selectedComponents.find(function (comp) {
+                return comp.dn === dn;
+            });
+            console.log("componentFound: ", componentFound);
+            if (componentFound) {
+                const componentIndex = newArray[accessPackageIndex].selectedComponents.indexOf(componentFound);
+                newArray[accessPackageIndex].selectedComponents[componentIndex] = {
+                    dn: dn,
+                    checked: event.target.checked
+                };
+            }else{
+                newArray[accessPackageIndex].selectedComponents = [...newArray[accessPackageIndex].selectedComponents, {
+                    dn: dn,
+                    checked: event.target.checked
+                }];
+            }
+        } else {
+            return;
+        }
+
+        dispatch(updateSelectedComponents(newArray));
     }
 
     return (
@@ -114,20 +156,28 @@ const EditAccessPackage = (props) => {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{"Legg til komponent"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"Legg til komponenter"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Velg en komponent til tilgangspakken
+                            Velg komponenter du skal ha tilgang til
                         </DialogContentText>
-                        <List component="nav" aria-label="secondary mailbox folders">
-                            {components.components ? components.components.map(component => {
-                                return (
-                                    <ListItem>
-                                        <ListItemText primary={component.description} />
-                                        <Checkbox/>
-                                    </ListItem>
-                                )
-                            }): <div/>}
+                        <List component="nav" aria-label="Komponentlist" dense>
+                            {components ? components.map(component => {
+                                if (selectedAccessPackage) {
+                                    const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
+                                        return sc.dn === component.dn;
+                                    });
+                                    console.log("selectedComponent: ", selectedComponent);
+                                    return (
+                                        <ListItem>
+                                            <ListItemText primary={component.description}/>
+                                            <Checkbox checked={selectedComponent[0] ? selectedComponent[0].checked : false}
+                                                      onChange={(e) => chooseComponent(e, component.dn)}/>
+                                        </ListItem>)
+                                } else {
+                                    return <div/>
+                                }
+                            }) : <div/>}
                         </List>
                     </DialogContent>
                     <DialogActions>
