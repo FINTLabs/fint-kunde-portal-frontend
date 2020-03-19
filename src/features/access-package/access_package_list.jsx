@@ -23,6 +23,7 @@ import {
 } from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
 import {fetchComponents} from "../../data/redux/dispatchers/component";
+import {fetchEntities} from "../../data/redux/dispatchers/entity";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,6 +55,7 @@ const AccessPackageList = () => {
     useEffect(() => {
             dispatch(getAccessPackage());
             dispatch(fetchComponents());
+            dispatch(fetchEntities());
         },[]
     );
 

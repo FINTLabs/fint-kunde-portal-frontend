@@ -21,6 +21,8 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import {useDispatch, useSelector} from "react-redux";
 import {updateSelectedComponents} from "../../../data/redux/actions/access_package";
+import EntitySelection from "./entity_selection";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -78,29 +80,30 @@ const EditAccessPackage = (props) => {
         setComponentSelectorOpen(false);
     }
 
-    function chooseComponent(event, dn) {
+    function chooseComponent(event, dn, description, basePath) {
         const newArray = [...accessPackages];
         let found = newArray.find(function (entry) {
             return entry.id === selectedForEditingId;
         });
-        console.log("found: ", found);
         if (found) {
             const accessPackageIndex = newArray.indexOf(found);
-            console.log("accessPackageIndex: ", accessPackageIndex);
             let componentFound = newArray[accessPackageIndex].selectedComponents.find(function (comp) {
                 return comp.dn === dn;
             });
-            console.log("componentFound: ", componentFound);
             if (componentFound) {
                 const componentIndex = newArray[accessPackageIndex].selectedComponents.indexOf(componentFound);
                 newArray[accessPackageIndex].selectedComponents[componentIndex] = {
                     dn: dn,
-                    checked: event.target.checked
+                    checked: event.target.checked,
+                    description: description,
+                    basePath: basePath,
                 };
             }else{
                 newArray[accessPackageIndex].selectedComponents = [...newArray[accessPackageIndex].selectedComponents, {
                     dn: dn,
-                    checked: event.target.checked
+                    checked: event.target.checked,
+                    description: description,
+                    basePath: basePath,
                 }];
             }
         } else {
@@ -150,6 +153,10 @@ const EditAccessPackage = (props) => {
                 >
                     <Add/>
                 </Fab>
+                <Divider></Divider>
+                <EntitySelection
+                    selectedAccessPackage={selectedAccessPackage}
+                />
                 <Dialog
                     open={componentSelectorOpen}
                     onClose={handleCloseComponentSelector}
@@ -167,12 +174,11 @@ const EditAccessPackage = (props) => {
                                     const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
                                         return sc.dn === component.dn;
                                     });
-                                    console.log("selectedComponent: ", selectedComponent);
                                     return (
                                         <ListItem>
                                             <ListItemText primary={component.description}/>
                                             <Checkbox checked={selectedComponent[0] ? selectedComponent[0].checked : false}
-                                                      onChange={(e) => chooseComponent(e, component.dn)}/>
+                                                      onChange={(e) => chooseComponent(e, component.dn, component.description, component.basePath)}/>
                                         </ListItem>)
                                 } else {
                                     return <div/>

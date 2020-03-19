@@ -52,6 +52,7 @@ const AccessPackackeAdd = () => {
             id: shortDescription,
             shortDescription: name,
             name: shortDescription,
+            selectedComponents:[],
         };
         const newArray = [...packages, newPackage];
         dispatch(addAccessPackage(newArray));
