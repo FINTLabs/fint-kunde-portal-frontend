@@ -69,13 +69,10 @@ const AccessPackageList = () => {
     }
 
     function handleEditClose() {
-        console.log("handleEditClose");
         setEditOpen(false);
     }
 
     function openEdit(id) {
-        console.log("openEdit");
-        console.log(" ", id);
         setEditOpen(true);
         dispatch(setSelectedForEditingPackage(id));
     }

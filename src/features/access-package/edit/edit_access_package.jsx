@@ -7,9 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import CloseIcon from '@material-ui/icons/Close';
 import {makeStyles} from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
@@ -98,7 +95,7 @@ const EditAccessPackage = (props) => {
                     description: description,
                     basePath: basePath,
                 };
-            }else{
+            } else {
                 newArray[accessPackageIndex].selectedComponents = [...newArray[accessPackageIndex].selectedComponents, {
                     dn: dn,
                     checked: event.target.checked,
@@ -129,23 +126,6 @@ const EditAccessPackage = (props) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="age-native-simple">Miljø</InputLabel>
-                    <Select
-                        native
-                        value={environment}
-                        onChange={handleChangeEnvironment}
-                        inputProps={{
-                            name: 'age',
-                            id: 'age-native-simple',
-                        }}
-                    >
-                        <option value={0}>Velg miljø</option>
-                        <option value={1}>Alfa</option>
-                        <option value={2}>Beta</option>
-                        <option value={3}>Produksjon</option>
-                    </Select>
-                </FormControl>
                 <Fab
                     color="secondary"
                     className={classes.addButton}
@@ -170,18 +150,21 @@ const EditAccessPackage = (props) => {
                         </DialogContentText>
                         <List component="nav" aria-label="Komponentlist" dense>
                             {components ? components.map(component => {
-                                if (selectedAccessPackage) {
-                                    const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
-                                        return sc.dn === component.dn;
-                                    });
-                                    return (
-                                        <ListItem>
-                                            <ListItemText primary={component.description}/>
-                                            <Checkbox checked={selectedComponent[0] ? selectedComponent[0].checked : false}
-                                                      onChange={(e) => chooseComponent(e, component.dn, component.description, component.basePath)}/>
-                                        </ListItem>)
-                                } else {
-                                    return <div/>
+                                if (!component.openData && !component.common) {
+                                    if (selectedAccessPackage) {
+                                        const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
+                                            return sc.dn === component.dn;
+                                        });
+                                        return (
+                                            <ListItem>
+                                                <ListItemText primary={component.description}/>
+                                                <Checkbox
+                                                    checked={selectedComponent[0] ? selectedComponent[0].checked : false}
+                                                    onChange={(e) => chooseComponent(e, component.dn, component.description, component.basePath)}/>
+                                            </ListItem>)
+                                    } else {
+                                        return <div/>
+                                    }
                                 }
                             }) : <div/>}
                         </List>

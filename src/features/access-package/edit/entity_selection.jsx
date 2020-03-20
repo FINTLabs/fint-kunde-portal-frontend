@@ -13,6 +13,7 @@ import {useSelector} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     root: {
+        marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
@@ -29,27 +30,34 @@ const useStyles = makeStyles(theme => ({
     fabListItem: {
         display: "flex",
     },
+    table: {
+    },
+    tableRow: {
+        '&:nth-of-type(even)': {
+            backgroundColor: "#fef3ef",
+        },
+    },
     icon: {
         margin: theme.spacing(1),
         verticalAlign: "middle",
-    }
+    },
+    header: {
+      marginTop: theme.spacing(4),
+    },
 }));
 
 const EntitySelection = (props) => {
     const classes = useStyles();
     const {selectedAccessPackage} = props;
     const entities = useSelector(state => state.entity.entities);
-    console.log(selectedAccessPackage);
 
     function showEntity(entity, component) {
         let isSelected = false;
-            if (component.checked && entity.stereotype === 'hovedklasse') {
+            if (component.checked && entity.stereotype === 'hovedklasse' && entity.abstrakt === false) {
                 const componentStringForMatch = "no.fint" + component.basePath.replace(/\//g, ".");
                 const entityIdForMatch = entity.id.identifikatorverdi.substring(0, entity.id.identifikatorverdi.lastIndexOf("."));
 
                 if (entityIdForMatch === componentStringForMatch) {
-                    console.log("MATCHED: ", componentStringForMatch, " og ", entityIdForMatch);
-                    console.log(entity);
                     isSelected = true;
                 }
             }
@@ -58,9 +66,9 @@ const EntitySelection = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h4">Velg rettigheter</Typography>
+            <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
 
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} hidden={selectedAccessPackage.selectedComponents.length === 0}>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -75,8 +83,7 @@ const EntitySelection = (props) => {
                         {selectedAccessPackage.selectedComponents.map(component => {
                             return entities.map(entity => {
                                 if (showEntity(entity, component)) {
-                                    {console.log("TEST OM JEG KOMMER HIT NOEN GANG?!", entity)}
-                                    return (<TableRow>
+                                    return (<TableRow className={classes.tableRow}>
                                         <TableCell>{component.description}</TableCell>
                                         <TableCell align="right">{entity.navn}</TableCell>
                                         <TableCell align="right"><Checkbox/></TableCell>
