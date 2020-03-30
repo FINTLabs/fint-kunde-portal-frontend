@@ -7,6 +7,7 @@ import AdapterIcon from "@material-ui/icons/Link";
 import ContactIcon from "@material-ui/icons/Person";
 import RelationTestIcon from "@material-ui/icons/TrendingFlat";
 import BasicTestIcon from "@material-ui/icons/Done";
+import AuditEventsIcon from '@material-ui/icons/Timeline';
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"
@@ -85,16 +86,24 @@ export const MENU_ITEMS = (
         </ListItemIcon>
         <ListItemText primary="Relasjonstest" />
       </ListItem>
-        <Divider/>
+      <Divider />
     </Link>
-      <Link to="/support/issue" style={menuLink}>
-          <ListItem button>
-              <ListItemIcon>
-                  <ContactSupport />
-              </ListItemIcon>
-              <ListItemText primary="Opprett support sak" />
-          </ListItem>
-      </Link>
+    <Link to="/logs" style={menuLink}>
+      <ListItem button>
+        <ListItemIcon>
+          <AuditEventsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Hendelseslogg" />
+      </ListItem>
+    </Link>
+    <Link to="/support/issue" style={menuLink}>
+      <ListItem button>
+        <ListItemIcon>
+          <ContactSupport />
+        </ListItemIcon>
+        <ListItemText primary="Opprett supportsak" />
+      </ListItem>
+    </Link>
     <Divider />
     <a href="https://idp.felleskomponent.no/nidp/app/logout" style={menuLink}>
       <ListItem button>

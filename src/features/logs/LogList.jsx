@@ -39,13 +39,13 @@ class LogList extends Component {
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={classes.heading}>
                   <LogIcon />
-                  {log.corrId}
+                  {log.source}
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails className={classes.details}>
-                action:{log.currentEvent.action} status:{" "}
-                {log.currentEvent.status}, time: {log.currentEvent.time}, orgId:{" "}
-                {log.currentEvent.orgId}
+                action:{log.event.action} status:{" "}
+                {log.event.status}, time: {log.event.time}, orgId:{" "}
+                {log.event.orgId}
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ))}

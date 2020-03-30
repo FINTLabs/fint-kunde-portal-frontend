@@ -45,9 +45,9 @@ class LogContainer extends React.Component {
     this.setState({
       loading: true
     });
-    LogApi.fetchLog("pwf.no", this.state.searchString).then(response => {
+    LogApi.fetchLog("fintlabs.no", this.state.searchString).then(response => {
       this.setState({
-        log: response[1].data,
+        log: response[1],
         loading: false
       });
     });
