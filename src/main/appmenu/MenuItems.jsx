@@ -7,7 +7,7 @@ import AdapterIcon from "@material-ui/icons/Link";
 import ContactIcon from "@material-ui/icons/Person";
 import RelationTestIcon from "@material-ui/icons/TrendingFlat";
 import BasicTestIcon from "@material-ui/icons/Done";
-import AuditEventsIcon from '@material-ui/icons/Timeline';
+import LogIcon from "@material-ui/icons/Receipt";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"
@@ -91,7 +91,7 @@ export const MENU_ITEMS = (
     <Link to="/logs" style={menuLink}>
       <ListItem button>
         <ListItemIcon>
-          <AuditEventsIcon />
+          <LogIcon />
         </ListItemIcon>
         <ListItemText primary="Hendelseslogg" />
       </ListItem>

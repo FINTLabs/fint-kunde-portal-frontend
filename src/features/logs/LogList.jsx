@@ -6,10 +6,12 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LogIcon from "@material-ui/icons/Receipt";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import { Typography, withStyles } from "@material-ui/core";
+import moment from "moment";
+import LogEntry from "./LogEntry";
 
 const styles = theme => ({
   root: {
-    width: "55%"
+    width: "75%"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -27,6 +29,15 @@ class LogList extends Component {
     this.state = {};
   }
 
+  distinct = () => {
+    let seen = new Map()
+    return this.props.log.filter(it => {
+      let found = seen.has(it.corrId);
+      seen.set(it.corrId, true);
+      return !found;
+    });
+  }
+
   render() {
     const { classes } = this.props;
     if (this.props.loading === true) {
@@ -34,18 +45,16 @@ class LogList extends Component {
     } else {
       return (
         <div className={classes.root}>
-          {this.props.log.map(log => (
-            <ExpansionPanel>
+          {this.distinct().map(log => (
+            <ExpansionPanel TransitionProps={{ unmountOnExit: true }} >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={classes.heading}>
                   <LogIcon />
-                  {log.source}
+                  {moment(log.timestamp).format("HH:mm:ss")} {log.event.action}
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails className={classes.details}>
-                action:{log.event.action} status:{" "}
-                {log.event.status}, time: {log.event.time}, orgId:{" "}
-                {log.event.orgId}
+                <LogEntry>{log.corrId}</LogEntry>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ))}

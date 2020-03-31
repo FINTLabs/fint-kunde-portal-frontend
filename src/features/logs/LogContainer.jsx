@@ -6,6 +6,8 @@ import { Input, Typography, withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withContext } from "../../data/context/withContext";
 import Search from "@material-ui/icons/Search";
+import ComponentSelector from "../../common/test/ComponentSelector";
+import ComponentApi from "../../data/api/ComponentApi";
 
 const styles = theme => ({
   root: {
@@ -37,15 +39,40 @@ class LogContainer extends React.Component {
     this.state = {
       log: [],
       searchString: "",
-      loading: false
+      loading: false,
+      components: [],
+      endpoint: ""
     };
   }
+
+  getOrganisationComponents = organisationName => {
+    ComponentApi.getOrganisationComponents(organisationName).then(
+      ([response, json]) => {
+        if (response.status === 200) {
+          this.setState({ components: json });
+        }
+      }
+    );
+  };
+
+  componentDidMount() {
+    const { currentOrganisation } = this.props.context;
+    //this.props.fetchClients(currentOrganisation.name);
+    this.getOrganisationComponents(currentOrganisation.name);
+  }
+
+  handleChange = e => {
+    let change = {};
+    change[e.target.name] = e.target.value;
+    this.setState(change);
+  };
 
   searchLog = () => {
     this.setState({
       loading: true
     });
-    LogApi.fetchLog("fintlabs.no", this.state.searchString).then(response => {
+    let source = this.state.endpoint.substring(1).replace("/", "-");
+    LogApi.fetchLog("fintlabs.no", `${source}/${this.state.searchString}`).then(response => {
       this.setState({
         log: response[1],
         loading: false
@@ -61,6 +88,12 @@ class LogContainer extends React.Component {
           Logs
         </Typography>
         <div className={classes.root}>
+          <ComponentSelector
+            components={this.state.components}
+            handleChange={this.handleChange}
+            name={"endpoint"}
+            value={this.state.endpoint}
+          />
           <Input
             autoFocus
             value={this.state.searchString}
