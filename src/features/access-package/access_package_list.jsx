@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {
     Avatar,
@@ -16,14 +16,8 @@ import {Delete, Edit} from "@material-ui/icons";
 import LockIcon from "@material-ui/icons/Lock";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    getAccessPackage,
-    setSelectedForEditingPackage,
-    updateAccessPackage
-} from "../../data/redux/actions/access_package";
+import {setSelectedForEditingPackage, updateAccessPackage} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
-import {fetchComponents} from "../../data/redux/dispatchers/component";
-import {fetchEntities} from "../../data/redux/dispatchers/entity";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,23 +42,17 @@ const useStyles = makeStyles((theme) => ({
 
 const AccessPackageList = () => {
     const classes = useStyles();
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
     const packages = useSelector(state => state.access_package.accessPackages);
-    const [editOpen, setEditOpen]= useState(false);
-
-    useEffect(() => {
-            dispatch(getAccessPackage());
-            dispatch(fetchComponents());
-            dispatch(fetchEntities());
-        },[]
-    );
+    const [editOpen, setEditOpen] = useState(false);
 
     AccessPackageList.propTypes = {
         clients: PropTypes.array.isRequired
     };
-    function deleteAccessPackage(accessPackage){
+
+    function deleteAccessPackage(accessPackage) {
         const newArray = [...packages];
-        newArray.splice( newArray.indexOf(accessPackage), 1);
+        newArray.splice(newArray.indexOf(accessPackage), 1);
         dispatch(updateAccessPackage(newArray));
     }
 
@@ -77,7 +65,7 @@ const AccessPackageList = () => {
         dispatch(setSelectedForEditingPackage(id));
     }
 
-    if (packages && packages.length > 0){
+    if (packages && packages.length > 0) {
         return (
             <div>
                 <div className={classes.root}>
@@ -114,7 +102,7 @@ const AccessPackageList = () => {
                                         </IconButton>
                                         <IconButton
                                             aria-label="Delete"
-                                            onClick={() => deleteAccessPackage(accessPackage) }
+                                            onClick={() => deleteAccessPackage(accessPackage)}
                                         >
                                             <Delete/>
                                         </IconButton>
@@ -126,10 +114,10 @@ const AccessPackageList = () => {
                     </div>
                 </div>
             </div>
-);
-    }else{
-    return (<></>);
-        }
+        );
+    } else {
+        return (<></>);
+    }
 
 };
 export default AccessPackageList;

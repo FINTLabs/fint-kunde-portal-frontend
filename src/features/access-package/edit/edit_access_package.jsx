@@ -51,57 +51,43 @@ const useStyles = makeStyles(theme => ({
 const EditAccessPackage = (props) => {
     const {open, handleClose} = props;
     const classes = useStyles();
-    const [environment, setEnvironment] = useState(0);
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
-    const components = useSelector(state => state.component.components);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
+    const entities = useSelector(state => state.entity.entities);
     const dispatch = useDispatch();
 
     let selectedAccessPackage = undefined;
-    accessPackages.filter(function (ap) {
+    accessPackages.map(ap => {
         if (ap.id === selectedForEditingId) {
             selectedAccessPackage = ap;
         }
+        return ap;
     });
 
     function openComponentSelector() {
         setComponentSelectorOpen(true);
     }
 
-    function handleChangeEnvironment(event) {
-        setEnvironment(event.target.value);
-    }
-
     function handleCloseComponentSelector() {
         setComponentSelectorOpen(false);
     }
 
-    function chooseComponent(event, dn, description, basePath) {
+    function chooseComponent(event, component) {
         const newArray = [...accessPackages];
-        let found = newArray.find(function (entry) {
+        let accessPackageFound = newArray.find(function (entry) {
             return entry.id === selectedForEditingId;
         });
-        if (found) {
-            const accessPackageIndex = newArray.indexOf(found);
+        if (accessPackageFound) {
+            const accessPackageIndex = newArray.indexOf(accessPackageFound);
             let componentFound = newArray[accessPackageIndex].selectedComponents.find(function (comp) {
-                return comp.dn === dn;
+                return comp.dn === component.dn;
             });
             if (componentFound) {
                 const componentIndex = newArray[accessPackageIndex].selectedComponents.indexOf(componentFound);
-                newArray[accessPackageIndex].selectedComponents[componentIndex] = {
-                    dn: dn,
-                    checked: event.target.checked,
-                    description: description,
-                    basePath: basePath,
-                };
+                newArray[accessPackageIndex].selectedComponents[componentIndex].checked = event.target.checked;
             } else {
-                newArray[accessPackageIndex].selectedComponents = [...newArray[accessPackageIndex].selectedComponents, {
-                    dn: dn,
-                    checked: event.target.checked,
-                    description: description,
-                    basePath: basePath,
-                }];
+                newArray[accessPackageIndex].selectedComponents.push({...component , checked: event.target.checked});
             }
         } else {
             return;
@@ -149,24 +135,23 @@ const EditAccessPackage = (props) => {
                             Velg komponenter du skal ha tilgang til
                         </DialogContentText>
                         <List component="nav" aria-label="Komponentlist" dense>
-                            {components ? components.map(component => {
-                                if (!component.openData && !component.common) {
+                            {entities.map(entity => {
+                                if (!entity.openData && !entity.common) {
                                     if (selectedAccessPackage) {
                                         const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
-                                            return sc.dn === component.dn;
+                                            return sc.dn === entity.dn;
                                         });
                                         return (
-                                            <ListItem>
-                                                <ListItemText primary={component.description}/>
+                                            <ListItem key={entity.dn}>
+                                                <ListItemText primary={entity.description}/>
                                                 <Checkbox
                                                     checked={selectedComponent[0] ? selectedComponent[0].checked : false}
-                                                    onChange={(e) => chooseComponent(e, component.dn, component.description, component.basePath)}/>
+                                                    onChange={(e) => chooseComponent(e, entity)}/>
                                             </ListItem>)
-                                    } else {
-                                        return <div/>
                                     }
                                 }
-                            }) : <div/>}
+                                return null;
+                            })}
                         </List>
                     </DialogContent>
                     <DialogActions>

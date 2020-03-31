@@ -1,7 +1,7 @@
 class EntityApi {
 
     static getEntities() {
-        const url = ["https://beta.felleskomponent.no/fint/metamodell/klasse/"];
+        const url = "/api/components/entities";
 
         return fetch(url, {
             method: 'GET',

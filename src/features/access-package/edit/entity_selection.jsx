@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ModifyIcon from "@material-ui/icons/Build";
 import BulkIcon from "@material-ui/icons/FormatListBulleted";
 import SingleIcon from "@material-ui/icons/LooksOne";
@@ -9,7 +9,6 @@ import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableCell from "@material-ui/core/TableCell";
-import {useSelector} from "react-redux";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,8 +29,7 @@ const useStyles = makeStyles(theme => ({
     fabListItem: {
         display: "flex",
     },
-    table: {
-    },
+    table: {},
     tableRow: {
         '&:nth-of-type(even)': {
             backgroundColor: "#fef3ef",
@@ -42,26 +40,27 @@ const useStyles = makeStyles(theme => ({
         verticalAlign: "middle",
     },
     header: {
-      marginTop: theme.spacing(4),
+        marginTop: theme.spacing(4),
     },
 }));
 
 const EntitySelection = (props) => {
     const classes = useStyles();
     const {selectedAccessPackage} = props;
-    const entities = useSelector(state => state.entity.entities);
+    const [accesses, setAccesses] = useState([]);
 
-    function showEntity(entity, component) {
-        let isSelected = false;
-            if (component.checked && entity.stereotype === 'hovedklasse' && entity.abstrakt === false) {
-                const componentStringForMatch = "no.fint" + component.basePath.replace(/\//g, ".");
-                const entityIdForMatch = entity.id.identifikatorverdi.substring(0, entity.id.identifikatorverdi.lastIndexOf("."));
-
-                if (entityIdForMatch === componentStringForMatch) {
-                    isSelected = true;
-                }
+    function updateAccesses(event, id) {
+        let newAccess = {...accesses};
+        if (newAccess[id] && newAccess[id][event.target.name]) {
+            newAccess[id][event.target.name] = event.target.checked;
+        } else {
+            const name = event.target.name;
+            if (!newAccess[id]) {
+                newAccess[id] = [];
             }
-        return isSelected;
+            newAccess[id][name] = event.target.checked;
+        }
+        setAccesses(newAccess);
     }
 
     return (
@@ -80,20 +79,39 @@ const EntitySelection = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {selectedAccessPackage.selectedComponents.map(component => {
-                            return entities.map(entity => {
-                                if (showEntity(entity, component)) {
-                                    return (<TableRow className={classes.tableRow}>
-                                        <TableCell>{component.description}</TableCell>
-                                        <TableCell align="right">{entity.navn}</TableCell>
-                                        <TableCell align="right"><Checkbox/></TableCell>
-                                        <TableCell align="right"><Checkbox/></TableCell>
-                                        <TableCell align="right"><Checkbox/></TableCell>
-                                    </TableRow>)
+                        {selectedAccessPackage.selectedComponents.map(entry => {
+                                if (entry.checked) {
+                                    return entry.entities.map(entity => {
+                                        return (<TableRow className={classes.tableRow} key={entity.id.identifikatorverdi}>
+                                            <TableCell>{entry.description}</TableCell>
+                                            <TableCell align="right">{entity.navn}</TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="bulk"
+                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["bulk"] : false}
+                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                />
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="single"
+                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["single"] : false}
+                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                />
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="modify"
+                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["modify"] : false}
+                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                />
+                                            </TableCell>
+                                        </TableRow>)
+                                    });
                                 }
-                            })
-
-                        })
+                                else return null;
+                            }
+                        )
                         }
                     </TableBody>
                 </Table>

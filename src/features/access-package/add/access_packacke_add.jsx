@@ -4,8 +4,6 @@ import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fa
 import TextField from "@material-ui/core/TextField";
 import {Add} from "@material-ui/icons";
 import PackageNameValidationInput from "../../../common/input-validation/PackageIdValidationInput";
-import AdapterApi from "../../../data/api/AdapterApi";
-import AssetApi from "../../../data/api/AssetApi";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {addAccessPackage} from "../../../data/redux/actions/access_package";

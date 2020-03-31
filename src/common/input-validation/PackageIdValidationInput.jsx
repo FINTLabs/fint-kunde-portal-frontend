@@ -1,15 +1,8 @@
 import React from "react";
-import {
-    FormControl,
-    FormHelperText,
-    Input,
-    InputLabel,
-    withStyles
-} from "@material-ui/core";
+import {FormControl, FormHelperText, Input, InputLabel, withStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid/Grid";
 import Typography from "@material-ui/core/Typography/Typography";
-import {useSelector} from "react-redux";
 
 const styles = theme => ({
     realm: {
@@ -41,6 +34,7 @@ class PackageIdValidationInput extends React.Component {
                 if (ap.name === username){
                     match = true;
                 }
+                return ap;
             });
             return !match;
         }

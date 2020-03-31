@@ -1,5 +1,4 @@
 import EntityApi from "../../api/EntityApi";
-import {fetchContactError, fetchContactsSuccess} from "../actions/contacts";
 import {fetchEntitiesError, fetchEntitiesSuccess} from "../actions/entity";
 
 export function fetchEntities() {
