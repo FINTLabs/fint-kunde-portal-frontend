@@ -14,7 +14,7 @@ const styles = theme => ({
     width: "95%"
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(18),
     fontWeight: theme.typography.fontWeightRegular
   },
   details: {
@@ -50,7 +50,10 @@ class LogList extends Component {
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={classes.heading}>
                   <LogIcon />
-                  {moment(log.timestamp).format("HH:mm:ss")} {log.event.action}
+                  {"    "}
+                  {moment(log.timestamp).format("HH:mm:ss")}
+                  {"    "}
+                  {log.event.action}
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails className={classes.details}>
