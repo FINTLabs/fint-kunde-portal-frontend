@@ -40,7 +40,7 @@ const AccessPackageContainer = () => {
             dispatch(getAccessPackage());
             dispatch(fetchComponents());
             dispatch(fetchEntities());
-        }, []
+        }, [dispatch]
     );
 
 

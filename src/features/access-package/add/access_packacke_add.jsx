@@ -82,7 +82,7 @@ const AccessPackackeAdd = () => {
                         tilgangspakke.
                     </DialogContentText>
                     <PackageNameValidationInput
-                        title="Pakke id"
+                        title="Pakke-ID"
                         name="name"
                         value={shortDescription}
                         onChange={updatePackageIdValid}

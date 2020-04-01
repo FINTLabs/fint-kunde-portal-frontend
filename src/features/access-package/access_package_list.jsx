@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import PropTypes from "prop-types";
 import {
     Avatar,
     Divider,
@@ -18,6 +17,10 @@ import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
 import {setSelectedForEditingPackage, updateAccessPackage} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,6 +40,23 @@ const useStyles = makeStyles((theme) => ({
     itemAvatar: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
+    },
+    dialogButtons: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        alignSelf:"center"
+    },
+    buttonDeleteAccessPackage: {
+        margin: theme.spacing(1),
+        color: "#FFF",
+        backgroundColor: theme.palette.primary.dark,
+    },
+    buttonDontDeleteAccessPackage:{
+        margin: theme.spacing(1),
+    },
+    dialogContent: {
+        display: "flex",
+        flexDirection:"column"
     }
 }));
 
@@ -45,11 +65,14 @@ const AccessPackageList = () => {
     const dispatch = useDispatch();
     const packages = useSelector(state => state.access_package.accessPackages);
     const [editOpen, setEditOpen] = useState(false);
+    const [openDialog, setOpenDialog] = React.useState(false);
+    const [packageToDelete, setPackageToDelete] = React.useState({});
 
     function deleteAccessPackage(accessPackage) {
         const newArray = [...packages];
         newArray.splice(newArray.indexOf(accessPackage), 1);
         dispatch(updateAccessPackage(newArray));
+        setOpenDialog(false)
     }
 
     function handleEditClose() {
@@ -59,6 +82,14 @@ const AccessPackageList = () => {
     function openEdit(id) {
         setEditOpen(true);
         dispatch(setSelectedForEditingPackage(id));
+    }
+
+    function handleClose() {
+        setOpenDialog(false);
+    }
+    function openDeleteAccessPackageDialog(accessPackage) {
+        setOpenDialog(true);
+        setPackageToDelete(accessPackage);
     }
 
     if (packages && packages.length > 0) {
@@ -98,7 +129,7 @@ const AccessPackageList = () => {
                                         </IconButton>
                                         <IconButton
                                             aria-label="Delete"
-                                            onClick={() => deleteAccessPackage(accessPackage)}
+                                            onClick={() => openDeleteAccessPackageDialog(accessPackage)}
                                         >
                                             <Delete/>
                                         </IconButton>
@@ -108,6 +139,17 @@ const AccessPackageList = () => {
                         </List>
                         <EditAccessPackage open={editOpen} handleClose={handleEditClose}/>
                     </div>
+                    <Dialog onClose={handleClose} aria-labelledby="Fjerne tilgangspakke" open={openDialog}>
+                        <DialogTitle id="Fjerne mottaker">Fjern tilgangspakke</DialogTitle>
+                        <DialogContent className={classes.dialogContent}>
+                            Vil du fjerne tilgangspakken: {packageToDelete.shortDescription} ?
+                            <Typography variant="caption">(Fjerningen er permanent)</Typography>
+                        </DialogContent>
+                        <div className={classes.dialogButtons}>
+                            <Button variant="outlined" className={classes.buttonDontDeleteAccessPackage} onClick={handleClose}>Nei</Button>
+                            <Button className={classes.buttonDeleteAccessPackage} variant="outlined" onClick={() => deleteAccessPackage(packageToDelete)}>Ja</Button>
+                        </div>
+                    </Dialog>
                 </div>
             </div>
         );
