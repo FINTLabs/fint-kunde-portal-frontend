@@ -3,7 +3,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import LogIcon from "@material-ui/icons/Receipt";
+import LogIcon from "@material-ui/icons/Timeline";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import { Typography, withStyles } from "@material-ui/core";
 import moment from "moment";
@@ -11,7 +11,7 @@ import LogEntry from "./LogEntry";
 
 const styles = theme => ({
   root: {
-    width: "75%"
+    width: "95%"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

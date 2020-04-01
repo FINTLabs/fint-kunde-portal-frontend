@@ -7,7 +7,7 @@ import AdapterIcon from "@material-ui/icons/Link";
 import ContactIcon from "@material-ui/icons/Person";
 import RelationTestIcon from "@material-ui/icons/TrendingFlat";
 import BasicTestIcon from "@material-ui/icons/Done";
-import LogIcon from "@material-ui/icons/Receipt";
+import LogIcon from "@material-ui/icons/Timeline";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"

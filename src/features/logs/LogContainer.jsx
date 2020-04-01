@@ -85,7 +85,7 @@ class LogContainer extends React.Component {
     return (
       <div>
         <Typography variant="h5" className={classes.title}>
-          Logs
+          Søk i hendelseslogg
         </Typography>
         <div className={classes.root}>
           <ComponentSelector
