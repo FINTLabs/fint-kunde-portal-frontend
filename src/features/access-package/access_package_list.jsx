@@ -46,10 +46,6 @@ const AccessPackageList = () => {
     const packages = useSelector(state => state.access_package.accessPackages);
     const [editOpen, setEditOpen] = useState(false);
 
-    AccessPackageList.propTypes = {
-        clients: PropTypes.array.isRequired
-    };
-
     function deleteAccessPackage(accessPackage) {
         const newArray = [...packages];
         newArray.splice(newArray.indexOf(accessPackage), 1);

@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 const EntitySelection = (props) => {
     const classes = useStyles();
     const {selectedAccessPackage} = props;
-    const [accesses, setAccesses] = useState([]);
+    const [accesses, setAccesses] = useState([false]);
 
     function updateAccesses(event, id) {
         let newAccess = {...accesses};
@@ -88,21 +88,21 @@ const EntitySelection = (props) => {
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="bulk"
-                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["bulk"] : false}
+                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["bulk"]}
                                                     onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="single"
-                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["single"] : false}
+                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["single"]}
                                                     onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="modify"
-                                                    checked={accesses[entity.id.identifikatorverdi] ? accesses[entity.id.identifikatorverdi]["modify"] : false}
+                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["modify"]}
                                                     onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>

@@ -92,6 +92,6 @@ PackageIdValidationInput.propTypes = {
     onChange: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     packageNameIsValid: PropTypes.func.isRequired,
-    packages: PropTypes.func.isRequired
+    packages: PropTypes.array.isRequired
 };
 export default withStyles(styles)(PackageIdValidationInput);
