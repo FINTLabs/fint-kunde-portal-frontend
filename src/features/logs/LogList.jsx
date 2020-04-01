@@ -5,7 +5,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LogIcon from "@material-ui/icons/Timeline";
 import LoadingProgress from "../../common/status/LoadingProgress";
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography, withStyles, Box } from "@material-ui/core";
 import moment from "moment";
 import LogEntry from "./LogEntry";
 
@@ -48,11 +48,13 @@ class LogList extends Component {
           {this.distinct().map(log => (
             <ExpansionPanel TransitionProps={{ unmountOnExit: true }} >
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <LogIcon />
+                <Box mx={4}>
+                  <Typography>
+                    {moment(log.timestamp).format("HH:mm:ss")}
+                  </Typography>
+                </Box>
                 <Typography className={classes.heading}>
-                  <LogIcon />
-                  {"    "}
-                  {moment(log.timestamp).format("HH:mm:ss")}
-                  {"    "}
                   {log.event.action}
                 </Typography>
               </ExpansionPanelSummary>
