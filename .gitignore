@@ -63,3 +63,5 @@ typings/
 .idea
 
 rename-to-jsx.sh
+
+.DS_Store

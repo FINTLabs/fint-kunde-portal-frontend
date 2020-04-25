@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -6,6 +6,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import {makeStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
+import ClearIcon from '@material-ui/icons/Clear';
+import IconButton from "@material-ui/core/IconButton";
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,11 +19,11 @@ const useStyles = makeStyles(theme => ({
 export default function ComponentSelector(props) {
 
     const classes = useStyles();
-    const {name, value, components, disabled, required, error = false} = props;
+    const {name, value, components, disabled, required, error = false, onClear} = props;
 
-    const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
+    const inputLabel = useRef();
+    const [labelWidth, setLabelWidth] = useState(0);
+    useEffect(() => {
         setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
 
@@ -39,7 +41,18 @@ export default function ComponentSelector(props) {
 
                 value={value}
                 onChange={props.handleChange}
-                input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                input={
+                    <OutlinedInput
+                        labelWidth={labelWidth}
+                        name={name}
+                        id={name}
+                        endAdornment={
+                            onClear && (<IconButton onClick={onClear}>
+                                <ClearIcon fontSize='small'/>
+                            </IconButton>)
+                        }
+                    />
+                }
             >
                 {components.map(component => {
                     return (
@@ -49,6 +62,7 @@ export default function ComponentSelector(props) {
                     );
                 })}
             </Select>
+
         </FormControl>
 
     );
@@ -58,7 +72,8 @@ export default function ComponentSelector(props) {
 
 ComponentSelector.defaultProps = {
     disabled: false,
-    required: true
+    required: true,
+    onClear: null
 };
 ComponentSelector.propTypes = {
     classes: PropTypes.any,
@@ -68,6 +83,7 @@ ComponentSelector.propTypes = {
     value: PropTypes.any.isRequired,
     disabled: PropTypes.bool.isRequired,
     required: PropTypes.bool.isRequired,
+    onClear: PropTypes.func
 };
 
 

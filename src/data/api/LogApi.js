@@ -1,6 +1,6 @@
 class LogApi {
 
-  static fetchLog(organisation, query) {
+  static fetchLog(environment, organisation, query) {
 
     const url = `/events/api/${organisation}/${query}`;
     return fetch(url, {
