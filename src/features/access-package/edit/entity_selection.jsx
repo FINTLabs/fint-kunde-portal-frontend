@@ -9,6 +9,8 @@ import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableCell from "@material-ui/core/TableCell";
+import {useDispatch, useSelector} from "react-redux";
+import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,19 +50,29 @@ const EntitySelection = (props) => {
     const classes = useStyles();
     const {selectedAccessPackage} = props;
     const [accesses, setAccesses] = useState([false]);
+    const dispatch = useDispatch();
+    const accessPackages =  useSelector(state => state.access_package.accessPackages);
 
-    function updateAccesses(event, id) {
-        let newAccess = {...accesses};
-        if (newAccess[id] && newAccess[id][event.target.name]) {
-            newAccess[id][event.target.name] = event.target.checked;
-        } else {
-            const name = event.target.name;
-            if (!newAccess[id]) {
-                newAccess[id] = [];
+    function updateAccesses(event, dn, id) {
+        let newAccessPackages = [...accessPackages];
+        let newAccessPackage = {...selectedAccessPackage};
+
+        newAccessPackage.selectedComponents.map(component => {
+            if (component.dn === dn) {
+                component.entities.map(entity => {
+                    if (entity.id.identifikatorverdi === id) {
+                        switch (event.target.name) {
+                            case "bulk": entity.bulk = event.target.checked; break;
+                            case "single": entity.single = event.target.checked; break;
+                            case "modify": entity.modify = event.target.checked; break;
+                        }
+                    }
+                })
             }
-            newAccess[id][name] = event.target.checked;
-        }
-        setAccesses(newAccess);
+            newAccessPackages.accessPackages = newAccessPackage;
+            return null;
+        });
+            dispatch(updateAccessPackages(newAccessPackages));
     }
 
     return (
@@ -88,28 +100,27 @@ const EntitySelection = (props) => {
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="bulk"
-                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["bulk"]}
-                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                    checked={entity.bulk}
+                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="single"
-                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["single"]}
-                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                    checked={entity.single}
+                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>
                                             <TableCell align="right">
                                                 <Checkbox
                                                     name="modify"
-                                                    checked={accesses[entity.id.identifikatorverdi] && accesses[entity.id.identifikatorverdi]["modify"]}
-                                                    onChange={(event) => updateAccesses(event, entity.id.identifikatorverdi)}
+                                                    checked={entity.modify}
+                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
                                                 />
                                             </TableCell>
                                         </TableRow>)
                                     });
-                                }
-                                else return null;
+                                } else return null;
                             }
                         )
                         }

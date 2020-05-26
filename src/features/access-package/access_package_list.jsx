@@ -15,12 +15,16 @@ import {Delete, Edit} from "@material-ui/icons";
 import LockIcon from "@material-ui/icons/Lock";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {setSelectedForEditingPackage, updateAccessPackage} from "../../data/redux/actions/access_package";
+import {
+    setSelectedForEditingPackage,
+    updateAccessPackages
+} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
+import access_package from "../../data/redux/reducers/access_package";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -71,7 +75,7 @@ const AccessPackageList = () => {
     function deleteAccessPackage(accessPackage) {
         const newArray = [...packages];
         newArray.splice(newArray.indexOf(accessPackage), 1);
-        dispatch(updateAccessPackage(newArray));
+        dispatch(updateAccessPackages(newArray));
         setOpenDialog(false)
     }
 

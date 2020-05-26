@@ -17,6 +17,7 @@ const AccessPackageContainer = () => {
     const dispatch = useDispatch();
     const components = useSelector(state => state.component.components);
     const entities = useSelector(state => state.entity.entities);
+    const accesspackages = useSelector(state => state.access_package);
 
     function matchEntitiesAndComponents() {
         components.map(component => {
@@ -42,7 +43,6 @@ const AccessPackageContainer = () => {
             dispatch(fetchEntities());
         }, [dispatch]
     );
-
 
     if (!entities || entities.length === 0) {
         return <LoadingProgress/>;
