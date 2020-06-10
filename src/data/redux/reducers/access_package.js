@@ -1,6 +1,5 @@
 import {
-    ADD_ACCESS_PACKAGE,
-    GET_ACCESS_PACKAGES,
+    ADD_ACCESS_PACKAGE, FETCH_ACCESS_ERROR, FETCH_ACCESS_SUCCESS,
     UPDATE_ACCESS_PACKAGES,
     UPDATE_SELECTED_COMPONENTS,
     UPDATE_SELECTED_FOR_EDITING_PACKAGE
@@ -8,29 +7,10 @@ import {
 
 export default function client(state = [], action) {
     switch (action.type) {
-        case GET_ACCESS_PACKAGES:
-            return {
-                ...state, accessPackages: [
-                    {
-                        id: "full_tilgang_til_alt_ap",
-                        shortDescription: "Full Tilgang til alt",
-                        name: "full_tilgang_til_alt_ap",
-                        selectedComponents: []
-                    },
-                    {
-                        id: "visma_inschool_ap",
-                        shortDescription: "Visma Inschool tilgang",
-                        name: "visma_inschool_ap",
-                        selectedComponents: []
-                    },
-                    {
-                        id: "vigo_bas_ap",
-                        shortDescription: "Vigo BAS-tilgang",
-                        name: "vigo_bas_ap",
-                        selectedComponents: []
-                    }
-                ],
-            };
+        case FETCH_ACCESS_SUCCESS:
+            return {...state, accessPackages: action.payload, error:false};
+        case FETCH_ACCESS_ERROR:
+            return {...state, error: true};
         case ADD_ACCESS_PACKAGE:
             return {
                 ...state, accessPackages: action.payload

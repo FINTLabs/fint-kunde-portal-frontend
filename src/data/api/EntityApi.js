@@ -1,7 +1,7 @@
 class EntityApi {
 
     static getEntities() {
-        const url = "/api/components/entities";
+        const url = "/api/components/configurations";
 
         return fetch(url, {
             method: 'GET',

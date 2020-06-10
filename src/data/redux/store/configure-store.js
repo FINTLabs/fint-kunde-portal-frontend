@@ -9,7 +9,7 @@ import contact from "../reducers/contact";
 import asset from "../reducers/asset";
 import linkwalker from "../reducers/linkwalker";
 import access_package from "../reducers/access_package";
-import entity from "../reducers/entity";
+import component_configuration from "../reducers/component-configuration";
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -24,7 +24,7 @@ const store = createStore(
         asset,
         linkwalker,
         access_package,
-            entity,
+        component_configuration,
     }),
     /* preloadedState, */ composeEnhancers(
         applyMiddleware(thunkMiddleware, logger))

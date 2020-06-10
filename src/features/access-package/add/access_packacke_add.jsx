@@ -7,6 +7,8 @@ import PackageNameValidationInput from "../../../common/input-validation/Package
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {addAccessPackage} from "../../../data/redux/actions/access_package";
+import AccessApi from "../../../data/api/AccessApi";
+import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 
 const useStyles = makeStyles((theme) => ({
     addButton: {
@@ -45,15 +47,19 @@ const AccessPackackeAdd = () => {
     }
 
     function handleCreatePackage() {
-        setOpen(false);
-        const newPackage = {
-            id: shortDescription,
-            shortDescription: name,
-            name: shortDescription,
-            selectedComponents:[],
-        };
-        const newArray = [...packages, newPackage];
-        dispatch(addAccessPackage(newArray));
+        const access = {};
+        access.name = name;
+        access.collection = [];
+        access.read = [];
+        access.modify = [];
+        //TODO: Needs to get Organisation from API.
+        AccessApi.setAccess(access, "testing")
+            .then(response => {
+                if (response.status === 201){
+                    setOpen(false);
+                    dispatch(fetchAccess("testing"));
+                }
+            });
     }
 
     function packageNameIsValid(event) {

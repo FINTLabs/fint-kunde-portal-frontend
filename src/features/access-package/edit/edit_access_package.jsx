@@ -18,8 +18,8 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import {useDispatch, useSelector} from "react-redux";
 import {updateSelectedComponents} from "../../../data/redux/actions/access_package";
-import EntitySelection from "./entity_selection";
 import Divider from "@material-ui/core/Divider";
+import EntitySelection from "./entity_selection";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -49,21 +49,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditAccessPackage = (props) => {
-    const {open, handleClose} = props;
+    const {open, handleClose, handleSaveAccess} = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
+    const [selectedComponents, setSelectedComponents] = useState([]);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
-    const entities = useSelector(state => state.entity.entities);
-    const dispatch = useDispatch();
+    const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
 
     let selectedAccessPackage = undefined;
     accessPackages.map(ap => {
-        if (ap.id === selectedForEditingId) {
+        if (ap.dn === selectedForEditingId) {
             selectedAccessPackage = ap;
         }
         return ap;
     });
+
+    console.log("selectedAccessPackage: ", selectedAccessPackage);
 
     function openComponentSelector() {
         setComponentSelectorOpen(true);
@@ -74,26 +76,9 @@ const EditAccessPackage = (props) => {
     }
 
     function chooseComponent(event, component) {
-        const newArray = [...accessPackages];
-        let accessPackageFound = newArray.find(function (entry) {
-            return entry.id === selectedForEditingId;
-        });
-        if (accessPackageFound) {
-            const accessPackageIndex = newArray.indexOf(accessPackageFound);
-            let componentFound = newArray[accessPackageIndex].selectedComponents.find(function (comp) {
-                return comp.dn === component.dn;
-            });
-            if (componentFound) {
-                const componentIndex = newArray[accessPackageIndex].selectedComponents.indexOf(componentFound);
-                newArray[accessPackageIndex].selectedComponents[componentIndex].checked = event.target.checked;
-            } else {
-                newArray[accessPackageIndex].selectedComponents.push({...component , checked: event.target.checked});
-            }
-        } else {
-            return;
-        }
-
-        dispatch(updateSelectedComponents(newArray));
+        let test = {...selectedComponents};
+        test[component.name] = event.target.checked;
+        setSelectedComponents(test);
     }
 
     return (
@@ -107,7 +92,7 @@ const EditAccessPackage = (props) => {
                         <Typography variant="h6" className={classes.title}>
                             Legg til tilganger
                         </Typography>
-                        <Button autoFocus color="inherit" onClick={handleClose}>
+                        <Button autoFocus color="inherit" onClick={() => handleSaveAccess(selectedAccessPackage)}>
                             Lagre
                         </Button>
                     </Toolbar>
@@ -122,6 +107,7 @@ const EditAccessPackage = (props) => {
                 <Divider></Divider>
                 <EntitySelection
                     selectedAccessPackage={selectedAccessPackage}
+                    selectedComponents={selectedComponents}
                 />
                 <Dialog
                     open={componentSelectorOpen}
@@ -135,22 +121,15 @@ const EditAccessPackage = (props) => {
                             Velg komponenter du skal ha tilgang til
                         </DialogContentText>
                         <List component="nav" aria-label="Komponentlist" dense>
-                            {entities.map(entity => {
-                                if (!entity.openData && !entity.common) {
-                                    if (selectedAccessPackage) {
-                                        const selectedComponent = selectedAccessPackage.selectedComponents.filter(function (sc) {
-                                            return sc.dn === entity.dn;
-                                        });
-                                        return (
-                                            <ListItem key={entity.dn}>
-                                                <ListItemText primary={entity.description}/>
-                                                <Checkbox
-                                                    checked={selectedComponent[0] ? selectedComponent[0].checked : false}
-                                                    onChange={(e) => chooseComponent(e, entity)}/>
-                                            </ListItem>)
-                                    }
-                                }
-                                return null;
+                            {componentConfiguration.map(componentConfig => {
+
+                                return (
+                                    <ListItem key={componentConfig.name}>
+                                        <ListItemText primary={componentConfig.name}/>
+                                        <Checkbox
+                                            checked={selectedComponents[componentConfig.name] ? selectedComponents[componentConfig.name] : false}
+                                            onChange={(e) => chooseComponent(e, componentConfig)}/>
+                                    </ListItem>);
                             })}
                         </List>
                     </DialogContent>

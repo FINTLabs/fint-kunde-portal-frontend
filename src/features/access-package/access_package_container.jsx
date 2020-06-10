@@ -2,11 +2,11 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import AccessPackageList from "./access_package_list";
 import AccessPackageAdd from "./add/access_packacke_add";
-import {getAccessPackage} from "../../data/redux/actions/access_package";
 import {fetchComponents} from "../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../data/redux/dispatchers/entity";
 import {makeStyles} from "@material-ui/core/styles";
 import LoadingProgress from "../../common/status/LoadingProgress";
+import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -15,36 +15,18 @@ const useStyles = makeStyles((theme) => ({
 const AccessPackageContainer = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const components = useSelector(state => state.component.components);
-    const entities = useSelector(state => state.entity.entities);
-    const accesspackages = useSelector(state => state.access_package);
+    const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
+    const access = useSelector(state => state.access_package.accessPackages);
+    console.log("access: ",access);
 
-    function matchEntitiesAndComponents() {
-        components.map(component => {
-            component["entities"] = entities.filter(entity => {
-                if (entity.stereotype === 'hovedklasse' && entity.abstrakt === false) {
-                    const componentStringForMatch = "no.fint" + component.basePath.replace(/\//g, ".");
-                    const entityIdForMatch = entity.id.identifikatorverdi.substring(0, entity.id.identifikatorverdi.lastIndexOf("."));
-
-                    return (entityIdForMatch === componentStringForMatch)
-                }
-                return false;
-            });
-            return component;
-        });
-    }
-
-    if (components && entities && components.length > 0 && entities.length > 0) {
-        matchEntitiesAndComponents();
-    }
     useEffect(() => {
-            dispatch(getAccessPackage());
+            dispatch(fetchAccess("testing"));
             dispatch(fetchComponents());
             dispatch(fetchEntities());
         }, [dispatch]
     );
 
-    if (!entities || entities.length === 0) {
+    if (!componentConfiguration || componentConfiguration.length === 0 || !access) {
         return <LoadingProgress/>;
     } else {
         return (

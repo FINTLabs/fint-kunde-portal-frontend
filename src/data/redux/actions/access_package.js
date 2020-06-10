@@ -1,11 +1,22 @@
 import {
-    ADD_ACCESS_PACKAGE,
-    GET_ACCESS_PACKAGES,
+    ADD_ACCESS_PACKAGE, FETCH_ACCESS_ERROR, FETCH_ACCESS_SUCCESS, FETCH_COMPONENTS_ERROR, FETCH_COMPONENTS_SUCCESS,
     UPDATE_ACCESS_PACKAGES,
     UPDATE_SELECTED_COMPONENTS,
     UPDATE_SELECTED_FOR_EDITING_PACKAGE
 } from "./types";
 
+export function fetchAccessSuccess(payload) {
+    return {
+        type: FETCH_ACCESS_SUCCESS,
+        payload
+    }
+}
+
+export function fetchAccessError() {
+    return {
+        type: FETCH_ACCESS_ERROR,
+    }
+}
 
 export function addAccessPackage(accessPackage) {
     return {
@@ -18,12 +29,6 @@ export function updateAccessPackages(accessPackage) {
     return {
         type: UPDATE_ACCESS_PACKAGES,
         payload: accessPackage
-    }
-}
-
-export function getAccessPackage() {
-    return {
-        type: GET_ACCESS_PACKAGES,
     }
 }
 

@@ -48,87 +48,136 @@ const useStyles = makeStyles(theme => ({
 
 const EntitySelection = (props) => {
     const classes = useStyles();
-    const {selectedAccessPackage} = props;
+    const {selectedAccessPackage, selectedComponents} = props;
     const [accesses, setAccesses] = useState([false]);
     const dispatch = useDispatch();
-    const accessPackages =  useSelector(state => state.access_package.accessPackages);
+    const accessPackages = useSelector(state => state.access_package.accessPackages);
+    const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
 
-    function updateAccesses(event, dn, id) {
+    console.log("selectedAccessPackage: ", selectedAccessPackage);
+
+    function updateAccesses(event, entity, component, selectedAccessPackage) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
+        const accessPackageIndex = newAccessPackages.map((ap, index) => {
+            if (ap.dn === selectedAccessPackage.dn) {
+                return index;
+            }
+        });
+        console.log(accessPackageIndex);
 
-        newAccessPackage.selectedComponents.map(component => {
-            if (component.dn === dn) {
-                component.entities.map(entity => {
-                    if (entity.id.identifikatorverdi === id) {
-                        switch (event.target.name) {
-                            case "bulk": entity.bulk = event.target.checked; break;
-                            case "single": entity.single = event.target.checked; break;
-                            case "modify": entity.modify = event.target.checked; break;
+        switch (event.target.name) {
+            case "collection":
+                if (newAccessPackage.collection.includes(component.path + entity)) {
+                    for (let i = 0; i < newAccessPackage.collection.length; i++) {
+                        if (newAccessPackage.collection[i] === component.path + entity) {
+                            newAccessPackage.collection.splice(i, 1);
                         }
                     }
-                })
-            }
-            newAccessPackages.accessPackages = newAccessPackage;
-            return null;
-        });
-            dispatch(updateAccessPackages(newAccessPackages));
+                } else {
+                    newAccessPackage.collection.push(component.path + entity);
+                }
+                break;
+            case "read":
+                if (newAccessPackage.read.includes(component.path + entity)) {
+                    for (let i = 0; i < newAccessPackage.read.length; i++) {
+                        if (newAccessPackage.read[i] === component.path + entity) {
+                            newAccessPackage.read.splice(i, 1);
+                        }
+                    }
+                } else {
+                    newAccessPackage.read.push(component.path + entity);
+                }
+                break;
+            case "modify":
+                if (newAccessPackage.modify.includes(component.path + entity)) {
+                    for (let i = 0; i < newAccessPackage.modify.length; i++) {
+                        if (newAccessPackage.modify[i] === component.path + entity) {
+                            newAccessPackage.modify.splice(i, 1);
+                        }
+                    }
+                } else {
+                    newAccessPackage.modify.push(component.path + entity);
+                }
+                break;
+            default:
+                console.log("nothing to add");
+        }
+        newAccessPackages[accessPackageIndex] = newAccessPackage;
+        dispatch(updateAccessPackages(newAccessPackages));
     }
 
-    return (
-        <div className={classes.root}>
-            <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
+    const keys = Object.keys(selectedComponents);
 
-            <TableContainer component={Paper} hidden={selectedAccessPackage.selectedComponents.length === 0}>
-                <Table className={classes.table} size="small" aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Komponent</TableCell>
-                            <TableCell align="right">Entitet</TableCell>
-                            <TableCell align="right">Bulk <BulkIcon className={classes.icon}/></TableCell>
-                            <TableCell align="right">Single<SingleIcon className={classes.icon}/></TableCell>
-                            <TableCell align="right">Endre<ModifyIcon className={classes.icon}/></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {selectedAccessPackage.selectedComponents.map(entry => {
-                                if (entry.checked) {
-                                    return entry.entities.map(entity => {
-                                        return (<TableRow className={classes.tableRow} key={entity.id.identifikatorverdi}>
-                                            <TableCell>{entry.description}</TableCell>
-                                            <TableCell align="right">{entity.navn}</TableCell>
-                                            <TableCell align="right">
-                                                <Checkbox
-                                                    name="bulk"
-                                                    checked={entity.bulk}
-                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
-                                                />
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <Checkbox
-                                                    name="single"
-                                                    checked={entity.single}
-                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
-                                                />
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <Checkbox
-                                                    name="modify"
-                                                    checked={entity.modify}
-                                                    onChange={(event) => updateAccesses(event, entry.dn, entity.id.identifikatorverdi)}
-                                                />
-                                            </TableCell>
-                                        </TableRow>)
-                                    });
-                                } else return null;
+    if (keys.length > 0) {
+        return (
+            <div className={classes.root}>
+                <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
+
+                <TableContainer component={Paper}>
+                    <Table className={classes.table} size="small" aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Komponent</TableCell>
+                                <TableCell align="right">Entitet</TableCell>
+                                <TableCell align="right">Bulk <BulkIcon className={classes.icon}/></TableCell>
+                                <TableCell align="right">Single<SingleIcon className={classes.icon}/></TableCell>
+                                <TableCell align="right">Endre<ModifyIcon className={classes.icon}/></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                keys.map(key => {
+                                        if (selectedComponents[key]) {
+                                            let displayComponent = null;
+                                            componentConfiguration.forEach(component => {
+                                                if (component.name === key) {
+                                                    displayComponent = component;
+                                                }
+                                            });
+
+                                            return displayComponent.classes.map(entity => {
+
+                                                return (
+                                                    <TableRow className={classes.tableRow} key={entity}>
+
+                                                        <TableCell>{key}</TableCell>
+                                                        <TableCell align="right">{entity}</TableCell>
+                                                        <TableCell align="right">
+                                                            <Checkbox
+                                                                name="collection"
+                                                                checked={selectedAccessPackage.collection.includes(displayComponent.path + entity)}
+                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
+                                                            />
+                                                        </TableCell>
+                                                        <TableCell align="right">
+                                                            <Checkbox
+                                                                name="read"
+                                                                checked={selectedAccessPackage.read.includes(displayComponent.path + entity)}
+                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
+                                                            />
+                                                        </TableCell>
+                                                        <TableCell align="right">
+                                                            <Checkbox
+                                                                name="modify"
+                                                                checked={selectedAccessPackage.modify.includes(displayComponent.path + entity)}
+                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
+                                                            />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                );
+                                            })
+
+                                        } else return null;
+                                    }
+                                )
                             }
-                        )
-                        }
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
-    );
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </div>
+        );
+    } else return (<div/>)
 };
 
 export default EntitySelection;

@@ -15,16 +15,14 @@ import {Delete, Edit} from "@material-ui/icons";
 import LockIcon from "@material-ui/icons/Lock";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    setSelectedForEditingPackage,
-    updateAccessPackages
-} from "../../data/redux/actions/access_package";
+import {setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
-import access_package from "../../data/redux/reducers/access_package";
+import AccessApi from "../../data/api/AccessApi";
+import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,19 +46,19 @@ const useStyles = makeStyles((theme) => ({
     dialogButtons: {
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
-        alignSelf:"center"
+        alignSelf: "center"
     },
     buttonDeleteAccessPackage: {
         margin: theme.spacing(1),
         color: "#FFF",
         backgroundColor: theme.palette.primary.dark,
     },
-    buttonDontDeleteAccessPackage:{
+    buttonDontDeleteAccessPackage: {
         margin: theme.spacing(1),
     },
     dialogContent: {
         display: "flex",
-        flexDirection:"column"
+        flexDirection: "column"
     }
 }));
 
@@ -73,30 +71,47 @@ const AccessPackageList = () => {
     const [packageToDelete, setPackageToDelete] = React.useState({});
 
     function deleteAccessPackage(accessPackage) {
-        const newArray = [...packages];
-        newArray.splice(newArray.indexOf(accessPackage), 1);
-        dispatch(updateAccessPackages(newArray));
-        setOpenDialog(false)
+        AccessApi.deleteAccess(accessPackage, "testing")
+            .then(response => {
+                console.log(response.status);
+                if (response.status === 204){
+                    setOpenDialog(false)
+                    dispatch(fetchAccess("testing"));
+                }
+            });
     }
 
     function handleEditClose() {
         setEditOpen(false);
     }
 
-    function openEdit(id) {
+    function openEdit(dn) {
         setEditOpen(true);
-        dispatch(setSelectedForEditingPackage(id));
+        dispatch(setSelectedForEditingPackage(dn));
     }
 
     function handleClose() {
         setOpenDialog(false);
     }
+
     function openDeleteAccessPackageDialog(accessPackage) {
         setOpenDialog(true);
         setPackageToDelete(accessPackage);
     }
 
-    if (packages && packages.length > 0) {
+    function handleSaveAccess(accessPackage) {
+        AccessApi.updateAccess(accessPackage, "testing")
+            .then(response => {
+                    console.log(response.status);
+                    if (response.status === 200) {
+                        setEditOpen(false);
+                        dispatch(fetchAccess("testing"));
+                    }
+                }
+            );
+    }
+
+    if (packages) {
         return (
             <div>
                 <div className={classes.root}>
@@ -114,7 +129,7 @@ const AccessPackageList = () => {
                         <Divider/>
                         <List>
                             {packages.map(accessPackage => (
-                                <ListItem className={classes.listItem} key={accessPackage.id}>
+                                <ListItem className={classes.listItem} key={accessPackage.dn}>
                                     <ListItemAvatar>
                                         <Avatar className={classes.itemAvatar}>
                                             <LockIcon/>
@@ -127,7 +142,7 @@ const AccessPackageList = () => {
                                     <ListItemSecondaryAction>
                                         <IconButton
                                             aria-label="Edit"
-                                            onClick={() => openEdit(accessPackage.id)}
+                                            onClick={() => openEdit(accessPackage.dn)}
                                         >
                                             <Edit/>
                                         </IconButton>
@@ -139,9 +154,11 @@ const AccessPackageList = () => {
                                         </IconButton>
                                     </ListItemSecondaryAction>
                                 </ListItem>
-                            ))}
+                            ))
+                            }
                         </List>
-                        <EditAccessPackage open={editOpen} handleClose={handleEditClose}/>
+                        <EditAccessPackage open={editOpen} handleClose={handleEditClose}
+                                           handleSaveAccess={handleSaveAccess}/>
                     </div>
                     <Dialog onClose={handleClose} aria-labelledby="Fjerne tilgangspakke" open={openDialog}>
                         <DialogTitle id="Fjerne mottaker">Fjern tilgangspakke</DialogTitle>
@@ -150,8 +167,10 @@ const AccessPackageList = () => {
                             <Typography variant="caption">(Fjerningen er permanent)</Typography>
                         </DialogContent>
                         <div className={classes.dialogButtons}>
-                            <Button variant="outlined" className={classes.buttonDontDeleteAccessPackage} onClick={handleClose}>Nei</Button>
-                            <Button className={classes.buttonDeleteAccessPackage} variant="outlined" onClick={() => deleteAccessPackage(packageToDelete)}>Ja</Button>
+                            <Button variant="outlined" className={classes.buttonDontDeleteAccessPackage}
+                                    onClick={handleClose}>Nei</Button>
+                            <Button className={classes.buttonDeleteAccessPackage} variant="outlined"
+                                    onClick={() => deleteAccessPackage(packageToDelete)}>Ja</Button>
                         </div>
                     </Dialog>
                 </div>
