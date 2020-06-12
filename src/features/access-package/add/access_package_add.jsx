@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const AccessPackackeAdd = () => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [shortDescription, setShortDescription] = useState("");
+    const [description, setDescription] = useState("");
     const [name, setName] = useState("");
     const packages = useSelector(state => state.access_package.accessPackages);
     const [valid, setValid] = useState(false);
@@ -39,17 +39,18 @@ const AccessPackackeAdd = () => {
         setOpen(false);
     }
 
-    function updatePackageIdValid(shortDescription) {
-        setShortDescription(shortDescription);
+    function updateName(name) {
+        setName(name);
     }
 
-    function updateName(event) {
-        setName(event.target.value);
+    function updateDescription(event) {
+        setDescription(event.target.value);
     }
 
     function handleCreatePackage() {
         const access = {};
         access.name = name;
+        access.description = description;
         access.collection = [];
         access.read = [];
         access.modify = [];
@@ -89,20 +90,20 @@ const AccessPackackeAdd = () => {
                         tilgangspakke.
                     </DialogContentText>
                     <PackageNameValidationInput
-                        title="Pakke-ID"
+                        title="Pakkenavn"
                         name="name"
-                        value={shortDescription}
-                        onChange={updatePackageIdValid}
+                        value={name}
+                        onChange={updateName}
                         packageNameIsValid={packageNameIsValid}
                         packages={packages}
                     />
                     <TextField
-                        name="shortDescription"
-                        label="Navn"
+                        name="description"
+                        label="Beskrivelse"
                         required
                         fullWidth
-                        value={name}
-                        onChange={updateName}
+                        value={description}
+                        onChange={updateDescription}
                     />
                 </DialogContent>
                 <DialogActions>

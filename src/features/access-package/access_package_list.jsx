@@ -137,8 +137,9 @@ const AccessPackageList = () => {
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={accessPackage.shortDescription}
-                                        secondary={accessPackage.name}
+                                        primary={accessPackage.name}
+                                        secondary={accessPackage.description}
+
                                     />
                                     <ListItemSecondaryAction>
                                         <IconButton
