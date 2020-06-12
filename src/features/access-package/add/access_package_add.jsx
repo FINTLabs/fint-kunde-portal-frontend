@@ -6,7 +6,6 @@ import {Add} from "@material-ui/icons";
 import PackageNameValidationInput from "../../../common/input-validation/PackageIdValidationInput";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {addAccessPackage, updateAccessPackages} from "../../../data/redux/actions/access_package";
 import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import AppContext from "../../../data/context/AppContext";
@@ -57,7 +56,7 @@ const AccessPackackeAdd = () => {
         //TODO: Needs to get Organisation from API.
         AccessApi.setAccess(access, context.currentOrganisation.name)
             .then(response => {
-                if (response.status === 201){
+                if (response.status === 201) {
                     setOpen(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                 }

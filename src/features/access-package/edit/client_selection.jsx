@@ -1,18 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import Typography from "@material-ui/core/Typography";
-import {
-    Avatar,
-    IconButton,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemSecondaryAction,
-    ListItemText
-} from "@material-ui/core";
+import {Avatar, List, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
 import ClientIcon from "@material-ui/icons/ImportantDevices";
-import AppContext from "../../../data/context/AppContext";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import FormControl from "@material-ui/core/FormControl";
@@ -63,9 +54,9 @@ const ClientSelection = (props) => {
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const dispatch = useDispatch();
 
-    function findIndex(array, value){
-        for(let i = 0; i < array.length; i += 1) {
-            if(array[i].dn === value.dn) {
+    function findIndex(array, value) {
+        for (let i = 0; i < array.length; i += 1) {
+            if (array[i].dn === value.dn) {
                 return i;
             }
         }
@@ -77,7 +68,7 @@ const ClientSelection = (props) => {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
         const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
-        if (event.target.checked){
+        if (event.target.checked) {
             newClients.push(client.dn);
         }
         newAccessPackage.clients = newClients;
@@ -87,8 +78,10 @@ const ClientSelection = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h4" className={classes.header}>Aktiver eller deaktiver klienter koblet til tilgangspakken</Typography>
-            <Typography variant="subtitle1" className={classes.header}>Det er kun mulig å aktivere 1 klient per tilgangspakke</Typography>
+            <Typography variant="h4" className={classes.header}>Aktiver eller deaktiver klienter koblet til
+                tilgangspakken</Typography>
+            <Typography variant="subtitle1" className={classes.header}>Det er kun mulig å aktivere 1 klient per
+                tilgangspakke</Typography>
 
             <List>
                 {clients.map(client => {
@@ -105,7 +98,9 @@ const ClientSelection = (props) => {
                             <ListItemSecondaryAction>
                                 <FormControl>
                                     <FormControlLabel
-                                        control={<Switch checked={selectedAccessPackage.clients.includes(client.dn)} onChange={(event) => handleClientChange(event, client)} name={client.name} />}
+                                        control={<Switch checked={selectedAccessPackage.clients.includes(client.dn)}
+                                                         onChange={(event) => handleClientChange(event, client)}
+                                                         name={client.name}/>}
                                         label="Aktivert klient"
                                     />
                                 </FormControl>

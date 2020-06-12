@@ -8,7 +8,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
-import ClientApi from "../../data/api/ClientApi";
 import {fetchClients} from "../../data/redux/dispatchers/client";
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +26,7 @@ const AccessPackageContainer = () => {
             dispatch(fetchComponents());
             dispatch(fetchEntities());
             dispatch(fetchClients(context.currentOrganisation.name));
-        }, [dispatch]
+        }, [dispatch, context.currentOrganisation.name]
     );
 
     if (!componentConfiguration || componentConfiguration.length === 0 || !access) {

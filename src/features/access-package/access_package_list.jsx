@@ -76,7 +76,7 @@ const AccessPackageList = () => {
         AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 204){
-                    setOpenDialog(false)
+                    setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                 }
             });

@@ -53,9 +53,9 @@ const EntitySelection = (props) => {
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
 
-    function findIndex(array, value){
-        for(let i = 0; i < array.length; i += 1) {
-            if(array[i].dn === value.dn) {
+    function findIndex(array, value) {
+        for (let i = 0; i < array.length; i += 1) {
+            if (array[i].dn === value.dn) {
                 return i;
             }
         }
@@ -125,7 +125,7 @@ const EntitySelection = (props) => {
                     </TableHead>
                     <TableBody>
                         {componentConfiguration.map(component => {
-                            if (selectedAccessPackage.components.includes(component.dn)){
+                            if (selectedAccessPackage.components.includes(component.dn)) {
                                 return component.classes.map(entity => {
                                     return (
                                         <TableRow className={classes.tableRow} key={entity.path}>
@@ -155,7 +155,7 @@ const EntitySelection = (props) => {
                                         </TableRow>
                                     )
                                 })
-                            }
+                            }else {return <></>}
                         })
                         }
 
