@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ModifyIcon from "@material-ui/icons/Build";
 import BulkIcon from "@material-ui/icons/FormatListBulleted";
 import SingleIcon from "@material-ui/icons/LooksOne";
@@ -48,56 +48,57 @@ const useStyles = makeStyles(theme => ({
 
 const EntitySelection = (props) => {
     const classes = useStyles();
-    const {selectedAccessPackage, selectedComponents} = props;
-    const [accesses, setAccesses] = useState([false]);
+    const {selectedAccessPackage} = props;
     const dispatch = useDispatch();
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
 
-    console.log("selectedAccessPackage: ", selectedAccessPackage);
+    function findIndex(array, value){
+        for(let i = 0; i < array.length; i += 1) {
+            if(array[i].dn === value.dn) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-    function updateAccesses(event, entity, component, selectedAccessPackage) {
+    function updateAccesses(event, path) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex = newAccessPackages.map((ap, index) => {
-            if (ap.dn === selectedAccessPackage.dn) {
-                return index;
-            }
-        });
-        console.log(accessPackageIndex);
+        const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
 
         switch (event.target.name) {
             case "collection":
-                if (newAccessPackage.collection.includes(component.path + entity)) {
+                if (newAccessPackage.collection.includes(path)) {
                     for (let i = 0; i < newAccessPackage.collection.length; i++) {
-                        if (newAccessPackage.collection[i] === component.path + entity) {
+                        if (newAccessPackage.collection[i] === path) {
                             newAccessPackage.collection.splice(i, 1);
                         }
                     }
                 } else {
-                    newAccessPackage.collection.push(component.path + entity);
+                    newAccessPackage.collection.push(path);
                 }
                 break;
             case "read":
-                if (newAccessPackage.read.includes(component.path + entity)) {
+                if (newAccessPackage.read.includes(path)) {
                     for (let i = 0; i < newAccessPackage.read.length; i++) {
-                        if (newAccessPackage.read[i] === component.path + entity) {
+                        if (newAccessPackage.read[i] === path) {
                             newAccessPackage.read.splice(i, 1);
                         }
                     }
                 } else {
-                    newAccessPackage.read.push(component.path + entity);
+                    newAccessPackage.read.push(path);
                 }
                 break;
             case "modify":
-                if (newAccessPackage.modify.includes(component.path + entity)) {
+                if (newAccessPackage.modify.includes(path)) {
                     for (let i = 0; i < newAccessPackage.modify.length; i++) {
-                        if (newAccessPackage.modify[i] === component.path + entity) {
+                        if (newAccessPackage.modify[i] === path) {
                             newAccessPackage.modify.splice(i, 1);
                         }
                     }
                 } else {
-                    newAccessPackage.modify.push(component.path + entity);
+                    newAccessPackage.modify.push(path);
                 }
                 break;
             default:
@@ -107,77 +108,62 @@ const EntitySelection = (props) => {
         dispatch(updateAccessPackages(newAccessPackages));
     }
 
-    const keys = Object.keys(selectedComponents);
+    return (
+        <div className={classes.root}>
+            <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
 
-    if (keys.length > 0) {
-        return (
-            <div className={classes.root}>
-                <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
-
-                <TableContainer component={Paper}>
-                    <Table className={classes.table} size="small" aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Komponent</TableCell>
-                                <TableCell align="right">Entitet</TableCell>
-                                <TableCell align="right">Bulk <BulkIcon className={classes.icon}/></TableCell>
-                                <TableCell align="right">Single<SingleIcon className={classes.icon}/></TableCell>
-                                <TableCell align="right">Endre<ModifyIcon className={classes.icon}/></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                keys.map(key => {
-                                        if (selectedComponents[key]) {
-                                            let displayComponent = null;
-                                            componentConfiguration.forEach(component => {
-                                                if (component.name === key) {
-                                                    displayComponent = component;
-                                                }
-                                            });
-
-                                            return displayComponent.classes.map(entity => {
-
-                                                return (
-                                                    <TableRow className={classes.tableRow} key={entity}>
-
-                                                        <TableCell>{key}</TableCell>
-                                                        <TableCell align="right">{entity}</TableCell>
-                                                        <TableCell align="right">
-                                                            <Checkbox
-                                                                name="collection"
-                                                                checked={selectedAccessPackage.collection.includes(displayComponent.path + entity)}
-                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
-                                                            />
-                                                        </TableCell>
-                                                        <TableCell align="right">
-                                                            <Checkbox
-                                                                name="read"
-                                                                checked={selectedAccessPackage.read.includes(displayComponent.path + entity)}
-                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
-                                                            />
-                                                        </TableCell>
-                                                        <TableCell align="right">
-                                                            <Checkbox
-                                                                name="modify"
-                                                                checked={selectedAccessPackage.modify.includes(displayComponent.path + entity)}
-                                                                onChange={(event) => updateAccesses(event, entity, displayComponent, selectedAccessPackage)}
-                                                            />
-                                                        </TableCell>
-                                                    </TableRow>
-                                                );
-                                            })
-
-                                        } else return null;
-                                    }
-                                )
+            <TableContainer component={Paper}>
+                <Table className={classes.table} size="small" aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Komponent</TableCell>
+                            <TableCell align="right">Entitet</TableCell>
+                            <TableCell align="right">Bulk <BulkIcon className={classes.icon}/></TableCell>
+                            <TableCell align="right">Single<SingleIcon className={classes.icon}/></TableCell>
+                            <TableCell align="right">Endre<ModifyIcon className={classes.icon}/></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {componentConfiguration.map(component => {
+                            if (selectedAccessPackage.components.includes(component.dn)){
+                                return component.classes.map(entity => {
+                                    return (
+                                        <TableRow className={classes.tableRow} key={entity.path}>
+                                            <TableCell>{component.displayName}</TableCell>
+                                            <TableCell align="right">{entity.name}</TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="collection"
+                                                    checked={selectedAccessPackage.collection.includes(entity.path)}
+                                                    onChange={(event) => updateAccesses(event, entity.path)}
+                                                />
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="read"
+                                                    checked={selectedAccessPackage.read.includes(entity.path)}
+                                                    onChange={(event) => updateAccesses(event, entity.path)}
+                                                />
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Checkbox
+                                                    name="modify"
+                                                    checked={selectedAccessPackage.modify.includes(entity.path)}
+                                                    onChange={(event) => updateAccesses(event, entity.path)}
+                                                />
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })
                             }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
-        );
-    } else return (<div/>)
+                        })
+                        }
+
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
+    );
 };
 
 export default EntitySelection;

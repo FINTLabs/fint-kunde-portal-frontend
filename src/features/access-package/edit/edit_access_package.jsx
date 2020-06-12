@@ -17,9 +17,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import {useDispatch, useSelector} from "react-redux";
-import {updateSelectedComponents} from "../../../data/redux/actions/access_package";
 import Divider from "@material-ui/core/Divider";
 import EntitySelection from "./entity_selection";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import {updateAccessPackages} from "../../../data/redux/actions/access_package";
+import ClientSelection from "./client_selection";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -40,11 +43,11 @@ const useStyles = makeStyles(theme => ({
     },
     addButton: {
         margin: 0,
-        top: 100,
+        top: 150,
         left: "auto",
         bottom: "auto",
         right: 50,
-        position: "fixed"
+        position: "absolute"
     }
 }));
 
@@ -52,10 +55,11 @@ const EditAccessPackage = (props) => {
     const {open, handleClose, handleSaveAccess} = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
-    const [selectedComponents, setSelectedComponents] = useState([]);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
+    const [tabValue, setTabValue] = useState(0);
+    const dispatch = useDispatch();
 
     let selectedAccessPackage = undefined;
     accessPackages.map(ap => {
@@ -65,8 +69,6 @@ const EditAccessPackage = (props) => {
         return ap;
     });
 
-    console.log("selectedAccessPackage: ", selectedAccessPackage);
-
     function openComponentSelector() {
         setComponentSelectorOpen(true);
     }
@@ -75,14 +77,53 @@ const EditAccessPackage = (props) => {
         setComponentSelectorOpen(false);
     }
 
+    function findIndex(array, value) {
+        for (let i = 0; i < array.length; i += 1) {
+            if (array[i].dn === value.dn) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function findComponentIndex(array, value) {
+        for (let i = 0; i < array.length; i += 1) {
+            if (array[i] === value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     function chooseComponent(event, component) {
-        let test = {...selectedComponents};
-        test[component.name] = event.target.checked;
-        setSelectedComponents(test);
+        let newAccessPackages = [...accessPackages];
+        let newAccessPackage = {...selectedAccessPackage};
+        const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
+
+        if (newAccessPackage.components.includes(component.dn)) {
+            let componentIndex = findComponentIndex(newAccessPackage.components, component.dn);
+            newAccessPackage.components.splice(componentIndex, 1);
+        } else {
+            newAccessPackage.components.push(component.dn);
+        }
+
+        newAccessPackages[accessPackageIndex] = newAccessPackage;
+        dispatch(updateAccessPackages(newAccessPackages));
+    }
+
+    function handleTabChange(event, newValue) {
+        setTabValue(newValue);
+    }
+
+    function a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
     }
 
     return (
-        <div>
+        <>
             <Dialog fullScreen open={open} onClose={handleClose}>
                 <AppBar className={classes.appBar}>
                     <Toolbar>
@@ -97,18 +138,33 @@ const EditAccessPackage = (props) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <Fab
-                    color="secondary"
-                    className={classes.addButton}
-                    onClick={openComponentSelector}
-                >
-                    <Add/>
-                </Fab>
+
                 <Divider></Divider>
-                <EntitySelection
-                    selectedAccessPackage={selectedAccessPackage}
-                    selectedComponents={selectedComponents}
-                />
+
+                <AppBar position="static">
+
+                    <Tabs value={tabValue} onChange={handleTabChange} aria-label="simple tabs example" centered>
+                        <Tab label="Velg tilganger" {...a11yProps(0)} />
+                        <Tab label="Velg klienter" {...a11yProps(1)} />
+                    </Tabs>
+                </AppBar>
+
+                {tabValue === 0 ?
+                    <>
+                        <EntitySelection
+                            selectedAccessPackage={selectedAccessPackage}
+                        />
+                        <Fab
+                            color="secondary"
+                            className={classes.addButton}
+                            onClick={openComponentSelector}
+                        >
+                            <Add/>
+                        </Fab>
+                    </>
+                    :
+                    <ClientSelection selectedAccessPackage={selectedAccessPackage}/>}
+
                 <Dialog
                     open={componentSelectorOpen}
                     onClose={handleCloseComponentSelector}
@@ -127,7 +183,7 @@ const EditAccessPackage = (props) => {
                                     <ListItem key={componentConfig.name}>
                                         <ListItemText primary={componentConfig.name}/>
                                         <Checkbox
-                                            checked={selectedComponents[componentConfig.name] ? selectedComponents[componentConfig.name] : false}
+                                            checked={selectedAccessPackage ? selectedAccessPackage.components.includes(componentConfig.dn) : false}
                                             onChange={(e) => chooseComponent(e, componentConfig)}/>
                                     </ListItem>);
                             })}
@@ -140,7 +196,7 @@ const EditAccessPackage = (props) => {
                     </DialogActions>
                 </Dialog>
             </Dialog>
-        </div>
+        </>
     );
 };
 

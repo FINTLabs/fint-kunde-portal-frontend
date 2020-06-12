@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Button from "@material-ui/core/Button";
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Fab} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
@@ -6,9 +6,10 @@ import {Add} from "@material-ui/icons";
 import PackageNameValidationInput from "../../../common/input-validation/PackageIdValidationInput";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {addAccessPackage} from "../../../data/redux/actions/access_package";
+import {addAccessPackage, updateAccessPackages} from "../../../data/redux/actions/access_package";
 import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
+import AppContext from "../../../data/context/AppContext";
 
 const useStyles = makeStyles((theme) => ({
     addButton: {
@@ -29,6 +30,7 @@ const AccessPackackeAdd = () => {
     const packages = useSelector(state => state.access_package.accessPackages);
     const [valid, setValid] = useState(false);
     const dispatch = useDispatch();
+    const context = useContext(AppContext);
 
     function openAddDialog() {
         setOpen(true);
@@ -53,11 +55,11 @@ const AccessPackackeAdd = () => {
         access.read = [];
         access.modify = [];
         //TODO: Needs to get Organisation from API.
-        AccessApi.setAccess(access, "testing")
+        AccessApi.setAccess(access, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 201){
                     setOpen(false);
-                    dispatch(fetchAccess("testing"));
+                    dispatch(fetchAccess(context.currentOrganisation.name));
                 }
             });
     }

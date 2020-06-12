@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {
     Avatar,
     Divider,
@@ -23,6 +23,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
+import AppContext from "../../data/context/AppContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -69,19 +70,20 @@ const AccessPackageList = () => {
     const [editOpen, setEditOpen] = useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [packageToDelete, setPackageToDelete] = React.useState({});
+    const context = useContext(AppContext);
 
     function deleteAccessPackage(accessPackage) {
-        AccessApi.deleteAccess(accessPackage, "testing")
+        AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
-                console.log(response.status);
                 if (response.status === 204){
                     setOpenDialog(false)
-                    dispatch(fetchAccess("testing"));
+                    dispatch(fetchAccess(context.currentOrganisation.name));
                 }
             });
     }
 
     function handleEditClose() {
+        dispatch(fetchAccess(context.currentOrganisation.name));
         setEditOpen(false);
     }
 
@@ -100,12 +102,11 @@ const AccessPackageList = () => {
     }
 
     function handleSaveAccess(accessPackage) {
-        AccessApi.updateAccess(accessPackage, "testing")
+        AccessApi.updateAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
-                    console.log(response.status);
                     if (response.status === 200) {
                         setEditOpen(false);
-                        dispatch(fetchAccess("testing"));
+                        dispatch(fetchAccess(context.currentOrganisation.name));
                     }
                 }
             );
