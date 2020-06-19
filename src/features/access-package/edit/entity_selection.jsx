@@ -138,6 +138,7 @@ const EntitySelection = (props) => {
                                 return component.classes.map(entity => {
                                     return (
                                         <EntityTable
+                                            key={entity.path}
                                             classes={classes}
                                             entity={entity}
                                             component={component}
@@ -147,7 +148,7 @@ const EntitySelection = (props) => {
                                     )
                                 })
                             } else {
-                                return <></>
+                                return null;
                             }
                         })
                         }
