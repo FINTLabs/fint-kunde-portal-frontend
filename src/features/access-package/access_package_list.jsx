@@ -115,6 +115,7 @@ const AccessPackageList = () => {
                         <List>
                             {packages.map(accessPackage => (
                                 <AccessPackageListItem
+                                    key={accessPackage.dn}
                                     classes={classes}
                                     accessPackage={accessPackage}
                                     openEdit={openEdit}

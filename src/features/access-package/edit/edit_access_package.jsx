@@ -1,17 +1,9 @@
 import React, {useState} from 'react';
 import Dialog from "@material-ui/core/Dialog";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core/styles";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
-import {Checkbox, Fab} from "@material-ui/core";
+import {Fab} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
 import {useDispatch, useSelector} from "react-redux";
 import Divider from "@material-ui/core/Divider";
 import EntitySelection from "./entity_selection";
@@ -20,6 +12,7 @@ import Tab from "@material-ui/core/Tab";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientSelection from "./client_selection";
 import EditAccessPackageAppBar from "./edit_access_package_app_bar";
+import EditAccessPackageDialog from "./edit_access_package_dialog";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -116,11 +109,9 @@ const EditAccessPackage = (props) => {
             newAccessPackage.collection = removePathsFromList(newAccessPackage.collection, component);
             newAccessPackage.read = removePathsFromList(newAccessPackage.read, component);
             newAccessPackage.modify = removePathsFromList(newAccessPackage.modify, component);
-
         } else {
             newAccessPackage.components.push(component.dn);
         }
-
         newAccessPackages[accessPackageIndex] = newAccessPackage;
         dispatch(updateAccessPackages(newAccessPackages));
     }
@@ -137,7 +128,7 @@ const EditAccessPackage = (props) => {
                     handleClose={handleClose}
                     handleSaveAccess={handleSaveAccess}
                     selectedAccessPackage={selectedAccessPackage}/>
-                <Divider></Divider>
+                <Divider/>
 
                 <AppBar position="static">
 
@@ -146,53 +137,20 @@ const EditAccessPackage = (props) => {
                         <Tab label="Velg klienter"/>
                     </Tabs>
                 </AppBar>
-
                 {tabValue === 0 ?
                     <>
-                        <EntitySelection
-                            selectedAccessPackage={selectedAccessPackage}
-                        />
-                        <Fab
-                            color="secondary"
-                            className={classes.addButton}
-                            onClick={openComponentSelector}
-                        >
+                        <EntitySelection selectedAccessPackage={selectedAccessPackage}/>
+                        <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector}>
                             <Add/>
                         </Fab>
                     </>
-                    :
-                    <ClientSelection selectedAccessPackage={selectedAccessPackage}/>}
-
-                <Dialog
-                    open={componentSelectorOpen}
-                    onClose={handleCloseComponentSelector}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">{"Legg til komponenter"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Velg komponenter du skal ha tilgang til
-                        </DialogContentText>
-                        <List component="nav" aria-label="Komponentlist" dense>
-                            {componentConfiguration.map(componentConfig => {
-
-                                return (
-                                    <ListItem key={componentConfig.name}>
-                                        <ListItemText primary={componentConfig.name}/>
-                                        <Checkbox
-                                            checked={selectedAccessPackage ? selectedAccessPackage.components.includes(componentConfig.dn) : false}
-                                            onChange={() => chooseComponent(componentConfig)}/>
-                                    </ListItem>);
-                            })}
-                        </List>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseComponentSelector} color="primary">
-                            Ferdig
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                    : <ClientSelection selectedAccessPackage={selectedAccessPackage}/>}
+                <EditAccessPackageDialog
+                    componentSelectorOpen={componentSelectorOpen}
+                    handleCloseComponentSelector={handleCloseComponentSelector}
+                    componentConfiguration={componentConfiguration}
+                    selectedAccessPackage={selectedAccessPackage}
+                    chooseComponent={chooseComponent}/>
             </Dialog>
         </>
     );
