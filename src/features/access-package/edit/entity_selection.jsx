@@ -83,22 +83,27 @@ const EntitySelection = (props) => {
                 }
                 if (event.target.checked) {
                     newAccessPackage.collection.push(path);
-                }break;
+                }
+                break;
             case "read":
                 if (newAccessPackage.read.includes(path)) {
                     removePath(newAccessPackage.read, path);
                 }
                 if (event.target.checked) {
                     newAccessPackage.read.push(path);
-                }break;
+                }
+                break;
             case "modify":
                 if (newAccessPackage.modify.includes(path)) {
                     removePath(newAccessPackage.modify, path);
                 }
                 if (event.target.checked) {
                     newAccessPackage.modify.push(path);
-                }break;
-            default: console.log("nothing to add"); break;
+                }
+                break;
+            default:
+                console.log("nothing to add");
+                break;
         }
         newAccessPackages[accessPackageIndex] = newAccessPackage;
         dispatch(updateAccessPackages(newAccessPackages));
