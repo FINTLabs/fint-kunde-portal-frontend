@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import Toolbar from "@material-ui/core/Toolbar";
 import Dialog from "@material-ui/core/Dialog";
 import AppBar from "@material-ui/core/AppBar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import CloseIcon from '@material-ui/icons/Close';
 import {makeStyles} from "@material-ui/core/styles";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -23,6 +19,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientSelection from "./client_selection";
+import EditAccessPackageAppBar from "./edit_access_package_app_bar";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -95,7 +92,20 @@ const EditAccessPackage = (props) => {
         return -1;
     }
 
-    function chooseComponent(event, component) {
+    function removePathsFromList(list, component) {
+        return list.filter(path => {
+            let keepPath = true;
+            component.classes.map(aClass => {
+                if (aClass.path === path) {
+                    keepPath = false;
+                }
+                return null;
+            });
+            return keepPath;
+        });
+    }
+
+    function chooseComponent(component) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
         const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
@@ -103,6 +113,10 @@ const EditAccessPackage = (props) => {
         if (newAccessPackage.components.includes(component.dn)) {
             let componentIndex = findComponentIndex(newAccessPackage.components, component.dn);
             newAccessPackage.components.splice(componentIndex, 1);
+            newAccessPackage.collection = removePathsFromList(newAccessPackage.collection, component);
+            newAccessPackage.read = removePathsFromList(newAccessPackage.read, component);
+            newAccessPackage.modify = removePathsFromList(newAccessPackage.modify, component);
+
         } else {
             newAccessPackage.components.push(component.dn);
         }
@@ -115,37 +129,21 @@ const EditAccessPackage = (props) => {
         setTabValue(newValue);
     }
 
-    function a11yProps(index) {
-        return {
-            id: `simple-tab-${index}`,
-            'aria-controls': `simple-tabpanel-${index}`,
-        };
-    }
-
     return (
         <>
             <Dialog fullScreen open={open} onClose={handleClose}>
-                <AppBar className={classes.appBar}>
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                            <CloseIcon/>
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            Legg til tilganger
-                        </Typography>
-                        <Button autoFocus color="inherit" onClick={() => handleSaveAccess(selectedAccessPackage)}>
-                            Lagre
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-
+                <EditAccessPackageAppBar
+                    classes={classes}
+                    handleClose={handleClose}
+                    handleSaveAccess={handleSaveAccess}
+                    selectedAccessPackage={selectedAccessPackage}/>
                 <Divider></Divider>
 
                 <AppBar position="static">
 
                     <Tabs value={tabValue} onChange={handleTabChange} aria-label="simple tabs example" centered>
-                        <Tab label="Velg tilganger" {...a11yProps(0)} />
-                        <Tab label="Velg klienter" {...a11yProps(1)} />
+                        <Tab label="Velg tilganger"/>
+                        <Tab label="Velg klienter"/>
                     </Tabs>
                 </AppBar>
 
@@ -184,7 +182,7 @@ const EditAccessPackage = (props) => {
                                         <ListItemText primary={componentConfig.name}/>
                                         <Checkbox
                                             checked={selectedAccessPackage ? selectedAccessPackage.components.includes(componentConfig.dn) : false}
-                                            onChange={(e) => chooseComponent(e, componentConfig)}/>
+                                            onChange={() => chooseComponent(componentConfig)}/>
                                     </ListItem>);
                             })}
                         </List>

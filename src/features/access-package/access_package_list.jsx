@@ -1,29 +1,14 @@
 import React, {useContext, useState} from "react";
-import {
-    Avatar,
-    Divider,
-    IconButton,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemSecondaryAction,
-    ListItemText,
-    makeStyles,
-    Typography
-} from "@material-ui/core";
-import {Delete, Edit} from "@material-ui/icons";
-import LockIcon from "@material-ui/icons/Lock";
+import {Divider, List, makeStyles, Typography} from "@material-ui/core";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
 import {setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 import EditAccessPackage from "./edit/edit_access_package";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import Button from "@material-ui/core/Button";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
+import RemoveAccessPackageDialog from "./view/remove_access_package_dialog";
+import AccessPackageListItem from "./view/access_package_list_item";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,7 +60,7 @@ const AccessPackageList = () => {
     function deleteAccessPackage(accessPackage) {
         AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
-                if (response.status === 204){
+                if (response.status === 204) {
                     setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                 }
@@ -104,12 +89,11 @@ const AccessPackageList = () => {
     function handleSaveAccess(accessPackage) {
         AccessApi.updateAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
-                    if (response.status === 200) {
-                        setEditOpen(false);
-                        dispatch(fetchAccess(context.currentOrganisation.name));
-                    }
+                if (response.status === 200) {
+                    setEditOpen(false);
+                    dispatch(fetchAccess(context.currentOrganisation.name));
                 }
-            );
+            });
     }
 
     if (packages) {
@@ -130,51 +114,25 @@ const AccessPackageList = () => {
                         <Divider/>
                         <List>
                             {packages.map(accessPackage => (
-                                <ListItem className={classes.listItem} key={accessPackage.dn}>
-                                    <ListItemAvatar>
-                                        <Avatar className={classes.itemAvatar}>
-                                            <LockIcon/>
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={accessPackage.name}
-                                        secondary={accessPackage.description}
-
-                                    />
-                                    <ListItemSecondaryAction>
-                                        <IconButton
-                                            aria-label="Edit"
-                                            onClick={() => openEdit(accessPackage.dn)}
-                                        >
-                                            <Edit/>
-                                        </IconButton>
-                                        <IconButton
-                                            aria-label="Delete"
-                                            onClick={() => openDeleteAccessPackageDialog(accessPackage)}
-                                        >
-                                            <Delete/>
-                                        </IconButton>
-                                    </ListItemSecondaryAction>
-                                </ListItem>
+                                <AccessPackageListItem
+                                    classes={classes}
+                                    accessPackage={accessPackage}
+                                    openEdit={openEdit}
+                                    openDeleteAccessPackageDialog={openDeleteAccessPackageDialog}
+                                />
                             ))
                             }
                         </List>
                         <EditAccessPackage open={editOpen} handleClose={handleEditClose}
                                            handleSaveAccess={handleSaveAccess}/>
                     </div>
-                    <Dialog onClose={handleClose} aria-labelledby="Fjerne tilgangspakke" open={openDialog}>
-                        <DialogTitle id="Fjerne mottaker">Fjern tilgangspakke</DialogTitle>
-                        <DialogContent className={classes.dialogContent}>
-                            Vil du fjerne tilgangspakken: {packageToDelete.shortDescription} ?
-                            <Typography variant="caption">(Fjerningen er permanent)</Typography>
-                        </DialogContent>
-                        <div className={classes.dialogButtons}>
-                            <Button variant="outlined" className={classes.buttonDontDeleteAccessPackage}
-                                    onClick={handleClose}>Nei</Button>
-                            <Button className={classes.buttonDeleteAccessPackage} variant="outlined"
-                                    onClick={() => deleteAccessPackage(packageToDelete)}>Ja</Button>
-                        </div>
-                    </Dialog>
+                    <RemoveAccessPackageDialog
+                        handleClose={handleClose}
+                        openDialog={openDialog}
+                        packageToDelete={packageToDelete}
+                        deleteAccessPackage={deleteAccessPackage}
+                        classes={classes}
+                    />
                 </div>
             </div>
         );
