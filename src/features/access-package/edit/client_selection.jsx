@@ -64,11 +64,14 @@ const ClientSelection = (props) => {
     }
 
     function handleClientChange(event, client) {
-        let newClients = [];
+        let newClients = [...selectedAccessPackage.clients];
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
         const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
-        if (event.target.checked) {
+        if (newClients.includes(client.dn)) {
+            let clientIndex = newClients.indexOf(client.dn);
+            newClients.splice(clientIndex, 1);
+        }else{
             newClients.push(client.dn);
         }
         newAccessPackage.clients = newClients;
@@ -80,8 +83,6 @@ const ClientSelection = (props) => {
         <div className={classes.root}>
             <Typography variant="h4" className={classes.header}>Aktiver eller deaktiver klienter koblet til
                 tilgangspakken</Typography>
-            <Typography variant="subtitle1" className={classes.header}>Det er kun mulig å aktivere 1 klient per
-                tilgangspakke</Typography>
 
             <List>
                 {clients.map(client => {

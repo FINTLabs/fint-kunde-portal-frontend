@@ -76,7 +76,9 @@ class ClientTabView extends React.Component {
             />
           </TabContainer>
           <TabContainer dir={theme.direction}>
-            <ClientTabAccess/>
+            <ClientTabAccess
+            client={this.props.client}
+            />
           </TabContainer>
 
           <TabContainer dir={theme.direction}>
