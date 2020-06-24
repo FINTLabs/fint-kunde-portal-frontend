@@ -3,11 +3,9 @@ import {Divider, List, makeStyles, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 import AppContext from "../../../data/context/AppContext";
-import {setSelectedForEditingPackage, updateAccessPackages} from "../../../data/redux/actions/access_package";
-import AccessPackageListItem from "./access_package_list_item";
+import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientTabAccessPackageList from "./client_tab_access_package_list";
 import AccessApi from "../../../data/api/AccessApi";
-import LoadingProgress from "../../../common/status/LoadingProgress";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +42,10 @@ const useStyles = makeStyles((theme) => ({
     dialogContent: {
         display: "flex",
         flexDirection: "column"
-    }
+    },
+    circularProgress: {
+        marginRight: theme.spacing(1),
+    },
 }));
 
 const AddAccessPackageToClient = (props) => {
@@ -52,13 +53,15 @@ const AddAccessPackageToClient = (props) => {
     const classes = useStyles();
     const packages = useSelector(state => state.access_package.accessPackages);
     const [isFetchingClients, setIsFetchingClients] = useState(false);
+    const [selectedName, setSelectedName] = useState("");
     const dispatch = useDispatch();
     const context = useContext(AppContext);
 
-    function handleClientChange(event, client, accessPackage) {
+    function handleClientChange(event, client, accessPackage, name) {
         let newClients = [];
         let newAccessPackage = {...accessPackage};
         setIsFetchingClients(true);
+        setSelectedName(name);
         if (event.target.checked) {
             newClients.push(client.dn);
         }
@@ -68,10 +71,10 @@ const AddAccessPackageToClient = (props) => {
             .then(response => {
                 if (response.status === 200) {
                     AccessApi.getAccess(context.currentOrganisation.name).then(r => {
-                        console.log(r);
                         if (r[0].status === 200) {
                             dispatch(updateAccessPackages(r[1]));
                             setIsFetchingClients(false);
+                            setSelectedName("");
                         }
                     })
                 }
@@ -101,6 +104,8 @@ const AddAccessPackageToClient = (props) => {
                                     accessPackage={accessPackage}
                                     handleClientChange={handleClientChange}
                                     disabled={isFetchingClients}
+                                    fetching={isFetchingClients}
+                                    selectedName={selectedName}
                                 />
                             ))
                             }

@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar/AppBar";
+import access_package from "../../../data/redux/reducers/access_package";
 
 const EditAccessPackageAppBar = (props) => {
     const {classes, handleClose, handleSaveAccess, selectedAccessPackage} = props;
@@ -15,7 +16,7 @@ const EditAccessPackageAppBar = (props) => {
                     <CloseIcon/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    Legg til tilganger
+                     {selectedAccessPackage.name}
                 </Typography>
                 <Button autoFocus color="inherit" onClick={() => handleSaveAccess(selectedAccessPackage)}>
                     Lagre

@@ -1,23 +1,19 @@
 import React from 'react';
-import {Avatar, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText} from "@material-ui/core";
+import {
+    Avatar,
+    CircularProgress,
+    ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText
+} from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
 const ClientTabAccessPackageList = (props) => {
-    const {client, classes, accessPackage, handleClientChange, disabled} = props;
-
-    const checkBoxes =
-        <FormControl>
-            <FormControlLabel
-                control={<Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
-                                 onChange={(event) => handleClientChange(event, client, accessPackage)}
-                                 name={client.name}/>}
-                label="Aktivert klient"
-            />
-        </FormControl>;
-
+    const {client, classes, accessPackage, handleClientChange, disabled, fetching, selectedName} = props;
 
     return (
         <ListItem className={classes.listItem} key={accessPackage.dn}>
@@ -29,10 +25,20 @@ const ClientTabAccessPackageList = (props) => {
             <ListItemText
                 primary={accessPackage.name}
                 secondary={accessPackage.description}
-
             />
             <ListItemSecondaryAction>
-                {checkBoxes}
+                <FormControl>
+
+                    <FormControlLabel
+                        control={
+                            accessPackage.name === selectedName ? <CircularProgress className={classes.circularProgress}/>:
+                            <Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
+                                    name={client.name}
+                                    onChange={(event) => handleClientChange(event, client, accessPackage, accessPackage.name)}
+                            />}
+                        label={accessPackage.clients.includes(client.dn) ? "Aktiv" : "Ikke aktivert"}
+                    />
+                </FormControl>
             </ListItemSecondaryAction>
         </ListItem>
     );
