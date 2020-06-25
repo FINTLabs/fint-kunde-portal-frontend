@@ -13,6 +13,7 @@ import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientSelection from "./client_selection";
 import EditAccessPackageAppBar from "./edit_access_package_app_bar";
 import EditAccessPackageDialog from "./edit_access_package_dialog";
+import ConfirmAccessPackageUpdate from "./confirm_access_package_update";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -41,8 +42,8 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const EditAccessPackage = (props) => {
-    const {open, handleClose, handleSaveAccess} = props;
+const EditAccessPackageContainer = (props) => {
+    const {open, handleClose, handleSaveAccess, setEditOpen, openSave, handleSaveClose} = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
@@ -151,9 +152,11 @@ const EditAccessPackage = (props) => {
                     componentConfiguration={componentConfiguration}
                     selectedAccessPackage={selectedAccessPackage}
                     chooseComponent={chooseComponent}/>
+                    <ConfirmAccessPackageUpdate
+                        open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}/>
             </Dialog>
         </>
     );
 };
 
-export default EditAccessPackage;
+export default EditAccessPackageContainer;

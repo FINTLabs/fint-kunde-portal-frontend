@@ -2,8 +2,8 @@ import React, {useContext, useState} from "react";
 import {Divider, List, makeStyles, Typography} from "@material-ui/core";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
-import EditAccessPackage from "./edit/edit_access_package";
+import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
+import EditAccessPackageContainer from "./edit/edit_access_package_container";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
@@ -53,6 +53,7 @@ const AccessPackageList = () => {
     const dispatch = useDispatch();
     const packages = useSelector(state => state.access_package.accessPackages);
     const [editOpen, setEditOpen] = useState(false);
+    const [openSave, setOpenSave] = useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [packageToDelete, setPackageToDelete] = React.useState({});
     const context = useContext(AppContext);
@@ -72,9 +73,24 @@ const AccessPackageList = () => {
         setEditOpen(false);
     }
 
-    function openEdit(dn) {
+    function handleSaveClose() {
+        setOpenSave(false);
+    }
+
+    function openEdit(dn, accessPackage) {
+        const newPackage = {};
+        newPackage.collection = [...accessPackage.collection];
+        newPackage.read = [...accessPackage.read];
+        newPackage.modify = [...accessPackage.collection];
+        newPackage.clients = [...accessPackage.clients];
+        newPackage.components = [...accessPackage.components];
+        newPackage.name = accessPackage.name;
+        newPackage.description = accessPackage.description;
+        newPackage.dn = accessPackage.dn;
+
         setEditOpen(true);
         dispatch(setSelectedForEditingPackage(dn));
+        dispatch(setAccessPackageBeforeChanges(newPackage));
     }
 
     function handleClose() {
@@ -86,15 +102,10 @@ const AccessPackageList = () => {
         setPackageToDelete(accessPackage);
     }
 
-    function handleSaveAccess(accessPackage) {
-        AccessApi.updateAccess(accessPackage, context.currentOrganisation.name)
-            .then(response => {
-                if (response.status === 200) {
-                    setEditOpen(false);
-                    dispatch(fetchAccess(context.currentOrganisation.name));
-                }
-            });
+    function handleSaveAccess() {
+        setOpenSave(!openSave);
     }
+
 
     if (packages) {
         return (
@@ -124,8 +135,9 @@ const AccessPackageList = () => {
                             ))
                             }
                         </List>
-                        <EditAccessPackage open={editOpen} handleClose={handleEditClose}
-                                           handleSaveAccess={handleSaveAccess}/>
+                        <EditAccessPackageContainer open={editOpen} handleClose={handleEditClose}
+                                                    handleSaveAccess={handleSaveAccess} setEditOpen={setEditOpen}
+                                                    openSave={openSave} handleSaveClose={handleSaveClose}/>
                     </div>
                     <RemoveAccessPackageDialog
                         handleClose={handleClose}

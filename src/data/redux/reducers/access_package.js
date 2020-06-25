@@ -1,6 +1,6 @@
 import {
     ADD_ACCESS_PACKAGE, FETCH_ACCESS_ERROR, FETCH_ACCESS_SUCCESS,
-    UPDATE_ACCESS_PACKAGES,
+    UPDATE_ACCESS_PACKAGES, UPDATE_SELECTED_ACCESS_PACKAGE_BEFORE_CHANGES,
     UPDATE_SELECTED_COMPONENTS,
     UPDATE_SELECTED_FOR_EDITING_PACKAGE
 } from "../actions/types";
@@ -26,6 +26,10 @@ export default function client(state = [], action) {
         case UPDATE_SELECTED_COMPONENTS:
             return {
                 ...state, accessPackages: action.payload
+            };
+        case UPDATE_SELECTED_ACCESS_PACKAGE_BEFORE_CHANGES:
+            return {
+                ...state, selectedAccessPackageBeforeEdit: action.payload
             };
         default:
             return state

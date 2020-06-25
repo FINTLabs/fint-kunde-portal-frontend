@@ -20,7 +20,7 @@ const AccessPackageListItem = (props) => {
             <ListItemSecondaryAction>
                 <IconButton
                     aria-label="Edit"
-                    onClick={() => openEdit(accessPackage.dn)}
+                    onClick={() => openEdit(accessPackage.dn ,accessPackage)}
                 >
                     <Edit/>
                 </IconButton>

@@ -2,7 +2,7 @@ import {
     ADD_ACCESS_PACKAGE,
     FETCH_ACCESS_ERROR,
     FETCH_ACCESS_SUCCESS,
-    UPDATE_ACCESS_PACKAGES,
+    UPDATE_ACCESS_PACKAGES, UPDATE_SELECTED_ACCESS_PACKAGE_BEFORE_CHANGES,
     UPDATE_SELECTED_COMPONENTS,
     UPDATE_SELECTED_FOR_EDITING_PACKAGE
 } from "./types";
@@ -45,5 +45,12 @@ export function updateSelectedComponents(selectedComponents) {
     return {
         type: UPDATE_SELECTED_COMPONENTS,
         payload: selectedComponents,
+    }
+}
+
+export function setAccessPackageBeforeChanges(accessPackage) {
+    return {
+        type: UPDATE_SELECTED_ACCESS_PACKAGE_BEFORE_CHANGES,
+        payload: accessPackage,
     }
 }
