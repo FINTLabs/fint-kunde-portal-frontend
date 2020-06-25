@@ -4,6 +4,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import {makeStyles} from "@material-ui/core/styles";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 const useStyles = makeStyles(theme => ({
     addingText: {
@@ -36,11 +39,14 @@ const ChangedClients = (props) => {
 
                 {clientList.length > 0 ? <Typography>Klienter</Typography>:null}
                 {clientList.map(entry => {
+                    const removingEntry = entry.charAt(0) === "-";
                     return (
                         <ListItem key={entry}>
+                            <ListItemIcon>
+                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
+                            </ListItemIcon>
                             <ListItemText
-                                className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
-                                primary={entry}
+                                primary={entry.substring(1, entry.length)}
                             />
                         </ListItem>
                     )

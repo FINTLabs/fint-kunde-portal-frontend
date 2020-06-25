@@ -81,7 +81,7 @@ const AccessPackageList = () => {
         const newPackage = {};
         newPackage.collection = [...accessPackage.collection];
         newPackage.read = [...accessPackage.read];
-        newPackage.modify = [...accessPackage.collection];
+        newPackage.modify = [...accessPackage.modify];
         newPackage.clients = [...accessPackage.clients];
         newPackage.components = [...accessPackage.components];
         newPackage.name = accessPackage.name;

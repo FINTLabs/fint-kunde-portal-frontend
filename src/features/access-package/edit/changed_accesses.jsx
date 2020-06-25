@@ -4,6 +4,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import {Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+
+
 
 const useStyles = makeStyles(theme => ({
     addingText: {
@@ -42,19 +47,19 @@ const ChangedAccesses = (props) => {
                         readList.push(text);
                     }
                 })}
-                {oldAccessPackage.collection.forEach(entry => {
-                    if (!newAccessPackage.collection.includes(entry)) {
+                {oldAccessPackage.read.forEach(entry => {
+                    if (!newAccessPackage.read.includes(entry)) {
                         const text = "- " + entry;
                         readList.push(text);
                     }
                 })}
                 {newAccessPackage.modify.forEach(entry => {
-                    if (!oldAccessPackage.collection.includes(entry)) {
+                    if (!oldAccessPackage.modify.includes(entry)) {
                         const text = "+ " + entry;
                         modifyList.push(text);
                     }
                 })}
-                {oldAccessPackage.collection.forEach(entry => {
+                {oldAccessPackage.modify.forEach(entry => {
                     if (!newAccessPackage.modify.includes(entry)) {
                         const text = "- " + entry;
                         modifyList.push(text);
@@ -62,33 +67,42 @@ const ChangedAccesses = (props) => {
                 })}
                 {collectionList.length > 0 ? <Typography>Bulk</Typography>:null}
                 {collectionList.map(entry => {
+                    const removingEntry = entry.charAt(0) === "-";
                     return (
                         <ListItem key={entry}>
+                            <ListItemIcon>
+                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
+                            </ListItemIcon>
                             <ListItemText
-                                className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
-                                primary={entry}
+                                primary={entry.substring(1, entry.length)}
                             />
                         </ListItem>
                     )
                 })}
                 {readList.length > 0 ? <Typography>Single</Typography>:null}
                 {readList.map(entry => {
+                    const removingEntry = entry.charAt(0) === "-";
                     return (
                         <ListItem key={entry}>
+                            <ListItemIcon>
+                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
+                            </ListItemIcon>
                             <ListItemText
-                                className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
-                                primary={entry}
+                                primary={entry.substring(1, entry.length)}
                             />
                         </ListItem>
                     )
                 })}
                 {modifyList.length > 0 ? <Typography>Endre</Typography>:null}
                 {modifyList.map(entry => {
+                    const removingEntry = entry.charAt(0) === "-";
                     return (
                         <ListItem key={entry}>
+                            <ListItemIcon>
+                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
+                            </ListItemIcon>
                             <ListItemText
-                                className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
-                                primary={entry}
+                                primary={entry.substring(1, entry.length)}
                             />
                         </ListItem>
                     )

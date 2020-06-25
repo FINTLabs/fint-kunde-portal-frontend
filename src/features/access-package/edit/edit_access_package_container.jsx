@@ -174,7 +174,7 @@ const EditAccessPackageContainer = (props) => {
                         <Button onClick={closeCloseDialog} color="primary">
                             Fortsett redigering
                         </Button>
-                        <Button onClick={handleClose} color="primary" autoFocus>
+                        <Button onClick={() => {setOpenCloseDialog(false); setTabValue(0); handleClose();}} color="primary" autoFocus>
                             Avslutt
                         </Button>
                     </DialogActions>
