@@ -13,7 +13,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
 const ClientTabAccessPackageList = (props) => {
-    const {client, classes, accessPackage, handleClientChange, disabled, fetching, selectedName} = props;
+    const {client, classes, accessPackage, handleClientChange, disabled, selectedName} = props;
 
     return (
         <ListItem className={classes.listItem} key={accessPackage.dn}>

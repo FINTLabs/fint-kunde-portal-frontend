@@ -63,7 +63,7 @@ const ChangedAccesses = (props) => {
                 {collectionList.length > 0 ? <Typography>Bulk</Typography>:null}
                 {collectionList.map(entry => {
                     return (
-                        <ListItem>
+                        <ListItem key={entry}>
                             <ListItemText
                                 className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
                                 primary={entry}
@@ -74,7 +74,7 @@ const ChangedAccesses = (props) => {
                 {readList.length > 0 ? <Typography>Single</Typography>:null}
                 {readList.map(entry => {
                     return (
-                        <ListItem>
+                        <ListItem key={entry}>
                             <ListItemText
                                 className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
                                 primary={entry}
@@ -85,7 +85,7 @@ const ChangedAccesses = (props) => {
                 {modifyList.length > 0 ? <Typography>Endre</Typography>:null}
                 {modifyList.map(entry => {
                     return (
-                        <ListItem>
+                        <ListItem key={entry}>
                             <ListItemText
                                 className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
                                 primary={entry}

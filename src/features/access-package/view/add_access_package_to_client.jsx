@@ -99,6 +99,7 @@ const AddAccessPackageToClient = (props) => {
                         <List>
                             {packages.map(accessPackage => (
                                 <ClientTabAccessPackageList
+                                    key={accessPackage.dn}
                                     client={client}
                                     classes={classes}
                                     accessPackage={accessPackage}

@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
@@ -48,10 +47,8 @@ const ConfirmAccessPackageUpdate = (props) => {
         >
             <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført på {selectedAccessPackage.name}</DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
                     {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
                     {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
-                </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">

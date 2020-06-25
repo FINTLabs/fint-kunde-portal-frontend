@@ -21,7 +21,6 @@ const ChangedClients = (props) => {
     return (
         <div>
             <List dense>
-                <Typography>Klienter</Typography>
                 {newAccessPackage.clients.forEach(entry => {
                     if (!oldAccessPackage.clients.includes(entry)) {
                         const text = "+ " + entry.split(",")[0].replace("cn=","");
@@ -35,9 +34,10 @@ const ChangedClients = (props) => {
                     }
                 })}
 
+                {clientList.length > 0 ? <Typography>Klienter</Typography>:null}
                 {clientList.map(entry => {
                     return (
-                        <ListItem>
+                        <ListItem key={entry}>
                             <ListItemText
                                 className={entry.charAt(0) === "-" ? classes.removingText: classes.addingText}
                                 primary={entry}
