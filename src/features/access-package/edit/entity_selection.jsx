@@ -130,7 +130,7 @@ const EntitySelection = (props) => {
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
-                        <TableHeader classes={classes}/>
+                        <TableHeader classes={classes} selectedAccessPackage={selectedAccessPackage}/>
                     </TableHead>
                     <TableBody>
                         {componentConfiguration.map(component => {
@@ -152,7 +152,8 @@ const EntitySelection = (props) => {
                             }
                         })
                         }
-                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}/>
+                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}
+                                                     selectedAccessPackage={selectedAccessPackage}/>
                     </TableBody>
                 </Table>
             </TableContainer>
