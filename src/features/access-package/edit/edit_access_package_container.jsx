@@ -14,6 +14,9 @@ import ClientSelection from "./client_selection";
 import EditAccessPackageAppBar from "./edit_access_package_app_bar";
 import EditAccessPackageDialog from "./edit_access_package_dialog";
 import ConfirmAccessPackageUpdate from "./confirm_access_package_update";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -46,6 +49,7 @@ const EditAccessPackageContainer = (props) => {
     const {open, handleClose, handleSaveAccess, setEditOpen, openSave, handleSaveClose} = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
+    const [openCloseDialog, setOpenCloseDialog] = useState(false);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
@@ -121,12 +125,16 @@ const EditAccessPackageContainer = (props) => {
         setTabValue(newValue);
     }
 
+    function closeCloseDialog() {
+        setOpenCloseDialog(false);
+    }
+
     return (
         <>
             <Dialog fullScreen open={open} onClose={handleClose}>
                 <EditAccessPackageAppBar
                     classes={classes}
-                    handleClose={handleClose}
+                    handleClose={setOpenCloseDialog}
                     handleSaveAccess={handleSaveAccess}
                     selectedAccessPackage={selectedAccessPackage}/>
                 <Divider/>
@@ -154,6 +162,23 @@ const EditAccessPackageContainer = (props) => {
                     chooseComponent={chooseComponent}/>
                     <ConfirmAccessPackageUpdate
                         open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}/>
+
+                <Dialog
+                    open={openCloseDialog}
+                    onClose={closeCloseDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
+                    <DialogActions>
+                        <Button onClick={closeCloseDialog} color="primary">
+                            Fortsett redigering
+                        </Button>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            Avslutt
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Dialog>
         </>
     );

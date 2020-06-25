@@ -69,8 +69,8 @@ const AccessPackageList = () => {
     }
 
     function handleEditClose() {
-        dispatch(fetchAccess(context.currentOrganisation.name));
         setEditOpen(false);
+        dispatch(fetchAccess(context.currentOrganisation.name));
     }
 
     function handleSaveClose() {
