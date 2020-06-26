@@ -12,7 +12,7 @@ import ChangedAccesses from "./changed_accesses";
 import ChangedClients from "./changed_clients";
 
 const ConfirmAccessPackageUpdate = (props) => {
-    const {open, handleClose, setEditOpen} = props;
+    const {open, handleClose, setEditOpen, setSnackBarOpen, setSnackBarMessage} = props;
     const oldAccessPackage = useSelector(state => state.access_package.selectedAccessPackageBeforeEdit);
     const context = useContext(AppContext);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
@@ -33,6 +33,14 @@ const ConfirmAccessPackageUpdate = (props) => {
                 if (response.status === 200) {
                     setEditOpen(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
+                    setSnackBarMessage(selectedAccessPackage.name + " lagret");
+                    setSnackBarOpen(true);
+                    handleClose();
+                }else{
+                    setEditOpen(false);
+                    dispatch(fetchAccess(context.currentOrganisation.name));
+                    setSnackBarMessage("Noe gikk galt: " + response.status + " " + response.statusText);
+                    setSnackBarOpen(true);
                     handleClose();
                 }
             });
@@ -45,10 +53,11 @@ const ConfirmAccessPackageUpdate = (props) => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført på {selectedAccessPackage.name}</DialogTitle>
+            <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført
+                på {selectedAccessPackage.name}</DialogTitle>
             <DialogContent>
-                    {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
-                    {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
+                {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
+                {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">

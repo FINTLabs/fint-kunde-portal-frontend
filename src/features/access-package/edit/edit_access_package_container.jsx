@@ -46,7 +46,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const EditAccessPackageContainer = (props) => {
-    const {open, handleClose, handleSaveAccess, setEditOpen, openSave, handleSaveClose} = props;
+    const {
+        open, handleClose, handleSaveAccess, setEditOpen, openSave, handleSaveClose,
+        setSnackBarOpen, setSnackBarMessage
+    } = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
     const [openCloseDialog, setOpenCloseDialog] = useState(false);
@@ -160,21 +163,26 @@ const EditAccessPackageContainer = (props) => {
                     componentConfiguration={componentConfiguration}
                     selectedAccessPackage={selectedAccessPackage}
                     chooseComponent={chooseComponent}/>
-                    <ConfirmAccessPackageUpdate
-                        open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}/>
-
+                <ConfirmAccessPackageUpdate
+                    open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}
+                    setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}/>
                 <Dialog
                     open={openCloseDialog}
                     onClose={closeCloseDialog}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
+                    <DialogTitle
+                        id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
                     <DialogActions>
                         <Button onClick={closeCloseDialog} color="primary">
                             Fortsett redigering
                         </Button>
-                        <Button onClick={() => {setOpenCloseDialog(false); setTabValue(0); handleClose();}} color="primary" autoFocus>
+                        <Button onClick={() => {
+                            setOpenCloseDialog(false);
+                            setTabValue(0);
+                            handleClose();
+                        }} color="primary" autoFocus>
                             Avslutt
                         </Button>
                     </DialogActions>

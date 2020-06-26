@@ -9,6 +9,7 @@ import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
 import RemoveAccessPackageDialog from "./view/remove_access_package_dialog";
 import AccessPackageListItem from "./view/access_package_list_item";
+import SavedSuccessSnackbar from "./view/saved_success_snackbar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,14 +57,33 @@ const AccessPackageList = () => {
     const [openSave, setOpenSave] = useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
     const [packageToDelete, setPackageToDelete] = React.useState({});
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const [snackBarMessage, setSnackBarMessage] = React.useState("");
     const context = useContext(AppContext);
+
+    const handleSnackBarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackBarOpen(false);
+    };
 
     function deleteAccessPackage(accessPackage) {
         AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 204) {
+                    console.log(response);
                     setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
+                    setSnackBarMessage(accessPackage.name + " slettet");
+                    setSnackBarOpen(true);
+                }
+                else{
+                    setOpenDialog(false);
+                    dispatch(fetchAccess(context.currentOrganisation.name));
+                    setSnackBarMessage("Noe gikk galt: " + response.status + " " + response.statusText);
+                    setSnackBarOpen(true);
                 }
             });
     }
@@ -137,7 +157,9 @@ const AccessPackageList = () => {
                         </List>
                         <EditAccessPackageContainer open={editOpen} handleClose={handleEditClose}
                                                     handleSaveAccess={handleSaveAccess} setEditOpen={setEditOpen}
-                                                    openSave={openSave} handleSaveClose={handleSaveClose}/>
+                                                    openSave={openSave} handleSaveClose={handleSaveClose}
+                                                    setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}
+                        />
                     </div>
                     <RemoveAccessPackageDialog
                         handleClose={handleClose}
@@ -146,6 +168,7 @@ const AccessPackageList = () => {
                         deleteAccessPackage={deleteAccessPackage}
                         classes={classes}
                     />
+                    <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose} message={snackBarMessage}/>
                 </div>
             </div>
         );
