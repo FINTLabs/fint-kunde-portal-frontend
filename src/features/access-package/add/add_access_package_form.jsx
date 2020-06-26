@@ -18,17 +18,15 @@ const AddAccessPackageForm = (props) => {
     function updateName(name) {
         setName(name);
     }
+
     function updateDescription(event) {
         setDescription(event.target.value);
     }
+
     function handleCreatePackage() {
         const access = {};
         access.name = name;
         access.description = description;
-        access.collection = [];
-        access.read = [];
-        access.modify = [];
-        //TODO: Needs to get Organisation from API.
         AccessApi.setAccess(access, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 201) {
@@ -52,7 +50,7 @@ const AddAccessPackageForm = (props) => {
                     tilgangspakke.
                 </DialogContentText>
                 <PackageNameValidationInput
-                    title="Pakkenavn"
+                    title="Navn"
                     name="name"
                     value={name}
                     onChange={updateName}

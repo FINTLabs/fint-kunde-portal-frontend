@@ -125,7 +125,7 @@ const EntitySelection = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h4" className={classes.header}>Legg til og velg tilganger</Typography>
+            <Typography variant="h4" className={classes.header}>Tilganger</Typography>
 
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="simple table">
