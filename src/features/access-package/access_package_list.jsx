@@ -78,8 +78,7 @@ const AccessPackageList = () => {
                     dispatch(fetchAccess(context.currentOrganisation.name));
                     setSnackBarMessage(accessPackage.name + " slettet");
                     setSnackBarOpen(true);
-                }
-                else{
+                } else {
                     setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                     setSnackBarMessage("Noe gikk galt: " + response.status + " " + response.statusText);
@@ -158,7 +157,8 @@ const AccessPackageList = () => {
                         <EditAccessPackageContainer open={editOpen} handleClose={handleEditClose}
                                                     handleSaveAccess={handleSaveAccess} setEditOpen={setEditOpen}
                                                     openSave={openSave} handleSaveClose={handleSaveClose}
-                                                    setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}
+                                                    setSnackBarOpen={setSnackBarOpen}
+                                                    setSnackBarMessage={setSnackBarMessage}
                         />
                     </div>
                     <RemoveAccessPackageDialog

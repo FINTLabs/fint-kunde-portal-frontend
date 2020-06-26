@@ -71,7 +71,7 @@ const ClientSelection = (props) => {
         if (newClients.includes(client.dn)) {
             let clientIndex = newClients.indexOf(client.dn);
             newClients.splice(clientIndex, 1);
-        }else{
+        } else {
             newClients.push(client.dn);
         }
         newAccessPackage.clients = newClients;

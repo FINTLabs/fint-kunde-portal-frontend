@@ -36,7 +36,7 @@ const ConfirmAccessPackageUpdate = (props) => {
                     setSnackBarMessage(selectedAccessPackage.name + " lagret");
                     setSnackBarOpen(true);
                     handleClose();
-                }else{
+                } else {
                     setEditOpen(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                     setSnackBarMessage("Noe gikk galt: " + response.status + " " + response.statusText);

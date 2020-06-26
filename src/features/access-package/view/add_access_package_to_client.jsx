@@ -81,7 +81,6 @@ const AddAccessPackageToClient = (props) => {
             });
     }
 
-
     if (packages) {
         return (
             <div>

@@ -26,24 +26,25 @@ const ChangedClients = (props) => {
             <List dense>
                 {newAccessPackage.clients.forEach(entry => {
                     if (!oldAccessPackage.clients.includes(entry)) {
-                        const text = "+ " + entry.split(",")[0].replace("cn=","");
+                        const text = "+ " + entry.split(",")[0].replace("cn=", "");
                         clientList.push(text);
                     }
                 })}
                 {oldAccessPackage.clients.forEach(entry => {
                     if (!newAccessPackage.clients.includes(entry)) {
-                        const text = "- " + entry.split(",")[0].replace("cn=","");
+                        const text = "- " + entry.split(",")[0].replace("cn=", "");
                         clientList.push(text);
                     }
                 })}
 
-                {clientList.length > 0 ? <Typography>Klienter</Typography>:null}
+                {clientList.length > 0 ? <Typography>Klienter</Typography> : null}
                 {clientList.map(entry => {
                     const removingEntry = entry.charAt(0) === "-";
                     return (
                         <ListItem key={entry}>
                             <ListItemIcon>
-                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
+                                {removingEntry ? <RemoveIcon className={classes.removingText}/> :
+                                    <AddIcon className={classes.addingText}/>}
                             </ListItemIcon>
                             <ListItemText
                                 primary={entry.substring(1, entry.length)}

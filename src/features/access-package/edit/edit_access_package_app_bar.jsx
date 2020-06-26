@@ -11,11 +11,11 @@ const EditAccessPackageAppBar = (props) => {
     return (
         <AppBar className={classes.appBar}>
             <Toolbar>
-                <IconButton edge="start" color="inherit" onClick={() =>handleClose(true)} aria-label="close">
+                <IconButton edge="start" color="inherit" onClick={() => handleClose(true)} aria-label="close">
                     <CloseIcon/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                     {selectedAccessPackage.name}
+                    {selectedAccessPackage.name}
                 </Typography>
                 <Button autoFocus color="inherit" onClick={() => handleSaveAccess(selectedAccessPackage)}>
                     Lagre

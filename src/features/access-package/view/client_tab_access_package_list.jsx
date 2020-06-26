@@ -31,11 +31,12 @@ const ClientTabAccessPackageList = (props) => {
 
                     <FormControlLabel
                         control={
-                            accessPackage.name === selectedName ? <CircularProgress className={classes.circularProgress}/>:
-                            <Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
-                                    name={client.name}
-                                    onChange={(event) => handleClientChange(event, client, accessPackage, accessPackage.name)}
-                            />}
+                            accessPackage.name === selectedName ?
+                                <CircularProgress className={classes.circularProgress}/> :
+                                <Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
+                                        name={client.name}
+                                        onChange={(event) => handleClientChange(event, client, accessPackage, accessPackage.name)}
+                                />}
                         label={accessPackage.clients.includes(client.dn) ? "Aktiv" : "Ikke aktivert"}
                     />
                 </FormControl>

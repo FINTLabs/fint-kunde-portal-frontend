@@ -152,7 +152,8 @@ const EditAccessPackageContainer = (props) => {
                 {tabValue === 0 ?
                     <>
                         <EntitySelection selectedAccessPackage={selectedAccessPackage}/>
-                        <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector} variant="extended">
+                        <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector}
+                             variant="extended">
                             <Add/>
                             Legg til
                         </Fab>

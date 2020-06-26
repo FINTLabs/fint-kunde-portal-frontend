@@ -9,7 +9,6 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
 
-
 const useStyles = makeStyles(theme => ({
     addingText: {
         color: "green",
@@ -25,6 +24,21 @@ const ChangedAccesses = (props) => {
     const collectionList = [];
     const readList = [];
     const modifyList = [];
+
+    function accessListItem(entry) {
+        const removingEntry = entry.charAt(0) === "-";
+        return (
+            <ListItem key={entry}>
+                <ListItemIcon>
+                    {removingEntry ? <RemoveIcon className={classes.removingText}/> :
+                        <AddIcon className={classes.addingText}/>}
+                </ListItemIcon>
+                <ListItemText
+                    primary={entry.substring(1, entry.length)}
+                />
+            </ListItem>
+        );
+    }
 
     return (
         <div>
@@ -65,47 +79,18 @@ const ChangedAccesses = (props) => {
                         modifyList.push(text);
                     }
                 })}
-                {collectionList.length > 0 ? <Typography>Bulk</Typography>:null}
+                {collectionList.length > 0 ? <Typography>Bulk</Typography> : null}
                 {collectionList.map(entry => {
-                    const removingEntry = entry.charAt(0) === "-";
-                    return (
-                        <ListItem key={entry}>
-                            <ListItemIcon>
-                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={entry.substring(1, entry.length)}
-                            />
-                        </ListItem>
-                    )
+                    return accessListItem(entry);
                 })}
-                {readList.length > 0 ? <Typography>Single</Typography>:null}
+                {readList.length > 0 ? <Typography>Single</Typography> : null}
                 {readList.map(entry => {
-                    const removingEntry = entry.charAt(0) === "-";
-                    return (
-                        <ListItem key={entry}>
-                            <ListItemIcon>
-                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={entry.substring(1, entry.length)}
-                            />
-                        </ListItem>
-                    )
+                    return accessListItem(entry);
+
                 })}
-                {modifyList.length > 0 ? <Typography>Endre</Typography>:null}
+                {modifyList.length > 0 ? <Typography>Endre</Typography> : null}
                 {modifyList.map(entry => {
-                    const removingEntry = entry.charAt(0) === "-";
-                    return (
-                        <ListItem key={entry}>
-                            <ListItemIcon>
-                                {removingEntry ? <RemoveIcon className={classes.removingText}/> : <AddIcon className={classes.addingText}/>}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={entry.substring(1, entry.length)}
-                            />
-                        </ListItem>
-                    )
+                    return accessListItem(entry);
                 })}
             </List>
         </div>
