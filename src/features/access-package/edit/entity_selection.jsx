@@ -1,9 +1,8 @@
 import React from 'react';
-import {Paper, TableBody} from "@material-ui/core";
+import {Paper, TableBody, TableContainer} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import {useDispatch, useSelector} from "react-redux";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
