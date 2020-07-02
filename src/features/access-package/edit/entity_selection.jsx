@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, TableBody, TableContainer} from "@material-ui/core";
+import {Paper, TableBody} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Table from "@material-ui/core/Table";
@@ -9,6 +9,7 @@ import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import SelectAllEntitiesCheckboxes from "./select_all_entities_checkboxes";
 import EntityTable from "./entity_table";
 import TableHeader from "./entity_table_header";
+import TableContainer from "@material-ui/core/TableContainer";
 
 const useStyles = makeStyles(theme => ({
     root: {
