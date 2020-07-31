@@ -14,20 +14,13 @@ const useStyles = makeStyles(theme => ({
     root: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(20),
+    },
+    accessBox: {
+        marginTop: theme.spacing(2),
+        marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
-    },
-    nested: {
-        paddingLeft: theme.spacing(4),
-    },
-    tabPanel: {
-        display: "flex",
-        flexDirection: "row",
-    },
-    fab: {
-        margin: "16px",
-    },
-    fabListItem: {
-        display: "flex",
+        marginBottom: theme.spacing(2),
     },
     tableRow: {
         '&:nth-of-type(even)': {
@@ -124,9 +117,9 @@ const EntitySelection = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h4" className={classes.header}>Tilganger</Typography>
 
-            <Box component={Paper}>
+            <Box className={classes.accessBox} component={Paper}>
+                <Typography variant="h4" className={classes.header}>Tilganger</Typography>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
                         <TableHeader classes={classes} selectedAccessPackage={selectedAccessPackage}/>

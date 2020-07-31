@@ -15,35 +15,17 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
+    clientList: {
+        maxWidth: 800,
+        margin: "auto",
+    },
     itemAvatar: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
     },
-    nested: {
-        paddingLeft: theme.spacing(4),
-    },
-    tabPanel: {
-        display: "flex",
-        flexDirection: "row",
-    },
-    fab: {
-        margin: "16px",
-    },
-    fabListItem: {
-        display: "flex",
-    },
-    table: {},
-    tableRow: {
-        '&:nth-of-type(even)': {
-            backgroundColor: "#fef3ef",
-        },
-    },
-    icon: {
-        margin: theme.spacing(1),
-        verticalAlign: "middle",
-    },
     header: {
         marginTop: theme.spacing(4),
+        marginLeft: theme.spacing(2),
     },
 }));
 
@@ -81,10 +63,9 @@ const ClientSelection = (props) => {
 
     return (
         <div className={classes.root}>
-            <Typography variant="h4" className={classes.header}>Aktiver eller deaktiver klienter koblet til
-                tilgangspakken</Typography>
 
-            <List>
+            <List className={classes.clientList}>
+            <Typography variant="h4" className={classes.header}>Aktiver eller deaktiver klienter</Typography>
                 {clients.map(client => {
                     return (
                         <ListItem className={classes.listItem} key={client.dn}>

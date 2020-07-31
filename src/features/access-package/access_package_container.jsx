@@ -10,12 +10,7 @@ import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
 import {fetchClients} from "../../data/redux/dispatchers/client";
 
-const useStyles = makeStyles((theme) => ({
-    root: {},
-}));
-
 const AccessPackageContainer = () => {
-    const classes = useStyles();
     const dispatch = useDispatch();
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
     const access = useSelector(state => state.access_package.accessPackages);
@@ -33,7 +28,7 @@ const AccessPackageContainer = () => {
         return <LoadingProgress/>;
     } else {
         return (
-            <div className={classes.root}>
+            <div>
                 <AccessPackageList/>
                 <AccessPackageAdd/>
             </div>

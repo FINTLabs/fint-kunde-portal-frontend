@@ -26,23 +26,6 @@ const useStyles = makeStyles((theme) => ({
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
     },
-    dialogButtons: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2),
-        alignSelf: "center"
-    },
-    buttonDeleteAccessPackage: {
-        margin: theme.spacing(1),
-        color: "#FFF",
-        backgroundColor: theme.palette.primary.dark,
-    },
-    buttonDontDeleteAccessPackage: {
-        margin: theme.spacing(1),
-    },
-    dialogContent: {
-        display: "flex",
-        flexDirection: "column"
-    },
     circularProgress: {
         marginRight: theme.spacing(1),
     },

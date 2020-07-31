@@ -5,8 +5,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import List from "@material-ui/core/List";
 import {makeStyles} from "@material-ui/core/styles";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/AddCircleRounded";
+import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
 
 const useStyles = makeStyles(theme => ({
     addingText: {

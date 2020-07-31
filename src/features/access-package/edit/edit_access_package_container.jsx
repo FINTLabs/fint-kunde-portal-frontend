@@ -26,15 +26,6 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(2),
         flex: 1,
     },
-    formControl: {
-        margin: theme.spacing(1),
-        marginLeft: theme.spacing(3),
-        minWidth: 120,
-        maxWidth: 200,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
     addButton: {
         margin: 0,
         top: 150,
@@ -177,15 +168,16 @@ const EditAccessPackageContainer = (props) => {
                     <DialogTitle
                         id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
                     <DialogActions>
-                        <Button onClick={closeCloseDialog} color="primary">
-                            Fortsett redigering
-                        </Button>
-                        <Button onClick={() => {
+                        <Button variant="outlined"
+                            onClick={() => {
                             setOpenCloseDialog(false);
                             setTabValue(0);
                             handleClose();
                         }} color="primary" autoFocus>
                             Avslutt
+                        </Button>
+                        <Button variant="outlined" onClick={closeCloseDialog} color="primary">
+                            Fortsett redigering
                         </Button>
                     </DialogActions>
                 </Dialog>
