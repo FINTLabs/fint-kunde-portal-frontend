@@ -71,7 +71,7 @@ const AddAccessPackageToClient = (props) => {
                     <div className={classes.componentList}>
                         <FeatureHelperText>
                             <p>En tilgangspakke benyttes for å sette opp riktige tilganger til klienter du oppretter i
-                                kundeportalen.</p>
+                                kundeportalen. Det er kun mulig å aktivere én tilgangspakke per klient.</p>
                             <p></p>
                         </FeatureHelperText>
                         <Typography variant="h5" className={classes.title}>
