@@ -6,10 +6,10 @@ import EditAccessPackageContainer from "./edit/edit_access_package_container";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
-import RemoveAccessPackageDialog from "./view/remove_access_package_dialog";
 import AccessPackageListItem from "./view/access_package_list_item";
 import SavedSuccessSnackbar from "./view/saved_success_snackbar";
 import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
+import WarningMessageBox from "../../common/message-box/InformationMessageBox";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,11 +58,12 @@ const AccessPackageList = () => {
     const [editOpen, setEditOpen] = useState(false);
     const [openSave, setOpenSave] = useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
-    const [packageToDelete, setPackageToDelete] = React.useState({});
+    const [packageToDelete, setPackageToDelete] = React.useState(null);
     const [snackBarOpen, setSnackBarOpen] = useState(false);
     const [snackBarMessage, setSnackBarMessage] = React.useState("");
     const context = useContext(AppContext);
     const _ = require('lodash');
+    const deleteMessageText = packageToDelete != null ? "Vil du fjerne tilgangspakken " + packageToDelete.name + "?" : "";
 
     let selectedAccessPackage = undefined;
     packages.map(ap => {
@@ -125,13 +126,17 @@ const AccessPackageList = () => {
         dispatch(setAccessPackageBeforeChanges(newPackage));
     }
 
-    function handleClose() {
+    function handleClose(confirmed) {
+        if (confirmed) {
+            deleteAccessPackage(packageToDelete);
+
+        }
         setOpenDialog(false);
     }
 
     function openDeleteAccessPackageDialog(accessPackage) {
-        setOpenDialog(true);
         setPackageToDelete(accessPackage);
+        setOpenDialog(true);
     }
 
     function handleSaveAccess() {
@@ -179,12 +184,11 @@ const AccessPackageList = () => {
                                                     setSnackBarMessage={setSnackBarMessage}
                         />
                     </div>
-                    <RemoveAccessPackageDialog
-                        handleClose={handleClose}
-                        openDialog={openDialog}
-                        packageToDelete={packageToDelete}
-                        deleteAccessPackage={deleteAccessPackage}
-                        classes={classes}
+                    <WarningMessageBox
+                        show={openDialog}
+                        onClose={handleClose}
+                        message={deleteMessageText}
+                        title={"Fjerne tilgangspakke"}
                     />
                     <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose}
                                           message={snackBarMessage}/>
