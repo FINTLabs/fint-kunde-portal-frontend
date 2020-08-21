@@ -10,6 +10,7 @@ import AppContext from "../../../data/context/AppContext";
 import {useDispatch, useSelector} from "react-redux";
 import ChangedAccesses from "./changed_accesses";
 import ChangedClients from "./changed_clients";
+import ChangedComponents from "./changed_components";
 
 const ConfirmAccessPackageUpdate = (props) => {
     const {open, handleClose, setEditOpen, setSnackBarOpen, setSnackBarMessage} = props;
@@ -56,6 +57,7 @@ const ConfirmAccessPackageUpdate = (props) => {
                 <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført
                     på {selectedAccessPackage.name}</DialogTitle>
                 <DialogContent>
+                    {<ChangedComponents oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
                     {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
                     {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
                 </DialogContent>
@@ -67,7 +69,6 @@ const ConfirmAccessPackageUpdate = (props) => {
                         Lagre
                     </Button>
                 </DialogActions>
-
             </Dialog>
         );
 };
