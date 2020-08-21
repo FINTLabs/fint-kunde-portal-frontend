@@ -2,7 +2,6 @@ import React, {useContext, useState} from "react";
 import {Divider, List, makeStyles, Typography} from "@material-ui/core";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 import EditAccessPackageContainer from "./edit/edit_access_package_container";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
@@ -10,6 +9,7 @@ import AppContext from "../../data/context/AppContext";
 import RemoveAccessPackageDialog from "./view/remove_access_package_dialog";
 import AccessPackageListItem from "./view/access_package_list_item";
 import SavedSuccessSnackbar from "./view/saved_success_snackbar";
+import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,6 +53,8 @@ const AccessPackageList = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const packages = useSelector(state => state.access_package.accessPackages);
+    const oldAccessPackage = useSelector(state => state.access_package.selectedAccessPackageBeforeEdit);
+    const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const [editOpen, setEditOpen] = useState(false);
     const [openSave, setOpenSave] = useState(false);
     const [openDialog, setOpenDialog] = React.useState(false);
@@ -60,6 +62,15 @@ const AccessPackageList = () => {
     const [snackBarOpen, setSnackBarOpen] = useState(false);
     const [snackBarMessage, setSnackBarMessage] = React.useState("");
     const context = useContext(AppContext);
+    const _ = require('lodash');
+
+    let selectedAccessPackage = undefined;
+    packages.map(ap => {
+        if (ap.dn === selectedForEditingId) {
+            selectedAccessPackage = ap;
+        }
+        return ap;
+    });
 
     const handleSnackBarClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -97,6 +108,7 @@ const AccessPackageList = () => {
     }
 
     function openEdit(dn, accessPackage) {
+
         const newPackage = {};
         newPackage.collection = [...accessPackage.collection];
         newPackage.read = [...accessPackage.read];
@@ -106,6 +118,7 @@ const AccessPackageList = () => {
         newPackage.name = accessPackage.name;
         newPackage.description = accessPackage.description;
         newPackage.dn = accessPackage.dn;
+        newPackage.self = accessPackage.self;
 
         setEditOpen(true);
         dispatch(setSelectedForEditingPackage(dn));
@@ -122,7 +135,11 @@ const AccessPackageList = () => {
     }
 
     function handleSaveAccess() {
-        setOpenSave(!openSave);
+        if (!_.isEqual(oldAccessPackage, selectedAccessPackage)) {
+            setOpenSave(!openSave);
+        } else {
+            handleEditClose();
+        }
     }
 
 
@@ -132,7 +149,8 @@ const AccessPackageList = () => {
                 <div className={classes.root}>
                     <div className={classes.componentList}>
                         <FeatureHelperText>
-                            <p>En tilgangspakke benyttes for å sette opp riktige tilganger til klienter du oppretter i
+                            <p>En tilgangspakke benyttes for å sette opp riktige tilganger til klienter du oppretter
+                                i
                                 kundeportalen.</p>
                             <p>Du kan velge fra pakkeoversikten for å se innholdet i standardpakker eller lage en
                                 egendefinert
@@ -168,13 +186,13 @@ const AccessPackageList = () => {
                         deleteAccessPackage={deleteAccessPackage}
                         classes={classes}
                     />
-                    <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose} message={snackBarMessage}/>
+                    <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose}
+                                          message={snackBarMessage}/>
                 </div>
             </div>
         );
     } else {
         return (<></>);
     }
-
 };
 export default AccessPackageList;

@@ -35,7 +35,9 @@ const ChangedAccesses = (props) => {
                 if (aClass.path === entity){
                     entity = componentConfiguration.displayName + " " + aClass.name;
                 }
+                return null;
             })
+            return null;
         });
         return (
             <ListItem key={entry}>

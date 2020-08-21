@@ -37,6 +37,9 @@ const useStyles = makeStyles(theme => ({
     chooseAllRow: {
         backgroundColor: theme.palette.secondary.light,
     },
+    customWidth: {
+        maxWidth: 500,
+    },
 }));
 
 const EntitySelection = (props) => {

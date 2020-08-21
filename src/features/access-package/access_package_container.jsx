@@ -4,7 +4,6 @@ import AccessPackageList from "./access_package_list";
 import AccessPackageAdd from "./add/add_access_package";
 import {fetchComponents} from "../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../data/redux/dispatchers/entity";
-import {makeStyles} from "@material-ui/core/styles";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";

@@ -123,7 +123,7 @@ const EditAccessPackageContainer = (props) => {
         setOpenCloseDialog(false);
     }
 
-    return (
+        return (
         <>
             <Dialog fullScreen open={open} onClose={handleClose}>
                 <EditAccessPackageAppBar
@@ -157,7 +157,7 @@ const EditAccessPackageContainer = (props) => {
                     selectedAccessPackage={selectedAccessPackage}
                     chooseComponent={chooseComponent}/>
                 <ConfirmAccessPackageUpdate
-                    open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}
+                    open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen} handleExit={handleClose}
                     setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}/>
                 <Dialog
                     open={openCloseDialog}
@@ -168,7 +168,7 @@ const EditAccessPackageContainer = (props) => {
                     <DialogTitle
                         id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
                     <DialogActions>
-                        <Button variant="outlined"
+                        <Button variant="contained"
                             onClick={() => {
                             setOpenCloseDialog(false);
                             setTabValue(0);
@@ -176,7 +176,7 @@ const EditAccessPackageContainer = (props) => {
                         }} color="primary" autoFocus>
                             Avslutt
                         </Button>
-                        <Button variant="outlined" onClick={closeCloseDialog} color="primary">
+                        <Button variant="contained" onClick={closeCloseDialog} color="primary">
                             Fortsett redigering
                         </Button>
                     </DialogActions>

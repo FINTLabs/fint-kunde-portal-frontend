@@ -46,29 +46,30 @@ const ConfirmAccessPackageUpdate = (props) => {
             });
     }
 
-    return (
-        <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
-            <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført
-                på {selectedAccessPackage.name}</DialogTitle>
-            <DialogContent>
-                {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
-                {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Tilbake
-                </Button>
-                <Button onClick={handleSave} color="primary" autoFocus>
-                    Lagre
-                </Button>
-            </DialogActions>
-        </Dialog>
-    );
+        return (
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title"> Følgende endringer blir utført
+                    på {selectedAccessPackage.name}</DialogTitle>
+                <DialogContent>
+                    {<ChangedAccesses oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
+                    {<ChangedClients oldAccessPackage={oldAccessPackage} newAccessPackage={selectedAccessPackage}/>}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" variant={"contained"}>
+                        Tilbake
+                    </Button>
+                    <Button onClick={handleSave} color="primary" autoFocus variant={"contained"}>
+                        Lagre
+                    </Button>
+                </DialogActions>
+
+            </Dialog>
+        );
 };
 
 export default ConfirmAccessPackageUpdate;
