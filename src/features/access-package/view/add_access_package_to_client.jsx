@@ -37,15 +37,25 @@ const AddAccessPackageToClient = (props) => {
     const packages = useSelector(state => state.access_package.accessPackages);
     const [isFetchingClients, setIsFetchingClients] = useState(false);
     const [selectedName, setSelectedName] = useState("");
+    const [accessPackageToSwitch, setAccessPackageToSwitch] = useState(null);
+    const [switchValue, setSwitchValue] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
     const dispatch = useDispatch();
     const context = useContext(AppContext);
 
-    function handleClientChange(event, client, accessPackage, name) {
+    function handleClientChangeConfirmed(confirmed) {
+        if (confirmed) {
+            handleClientChanging(accessPackageToSwitch, switchValue);
+        }
+        setShowWarning(false);
+    }
+
+    function handleClientChanging(accessPackage, connect) {
         let newClients = [];
         let newAccessPackage = {...accessPackage};
+        setSelectedName(accessPackage.name);
         setIsFetchingClients(true);
-        setSelectedName(name);
-        if (event.target.checked) {
+        if (connect) {
             newClients.push(client.dn);
         }
         newAccessPackage.clients = newClients;
@@ -62,6 +72,7 @@ const AddAccessPackageToClient = (props) => {
                     })
                 }
             });
+        setShowWarning(false);
     }
 
     if (packages) {
@@ -85,10 +96,15 @@ const AddAccessPackageToClient = (props) => {
                                     client={client}
                                     classes={classes}
                                     accessPackage={accessPackage}
-                                    handleClientChange={handleClientChange}
+                                    handleClientChange={handleClientChangeConfirmed}
                                     disabled={isFetchingClients}
                                     fetching={isFetchingClients}
                                     selectedName={selectedName}
+                                    setAccessPackageToSwitch={setAccessPackageToSwitch}
+                                    showWarning={showWarning}
+                                    setShowWarning={setShowWarning}
+                                    setSwitchValue={setSwitchValue}
+                                    handleClientChanging={handleClientChanging}
                                 />
                             ))
                             }

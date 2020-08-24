@@ -11,9 +11,15 @@ import LockIcon from "@material-ui/icons/Lock";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import WarningMessageBox from "../../../common/message-box/InformationMessageBox";
 
 const ClientTabAccessPackageList = (props) => {
-    const {client, classes, accessPackage, handleClientChange, disabled, selectedName} = props;
+    const {
+        client, classes, accessPackage, handleClientChange, disabled, selectedName, setAccessPackageToSwitch,
+        showWarning, setShowWarning, handleClientChanging, setSwitchValue
+    } = props;
+    const warningMessageText = "Når du aktiverer en aksesspakke på en klient, vil andre aksesspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
+
 
     return (
         <ListItem className={classes.listItem} key={accessPackage.dn}>
@@ -35,11 +41,25 @@ const ClientTabAccessPackageList = (props) => {
                                 <CircularProgress className={classes.circularProgress}/> :
                                 <Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
                                         name={client.name}
-                                        onChange={(event) => handleClientChange(event, client, accessPackage, accessPackage.name)}
+                                        onChange={(event) => {
+                                            if (event.target.checked) {
+                                                setSwitchValue(event.target.checked);
+                                                setAccessPackageToSwitch(accessPackage);
+                                                setShowWarning(true);
+                                            } else {
+                                                handleClientChanging(accessPackage, event.target.checked);
+                                            }
+                                        }
+                                        }
                                 />}
-                        label={accessPackage.clients.includes(client.dn) ? "Aktiv" : "Ikke aktivert"}
+                        label={accessPackage.clients.includes(client.dn) ? "Tilknyttet" : "Ikke tilknyttet"}
                     />
                 </FormControl>
+                <WarningMessageBox
+                    show={showWarning}
+                    onClose={handleClientChange}
+                    message={warningMessageText}
+                    title={"Koble til klient"}/>
             </ListItemSecondaryAction>
         </ListItem>
     );

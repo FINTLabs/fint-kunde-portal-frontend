@@ -45,11 +45,10 @@ const ClientSelection = (props) => {
     const clients = useSelector(state => state.client.clients);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const [showWarning, setShowWarning] = useState(false);
-    const [switchEvent, setSwitchEvent] = useState("");
+    const [switchValue, setSwitchValue] = useState(false);
     const [switchClient, setSwitchClient] = useState(null);
-    
-    const warningMessageText = switchClient != null ? "Klienten " + switchClient.name + " er allerede knyttet til pakken "
-        + switchClient.accessPackages[0].split("ou=")[1].split(",")[0] + ". \n Ønsker du å endre aksesspakke på klienten?": "";
+    const warningMessageText = "Når du aktiverer en aksesspakke på en klient, vil andre aksesspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
+
 
     const dispatch = useDispatch();
 
@@ -64,7 +63,7 @@ const ClientSelection = (props) => {
 
     function clientChange(doChange) {
         if (doChange) {
-            handleClientChange(switchEvent, switchClient);
+            handleClientChange(switchValue, switchClient);
         }
         setShowWarning(false);
     }
@@ -111,11 +110,10 @@ const ClientSelection = (props) => {
                                     <FormControlLabel
                                         control={<Switch checked={selectedAccessPackage.clients.includes(client.dn)}
                                                          onChange={(event) => {
-                                                             console.log("Client: ", switchClient);
-                                                             if (!selectedAccessPackage.clients.includes(client.dn) && client.accessPackages.length > 0) {
-                                                                 setShowWarning(true);
-                                                                 setSwitchEvent(event);
+                                                             if (event.target.checked) {
+                                                                 setSwitchValue(event.target.checked);
                                                                  setSwitchClient(client);
+                                                                 setShowWarning(true);
                                                              } else {
                                                                  handleClientChange(event, client);
                                                              }
@@ -133,7 +131,7 @@ const ClientSelection = (props) => {
                 onClose={clientChange}
                 message={warningMessageText}
                 show={showWarning}
-                title={"Klient allerede knyttet til en annen aksesspakke"}/>
+                title={"Koble til klient"}/>
 
         </div>
     );
