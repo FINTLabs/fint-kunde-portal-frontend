@@ -9,7 +9,7 @@ import AppContext from "../../data/context/AppContext";
 import AccessPackageListItem from "./view/access_package_list_item";
 import SavedSuccessSnackbar from "./view/saved_success_snackbar";
 import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
-import WarningMessageBox from "../../common/message-box/InformationMessageBox";
+import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 
 const useStyles = makeStyles((theme) => ({
     root: {

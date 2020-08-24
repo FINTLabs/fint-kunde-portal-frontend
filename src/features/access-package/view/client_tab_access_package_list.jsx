@@ -11,7 +11,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import WarningMessageBox from "../../../common/message-box/InformationMessageBox";
+import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
 const ClientTabAccessPackageList = (props) => {
     const {
