@@ -257,7 +257,7 @@ class SupportContainer extends Component {
             <ReactPolling
                 url={this.state.ticketStatusUrl}
                 interval={2000}
-                retryCount={5}
+                retryCount={15}
                 onSuccess={(response) => this.setState({newTicket: response})}
                 method={'GET'}
                 render={({startPolling, stopPolling, isPolling}) => {
