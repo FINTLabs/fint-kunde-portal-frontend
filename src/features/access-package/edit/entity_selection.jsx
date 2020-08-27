@@ -49,15 +49,6 @@ const EntitySelection = (props) => {
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
 
-    function findIndex(array, value) {
-        for (let i = 0; i < array.length; i += 1) {
-            if (array[i].dn === value.dn) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     function removePath(array, path) {
         for (let i = 0; i < array.length; i++) {
             if (array[i] === path) {
@@ -69,7 +60,7 @@ const EntitySelection = (props) => {
     function updateAccesses(event, path) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
+        const accessPackageIndex= newAccessPackages.indexOf(newAccessPackages.filter(ap=> ap.dn === newAccessPackage.dn)[0]);
 
         switch (event.target.name) {
             case "collection":

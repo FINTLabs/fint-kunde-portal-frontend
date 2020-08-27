@@ -27,18 +27,36 @@ const ChangedAccesses = (props) => {
     const readList = [];
     const modifyList = [];
 
-    function accessListItem(entry) {
-        const removingEntry = entry.charAt(0) === "-";
-        let entity = entry.substring(2, entry.length);
-        componentConfiguration.map(componentConfiguration => {
-            componentConfiguration.classes.map(aClass => {
+    function addDissimilarityToList(array, array2, list) {
+        array.forEach(entry => {
+            if (!array2.includes(entry)) {
+                const text = "+ " + entry;
+                list.push(text);
+            }
+        });
+        array2.forEach(entry => {
+            if (!array.includes(entry)){
+                const text = "- " + entry;
+                list.push(text);
+            }
+        })
+    }
+
+    function getEntity(entity){
+        componentConfiguration.forEach(componentConfiguration => {
+            componentConfiguration.classes.forEach(aClass => {
                 if (aClass.path === entity){
                     entity = componentConfiguration.displayName + " " + aClass.name;
                 }
-                return null;
-            })
-            return null;
+            });
         });
+        return entity;
+    }
+
+    function accessListItem(entry) {
+        const removingEntry = entry.charAt(0) === "-";
+        let entity = entry.substring(2, entry.length);
+        entity = getEntity(entity);
         return (
             <ListItem key={entry}>
                 <ListItemIcon>
@@ -52,45 +70,13 @@ const ChangedAccesses = (props) => {
         );
     }
 
+    addDissimilarityToList(newAccessPackage.collection, oldAccessPackage.collection, collectionList);
+    addDissimilarityToList(newAccessPackage.read, oldAccessPackage.read, readList);
+    addDissimilarityToList(newAccessPackage.modify, oldAccessPackage.modify, modifyList);
+
     return (
         <div>
             <List dense>
-                {newAccessPackage.collection.forEach(entry => {
-                    if (!oldAccessPackage.collection.includes(entry)) {
-                        const text = "+ " + entry;
-                        collectionList.push(text);
-                    }
-                })}
-                {oldAccessPackage.collection.forEach(entry => {
-                    if (!newAccessPackage.collection.includes(entry)) {
-                        const text = "- " + entry;
-                        collectionList.push(text);
-                    }
-                })}
-                {newAccessPackage.read.forEach(entry => {
-                    if (!oldAccessPackage.read.includes(entry)) {
-                        const text = "+ " + entry;
-                        readList.push(text);
-                    }
-                })}
-                {oldAccessPackage.read.forEach(entry => {
-                    if (!newAccessPackage.read.includes(entry)) {
-                        const text = "- " + entry;
-                        readList.push(text);
-                    }
-                })}
-                {newAccessPackage.modify.forEach(entry => {
-                    if (!oldAccessPackage.modify.includes(entry)) {
-                        const text = "+ " + entry;
-                        modifyList.push(text);
-                    }
-                })}
-                {oldAccessPackage.modify.forEach(entry => {
-                    if (!newAccessPackage.modify.includes(entry)) {
-                        const text = "- " + entry;
-                        modifyList.push(text);
-                    }
-                })}
                 {collectionList.length > 0 ? <Typography>Bulk</Typography> : null}
                 {collectionList.map(entry => {
                     return accessListItem(entry);

@@ -52,15 +52,6 @@ const ClientSelection = (props) => {
 
     const dispatch = useDispatch();
 
-    function findIndex(array, value) {
-        for (let i = 0; i < array.length; i += 1) {
-            if (array[i].dn === value.dn) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     function clientChange(doChange) {
         if (doChange) {
             handleClientChange(switchValue, switchClient);
@@ -72,7 +63,8 @@ const ClientSelection = (props) => {
         let newClients = [...selectedAccessPackage.clients];
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
+        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter( ap => ap.dn === newAccessPackage.dn)[0]);
+
         if (newClients.includes(client.dn)) {
             let clientIndex = newClients.indexOf(client.dn);
             newClients.splice(clientIndex, 1);

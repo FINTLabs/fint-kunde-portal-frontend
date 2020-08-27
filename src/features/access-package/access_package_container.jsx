@@ -23,7 +23,11 @@ const AccessPackageContainer = () => {
         }, [dispatch, context.currentOrganisation.name]
     );
 
-    if (!componentConfiguration || componentConfiguration.length === 0 || !access) {
+    function accessPackageLoaded(){
+        return !componentConfiguration || componentConfiguration.length === 0 || !access;
+    }
+
+    if (accessPackageLoaded()) {
         return <LoadingProgress/>;
     } else {
         return (

@@ -25,15 +25,19 @@ const ChangedComponents = (props) => {
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
     const componentList = [];
 
+    function getEntity(entity){
+        componentConfiguration.forEach(componentConfiguration => {
+            if (componentConfiguration.dn === entity) {
+                entity = componentConfiguration.displayName;
+            }
+        });
+            return entity;
+    }
+
     function accessListItem(entry) {
         const removingEntry = entry.charAt(0) === "-";
         let entity = entry.substring(2, entry.length);
-        componentConfiguration.map(componentConfiguration => {
-                if (componentConfiguration.dn === entity){
-                    entity = componentConfiguration.displayName;
-                }
-                return null;
-            });
+        entity = getEntity(entity);
         return (
             <ListItem key={entry}>
                 <ListItemIcon>
@@ -47,21 +51,26 @@ const ChangedComponents = (props) => {
         );
     }
 
+    function addDissimilarityToList(array, array2, list) {
+        array.forEach(entry => {
+            if (!array2.includes(entry)) {
+                const text = "+ " + entry;
+                list.push(text);
+            }
+        });
+        array2.forEach(entry => {
+            if (!array.includes(entry)){
+                const text = "- " + entry;
+                list.push(text);
+            }
+        })
+    }
+
+    addDissimilarityToList(newAccessPackage.components, oldAccessPackage.components, componentList);
+
     return (
         <div>
             <List dense>
-                {newAccessPackage.components.forEach(entry => {
-                    if (!oldAccessPackage.components.includes(entry)) {
-                        const text = "+ " + entry;
-                        componentList.push(text);
-                    }
-                })}
-                {oldAccessPackage.components.forEach(entry => {
-                    if (!newAccessPackage.components.includes(entry)) {
-                        const text = "- " + entry;
-                        componentList.push(text);
-                    }
-                })}
                 {componentList.length > 0 ? <Typography>Komponenter</Typography> : null}
                 {componentList.map(entry => {
                     return accessListItem(entry);

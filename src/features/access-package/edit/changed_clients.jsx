@@ -21,22 +21,28 @@ const ChangedClients = (props) => {
     const {oldAccessPackage, newAccessPackage} = props;
     const classes = useStyles();
     const clientList = [];
+
+    function addDissimilarityToList(array, array2, list) {
+        array.forEach(entry => {
+            if (!array2.includes(entry)) {
+                const text = "+ " + entry.split(",")[0].replace("cn=", "");
+                list.push(text);
+            }
+        });
+        array2.forEach(entry => {
+            if (!array.includes(entry)){
+                const text = "- " + entry.split(",")[0].replace("cn=", "");
+                list.push(text);
+            }
+        })
+    }
+
+    addDissimilarityToList(newAccessPackage.clients, oldAccessPackage.clients, clientList);
+
+
     return (
         <div>
             <List dense>
-                {newAccessPackage.clients.forEach(entry => {
-                    if (!oldAccessPackage.clients.includes(entry)) {
-                        const text = "+ " + entry.split(",")[0].replace("cn=", "");
-                        clientList.push(text);
-                    }
-                })}
-                {oldAccessPackage.clients.forEach(entry => {
-                    if (!newAccessPackage.clients.includes(entry)) {
-                        const text = "- " + entry.split(",")[0].replace("cn=", "");
-                        clientList.push(text);
-                    }
-                })}
-
                 {clientList.length > 0 ? <Typography>Klienter</Typography> : null}
                 {clientList.map(entry => {
                     const removingEntry = entry.charAt(0) === "-";

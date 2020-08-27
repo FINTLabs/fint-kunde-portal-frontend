@@ -66,32 +66,13 @@ const EditAccessPackageContainer = (props) => {
         setComponentSelectorOpen(false);
     }
 
-    function findIndex(array, value) {
-        for (let i = 0; i < array.length; i += 1) {
-            if (array[i].dn === value.dn) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    function findComponentIndex(array, value) {
-        for (let i = 0; i < array.length; i += 1) {
-            if (array[i] === value) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     function removePathsFromList(list, component) {
         return list.filter(path => {
             let keepPath = true;
-            component.classes.map(aClass => {
+            component.classes.forEach(aClass => {
                 if (aClass.path === path) {
                     keepPath = false;
                 }
-                return null;
             });
             return keepPath;
         });
@@ -100,10 +81,10 @@ const EditAccessPackageContainer = (props) => {
     function chooseComponent(component) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex = findIndex(newAccessPackages, newAccessPackage);
+        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter( ap => ap.dn === newAccessPackage.dn)[0]);
 
         if (newAccessPackage.components.includes(component.dn)) {
-            let componentIndex = findComponentIndex(newAccessPackage.components, component.dn);
+            let componentIndex = newAccessPackage.components.indexOf(component.dn);
             newAccessPackage.components.splice(componentIndex, 1);
             newAccessPackage.collection = removePathsFromList(newAccessPackage.collection, component);
             newAccessPackage.read = removePathsFromList(newAccessPackage.read, component);

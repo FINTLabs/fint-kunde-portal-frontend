@@ -1,9 +1,9 @@
-import {ADD_COMPONENT_CONFIGURATION, GET_ENTITIES_ERROR} from "./types";
+import {GET_ENTITIES_SUCSESS, GET_ENTITIES_ERROR} from "./types";
 
 
 export function fetchEntitiesSuccess(jsonData) {
     return {
-        type: ADD_COMPONENT_CONFIGURATION,
+        type: GET_ENTITIES_SUCSESS,
         payload: jsonData
     }
 }
