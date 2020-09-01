@@ -18,7 +18,7 @@ class LogEntry extends Component {
     }
 
     componentDidMount() {
-        LogApi.fetchLogById(this.props.children).then(response => {
+        LogApi.fetchLogById(this.props.environment, this.props.organisation, this.props.children).then(response => {
             this.setState({items: response[1]});
         });
 

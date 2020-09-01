@@ -54,7 +54,7 @@ class LogList extends Component {
                         </ExpansionPanelSummary>
                         <Divider light/>
                         <ExpansionPanelDetails>
-                            <LogEntry>{log.corrId}</LogEntry>
+                            <LogEntry environment="TODO" organisation="TODO">{log.corrId}</LogEntry>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                 ))}
