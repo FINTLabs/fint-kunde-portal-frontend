@@ -40,7 +40,7 @@ class LogContainer extends React.Component {
         ComponentApi.getOrganisationComponents(organisationName).then(
             ([response, json]) => {
                 if (response.status === 200) {
-                    this.setState({components: json});
+                    this.setState({components: json.sort()});
                 }
             }
         );
@@ -149,7 +149,7 @@ class LogContainer extends React.Component {
                                     <>
                                         <IconButton
                                             aria-label="search"
-                                            onClick={this.searchLog}
+                                            onClick={this.state.component ? this.searchLog: ()=>{}}
                                         >
                                             <Search/>
                                         </IconButton>
@@ -170,7 +170,7 @@ class LogContainer extends React.Component {
                         {
                             this.state.loading ?
                                 <LoadingProgress/> :
-                                <LogList log={this.state.log} onClear={() => this.setState({log: []})}/>
+                                <LogList log={this.state.log} environment={this.state.environment} orgName={this.getOrgId()} onClear={() => this.setState({log: []})}/>
 
                         }
                     </Box>

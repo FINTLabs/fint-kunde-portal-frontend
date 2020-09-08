@@ -12,19 +12,19 @@ import Button from "@material-ui/core/Button";
 
 
 class LogList extends Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {};
     }
 
     distinct = () => {
-        let seen = new Map()
+        let seen = new Map();
         return this.props.log.filter(it => {
             let found = seen.has(it.corrId);
             seen.set(it.corrId, true);
             return !found;
         });
-    }
+    };
 
     render() {
         return (
@@ -54,7 +54,7 @@ class LogList extends Component {
                         </ExpansionPanelSummary>
                         <Divider light/>
                         <ExpansionPanelDetails>
-                            <LogEntry environment="TODO" organisation="TODO">{log.corrId}</LogEntry>
+                            <LogEntry environment={this.props.environment} organisation={this.props.orgName}>{log.corrId}</LogEntry>
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
                 ))}

@@ -7,7 +7,15 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from "moment";
 import LogApi from "../../data/api/LogApi";
 import Box from "@material-ui/core/Box";
+import {withStyles} from "@material-ui/core";
 
+
+const styles = theme => ({
+    tableMessage: {
+        maxWidth: 120,
+        overflow: "auto"
+    }
+});
 
 class LogEntry extends Component {
     constructor(props) {
@@ -25,6 +33,7 @@ class LogEntry extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         return (
             <Box width={1}>
                 <Table size="small" aria-label="a dense table">
@@ -45,7 +54,7 @@ class LogEntry extends Component {
                                 <TableCell>{log.event.client}</TableCell>
                                 <TableCell>{log.event.status}</TableCell>
                                 <TableCell>{log.event.responseStatus}</TableCell>
-                                <TableCell>{log.event.message}</TableCell>
+                                <TableCell id={"tableMessage"} className={classes.tableMessage}>{log.event.message}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -54,5 +63,6 @@ class LogEntry extends Component {
         );
     }
 }
+LogEntry.propTypes = {};
 
-export default LogEntry;
+export default withStyles(styles)(LogEntry);

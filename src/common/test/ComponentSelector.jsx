@@ -83,7 +83,10 @@ ComponentSelector.propTypes = {
     value: PropTypes.any.isRequired,
     disabled: PropTypes.bool.isRequired,
     required: PropTypes.bool.isRequired,
-    onClear: PropTypes.func
+    onClear: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]),
 };
 
 
