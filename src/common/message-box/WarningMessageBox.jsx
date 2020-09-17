@@ -53,6 +53,8 @@ class WarningMessageBox extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+          disableEscapeKeyDown
+          disableBackdropClick
         >
           <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
           <DialogContent className={classes.content}>
