@@ -11,6 +11,7 @@ import LogIcon from "@material-ui/icons/Timeline";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"
+import KeyIcon from "@material-ui/icons/Lock"
 import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 
@@ -70,6 +71,14 @@ export const MENU_ITEMS = (
         <ListItemText primary="Ressurser" />
       </ListItem>
     </Link>
+      <Link to="/access_package" style={menuLink}>
+          <ListItem button>
+              <ListItemIcon>
+                  <KeyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Rettighetspakker" />
+          </ListItem>
+      </Link>
     <Divider />
     <Link to="/test/basic" style={menuLink}>
       <ListItem button>
