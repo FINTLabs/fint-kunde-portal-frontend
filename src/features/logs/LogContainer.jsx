@@ -31,7 +31,8 @@ class LogContainer extends React.Component {
             component: '',
             resource: '',
             action: 'GET_ALL_',
-            environment: 'api'
+            environment: 'api',
+            timeInterval: 5,
         };
     }
 
@@ -100,6 +101,9 @@ class LogContainer extends React.Component {
     getAction = () => {
         return `${this.state.action}${this.state.resource}`.toLocaleUpperCase();
     }
+    setTimeInterval = (event, newValue) => {
+        this.setState({timeInterval: newValue});
+    }
 
     onClearComponent = () => this.setState({component: ''});
     onClearResource = () => this.setState({resource: ''});
@@ -148,7 +152,7 @@ class LogContainer extends React.Component {
                         onClear={this.state.component && this.onClearComponent}
                     />
                     <Box width={1} mt={1}>
-                         <ResourceSelector
+                        <ResourceSelector
                             resources={this.state.resources}
                             handleChange={this.onChangeResource}
                             value={this.state.resource}
@@ -195,7 +199,8 @@ class LogContainer extends React.Component {
                         </Box>
                     </Box>
                 </Box>
-                <Box m={1}><Button onClick={this.searchLog} disabled={this.state.component.length<1} color={"primary"} variant={"contained"}>
+                <Box m={1}><Button onClick={this.searchLog} disabled={this.state.component.length < 1} color={"primary"}
+                                   variant={"contained"}>
                     Søk
                 </Button></Box>
                 <Box m={1} minWidth={3 / 4}>

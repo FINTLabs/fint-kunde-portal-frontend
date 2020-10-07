@@ -1,7 +1,4 @@
 import React, {Component} from "react";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LogIcon from "@material-ui/icons/Timeline";
 import {Box, Typography, withStyles} from "@material-ui/core";
@@ -9,6 +6,9 @@ import moment from "moment";
 import LogEntry from "./LogEntry";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
 
 const styles = theme => ({
     expansionPanelSummary: {
@@ -58,9 +58,9 @@ class LogList extends Component {
                     if (this.props.id.length > 0) {
                         if (log.corrId.includes(this.props.id))
                             return (
-                                <ExpansionPanel w={1} minWidth={1} TransitionProps={{unmountOnExit: true}}
+                                <Accordion w={1} minWidth={1} TransitionProps={{unmountOnExit: true}}
                                                 key={log.corrId}>
-                                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon/>}
                                                            classes={{content: classes.expansionPanelSummary}}
                                     >
                                         <Box className={classes.expansionPanelBox}><LogIcon/>
@@ -77,41 +77,40 @@ class LogList extends Component {
                                                             color={"primary"}>ID: {log.corrId}</Typography>
                                             </Box>
                                         </Box>
-                                    </ExpansionPanelSummary>
+                                    </AccordionSummary>
                                     <Divider light/>
-                                    <ExpansionPanelDetails>
+                                    <AccordionDetails>
                                         <LogEntry environment={this.props.environment}
                                                   organisation={this.props.orgName}>{log.corrId}</LogEntry>
-                                    </ExpansionPanelDetails>
-                                </ExpansionPanel>
+                                    </AccordionDetails>
+                                </Accordion>
                             )
                     } else
                         return (
-                            <ExpansionPanel w={1} minWidth={1} TransitionProps={{unmountOnExit: true}} key={log.corrId}>
-                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}
+                            <Accordion w={1} TransitionProps={{unmountOnExit: true}} key={log.corrId}>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon/>}
                                                        classes={{content: classes.expansionPanelSummary}}
                                 >
                                     <Box className={classes.expansionPanelBox}><LogIcon/>
                                         <Box mx={4}>
-                                            <Typography textAlign={"center"}>
+                                            <Typography>
                                                 {moment(log.timestamp).format("HH:mm:ss")}
                                             </Typography>
                                         </Box>
                                         <Box className={classes.expansionPanelId}>
                                             <Typography>{log.event.action}</Typography>
-                                            <Typography variant={"body2"}
-                                                        color={"primary"}>ID: {log.corrId}</Typography>
+
                                         </Box>
                                     </Box>
-                                </ExpansionPanelSummary>
+                                </AccordionSummary>
                                 <Divider light/>
-                                <ExpansionPanelDetails>
+                                <AccordionDetails>
                                     <LogEntry environment={this.props.environment}
-                                              organisation={this.props.orgName}>{log.corrId}</LogEntry>
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
+                                              organisation={this.props.orgName} log={log}>{log.corrId}</LogEntry>
+                                </AccordionDetails>
+                            </Accordion>
                         )
-                })}
+                return null})}
             </Box>
         );
     }

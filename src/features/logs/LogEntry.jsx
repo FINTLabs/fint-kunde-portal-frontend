@@ -7,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from "moment";
 import LogApi from "../../data/api/LogApi";
 import Box from "@material-ui/core/Box";
-import {withStyles} from "@material-ui/core";
+import {Typography, withStyles} from "@material-ui/core";
 
 
 const styles = theme => ({
@@ -36,6 +36,8 @@ class LogEntry extends Component {
         const { classes } = this.props;
         return (
             <Box width={1}>
+                {this.state.items.length>0 && <Typography variant={"body2"}
+                                                          color={"primary"}>ID: {this.state.items[0].corrId}</Typography>}
                 <Table size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>

@@ -8,19 +8,21 @@ import {makeStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from "@material-ui/core/IconButton";
-import {Search} from "@material-ui/icons";
 
 
 const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    menuItem: {
+        textTransform: "capitalize",
     }
 }));
 export default function ResourceSelector(props) {
 
     const classes = useStyles();
-    const {name, value, resources, disabled, required, error = false, onClear, component, searchLog} = props;
+    const {name, value, resources, disabled, required, error = false, onClear, component} = props;
 
     const inputLabel = useRef();
     const [labelWidth, setLabelWidth] = useState(0);
@@ -41,6 +43,7 @@ export default function ResourceSelector(props) {
             <Select
                 value={value}
                 onChange={props.handleChange}
+                className={classes.menuItem}
                 input={
                     <OutlinedInput
                         labelWidth={labelWidth}
@@ -62,16 +65,17 @@ export default function ResourceSelector(props) {
                 }
             >
                 {resources.map(resource => {
-                    if (resource.path === component){
+                    if (resource.path === component) {
                         return resource.classes.map(theClass => {
                             return (
-                                <MenuItem key={theClass.path} value={theClass.name}>
+                                <MenuItem key={theClass.path} value={theClass.name} className={classes.menuItem}
+                                >
                                     {theClass.name}
                                 </MenuItem>
                             );
                         })
 
-                    }
+                    }return null
 
                 })}
             </Select>
