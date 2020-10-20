@@ -67,7 +67,7 @@ class Main extends React.Component {
           <AppProvider>
             <BrowserRouter basename="/">
               <div className={classes.root}>
-                <AppMenu />
+                <AppMenu me={this.state.me}/>
               </div>
             </BrowserRouter>
           </AppProvider>
