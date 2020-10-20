@@ -70,14 +70,6 @@ export const MENU_ITEMS = (
         <ListItemText primary="Ressurser" />
       </ListItem>
     </Link>
-      <Link to="/access_package" style={menuLink}>
-          <ListItem button>
-              <ListItemIcon>
-                  <KeyIcon />
-              </ListItemIcon>
-              <ListItemText primary="Rettighetspakker" />
-          </ListItem>
-      </Link>
     <Divider />
     <Link to="/test/basic" style={menuLink}>
       <ListItem button>
@@ -141,4 +133,12 @@ export const MENU_ITEMS = (
       <ListItemText primary="Dokumentasjon"/>
     </ListItem>
   </Link>
+  <Link to="/access_package" style={menuLink}>
+          <ListItem button>
+              <ListItemIcon>
+                  <KeyIcon />
+              </ListItemIcon>
+              <ListItemText primary="Rettighetspakker" />
+          </ListItem>
+      </Link>
  */
