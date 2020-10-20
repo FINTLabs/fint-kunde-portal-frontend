@@ -42,30 +42,6 @@ class ContactApi {
     });
   }
 
-  static createContact(contact) {
-    const request = new Request(`/api/contacts`, {
-      method: "POST",
-      headers: {
-        "Accept": "*/*",
-        "Content-Type": "application/json"
-      },
-      credentials: "same-origin",
-      body: JSON.stringify({
-        nin: contact.nin,
-        firstName: contact.firstName,
-        lastName: contact.lastName,
-        mail: contact.mail,
-        mobile: contact.mobile
-      })
-    });
-
-    return fetch(request).then(response => {
-      return response;
-    }).catch(error => {
-      return error;
-    });
-  }
-
   static deleteContact(contact) {
     const request = new Request(`/api/contacts/${contact.nin}`, {
       method: "DELETE",

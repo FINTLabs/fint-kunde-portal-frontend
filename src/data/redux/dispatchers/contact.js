@@ -19,17 +19,6 @@ export function fetchContacts() {
   }
 }
 
-export function createContact(kontakt) {
-  return function (dispatch) {
-    return ContactApi.createContact(kontakt).then(response => {
-      dispatch(createContactSuccess(response));
-      return response;
-    }).catch(error => {
-      throw (error);
-    });
-  };
-}
-
 export function updateContact(kontakt) {
   return function (dispatch) {
     return ContactApi.updateContact(kontakt).then(response => {

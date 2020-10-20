@@ -1,14 +1,12 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import {
+  Avatar,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
-import {
-  Avatar,
+  DialogTitle,
+  Fab,
   IconButton,
   Input,
   List,
@@ -16,16 +14,15 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  withStyles,
-  Fab
+  withStyles
 } from "@material-ui/core";
+import {Add} from "@material-ui/icons";
 import ContactIcon from "@material-ui/icons/Person";
 import AddIconCircle from "@material-ui/icons/AddCircle";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";
 import PropTypes from "prop-types";
-import ContactNew from "./ContactNew";
-import { withContext } from "../../../data/context/withContext";
+import {withContext} from "../../../data/context/withContext";
 
 const styles = theme => ({
   addButton: {
@@ -201,10 +198,6 @@ class ContactAddExisting extends React.Component {
               }}
               onChange={this.onChangeSearch}
               onKeyUp={() => this.onSearch(this.state.searchString)}
-            />
-            <ContactNew
-              notify={this.props.notify}
-              onClose={this.onCloseCreateContact}
             />
           </DialogTitle>
           <DialogContent>
