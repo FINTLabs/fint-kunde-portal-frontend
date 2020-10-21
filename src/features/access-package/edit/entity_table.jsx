@@ -3,7 +3,7 @@ import TableCell from "@material-ui/core/TableCell";
 import {Checkbox, TableRow} from "@material-ui/core";
 
 const EntityTable = (props) => {
-    const {classes, entity, component, selectedAccessPackage, updateAccesses} = props;
+    /*const {classes, entity, component, selectedAccessPackage, updateAccesses} = props;
     return (
         <TableRow className={classes.tableRow} key={entity.path}>
             <TableCell>{component.displayName}</TableCell>
@@ -30,7 +30,7 @@ const EntityTable = (props) => {
                 />
             </TableCell>
         </TableRow>
-    );
+    );*/
 };
 
 export default EntityTable;

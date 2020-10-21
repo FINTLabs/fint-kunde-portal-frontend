@@ -1,14 +1,12 @@
 import React from "react";
 import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
-import { Tab, Tabs } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+import {Tab, Tabs, withStyles} from "@material-ui/core";
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import ClientTabComponent from "./ClientTabComponent";
 import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
-import ClientTabAccess from "./ClientTabAccess";
 
 const styles = theme => ({
   root: {
@@ -53,7 +51,6 @@ class ClientTabView extends React.Component {
           >
             <Tab label="Generelt" />
             <Tab label="Komponenter" />
-            <Tab label="Tilgangspakke" />
             <Tab label="Autentisering" />
           </Tabs>
         </AppBar>
@@ -75,12 +72,6 @@ class ClientTabView extends React.Component {
               notify={this.props.notify}
             />
           </TabContainer>
-          <TabContainer dir={theme.direction}>
-            <ClientTabAccess
-            client={this.props.client}
-            />
-          </TabContainer>
-
           <TabContainer dir={theme.direction}>
             <ClientTabAuthenticationInformation
               client={this.props.client}
