@@ -3,7 +3,7 @@ import TableCell from "@material-ui/core/TableCell";
 import {Checkbox, TableRow} from "@material-ui/core";
 
 const SelectAllEntitiesCheckboxes = (props) => {
-    const {classes, checkAll, selectedAccessPackage} = props;
+    /*const {classes, checkAll, selectedAccessPackage} = props;
     if (selectedAccessPackage.components.length > 0) {
         return (
             <TableRow className={classes.chooseAllRow}>
@@ -38,7 +38,7 @@ const SelectAllEntitiesCheckboxes = (props) => {
         );
     } else {
         return null;
-    }
+    }*/
 };
 
 export default SelectAllEntitiesCheckboxes;
