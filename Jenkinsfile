@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "docker build --tag ${GIT_COMMIT} ."
+                withDockerRegistry([credentialsId: 'fintlabsacr.azurecr.io', url: 'https://fintlabsacr.azurecr.io']) {
+                    sh "docker build --tag ${GIT_COMMIT} ."
+                }
             }
         }
         stage('Publish') {
