@@ -8,6 +8,7 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
 import {fetchClients} from "../../data/redux/dispatchers/client";
+import {fetchAccessTemplate} from "../../data/redux/dispatchers/access_package_template";
 
 const AccessPackageContainer = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const AccessPackageContainer = () => {
             dispatch(fetchAccess(context.currentOrganisation.name));
             dispatch(fetchComponents());
             dispatch(fetchEntities());
+            dispatch(fetchAccessTemplate());
             dispatch(fetchClients(context.currentOrganisation.name));
         }, [dispatch, context.currentOrganisation.name]
     );

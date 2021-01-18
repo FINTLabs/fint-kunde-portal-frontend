@@ -14,13 +14,16 @@ const useStyles = makeStyles(theme => ({
     root: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
-        marginRight: theme.spacing(20),
+        marginRight: theme.spacing(1),
+        display:"flex",
     },
     accessBox: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
         marginBottom: theme.spacing(2),
+        display:"flex",
+        flexDirection: "column"
     },
     tableRow: {
         '&:nth-of-type(even)': {

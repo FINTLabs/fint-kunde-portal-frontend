@@ -4,6 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
 import {Fab} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
+import TemplateIcon from "@material-ui/icons/CloudDownload";
 import {useDispatch, useSelector} from "react-redux";
 import Divider from "@material-ui/core/Divider";
 import EntitySelection from "./entity_selection";
@@ -17,6 +18,8 @@ import ConfirmAccessPackageUpdate from "./confirm_access_package_update";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import TemplateContainerDialog from "./template/template_container_dialog";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -27,13 +30,20 @@ const useStyles = makeStyles(theme => ({
         flex: 1,
     },
     addButton: {
-        margin: 0,
-        top: 150,
-        left: "auto",
-        bottom: "auto",
-        right: 50,
-        position: "absolute"
-    }
+    },
+    templateButton: {
+        marginTop: theme.spacing(1),
+    },
+    listItem: {
+        borderBottom: "1px dashed lightgray"
+    },
+    cancelTemplateButton: {
+        inlineSize: "-webkit-fill-available",
+    },
+    itemAvatar: {
+        color: "#fff",
+        backgroundColor: theme.palette.secondary.main
+    },
 }));
 
 const EditAccessPackageContainer = (props) => {
@@ -43,6 +53,7 @@ const EditAccessPackageContainer = (props) => {
     } = props;
     const classes = useStyles();
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
+    const [templateSelectorOpen, setTemplateSelectorOpen] = useState(false);
     const [openCloseDialog, setOpenCloseDialog] = useState(false);
     const selectedForEditingId = useSelector(state => state.access_package.selectedForEditing);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
@@ -61,6 +72,11 @@ const EditAccessPackageContainer = (props) => {
     function openComponentSelector() {
         setComponentSelectorOpen(true);
     }
+
+    function openTemplateSelector() {
+        setTemplateSelectorOpen(true);
+    }
+
 
     function handleCloseComponentSelector() {
         setComponentSelectorOpen(false);
@@ -81,7 +97,7 @@ const EditAccessPackageContainer = (props) => {
     function chooseComponent(component) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter( ap => ap.dn === newAccessPackage.dn)[0]);
+        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter(ap => ap.dn === newAccessPackage.dn)[0]);
 
         if (newAccessPackage.components.includes(component.dn)) {
             let componentIndex = newAccessPackage.components.indexOf(component.dn);
@@ -104,7 +120,11 @@ const EditAccessPackageContainer = (props) => {
         setOpenCloseDialog(false);
     }
 
-        return (
+    function handleTemplateSelectorOpen() {
+        setTemplateSelectorOpen(false);
+    }
+
+    return (
         <>
             <Dialog fullScreen open={open} onClose={handleClose}>
                 <EditAccessPackageAppBar
@@ -122,14 +142,21 @@ const EditAccessPackageContainer = (props) => {
                     </Tabs>
                 </AppBar>
                 {tabValue === 0 ?
-                    <>
+                    <Box display={"flex"} flexDirection={"row"} m={1}>
                         <EntitySelection selectedAccessPackage={selectedAccessPackage}/>
-                        <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector}
-                             variant="extended">
-                            <Add/>
-                            Legg til
-                        </Fab>
-                    </>
+                        <Box display={"flex"} flexDirection={"column"} m={1} mt={2}>
+                            <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector}
+                                 variant="extended">
+                                <Add/>
+                                Velg komponenter
+                            </Fab>
+                            <Fab color="secondary" className={classes.templateButton} onClick={openTemplateSelector}
+                                 variant="extended">
+                                <TemplateIcon/>
+                                Autooppsett
+                            </Fab>
+                        </Box>
+                    </Box>
                     : <ClientSelection selectedAccessPackage={selectedAccessPackage}/>}
                 <EditAccessPackageDialog
                     componentSelectorOpen={componentSelectorOpen}
@@ -137,6 +164,12 @@ const EditAccessPackageContainer = (props) => {
                     componentConfiguration={componentConfiguration}
                     selectedAccessPackage={selectedAccessPackage}
                     chooseComponent={chooseComponent}/>
+                <TemplateContainerDialog
+                    classes={classes}
+                    templateSelectorOpen={templateSelectorOpen}
+                    selectedAccessPackage={selectedAccessPackage}
+                    handleTemplateSelectorOpen={handleTemplateSelectorOpen}/>
+
                 <ConfirmAccessPackageUpdate
                     open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen} handleExit={handleClose}
                     setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}/>
@@ -150,11 +183,11 @@ const EditAccessPackageContainer = (props) => {
                         id="alert-dialog-title">{"Avslutte redigering. Ingen endringer blir lagret."}</DialogTitle>
                     <DialogActions>
                         <Button variant="contained"
-                            onClick={() => {
-                            setOpenCloseDialog(false);
-                            setTabValue(0);
-                            handleClose();
-                        }} color="primary" autoFocus>
+                                onClick={() => {
+                                    setOpenCloseDialog(false);
+                                    setTabValue(0);
+                                    handleClose();
+                                }} color="primary" autoFocus>
                             Avslutt
                         </Button>
                         <Button variant="contained" onClick={closeCloseDialog} color="primary">

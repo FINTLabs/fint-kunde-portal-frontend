@@ -85,7 +85,6 @@ const AccessPackageList = () => {
         AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 204) {
-                    console.log(response);
                     setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                     setSnackBarMessage(accessPackage.name + " slettet");
