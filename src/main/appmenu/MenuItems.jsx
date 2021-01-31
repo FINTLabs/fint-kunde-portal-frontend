@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ClientIcon from "@material-ui/icons/ImportantDevices";
 import ApiIcon from "@material-ui/icons/WebAsset";
@@ -10,8 +10,7 @@ import BasicTestIcon from "@material-ui/icons/Done";
 import LogoutIcon from "@material-ui/icons/ExitToApp";
 import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"
-import KeyIcon from "@material-ui/icons/Lock"
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 
 const menuLink = {
