@@ -7,7 +7,7 @@ import {fetchEntities} from "../../../data/redux/dispatchers/entity";
 import {fetchClients} from "../../../data/redux/dispatchers/client";
 import {useDispatch, useSelector} from "react-redux";
 import LoadingProgress from "../../../common/status/LoadingProgress";
-import AddAccessPackageToClient from "../../access-package/view/add_access_package_to_client";
+import AddAccessPackageToClient from "./AddAccessPackageToClient";
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,16 +32,21 @@ const ClientTabAccess = (props) => {
         }, [dispatch, context.currentOrganisation.name]
     );
 
-    if (!access) {
-        return <LoadingProgress/>;
-    }else{
+    //if (!access) {
+    //    return <LoadingProgress/>;
+    //} else {
+    if (access) {
         return (
             <div className={classes.root}>
                 <AddAccessPackageToClient
-                client={client}/>
+                    client={client}/>
             </div>
         );
     }
+    else {
+        return <div/>
+    }
+    //}
 };
 
 export default ClientTabAccess;

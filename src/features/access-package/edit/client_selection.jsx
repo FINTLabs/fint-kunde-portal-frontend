@@ -37,6 +37,10 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(2),
         marginBottom: theme.spacing(1),
     },
+    listItem: {
+        borderBottom: "1px dashed lightgray",
+        padding: theme.spacing(),
+    },
 }));
 
 const ClientSelection = (props) => {

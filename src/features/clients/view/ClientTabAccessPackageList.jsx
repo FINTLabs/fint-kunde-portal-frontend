@@ -5,7 +5,7 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemSecondaryAction,
-    ListItemText
+    ListItemText, makeStyles
 } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import FormControl from "@material-ui/core/FormControl";
@@ -13,11 +13,25 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
+const useStyles = makeStyles((theme) => ({
+    listItem: {
+        borderBottom: "1px dashed lightgray",
+        padding: theme.spacing(),
+    },
+    itemAvatar: {
+        color: "#fff",
+        backgroundColor: theme.palette.secondary.main
+    },
+    circularProgress: {
+        marginRight: theme.spacing(1),
+    },
+}));
 const ClientTabAccessPackageList = (props) => {
     const {
-        client, classes, accessPackage, handleClientChange, disabled, selectedName, setAccessPackageToSwitch,
+        client, accessPackage, handleClientChange, disabled, selectedName, setAccessPackageToSwitch,
         showWarning, setShowWarning, handleClientChanging, setSwitchValue
     } = props;
+    const classes = useStyles();
     const warningMessageText = "Når du aktiverer en aksesspakke på en klient, vil andre aksesspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
 
 

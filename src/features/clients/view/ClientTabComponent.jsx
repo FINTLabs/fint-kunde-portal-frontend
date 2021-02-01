@@ -28,18 +28,6 @@ import AddButton from "../../../common/button/AddButton";
 import TestAuthApi from "../../../data/api/TestAuthApi";
 
 const styles = theme => ({
-  root: {
-    display: "flex",
-    justifyContent: "center"
-  },
-  componentList: {
-    width: "75%"
-  },
-  avtarstyle: {
-    margin: 1,
-    color: "#fff",
-    backgroundColor: green[500]
-  },
   title: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
@@ -174,11 +162,17 @@ class ClientTabComponent extends React.Component {
   }
 
   render() {
-    if (!this.props.components) {
-      return <LoadingProgress />;
-    } else {
+    //if (!this.props.components) {
+    //  return <LoadingProgress />;
+    //} else {
+    if (this.props.components) {
       return this.renderComponents();
     }
+    else {
+      return <div/>;
+    }
+    //
+    // }
   }
 
   renderComponents() {
