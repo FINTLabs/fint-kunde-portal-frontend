@@ -142,7 +142,7 @@ const EditAccessPackageContainer = (props) => {
                     selectedAccessPackage={selectedAccessPackage}/>
                 <Divider/>
 
-                <AppBar position="static">
+                <AppBar position="static" color="transparent">
 
                     <Tabs value={tabValue} onChange={handleTabChange}
                           aria-label="simple tabs example" centered>
