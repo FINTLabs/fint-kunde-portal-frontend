@@ -14,7 +14,7 @@ import Switch from "@material-ui/core/Switch";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
 const ClientTabAccessPackageList = (props) => {
-    /*const {
+    const {
         client, classes, accessPackage, handleClientChange, disabled, selectedName, setAccessPackageToSwitch,
         showWarning, setShowWarning, handleClientChanging, setSwitchValue
     } = props;
@@ -62,7 +62,7 @@ const ClientTabAccessPackageList = (props) => {
                     title={"Koble til klient"}/>
             </ListItemSecondaryAction>
         </ListItem>
-    );*/
+    );
 };
 
 export default ClientTabAccessPackageList;

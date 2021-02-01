@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar/AppBar";
 
 const EditAccessPackageAppBar = (props) => {
-    /*const {classes, handleClose, handleSaveAccess, selectedAccessPackage} = props;
+    const {classes, handleClose, handleSaveAccess, selectedAccessPackage} = props;
     return (
         <AppBar className={classes.appBar}>
             <Toolbar>
@@ -22,7 +22,7 @@ const EditAccessPackageAppBar = (props) => {
                 </Button>
             </Toolbar>
         </AppBar>
-    );*/
+    );
 };
 
 export default EditAccessPackageAppBar;

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ClientTabAccess = (props) => {
-   /* const {client} = props;
+    const {client} = props;
     const context = useContext(AppContext);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const ClientTabAccess = (props) => {
                 client={client}/>
             </div>
         );
-    }*/
+    }
 };
 
 export default ClientTabAccess;

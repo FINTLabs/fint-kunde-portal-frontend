@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddAccessPackageToClient = (props) => {
-    /*const {client} = props;
+    const {client} = props;
     const classes = useStyles();
     const packages = useSelector(state => state.access_package.accessPackages);
     const [isFetchingClients, setIsFetchingClients] = useState(false);
@@ -115,7 +115,7 @@ const AddAccessPackageToClient = (props) => {
         );
     } else {
         return (<></>);
-    }*/
+    }
 
 };
 export default AddAccessPackageToClient;

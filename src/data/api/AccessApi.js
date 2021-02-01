@@ -1,6 +1,6 @@
 class AccessApi {
 
-   /* static getAccess(organisation) {
+    static getAccess(organisation) {
         const url = `/api/accesses/${organisation}/`;
         return fetch(url, {
             method: 'GET',
@@ -43,7 +43,6 @@ class AccessApi {
             },
         })
     }
-*/
 }
 
 export default AccessApi;
