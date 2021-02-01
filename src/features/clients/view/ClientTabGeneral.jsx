@@ -1,36 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextField } from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 
-class ClientTabGeneral extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
+function ClientTabGeneral(props) {
     return (
-      <div>
-        <TextField
-          autoFocus
-          name="shortDescription"
-          label="Kort beskrivelse"
-          fullWidth
-          onChange={this.props.updateClientState}
-          value={this.props.client.shortDescription}
-        />
-        <TextField
-          name="note"
-          label="Note"
-          multiline
-          rows="10"
-          onChange={this.props.updateClientState}
-          value={this.props.client.note}
-          fullWidth
-        />
-      </div>
+        <div>
+            <TextField
+                autoFocus
+                name="shortDescription"
+                label="Kort beskrivelse"
+                fullWidth
+                onChange={props.updateClientState}
+                value={props.client.shortDescription}
+            />
+            <TextField
+                name="note"
+                label="Note"
+                multiline
+                rows="10"
+                onChange={props.updateClientState}
+                value={props.client.note}
+                fullWidth
+            />
+        </div>
     );
-  }
 }
 
 ClientTabGeneral.propTypes = {
