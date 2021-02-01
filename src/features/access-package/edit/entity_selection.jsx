@@ -11,23 +11,15 @@ import EntityTable from "./entity_table";
 import TableHeader from "./entity_table_header";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(3),
-        marginRight: theme.spacing(1),
-        display:"flex",
-    },
     accessBox: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
         marginBottom: theme.spacing(2),
-        display:"flex",
-        flexDirection: "column"
     },
     tableRow: {
         '&:nth-of-type(even)': {
-            backgroundColor: "#fef3ef",
+            backgroundColor: theme.palette.grey["100"],
         },
     },
     icon: {
@@ -113,15 +105,17 @@ const EntitySelection = (props) => {
     }
 
     return (
-        <div className={classes.root}>
+        <Box width={1} mt={2} ml={3} mr={20}>
 
-            <Box className={classes.accessBox} component={Paper}>
+            <Box className={classes.accessBox}>
                 <Typography variant="h4" className={classes.header}>Tilganger</Typography>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
                         <TableHeader classes={classes} selectedAccessPackage={selectedAccessPackage}/>
                     </TableHead>
                     <TableBody>
+                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}
+                                                     selectedAccessPackage={selectedAccessPackage}/>
                         {componentConfiguration.map(component => {
                             if (selectedAccessPackage.components.includes(component.dn)) {
                                 return component.classes.map(entity => {
@@ -141,12 +135,10 @@ const EntitySelection = (props) => {
                             }
                         })
                         }
-                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}
-                                                     selectedAccessPackage={selectedAccessPackage}/>
                     </TableBody>
                 </Table>
             </Box>
-        </div>
+        </Box>
     );
 };
 

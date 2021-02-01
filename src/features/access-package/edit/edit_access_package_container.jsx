@@ -20,6 +20,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import TemplateContainerDialog from "./template/template_container_dialog";
 import Box from "@material-ui/core/Box";
+import ToolTipFab from "../../../common/fab/ToolTipFab";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -30,9 +31,16 @@ const useStyles = makeStyles(theme => ({
         flex: 1,
     },
     addButton: {
+        margin: theme.spacing(1),
+        top: theme.spacing(16),
+        right: theme.spacing(3),
+        position: "absolute"
     },
     templateButton: {
-        marginTop: theme.spacing(1),
+        margin: theme.spacing(1),
+        top: theme.spacing(25),
+        right: theme.spacing(3),
+        position: "absolute"
     },
     listItem: {
         borderBottom: "1px dashed lightgray"
@@ -136,26 +144,29 @@ const EditAccessPackageContainer = (props) => {
 
                 <AppBar position="static">
 
-                    <Tabs value={tabValue} onChange={handleTabChange} aria-label="simple tabs example" centered>
+                    <Tabs value={tabValue} onChange={handleTabChange}
+                          aria-label="simple tabs example" centered>
                         <Tab label="Velg tilganger"/>
                         <Tab label="Velg klienter"/>
                     </Tabs>
                 </AppBar>
                 {tabValue === 0 ?
+
+
                     <Box display={"flex"} flexDirection={"row"} m={1}>
                         <EntitySelection selectedAccessPackage={selectedAccessPackage}/>
-                        <Box display={"flex"} flexDirection={"column"} m={1} mt={2}>
-                            <Fab color="secondary" className={classes.addButton} onClick={openComponentSelector}
-                                 variant="extended">
-                                <Add/>
-                                Velg komponenter
-                            </Fab>
-                            <Fab color="secondary" className={classes.templateButton} onClick={openTemplateSelector}
-                                 variant="extended">
-                                <TemplateIcon/>
-                                Autooppsett
-                            </Fab>
-                        </Box>
+                        <ToolTipFab color="secondary" onClick={openComponentSelector}
+                                    toolTip="Legg til komponent" className={classes.addButton}
+                        >
+                            <Add/>
+                        </ToolTipFab>
+
+                        <ToolTipFab color="secondary" className={classes.templateButton}
+                             onClick={openTemplateSelector} toolTip="Last regler fra mal"
+                        >
+                            <TemplateIcon/>
+                        </ToolTipFab>
+
                     </Box>
                     : <ClientSelection selectedAccessPackage={selectedAccessPackage}/>}
                 <EditAccessPackageDialog
@@ -171,7 +182,8 @@ const EditAccessPackageContainer = (props) => {
                     handleTemplateSelectorOpen={handleTemplateSelectorOpen}/>
 
                 <ConfirmAccessPackageUpdate
-                    open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen} handleExit={handleClose}
+                    open={openSave} handleClose={handleSaveClose} setEditOpen={setEditOpen}
+                    handleExit={handleClose}
                     setSnackBarOpen={setSnackBarOpen} setSnackBarMessage={setSnackBarMessage}/>
                 <Dialog
                     open={openCloseDialog}

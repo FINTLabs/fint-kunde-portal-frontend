@@ -8,26 +8,26 @@ const EntityTable = (props) => {
         <TableRow className={classes.tableRow} key={entity.path}>
             <TableCell>{component.displayName}</TableCell>
             <TableCell align="right">{entity.name}</TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
                 <Checkbox
                     name="collection"
                     checked={selectedAccessPackage.collection.includes(entity.path)}
                     onChange={(event) => updateAccesses(event, entity.path)}
                 />
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
                 <Checkbox
                     name="read"
                     checked={selectedAccessPackage.read.includes(entity.path)}
                     onChange={(event) => updateAccesses(event, entity.path)}
                 />
             </TableCell>
-            <TableCell align="right">
+            <TableCell align="center">
                 <Checkbox
                     name="modify"
                     checked={selectedAccessPackage.modify.includes(entity.path)}
                     onChange={(event) => updateAccesses(event, entity.path)}
-                />
+                 />
             </TableCell>
         </TableRow>
     );
