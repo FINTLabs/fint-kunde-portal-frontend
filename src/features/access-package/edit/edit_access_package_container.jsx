@@ -48,10 +48,6 @@ const useStyles = makeStyles(theme => ({
     cancelTemplateButton: {
         inlineSize: "-webkit-fill-available",
     },
-    itemAvatar: {
-        color: "#fff",
-        backgroundColor: theme.palette.secondary.main
-    },
 }));
 
 const EditAccessPackageContainer = (props) => {
@@ -176,7 +172,6 @@ const EditAccessPackageContainer = (props) => {
                     selectedAccessPackage={selectedAccessPackage}
                     chooseComponent={chooseComponent}/>
                 <TemplateContainerDialog
-                    classes={classes}
                     templateSelectorOpen={templateSelectorOpen}
                     selectedAccessPackage={selectedAccessPackage}
                     handleTemplateSelectorOpen={handleTemplateSelectorOpen}/>
