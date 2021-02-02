@@ -41,19 +41,6 @@ class ContactApi {
       return error;
     });
   }
-
-  static deleteContact(contact) {
-    const request = new Request(`/api/contacts/${contact.nin}`, {
-      method: "DELETE",
-      credentials: "same-origin"
-    });
-
-    return fetch(request).then(response => {
-      return response.json();
-    }).catch(error => {
-      return error;
-    });
-  }
 }
 
 export default ContactApi;
