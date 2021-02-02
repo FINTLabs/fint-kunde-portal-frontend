@@ -6,7 +6,6 @@ import {fetchComponents} from "../../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../../data/redux/dispatchers/entity";
 import {fetchClients} from "../../../data/redux/dispatchers/client";
 import {useDispatch, useSelector} from "react-redux";
-import LoadingProgress from "../../../common/status/LoadingProgress";
 import AddAccessPackageToClient from "./AddAccessPackageToClient";
 
 
@@ -32,9 +31,6 @@ const ClientTabAccess = (props) => {
         }, [dispatch, context.currentOrganisation.name]
     );
 
-    //if (!access) {
-    //    return <LoadingProgress/>;
-    //} else {
     if (access) {
         return (
             <div className={classes.root}>
@@ -42,8 +38,7 @@ const ClientTabAccess = (props) => {
                     client={client}/>
             </div>
         );
-    }
-    else {
+    } else {
         return <div/>
     }
     //}

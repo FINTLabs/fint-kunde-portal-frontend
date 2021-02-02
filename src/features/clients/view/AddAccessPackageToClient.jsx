@@ -1,21 +1,13 @@
 import React, {useContext, useState} from "react";
-import {List, makeStyles} from "@material-ui/core";
+import {List} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import AppContext from "../../../data/context/AppContext";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientTabAccessPackageList from "./ClientTabAccessPackageList";
 import AccessApi from "../../../data/api/AccessApi";
 
-const useStyles = makeStyles((theme) => ({
-    title: {
-        paddingLeft: theme.spacing(3),
-        paddingBottom: theme.spacing(1)
-    },
-}));
-
 const AddAccessPackageToClient = (props) => {
     const {client} = props;
-    const classes = useStyles();
     const packages = useSelector(state => state.access_package.accessPackages);
     const [isFetchingClients, setIsFetchingClients] = useState(false);
     const [selectedName, setSelectedName] = useState("");

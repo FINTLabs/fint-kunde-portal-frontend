@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Paper, TableBody} from "@material-ui/core";
+import {Box, TableBody} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Table from "@material-ui/core/Table";
@@ -55,7 +55,7 @@ const EntitySelection = (props) => {
     function updateAccesses(event, path) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex= newAccessPackages.indexOf(newAccessPackages.filter(ap=> ap.dn === newAccessPackage.dn)[0]);
+        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter(ap => ap.dn === newAccessPackage.dn)[0]);
 
         switch (event.target.name) {
             case "collection":
@@ -111,7 +111,8 @@ const EntitySelection = (props) => {
                 <Typography variant="h4" className={classes.header}>Tilganger</Typography>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
-                        <TableHeader classes={classes} selectedAccessPackage={selectedAccessPackage}/>
+                        <TableHeader classes={classes}
+                                     selectedAccessPackage={selectedAccessPackage}/>
                     </TableHead>
                     <TableBody>
                         <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}

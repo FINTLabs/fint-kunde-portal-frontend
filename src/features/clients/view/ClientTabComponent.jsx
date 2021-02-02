@@ -13,8 +13,6 @@ import ComponentIcon from "@material-ui/icons/WebAsset";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchComponents } from "../../../data/redux/dispatchers/component";
-import { green } from "@material-ui/core/colors/index";
-import LoadingProgress from "../../../common/status/LoadingProgress";
 import {
   addClientToComponent,
   deleteClientFromComponent

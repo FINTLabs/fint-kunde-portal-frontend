@@ -52,7 +52,7 @@ const ClientTabAccessPackageList = (props) => {
                     <FormControlLabel
                         control={
                             accessPackage.name === selectedName ?
-                                <CircularProgress className={classes.circularProgress}/> :
+                                <CircularProgress color="secondary" className={classes.circularProgress}/> :
                                 <Switch disabled={disabled} checked={accessPackage.clients.includes(client.dn)}
                                         name={client.name}
                                         onChange={(event) => {

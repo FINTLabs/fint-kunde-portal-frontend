@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Dialog from "@material-ui/core/Dialog";
 import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
-import {Fab} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
 import TemplateIcon from "@material-ui/icons/CloudDownload";
 import {useDispatch, useSelector} from "react-redux";
@@ -158,7 +157,7 @@ const EditAccessPackageContainer = (props) => {
                         </ToolTipFab>
 
                         <ToolTipFab color="secondary" className={classes.templateButton}
-                             onClick={openTemplateSelector} toolTip="Last regler fra mal"
+                                    onClick={openTemplateSelector} toolTip="Last regler fra mal"
                         >
                             <TemplateIcon/>
                         </ToolTipFab>
