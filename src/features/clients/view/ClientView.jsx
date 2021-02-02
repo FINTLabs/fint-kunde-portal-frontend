@@ -73,52 +73,52 @@ class ClientView extends React.Component {
 
   render() {
     return (
-      <div>
-        <AutoHideNotification
-          showNotification={this.state.notify}
-          message={this.state.notifyMessage}
-          onClose={this.onCloseNotification}
-        />
-        <div>
-          <Dialog
-            open={this.props.open}
-            onClose={this.handleUpdate}
-            aria-labelledby="form-dialog-title"
-            maxWidth="md"
-          >
-            <DialogTitle id="form-dialog-title">{`Oppdater klient:`}</DialogTitle>
-            <DialogContent>
-              <ClientTabView
-                client={this.state.client}
-                onCopy={this.onCopy}
-                updateClientState={this.updateClientState}
-                notify={this.notify}
-                showUpdateButton={this.showUpdateButton}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={this.handleCancel}
-                variant="contained"
-                color="secondary"
+          <div>
+            <AutoHideNotification
+                showNotification={this.state.notify}
+                message={this.state.notifyMessage}
+                onClose={this.onCloseNotification}
+            />
+            <div>
+              <Dialog
+                  open={this.props.open}
+                  onClose={this.handleUpdate}
+                  aria-labelledby="form-dialog-title"
+                  maxWidth="md"
               >
-                {this.state.showUpdateButton ? "Avbryt" : "Lukk"}
-              </Button>
-              {this.state.showUpdateButton ? (
-                <Button
-                  onClick={this.handleUpdate}
-                  variant="contained"
-                  color="secondary"
-                >
-                  Oppdater
-                </Button>
-              ) : null}
-            </DialogActions>
-          </Dialog>
-        </div>
-      </div>
-    );
-  }
+                <DialogTitle id="form-dialog-title">{`Oppdater klient:`}</DialogTitle>
+                <DialogContent>
+                  <ClientTabView
+                      client={this.state.client}
+                      onCopy={this.onCopy}
+                      updateClientState={this.updateClientState}
+                      notify={this.notify}
+                      showUpdateButton={this.showUpdateButton}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                      onClick={this.handleCancel}
+                      variant="contained"
+                      color="secondary"
+                  >
+                    {this.state.showUpdateButton ? "Avbryt" : "Lukk"}
+                  </Button>
+                  {this.state.showUpdateButton ? (
+                      <Button
+                          onClick={this.handleUpdate}
+                          variant="contained"
+                          color="secondary"
+                      >
+                        Oppdater
+                      </Button>
+                  ) : null}
+                </DialogActions>
+              </Dialog>
+            </div>
+          </div>
+      );
+    }
 }
 
 ClientView.propTypes = {};

@@ -2,12 +2,12 @@ import React, {useContext, useState} from "react";
 import {Divider, List, makeStyles, Typography} from "@material-ui/core";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
-import EditAccessPackageContainer from "./edit/edit_access_package_container";
+import EditAccessPackageContainer from "./edit/EditAccessPackageContainer";
 import AccessApi from "../../data/api/AccessApi";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
-import AccessPackageListItem from "./view/access_package_list_item";
-import SavedSuccessSnackbar from "./view/saved_success_snackbar";
+import AccessPackageListItem from "./view/AccessPackageListItem";
+import SavedSuccessSnackbar from "./view/SavedSuccessSnackbar";
 import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 
@@ -85,7 +85,6 @@ const AccessPackageList = () => {
         AccessApi.deleteAccess(accessPackage, context.currentOrganisation.name)
             .then(response => {
                 if (response.status === 204) {
-                    console.log(response);
                     setOpenDialog(false);
                     dispatch(fetchAccess(context.currentOrganisation.name));
                     setSnackBarMessage(accessPackage.name + " slettet");

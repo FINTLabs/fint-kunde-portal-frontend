@@ -8,9 +8,9 @@ import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import AppContext from "../../../data/context/AppContext";
 import {useDispatch, useSelector} from "react-redux";
-import ChangedAccesses from "./changed_accesses";
-import ChangedClients from "./changed_clients";
-import ChangedComponents from "./changed_components";
+import ChangedAccesses from "./ChangedAccesses";
+import ChangedClients from "./ChangedClients";
+import ChangedComponents from "./ChangedComponents";
 
 const ConfirmAccessPackageUpdate = (props) => {
     const {open, handleClose, setEditOpen, setSnackBarOpen, setSnackBarMessage} = props;

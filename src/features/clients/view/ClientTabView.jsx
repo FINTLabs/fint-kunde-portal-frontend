@@ -43,7 +43,7 @@ class ClientTabView extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
+        <AppBar position="static" color="inherit">
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}

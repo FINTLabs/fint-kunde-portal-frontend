@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import AccessPackageList from "./access_package_list";
+import AccessPackageList from "./AccessPackageList";
 import AccessPackageAdd from "./add/add_access_package";
 import {fetchComponents} from "../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../data/redux/dispatchers/entity";
@@ -8,6 +8,7 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchAccess} from "../../data/redux/dispatchers/access_package";
 import AppContext from "../../data/context/AppContext";
 import {fetchClients} from "../../data/redux/dispatchers/client";
+import {fetchAccessTemplate} from "../../data/redux/dispatchers/access_package_template";
 
 const AccessPackageContainer = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const AccessPackageContainer = () => {
             dispatch(fetchAccess(context.currentOrganisation.name));
             dispatch(fetchComponents());
             dispatch(fetchEntities());
+            dispatch(fetchAccessTemplate());
             dispatch(fetchClients(context.currentOrganisation.name));
         }, [dispatch, context.currentOrganisation.name]
     );
