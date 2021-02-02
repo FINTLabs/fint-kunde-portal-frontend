@@ -43,8 +43,9 @@ class ContactView extends Component {
   };
 
   updateContact = () => {
+    // Todo: This should use a dispatcher instead
     ContactApi.updateContact(this.state.contact)
-      .then(response => {
+      .then(() => {
         this.props.notify("Kontakten ble oppdatert.");
         this.props.onClose();
       })

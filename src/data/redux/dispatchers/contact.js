@@ -1,9 +1,4 @@
-import {
-    deleteContactSuccess,
-    fetchContactError,
-    fetchContactsSuccess,
-    updateKontaktSuccess
-} from "../actions/contacts";
+import {fetchContactError, fetchContactsSuccess, updateKontaktSuccess} from "../actions/contacts";
 import ContactApi from "../../api/ContactApi";
 
 export function fetchContacts() {
@@ -29,12 +24,3 @@ export function updateContact(kontakt) {
     };
 }
 
-export function deleteContact(kontakt) {
-    return function (dispatch) {
-        return ContactApi.deleteContact(kontakt).then(() => {
-            dispatch(deleteContactSuccess(kontakt));
-        }).catch(error => {
-            throw (error);
-        })
-    }
-}
