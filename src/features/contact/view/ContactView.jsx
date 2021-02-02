@@ -31,7 +31,6 @@ class ContactView extends Component {
   }
 
   handleCancel = () => {
-    //this.setState({open: false,});
     this.props.onClose();
   };
 
