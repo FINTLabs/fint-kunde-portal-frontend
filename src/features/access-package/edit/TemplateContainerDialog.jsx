@@ -8,9 +8,9 @@ import {Avatar, DialogActions, ListItemAvatar, makeStyles} from "@material-ui/co
 import Dialog from "@material-ui/core/Dialog";
 import {useDispatch, useSelector} from "react-redux";
 import LockIcon from "@material-ui/icons/LockOpen";
-import WarningMessageBox from "../../../../common/message-box/WarningMessageBox";
+import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import Button from "@material-ui/core/Button";
-import {updateAccessPackages} from "../../../../data/redux/actions/access_package";
+import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 
 const useStyles = makeStyles((theme) => ({
     listItem: {

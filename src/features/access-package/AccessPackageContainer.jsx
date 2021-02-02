@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import AccessPackageList from "./access_package_list";
+import AccessPackageList from "./AccessPackageList";
 import AccessPackageAdd from "./add/add_access_package";
 import {fetchComponents} from "../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../data/redux/dispatchers/entity";

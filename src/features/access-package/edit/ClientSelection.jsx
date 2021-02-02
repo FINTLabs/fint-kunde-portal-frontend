@@ -83,11 +83,11 @@ const ClientSelection = (props) => {
     return (
         <div className={classes.root}>
             <List className={classes.clientList}>
-                <Typography variant="h4" className={classes.header}> Knytte aksesspakken til klient
+                <Typography variant="h4" className={classes.header}> Knytte tilgangspakken til klient
                 </Typography>
                 <FeatureHelperText>
                     <p>En klient kan bare være knyttet til én aksesspakke.
-                        Dersom du knytter en klient, som allerede har en aksesspakke, til en ny aksesspakke,
+                        Dersom du knytter en klient, som allerede har en tilgangspakke, til en ny aksesspakke,
                         fjernes den gamle aksesspakken fra klienten.</p>
                 </FeatureHelperText>
                 {clients.map(client => {

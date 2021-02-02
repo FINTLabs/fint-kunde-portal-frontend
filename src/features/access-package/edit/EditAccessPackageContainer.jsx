@@ -6,18 +6,18 @@ import {Add} from "@material-ui/icons";
 import TemplateIcon from "@material-ui/icons/CloudDownload";
 import {useDispatch, useSelector} from "react-redux";
 import Divider from "@material-ui/core/Divider";
-import EntitySelection from "./entity_selection";
+import EntitySelection from "./EntitySelection";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
-import ClientSelection from "./client_selection";
-import EditAccessPackageAppBar from "./edit_access_package_app_bar";
-import EditAccessPackageDialog from "./edit_access_package_dialog";
-import ConfirmAccessPackageUpdate from "./confirm_access_package_update";
+import ClientSelection from "./ClientSelection";
+import EditAccessPackageAppBar from "./EditAccessPackageAppBar";
+import EditAccessPackageDialog from "./EditAccessPackageDialog";
+import ConfirmAccessPackageUpdate from "./ConfirmAccessPackageUpdate";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import TemplateContainerDialog from "./template/template_container_dialog";
+import TemplateContainerDialog from "./TemplateContainerDialog";
 import Box from "@material-ui/core/Box";
 import ToolTipFab from "../../../common/fab/ToolTipFab";
 
@@ -137,7 +137,7 @@ const EditAccessPackageContainer = (props) => {
                     selectedAccessPackage={selectedAccessPackage}/>
                 <Divider/>
 
-                <AppBar position="static" color="transparent">
+                <AppBar position="static" color="inherit">
 
                     <Tabs value={tabValue} onChange={handleTabChange}
                           aria-label="simple tabs example" centered>
