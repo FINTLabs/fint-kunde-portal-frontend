@@ -11,6 +11,7 @@ import linkwalker from "../reducers/linkwalker";
 import access_package from "../reducers/access_package";
 import component_configuration from "../reducers/component-configuration";
 import access_package_template from "../reducers/access_package_template";
+import feature from "../reducers/features";
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,6 +28,7 @@ const store = createStore(
         access_package,
         access_package_template,
         component_configuration,
+        feature
     }),
     /* preloadedState, */ composeEnhancers(
         applyMiddleware(thunkMiddleware, logger))
