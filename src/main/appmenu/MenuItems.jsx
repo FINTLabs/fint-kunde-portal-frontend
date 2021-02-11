@@ -13,7 +13,7 @@ import ContactSupport from "@material-ui/icons/ContactSupport"
 import KeyIcon from "@material-ui/icons/Lock"
 import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
-import FeatureToogle from "../../common/feature-toogle/FeatureToogle";
+import {FeatureToggle} from "@fintlabs/fint-feature-toggle-react";
 
 const MenuItems = () => {
     return (
@@ -55,14 +55,14 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Ressurser"/>
             </ListItem>
-            <FeatureToogle feature="fint-kunde-portal.access-packages">
+            <FeatureToggle feature="fint-kunde-portal.access-packages">
                 <ListItem button component={Link} to="/access_package">
                     <ListItemIcon>
                         <KeyIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Rettighetspakker"/>
                 </ListItem>
-            </FeatureToogle>
+            </FeatureToggle>
             <Divider/>
             <ListItem button component={Link} to="/test/basic">
                 <ListItemIcon>
