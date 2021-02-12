@@ -9,7 +9,7 @@
       "ou=test_kodeverk,ou=components,o=test",
       "ou=test_organisasjon,ou=components,o=test",
       "ou=test_okonomi,ou=components,o=test",
-      "ou=test_utdanningsprogram,ou=components,o=test",
+      "ou=test_utdanningsprogram,ou=components,o=test"
     ],
     "legalContact": "cn=12345678921,ou=contacts,o=test",
     "techicalContacts": [
@@ -33,7 +33,7 @@
       "ou=test_kodeverk,ou=components,o=test",
       "ou=test_organisasjon,ou=components,o=test",
       "ou=test_okonomi,ou=components,o=test",
-      "ou=test_utdanningsprogram,ou=components,o=test",
+      "ou=test_utdanningsprogram,ou=components,o=test"
     ],
     "legalContact": "cn=12345678921,ou=contacts,o=test",
     "techicalContacts": [
