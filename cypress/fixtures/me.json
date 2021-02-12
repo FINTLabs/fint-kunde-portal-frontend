@@ -1,0 +1,14 @@
+{
+  "dn": "cn=12345678921,ou=contacts,o=test",
+  "nin": "123456789321",
+  "firstName": "Test",
+  "lastName": "Testesen",
+  "mail": "cypress_test@fintlabs.no",
+  "mobile": "99999999",
+  "technical": [
+    "ou=test_no,ou=organisations,o=test",
+    "ou=test_nr_to_no,ou=organisations,o=test"
+  ],
+  "legal": [],
+  "supportId": "123456789100"
+}
