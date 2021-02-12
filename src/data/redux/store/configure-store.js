@@ -26,9 +26,9 @@ const store = createStore(
         linkwalker,
         access_package,
         access_package_template,
-        component_configuration,
+        component_configuration
     }),
-    /* preloadedState, */ composeEnhancers(
+    composeEnhancers(
         applyMiddleware(thunkMiddleware, logger))
 );
 
