@@ -1,0 +1,37 @@
+[
+  {
+    "dn": "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+    "name": "test@adapter.fintlabs.no",
+    "shortDescription": "Test",
+    "note": "Test",
+    "clientId": "abc123",
+    "components": [
+      "ou=test_fullmakt,ou=components,o=test",
+      "ou=test_kodeverk,ou=components,o=test",
+      "ou=test_organisasjon,ou=components,o=test"
+    ],
+    "assets": [
+      "ou=test_no,ou=assets,ou=test_no,ou=organisations,o=test"
+    ],
+    "assetIds": [
+      "test.no"
+    ]
+  },
+  {
+    "dn": "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+    "name": "test123@adapter.fintlabs.no",
+    "shortDescription": "Test123",
+    "note": "Test123",
+    "clientId": "def456",
+    "components": [
+      "ou=test_fullmakt,ou=components,o=test",
+      "ou=test_kodeverk,ou=components,o=test"
+    ],
+    "assets": [
+      "ou=test_no,ou=assets,ou=test_no,ou=organisations,o=test"
+    ],
+    "assetIds": [
+      "test.no"
+    ]
+  }
+]
