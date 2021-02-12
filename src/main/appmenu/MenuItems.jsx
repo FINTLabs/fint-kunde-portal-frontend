@@ -22,11 +22,11 @@ const menuLink = {
 export const MENU_ITEMS = (
   <div>
     <Link to="/" style={menuLink}>
-      <ListItem button>
+      <ListItem button id={"HomeMenuButton"}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Dashboard" id={"HomeMenuButtonText"}/>
       </ListItem>
     </Link>
     <Divider />

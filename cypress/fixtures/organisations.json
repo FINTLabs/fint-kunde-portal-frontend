@@ -21,7 +21,7 @@
       "cn=55555555555,ou=contacts,o=test",
       "cn=66666666666,ou=contacts,o=test"
     ],
-    "primaryAssetId": null
+    "primaryAssetId": "test.no"
   },
   {
     "dn": "ou=test_nr_to_no,ou=organisations,o=test",
@@ -45,6 +45,6 @@
       "cn=55555555555,ou=contacts,o=test",
       "cn=66666666666,ou=contacts,o=test"
     ],
-    "primaryAssetId": null
+    "primaryAssetId": "test.no"
   }
 ]

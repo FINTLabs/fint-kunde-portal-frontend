@@ -1,6 +1,6 @@
 {
-  "dn": "cn=12345678921,ou=contacts,o=test",
-  "nin": "123456789321",
+  "dn": "cn=12345654321,ou=contacts,o=test",
+  "nin": "12345654321",
   "firstName": "Test",
   "lastName": "Testesen",
   "mail": "cypress_test@fintlabs.no",

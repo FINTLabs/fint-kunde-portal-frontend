@@ -134,7 +134,7 @@ class AppMenu extends React.Component {
                         this.state.open && classes.appBarShift
                     )}
                 >
-                    <Toolbar disableGutters={!this.state.open}>
+                    <Toolbar disableGutters={!this.state.open} id={"toolbar"}>
                         <IconButton
                             color="inherit"
                             aria-label="open drawer"
@@ -143,6 +143,7 @@ class AppMenu extends React.Component {
                                 classes.menuButton,
                                 this.state.open && classes.hide
                             )}
+                            id={"menuBurger"}
                         >
                             <MenuIcon/>
                         </IconButton>
@@ -160,6 +161,7 @@ class AppMenu extends React.Component {
                             color="inherit"
                             noWrap
                             className={classes.flexName}
+                            id={"userNameField"}
                         >
                             {me.firstName + " " + me.lastName + "  |"}
                         </Typography>
@@ -175,9 +177,10 @@ class AppMenu extends React.Component {
                         )
                     }}
                     open={this.state.open}
+                    id={"menuToolbar"}
                 >
                     <div className={classes.toolbar}>
-                        <IconButton onClick={this.handleDrawerClose}>
+                        <IconButton onClick={this.handleDrawerClose} >
                             {theme.direction === "rtl" ? (
                                 <ChevronRightIcon/>
                             ) : (
@@ -186,7 +189,7 @@ class AppMenu extends React.Component {
                         </IconButton>
                     </div>
                     <Divider/>
-                    <List>{MENU_ITEMS}</List>
+                    <List id={"menuList"}>{MENU_ITEMS}</List>
                 </Drawer>
                 <main className={classes.content}>
                     <Routes/>
