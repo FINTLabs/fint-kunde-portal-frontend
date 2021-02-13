@@ -55,7 +55,7 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Ressurser"/>
             </ListItem>
-            <FeatureToggle feature="fint-kunde-portal.access-packages">
+            <FeatureToggle feature=access-packages">
                 <ListItem button component={Link} to="/access_package">
                     <ListItemIcon>
                         <KeyIcon/>

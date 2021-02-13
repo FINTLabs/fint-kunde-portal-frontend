@@ -23,7 +23,7 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
     const [value, setValue] = useState(0);
     const classes = useStyles();
     const theme = useTheme();
-    const featureEnabled = useFeatureEnabled("fint-kunde-portal.access-packages");
+    const featureEnabled = useFeatureEnabled("access-packages");
 
     const handleChange = (event, value) => {
         setValue(value);
@@ -73,7 +73,7 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                         notify={notify}
                     />
                 </TabContainer>
-                <FeatureToggle feature="fint-kunde-portal.access-packages">
+                <FeatureToggle feature="access-packages">
                 <TabContainer dir={theme.direction}>
                     <ClientTabAccess
                         client={client}
