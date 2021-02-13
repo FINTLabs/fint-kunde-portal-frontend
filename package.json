@@ -28,7 +28,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "xlsx": "^0.14.3"
+    "xlsx": "^0.16.9"
   },
   "scripts": {
     "start": "react-scripts start",
