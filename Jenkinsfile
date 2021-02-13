@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "docker build -t ${GIT_COMMIT} ."
+                withDockerRegistry([credentialsId: 'fintlabsacr.azurecr.io', url: 'https://fintlabsacr.azurecr.io']) {
+                    sh "docker build -t ${GIT_COMMIT} ."
+                }
             }
         }
         stage('Publish') {
