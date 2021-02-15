@@ -161,6 +161,7 @@ class ContactAddExisting extends React.Component {
           color="secondary"
           className={classes.addButton}
           onClick={this.openAddDialog}
+          id={"addContactFab"}
         >
           <Add />
         </Fab>
@@ -181,13 +182,14 @@ class ContactAddExisting extends React.Component {
               inputProps={{
                 "aria-label": "Description"
               }}
+              id={"addContactSearchField"}
               onChange={this.onChangeSearch}
               onKeyUp={() => this.onSearch(this.state.searchString)}
             />
           </DialogTitle>
           <DialogContent>
             <div className={classes.contactList}>
-              <List>
+              <List id={"addContactSearchResult"}>
                 {this.state.filteredContacts.map(contact => (
                   <ListItem className={classes.listItem} key={contact.dn}>
                     <ListItemAvatar>
@@ -203,6 +205,7 @@ class ContactAddExisting extends React.Component {
                       <IconButton
                         color="secondary"
                         aria-label="Add"
+                        id={"addContactButton"}
                         onClick={() => this.askToAddContact(contact)}
                       >
                         <AddIconCircle />

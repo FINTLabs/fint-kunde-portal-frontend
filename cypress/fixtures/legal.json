@@ -1,0 +1,11 @@
+{
+  "dn": "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+  "nin": "0fd519f744fa37a085d6ba8d31896d97",
+  "firstName": "Test Bruker",
+  "lastName": "En",
+  "mail": "•••••",
+  "mobile": "•••••",
+  "technical": [],
+  "legal": [],
+  "supportId": null
+}

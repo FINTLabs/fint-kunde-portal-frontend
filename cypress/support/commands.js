@@ -40,6 +40,14 @@ Cypress.Commands.add('apiIntercept', () => {
         method: 'GET',
         url: 'https://kunde.felleskomponent.no/api/organisations/fintlabs_no/asset/primary',
     }, {statusCode: 200, fixture: 'assets-primary.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/legal',
+    }, {statusCode: 200, fixture: 'legal.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/contacts',
+    }, {statusCode: 200, fixture: 'contacts.json'});
 });
 
 Cypress.Commands.add('goToHome', () => {

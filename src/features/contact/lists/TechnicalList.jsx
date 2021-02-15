@@ -149,7 +149,7 @@ class TechnicalList extends React.Component {
             Teknisk kontakter
           </Typography>
           <Divider />
-          <List>
+          <List id={"technicalContactsList"}>
             {technicalContacts.map(contact => (
               <ListItem className={classes.listItem} key={contact.dn}>
                 <ListItemAvatar>

@@ -1,0 +1,46 @@
+[
+  {
+    "dn": "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+    "nin": "0fd519f744fa37a085d6ba8d31896d97",
+    "firstName": "Test Bruker",
+    "lastName": "En",
+    "mail": "•••••",
+    "mobile": "•••••",
+    "technical": [],
+    "legal": [],
+    "supportId": null
+  },
+  {
+    "dn": "cn=65173510a7a8952000b289eac535edeb,ou=contacts,o=test",
+    "nin": "65173510a7a8953c33b289eac535edeb",
+    "firstName": "Test Bruker",
+    "lastName": "To",
+    "mail": "•••••",
+    "mobile": "•••••",
+    "technical": [],
+    "legal": [],
+    "supportId": null
+  },
+  {
+    "dn": "cn=f9f62565640adc2000874275d0e008e8,ou=contacts,o=test",
+    "nin": "f9f62565640adc65f3874275d0e008e8",
+    "firstName": "Test Bruker",
+    "lastName": "Tre",
+    "mail": "•••••",
+    "mobile": "•••••",
+    "technical": [],
+    "legal": [],
+    "supportId": null
+  },
+  {
+    "dn": "cn=fa102dcab142d41e200094492e9844e4,ou=contacts,o=test",
+    "nin": "fa102dcab142d41e291594492e9844e4",
+    "firstName": "Test Bruker",
+    "lastName": "Fire",
+    "mail": "•••••",
+    "mobile": "•••••",
+    "technical": [],
+    "legal": [],
+    "supportId": null
+  }
+]

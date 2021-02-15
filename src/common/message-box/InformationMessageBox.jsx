@@ -47,12 +47,13 @@ class WarningMessageBox extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div >
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+          id={"addContactInformationBox"}
         >
           <DialogTitle id="alert-dialog-title">{"Komponent"}</DialogTitle>
           <DialogContent className={classes.content}>
@@ -70,6 +71,7 @@ class WarningMessageBox extends React.Component {
               variant="contained"
               color="secondary"
               autoFocus
+              id={"confirmAddContactButton"}
             >
               Ja
             </Button>

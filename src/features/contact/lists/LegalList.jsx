@@ -76,7 +76,7 @@ class LegalList extends React.Component {
           notify={this.props.notify}
         />
         <div className={classes.legalContactList}>
-          <FeatureHelperText>
+          <FeatureHelperText >
             <p>Kontakter er personer som har tilgang til kundeportalen.</p>
             <p>En juridisk kontakt er den som har det merkantile ansvaret.</p>
             <p>
@@ -92,14 +92,14 @@ class LegalList extends React.Component {
             Juridisk kontakt
           </Typography>
           <Divider />
-          <List>
+          <List id={"legalContactList"}>
             <ListItem className={classes.listItem} key={legalContact.dn}>
               <ListItemAvatar>
                 <Avatar className={classes.itemAvatar}>
                   <ContactIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText
+              <ListItemText id={"legalContactNameField"}
                 primary={legalContact.firstName}
                 secondary={legalContact.lastName}
               />
