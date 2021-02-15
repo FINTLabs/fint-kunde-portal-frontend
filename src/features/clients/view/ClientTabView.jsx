@@ -51,8 +51,8 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                 >
                     <Tab label="Generelt"/>
                     <Tab label="Komponenter"/>
-                    {featureEnabled && <Tab label="Tilgangspakke"/>}
                     <Tab label="Autentisering"/>
+                    {featureEnabled && <Tab label="Tilgangspakke"/>}
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -73,6 +73,12 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                         notify={notify}
                     />
                 </TabContainer>
+                <TabContainer dir={theme.direction}>
+                    <ClientTabAuthenticationInformation
+                        client={client}
+                        notify={notify}
+                    />
+                </TabContainer>
                 <FeatureToggle feature="access-packages">
                 <TabContainer dir={theme.direction}>
                     <ClientTabAccess
@@ -81,12 +87,6 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                 </TabContainer>
                 </FeatureToggle>
 
-                <TabContainer dir={theme.direction}>
-                    <ClientTabAuthenticationInformation
-                        client={client}
-                        notify={notify}
-                    />
-                </TabContainer>
             </SwipeableViews>
         </div>
     );
