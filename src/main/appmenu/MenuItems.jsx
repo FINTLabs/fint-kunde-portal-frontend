@@ -14,15 +14,16 @@ import KeyIcon from "@material-ui/icons/Lock"
 import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 import {FeatureToggle} from "@fintlabs/fint-feature-toggle-react";
+import List from "@material-ui/core/List";
 
 const MenuItems = () => {
     return (
-        <>
-            <ListItem button component={Link} to="/">
+        <List id={"menuList"}>
+            <ListItem button component={Link} to="/" id={"HomeMenuButton"}>
                 <ListItemIcon>
                     <DashboardIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Dashboard"/>
+                <ListItemText primary="Dashboard"id={"HomeMenuButtonText"}/>
             </ListItem>
             <Divider/>
             <ListItem button component={Link} to="/contacts">
@@ -91,7 +92,7 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Logg ut"/>
             </ListItem>
-        </>
+        </List>
     );
 };
 
