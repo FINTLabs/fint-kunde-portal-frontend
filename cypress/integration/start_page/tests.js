@@ -53,7 +53,7 @@ describe('Testing start page', () => {
     it('Menu can close', () => {
             cy.apiIntercept();
             cy.get("#menuToolbar")
-                .find('button').click()
+                .find('button').click();
             cy.get("#HomeMenuButtonText").should('not.be.visible');
 
         }
