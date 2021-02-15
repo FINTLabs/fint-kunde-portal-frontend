@@ -114,7 +114,6 @@ const AppMenu = (props) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const theme = useTheme();
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -122,7 +121,6 @@ const AppMenu = (props) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
 
     const {me} = props;
     return (
@@ -134,7 +132,7 @@ const AppMenu = (props) => {
                     open && classes.appBarShift
                 )}
             >
-                <Toolbar disableGutters={!open}>
+                <Toolbar disableGutters={!open} id={"toolbar"}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -143,6 +141,7 @@ const AppMenu = (props) => {
                             classes.menuButton,
                             open && classes.hide
                         )}
+                            id={"menuBurger"}
                     >
                         <MenuIcon/>
                     </IconButton>
@@ -160,6 +159,7 @@ const AppMenu = (props) => {
                         color="inherit"
                         noWrap
                         className={classes.flexName}
+                            id={"userNameField"}
                     >
                         {me.firstName + " " + me.lastName + "  |"}
                     </Typography>
@@ -175,9 +175,10 @@ const AppMenu = (props) => {
                     )
                 }}
                 open={open}
+                    id={"menuToolbar"}
             >
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={handleDrawerClose} >
                         {theme.direction === "rtl" ? (
                             <ChevronRightIcon/>
                         ) : (
@@ -186,7 +187,7 @@ const AppMenu = (props) => {
                     </IconButton>
                 </div>
                 <Divider/>
-                <MenuItems/>
+                    <MenuItems/>
             </Drawer>
             <main className={classes.content}>
                 <Routes/>
