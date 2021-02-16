@@ -33,11 +33,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "cypress run",
+    "ci": "start-server-and-test start http://localhost:3000 test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "http-proxy-middleware": "^0.19.1"
+    "http-proxy-middleware": "^0.19.1",
+    "start-server-and-test": "^1.12.0"
   },
   "browserslist": {
     "production": [
