@@ -221,6 +221,7 @@ class ContactAddExisting extends React.Component {
               onClick={this.handleCancel}
               variant="contained"
               color="primary"
+              id={"closeContactAddExisting"}
             >
               Lukk
             </Button>

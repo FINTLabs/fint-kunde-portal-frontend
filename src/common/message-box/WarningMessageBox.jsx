@@ -61,7 +61,7 @@ class WarningMessageBox extends React.Component {
             <WarningIcon className={classes.warningIcon} />
             <DialogContentText
               className={classes.text}
-              id="alert-dialog-description"
+              id="warning-dialog-content"
             >
               {this.props.message}
             </DialogContentText>
@@ -72,6 +72,7 @@ class WarningMessageBox extends React.Component {
               variant="contained"
               color="primary"
               autoFocus
+              id={"confirmRemoveUser"}
             >
               Ja
             </Button>

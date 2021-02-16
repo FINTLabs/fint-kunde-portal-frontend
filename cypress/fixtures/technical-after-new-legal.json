@@ -1,0 +1,27 @@
+[
+  {
+    "dn": "cn=98765456789,ou=contacts,o=test",
+    "nin": "98765456789",
+    "firstName": "Test Nummer 2",
+    "lastName": "Testesen",
+    "mail": "test2@test.test",
+    "mobile": "99999999",
+    "technical": [
+      "ou=test_no,ou=organisations,o=test",
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "legal": [],
+    "supportId": "362705084021"
+  },
+  {
+    "dn": "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+    "nin": "0fd519f744fa37a085d6ba8d31896d97",
+    "firstName": "Test Bruker",
+    "lastName": "En",
+    "mail": "•••••",
+    "mobile": "•••••",
+    "technical": [],
+    "legal": [],
+    "supportId": null
+  }
+]

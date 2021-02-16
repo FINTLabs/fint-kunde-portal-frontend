@@ -48,9 +48,33 @@ Cypress.Commands.add('apiIntercept', () => {
         method: 'GET',
         url: 'http://localhost:3000/api/contacts',
     }, {statusCode: 200, fixture: 'contacts.json'});
+    cy.intercept({
+        method: 'DELETE',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/technical/12345654321',
+    }, {statusCode: 200});
+
 });
 
 Cypress.Commands.add('goToHome', () => {
         cy.visit('http://localhost:3000');
     }
 );
+
+Cypress.Commands.add('setLegal', () => {
+    cy.intercept({
+        method: 'DELETE',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/legal/0fd519f744fa37a085d6ba8d31896d97',
+    }, {statusCode: 200});
+    cy.intercept({
+        method: 'PUT',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/legal/12345654321',
+    }, {statusCode: 200});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/technical',
+    }, {statusCode: 200, fixture: 'technical-after-new-legal.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/organisations/test_no/contacts/legal',
+    }, {statusCode: 200, fixture: 'legal-after-new-legal.json'});
+});
