@@ -33,9 +33,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
     "test": "cypress run",
-    "ci": "start-server-and-test start http://localhost:3000 test",
-    "eject": "react-scripts eject"
+    "ci": "start-server-and-test start http://localhost:3000 test"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
