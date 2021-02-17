@@ -72,7 +72,7 @@ class WarningMessageBox extends React.Component {
               variant="contained"
               color="primary"
               autoFocus
-              id={"confirmRemoveUser"}
+              id={"confirm"}
             >
               Ja
             </Button>

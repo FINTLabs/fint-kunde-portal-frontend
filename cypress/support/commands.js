@@ -78,3 +78,13 @@ Cypress.Commands.add('setLegal', () => {
         url: 'http://localhost:3000/api/organisations/test_no/contacts/legal',
     }, {statusCode: 200, fixture: 'legal-after-new-legal.json'});
 });
+Cypress.Commands.add('removeComponentApiCall', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/contacts/organisations',
+    }, {statusCode: 200, fixture: 'organisations.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/components',
+    }, {statusCode: 200, fixture: 'components-after-remove.json'});
+});
