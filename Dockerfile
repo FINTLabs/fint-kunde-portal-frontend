@@ -4,6 +4,7 @@ COPY package.json .
 COPY . /src
 COPY cypress.json cypress ./
 COPY cypress ./cypress
+ENV CI=true
 RUN yarn install --frozen-lockfile
 RUN yarn ci && yarn build
 
