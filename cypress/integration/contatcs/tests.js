@@ -86,7 +86,7 @@ describe('Testing contacts page', () => {
         cy.get("#warning-dialog-content").contains("Test Testesen");
     });
     it('Confirming removing user should give a popup that contains confirmation', () => {
-        cy.get("#confirmRemoveUser").click();
+        cy.get("#confirm").click();
         cy.get("#notifySnackbar").contains("Test Testesen");
     });
     it('Confirming removing user should give a popup that contains confirmation', () => {
