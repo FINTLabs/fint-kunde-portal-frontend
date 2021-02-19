@@ -15,7 +15,7 @@ describe('Testing adapters page', () => {
             cy.get("#adapterList").should('be.visible');
         }
     );
-    it('Components list should be 5 lines', () => {
+    it('Adapter list should be 2 lines', () => {
             cy.get("#adapterList")
                 .find('li')
                 .should(
@@ -27,80 +27,109 @@ describe('Testing adapters page', () => {
     );
     it('Clicking edit adapter button opens dialog', () => {
         cy.get("#adapterList").find("button").first().click();
-        cy.get('#warning-dialog-content').should('be.visible');
+        cy.get('#form-dialog-title').should('be.visible');
     });
-    /*
+    it('Change shortDescription should be doable', () => {
+        cy.get("#shortDescriptionTextField").clear().type("Endre beskrivelsen")
+    });
+    it('Change the note should be doable', () => {
+        cy.get("#noteTextField").clear().type("Endre notatet")
+    });
+    it('Clicking update should update the adapter and bring you back to previous list of adapters', () => {
+        cy.get("#updateButton").click();
+    });
+    it('Adapter description is now updated', () => {
+        cy.get("#adapterList")
+            .find('li').first().contains("Endre beskrivelsen")
+    });
+    it('Clicking edit adapter', () => {
+        cy.get("#adapterList").find("button").first().click();
+    });
+    it('Switch Tab to Komponenter should give a different view', () => {
+        cy.get("#adapterTabHeaderComponents").click();
+    });
+    it('Components list should be 5 lines', () => {
+        cy.get("#componentList")
+            .find('li')
+            .should(
+                ($tr) => {
+                    expect($tr).to.have.length(5)
+                }
+            )
+    });
+    it('Clicking removing component prompts warning message with confirmation', () => {
+        cy.get("#componentList")
+            .find('li')
+            .first().find("button").click();
+        cy.get("#alert-dialog-title").should("be.visible");
+    });
     it('Confirming removing component', () => {
         cy.removeComponentApiCall();
         cy.get("#confirm").click();
     });
-    it('Alert field is visible after remove click', () => {
-        cy.get("#notifySnackbar").should("be.visible");
+
+    it('Message shown states component removed', () => {
+        cy.get("#notifySnackbar").contains("test@adapter.fintlabs.no ble lagt til Test Kodeverk");
     });
-    it('Remove Icon should change to add icon', () => {
-        cy
-            .get("#componentList")
-            .find("button")
-            .first()
-            .invoke('attr', 'aria-label')
-            .should('contain', 'Add');
+    it('Switch Tab to Autentisering should give a different view', () => {
+        cy.apiIntercept();
+        cy.get("#adapterTabHeaderAuthenticate").click();
     });
-    it('Clicking settings should give a pop up with component settings', () => {
-        cy.get("#componentList").find("button").first().next().click();
-        cy.get("#form-dialog-title").should('be.visible');
+    it('Switch Tab to Autentisering should give a different view', () => {
+        cy.apiIntercept();
+        cy.get("#adapterTabHeaderAuthenticate").click();
     });
-    it('Title should include component name', () => {
-        cy.get("#form-dialog-title").contains("Test Kodeverk");
+    it('Check that username is present', () => {
+        cy.get("#name").invoke('val').should("contain", "test@adapter.fintlabs.no");
     });
-    it('Name should be visible and contain correct value', () => {
-        cy.get("#componentNameCell").should("be.visible");
-        cy.get("#componentNameCell").contains("Test kodeverk");
+    it('Check that password is not present', () => {
+        cy.get("#adornment-password").invoke('val').should("contain", "**********");
     });
-    it('Description should be visible and contain correct value', () => {
-        cy.get("#componentDescriptionCell").should("be.visible");
-        cy.get("#componentDescriptionCell").contains("Test Kodeverk");
+    it('Check that client ID is present', () => {
+        cy.get("#id").invoke('val').should("contain", "abc123");
     });
-    it('Base Path should contain correct value', () => {
-        cy.get("#componentBasePathCell").should("be.visible");
-        cy.get("#componentBasePathCell").contains("/test/kodeverk");
+    it('Check that client secret is not present', () => {
+        cy.get("#client-secret").invoke('val').then(value => expect(value).to.eql(" "));
     });
-    it('Open Data should have correct check value', () => {
-        cy.get("#componentOpenDataCheckbox").should("not.be.checked");
+    it('Check that resource is present', () => {
+        cy.get("#asset-id").invoke('val').should("contain", "test.no");
     });
-    it('Common should have correct check value', () => {
-        cy.get("#componentCommonCheckbox").should("not.be.checked");
+    it('Check that copying name value gets copied and is corrrect', () => {
+        cy.window().then(win => {
+            cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
+            cy.get("#nameFormControl").find("button").first().click();
+        });
+
+
+        cy.get('@copyToClipboardPrompt').should('be.called');
+        cy.get('@copyToClipboardPrompt').should(prompt => {
+            expect(prompt.args[0][1]).to.equal("test@adapter.fintlabs.no");
+        });
     });
-    it('Production should have correct check value', () => {
-        cy.get("#componentProductionCheckbox").should("not.be.checked");
+    it('Check that copying all gets copied and is corrrect', () => {
+        cy.window().then(win => {
+            cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
+            cy.get("#copyAllAuthInformation").click();
+        });
+
+
+        cy.get('@copyToClipboardPrompt').should('be.called');
+        cy.get('@copyToClipboardPrompt').should(prompt => {
+            expect(prompt.args[0][1]).to.equal("{\n" +
+                "  \"username\": \"test@adapter.fintlabs.no\",\n" +
+                "  \"password\": \"**********\",\n" +
+                "  \"clientId\": \"abc123\",\n" +
+                "  \"openIdSecret\": \" \",\n" +
+                "  \"scope\": \"fint-client\",\n" +
+                "  \"idpUri\": \"https://idp.felleskomponent.no/nidp/oauth/nam/token\",\n" +
+                "  \"assetIds\": [\n" +
+                "    \"test.no\"\n" +
+                "  ]\n" +
+                "}");
+        });
     });
-    it('In Beta should have correct check value', () => {
-        cy.get("#componentInBetaCheckbox").should("be.checked");
+    it('Closing the the pop up by clicking the "Lukk"-button brings you back', () => {
+        cy.get("#closeButton").click();
+        cy.get("#closeButton").should("not.exist")
     });
-    it('PlayWithFint should have correct check value', () => {
-        cy.get("#componentPWFCheckbox").should("not.be.checked");
-    });
-    it('Production should include production link', () => {
-        cy.get("#componentProductionCell").contains("https://api.felleskomponent.no/test/kodeverk");
-    });
-    it('Beta should include production link', () => {
-        cy.get("#componentBetaCell").contains("https://beta.felleskomponent.no/test/kodeverk");
-    });
-    it('PlayWithFint should include production link', () => {
-        cy.get("#componentPWFCell").contains("https://play-with-fint.felleskomponent.no/test/kodeverk");
-    });
-    it('Swagger Production link should include production link', () => {
-        cy.get("#componentProductionSwaggerCell").contains("https://api.felleskomponent.no/test/kodeverk/swagger-ui.html");
-    });
-    it('Swagger Beta link should include production link', () => {
-        cy.get("#componentBetaSwaggerCell").contains("https://beta.felleskomponent.no/test/kodeverk/swagger-ui.html");
-    });
-    it('Swagger PWF link should include production link', () => {
-        cy.get("#componentPWFSwaggerCell").contains("https://play-with-fint.felleskomponent.no/test/kodeverk/swagger-ui.html");
-    });
-    it('Ok button should bring us back and remove the pop up', () => {
-        cy.get("#componentOKButton").should("be.visible");
-        cy.get("#componentOKButton").click();
-        cy.get("#form-dialog-title").should("not.exist");
-    });
-    */
 });
