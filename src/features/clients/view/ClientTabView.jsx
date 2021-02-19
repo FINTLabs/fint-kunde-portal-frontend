@@ -50,8 +50,8 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                     variant="fullWidth"
                 >
                     <Tab label="Generelt"/>
-                    <Tab label="Komponenter"/>
-                    <Tab label="Autentisering"/>
+                    <Tab label="Komponenter" id={"clientTabHeaderComponents"}/>
+                    <Tab label="Autentisering" id={"clientTabHeaderAuthentication"}/>
                     {featureEnabled && <Tab label="Tilgangspakke"/>}
                 </Tabs>
             </AppBar>

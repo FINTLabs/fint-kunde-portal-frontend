@@ -38,7 +38,7 @@ Cypress.Commands.add('apiIntercept', () => {
     }, {statusCode: 200, fixture: 'technical.json'});
     cy.intercept({
         method: 'GET',
-        url: 'https://kunde.felleskomponent.no/api/organisations/fintlabs_no/asset/primary',
+        url: 'http://localhost:3000/organisations/fintlabs_no/asset/primary',
     }, {statusCode: 200, fixture: 'assets-primary.json'});
     cy.intercept({
         method: 'GET',
@@ -52,7 +52,10 @@ Cypress.Commands.add('apiIntercept', () => {
         method: 'DELETE',
         url: 'http://localhost:3000/api/organisations/test_no/contacts/technical/12345654321',
     }, {statusCode: 200});
-
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/feature',
+    }, {statusCode: 200, fixture: 'feature.json'});
 });
 
 Cypress.Commands.add('goToHome', () => {
