@@ -189,7 +189,7 @@ class ClientTabComponent extends React.Component {
             message={this.state.message}
             onClose={this.onCloseLink}
           />
-          <List>
+          <List id={"componentList"}>
             {organisationComponents.map(component => (
               <ListItem className={classes.listItem} key={component.dn}>
                 <ListItemAvatar>

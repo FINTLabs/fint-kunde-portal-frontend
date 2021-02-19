@@ -12,6 +12,7 @@ function ClientTabGeneral(props) {
                 fullWidth
                 onChange={props.updateClientState}
                 value={props.client.shortDescription}
+                id={"shortDescriptionTextField"}
             />
             <TextField
                 name="note"
@@ -21,6 +22,7 @@ function ClientTabGeneral(props) {
                 onChange={props.updateClientState}
                 value={props.client.note}
                 fullWidth
+                id={"noteTextField"}
             />
         </div>
     );

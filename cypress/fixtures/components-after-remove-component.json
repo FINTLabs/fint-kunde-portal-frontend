@@ -4,7 +4,6 @@
     "name": "Test kodeverk",
     "description": "Test Kodeverk",
     "organisations": [
-      "ou=test_no,ou=organisations,o=test",
       "ou=test_nr_to_no,ou=organisations,o=test"
     ],
     "clients": [
