@@ -12,7 +12,6 @@
       "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
     ],
     "adapters": [
-      "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
       "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
     ],
     "basePath": "/test/kodeverk",

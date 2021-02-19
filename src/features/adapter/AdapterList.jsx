@@ -140,7 +140,7 @@ class AdapterList extends Component {
               Adapter
             </Typography>
             <Divider />
-            <List>
+            <List id={"adapterList"}>
               {adapters.map(adapter => (
                 <ListItem className={classes.listItem} key={adapter.dn}>
                   <ListItemAvatar>

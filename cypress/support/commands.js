@@ -86,5 +86,5 @@ Cypress.Commands.add('removeComponentApiCall', () => {
     cy.intercept({
         method: 'GET',
         url: 'http://localhost:3000/api/components',
-    }, {statusCode: 200, fixture: 'components-after-remove.json'});
+    }, {statusCode: 200, fixture: 'components-after-remove-component.json'});
 });

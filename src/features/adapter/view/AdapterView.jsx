@@ -102,6 +102,7 @@ class AdapterView extends React.Component {
                 onClick={this.handleCancel}
                 variant="contained"
                 color="secondary"
+                id={"closeButton"}
               >
                 {this.state.showUpdateButton ? "Avbryt" : "Lukk"}
               </Button>
@@ -110,6 +111,7 @@ class AdapterView extends React.Component {
                   onClick={this.handleUpdate}
                   variant="contained"
                   color="secondary"
+                  id={"updateButton"}
                 >
                   Oppdater
                 </Button>

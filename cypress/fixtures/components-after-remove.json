@@ -1,6 +1,6 @@
 [
   {
-    "dn": "ou=kodeverk,ou=components,o=fint",
+    "dn": "ou=kodeverk,ou=components,o=test",
     "name": "Test kodeverk",
     "description": "Test Kodeverk",
     "organisations": [

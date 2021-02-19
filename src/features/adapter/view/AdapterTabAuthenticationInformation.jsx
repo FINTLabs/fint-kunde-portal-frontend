@@ -135,7 +135,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
           message={this.state.message}
           onClose={this.onCloseAskResetPassword}
         />
-        <FormControl className={classes.authSecret}>
+        <FormControl className={classes.authSecret} id={"nameFormControl"}>
           <InputLabel htmlFor="name">Brukernavn</InputLabel>
 
           <Input
@@ -162,7 +162,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
         <FormControl className={classes.authSecret}>
           <InputLabel htmlFor="adornment-password">Passord</InputLabel>
           <Input
-            disabled
+              disabled
             margin="dense"
             id="adornment-password"
             type={
@@ -223,7 +223,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
             Klient Hemmelighet
           </InputLabel>
           <Input
-            id="adornment-password"
+            id="client-secret"
             disabled
             margin="dense"
             value={this.state.allAuthInfo.openIdSecret}
@@ -299,7 +299,7 @@ class AdapterTabAuthenticationInformation extends React.Component {
           text={JSON.stringify(this.state.allAuthInfo, null, 2)}
           onCopy={() => this.props.notify("Kopiert")}
         >
-          <Button variant="contained" className={classes.copyAllAuthButtonIcon}>
+          <Button variant="contained" className={classes.copyAllAuthButtonIcon} id={"copyAllAuthInformation"}>
             <ContentCopy />
             Kopier autentiseringsinformasjon
           </Button>
