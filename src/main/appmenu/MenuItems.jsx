@@ -79,12 +79,14 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Relasjonstest"/>
             </ListItem>
-            <ListItem button component={Link} to="/logs">
-                <ListItemIcon>
-                    <LogIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Hendelseslogg"/>
-            </ListItem>
+            <FeatureToggle feature="audit-log">
+                <ListItem button component={Link} to="/logs">
+                    <ListItemIcon>
+                        <LogIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Hendelseslogg"/>
+                </ListItem>
+            </FeatureToggle>
             <Divider/>
             <ListItem button component={Link} to="/support/issue">
                 <ListItemIcon>
