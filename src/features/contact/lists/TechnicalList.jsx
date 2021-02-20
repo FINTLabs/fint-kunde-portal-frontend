@@ -149,7 +149,7 @@ class TechnicalList extends React.Component {
             Teknisk kontakter
           </Typography>
           <Divider />
-          <List>
+          <List id={"technicalContactsList"}>
             {technicalContacts.map(contact => (
               <ListItem className={classes.listItem} key={contact.dn}>
                 <ListItemAvatar>
@@ -165,18 +165,21 @@ class TechnicalList extends React.Component {
                   <IconButton
                     aria-label="Remove"
                     onClick={() => this.askToRemoveContact(contact)}
+                    id={"removeUserButton"}
                   >
                     <RemoveIcon className={classes.removeIcon} />
                   </IconButton>
                   <IconButton
                     aria-label="Legal"
                     onClick={() => this.setLegalContact(contact)}
+                    id={"changeLegalButton"}
                   >
                     <SetLegalIcon className={classes.setLegalIcon} />
                   </IconButton>
                   <IconButton
                     aria-label="Settings"
                     onClick={() => this.showContact(contact)}
+                    id={"editContactButton"}
                   >
                     <EditIcon />
                   </IconButton>

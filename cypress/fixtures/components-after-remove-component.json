@@ -1,0 +1,120 @@
+[
+  {
+    "dn": "ou=kodeverk,ou=components,o=test",
+    "name": "Test kodeverk",
+    "description": "Test Kodeverk",
+    "organisations": [
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "clients": [
+      "cn=test@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+      "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
+    ],
+    "adapters": [
+      "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
+    ],
+    "basePath": "/test/kodeverk",
+    "port": null,
+    "openData": false,
+    "common": false,
+    "inProduction": false,
+    "inBeta": true,
+    "inPlayWithFint": false
+  },
+  {
+    "dn": "ou=test_okonomi,ou=components,o=test",
+    "name": "test_okonomi",
+    "description": "Test Økonomi",
+    "organisations": [
+      "ou=test_no,ou=organisations,o=test",
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "clients": [
+      "cn=test@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+      "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
+    ],
+    "adapters": [
+      "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+      "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
+    ],
+    "basePath": "/test/okonomi",
+    "port": 8290,
+    "openData": false,
+    "common": false,
+    "inProduction": false,
+    "inBeta": false,
+    "inPlayWithFint": false
+  },
+  {
+    "dn": "ou=test_utdanningsprogram,ou=components,o=test",
+    "name": "test_utdanningsprogram",
+    "description": "Test Utdanningsprogram",
+    "organisations": [
+      "ou=test_no,ou=organisations,o=test",
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "clients": [
+      "cn=test@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+      "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
+    ],
+    "adapters": [
+      "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+      "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
+    ],
+    "basePath": "/test/utdanningsprogram",
+    "port": 8256,
+    "openData": false,
+    "common": false,
+    "inProduction": false,
+    "inBeta": false,
+    "inPlayWithFint": true
+  },
+  {
+    "dn": "ou=test_fullmakt,ou=components,o=test",
+    "name": "test_fullmakt",
+    "description": "test Fullmakt",
+    "organisations": [
+      "ou=test_no,ou=organisations,o=test",
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "clients": [
+      "cn=test@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+      "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
+    ],
+    "adapters": [
+      "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+      "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
+    ],
+    "basePath": "/test/fullmakt",
+    "port": 8270,
+    "openData": false,
+    "common": false,
+    "inProduction": true,
+    "inBeta": true,
+    "inPlayWithFint": true
+  },
+  {
+    "dn": "ou=test_organisasjon,ou=components,o=test",
+    "name": "test_organisasjon",
+    "description": "Test Organisasjon",
+    "organisations": [
+      "ou=test_no,ou=organisations,o=test",
+      "ou=test_nr_to_no,ou=organisations,o=test"
+    ],
+    "clients": [
+      "cn=test@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+      "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test"
+    ],
+    "adapters": [
+      "cn=test@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
+      "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test"
+    ],
+    "basePath": "/test/organisasjon",
+    "port": 8210,
+    "openData": false,
+    "common": false,
+    "inProduction": true,
+    "inBeta": true,
+    "inPlayWithFint": true
+  }
+]

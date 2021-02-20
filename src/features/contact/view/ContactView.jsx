@@ -31,7 +31,6 @@ class ContactView extends Component {
   }
 
   handleCancel = () => {
-    //this.setState({open: false,});
     this.props.onClose();
   };
 
@@ -44,8 +43,9 @@ class ContactView extends Component {
   };
 
   updateContact = () => {
+    // Todo: This should use a dispatcher instead
     ContactApi.updateContact(this.state.contact)
-      .then(response => {
+      .then(() => {
         this.props.notify("Kontakten ble oppdatert.");
         this.props.onClose();
       })
@@ -59,6 +59,7 @@ class ContactView extends Component {
           open={this.state.open}
           onClose={this.handleCancel}
           aria-labelledby="form-dialog-title"
+          id={"contactEditDialog"}
         >
           <DialogTitle id="form-dialog-title">Kontakt</DialogTitle>
           <DialogContent>
@@ -69,6 +70,7 @@ class ContactView extends Component {
               fullWidth
               value={this.state.contact.firstName}
               onChange={this.updateContactState}
+              id={"editUserFirstNameTextfield"}
             />
             <TextField
               name="lastName"
@@ -77,6 +79,7 @@ class ContactView extends Component {
               fullWidth
               value={this.state.contact.lastName}
               onChange={this.updateContactState}
+              id={"editUserLasttNameTextfield"}
             />
             <TextField
               name="mail"
@@ -85,6 +88,7 @@ class ContactView extends Component {
               fullWidth
               value={this.state.contact.mail}
               onChange={this.updateContactState}
+              id={"editUserMailTextfield"}
             />
             <TextField
               name="mobile"
@@ -93,13 +97,14 @@ class ContactView extends Component {
               fullWidth
               value={this.state.contact.mobile}
               onChange={this.updateContactState}
+              id={"editUserMobileNumberTextfield"}
             />
           </DialogContent>
           <DialogActions>
             <Button onClick={() => this.handleCancel()} color="primary">
               Avbryt
             </Button>
-            <Button onClick={() => this.updateContact()} color="primary">
+            <Button onClick={() => this.updateContact()} color="primary" id={"confirmEditUserButton"}>
               Ok
             </Button>
           </DialogActions>

@@ -1,21 +1,16 @@
 import React from 'react';
-import {Box, Paper, TableBody} from "@material-ui/core";
+import {Box, TableBody} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import {useDispatch, useSelector} from "react-redux";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
-import SelectAllEntitiesCheckboxes from "./select_all_entities_checkboxes";
-import EntityTable from "./entity_table";
-import TableHeader from "./entity_table_header";
+import SelectAllEntitiesCheckboxes from "./SelectAllEntitiesCheckboxes";
+import EntityTable from "./EntityTable";
+import TableHeader from "./EntityTableHeader";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(3),
-        marginRight: theme.spacing(20),
-    },
     accessBox: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
@@ -24,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     },
     tableRow: {
         '&:nth-of-type(even)': {
-            backgroundColor: "#fef3ef",
+            backgroundColor: theme.palette.grey["100"],
         },
     },
     icon: {
@@ -60,7 +55,7 @@ const EntitySelection = (props) => {
     function updateAccesses(event, path) {
         let newAccessPackages = [...accessPackages];
         let newAccessPackage = {...selectedAccessPackage};
-        const accessPackageIndex= newAccessPackages.indexOf(newAccessPackages.filter(ap=> ap.dn === newAccessPackage.dn)[0]);
+        const accessPackageIndex = newAccessPackages.indexOf(newAccessPackages.filter(ap => ap.dn === newAccessPackage.dn)[0]);
 
         switch (event.target.name) {
             case "collection":
@@ -110,15 +105,18 @@ const EntitySelection = (props) => {
     }
 
     return (
-        <div className={classes.root}>
+        <Box width={1} mt={2} ml={3} mr={20}>
 
-            <Box className={classes.accessBox} component={Paper}>
+            <Box className={classes.accessBox}>
                 <Typography variant="h4" className={classes.header}>Tilganger</Typography>
                 <Table className={classes.table} size="small" aria-label="simple table">
                     <TableHead>
-                        <TableHeader classes={classes} selectedAccessPackage={selectedAccessPackage}/>
+                        <TableHeader classes={classes}
+                                     selectedAccessPackage={selectedAccessPackage}/>
                     </TableHead>
                     <TableBody>
+                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}
+                                                     selectedAccessPackage={selectedAccessPackage}/>
                         {componentConfiguration.map(component => {
                             if (selectedAccessPackage.components.includes(component.dn)) {
                                 return component.classes.map(entity => {
@@ -138,12 +136,10 @@ const EntitySelection = (props) => {
                             }
                         })
                         }
-                        <SelectAllEntitiesCheckboxes classes={classes} checkAll={checkAll}
-                                                     selectedAccessPackage={selectedAccessPackage}/>
                     </TableBody>
                 </Table>
             </Box>
-        </div>
+        </Box>
     );
 };
 

@@ -46,6 +46,7 @@ class AutoHideNotification extends React.Component {
         }}
         message={this.props.message}
         autoHideDuration={5000}
+        id={"notifySnackbar"}
       />
     );
   }

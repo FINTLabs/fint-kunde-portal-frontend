@@ -1,0 +1,44 @@
+[
+  {
+    "dn": "ou=test_no,ou=organisations,o=test",
+    "name": "test_no",
+    "orgNumber": "999999999",
+    "displayName": "Test",
+    "components": [
+      "ou=test_fullmakt,ou=components,o=test",
+      "ou=test_kodeverk,ou=components,o=test",
+      "ou=test_organisasjon,ou=components,o=test",
+      "ou=test_okonomi,ou=components,o=test",
+      "ou=test_utdanningsprogram,ou=components,o=test"
+    ],
+    "legalContact": "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+    "techicalContacts": [
+      "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+      "cn=65173510a7a8952000b289eac535edeb,ou=contacts,o=test",
+      "cn=f9f62565640adc2000874275d0e008e8,ou=contacts,o=test",
+      "cn=fa102dcab142d41e200094492e9844e4,ou=contacts,o=test"
+    ],
+    "primaryAssetId": "test.no"
+  },
+  {
+    "dn": "ou=test_nr_to_no,ou=organisations,o=test",
+    "name": "test_nr_to_no",
+    "orgNumber": "888888888",
+    "displayName": "Test Nummer 2",
+    "components": [
+      "ou=test_fullmakt,ou=components,o=test",
+      "ou=test_kodeverk,ou=components,o=test",
+      "ou=test_organisasjon,ou=components,o=test",
+      "ou=test_okonomi,ou=components,o=test",
+      "ou=test_utdanningsprogram,ou=components,o=test"
+    ],
+    "legalContact": "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+    "techicalContacts": [
+      "cn=0fd519f744fa200085d6ba8d31896d97,ou=contacts,o=test",
+      "cn=65173510a7a8952000b289eac535edeb,ou=contacts,o=test",
+      "cn=f9f62565640adc2000874275d0e008e8,ou=contacts,o=test",
+      "cn=fa102dcab142d41e200094492e9844e4,ou=contacts,o=test"
+    ],
+    "primaryAssetId": "test.no"
+  }
+]

@@ -1,105 +1,102 @@
-import React from "react";
+import React, {useState} from "react";
 import SwipeableViews from "react-swipeable-views";
 import AppBar from "@material-ui/core/AppBar";
-import { Tab, Tabs } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+import {makeStyles, Tab, Tabs, useTheme} from "@material-ui/core";
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import ClientTabComponent from "./ClientTabComponent";
 import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
 import ClientTabAccess from "./ClientTabAccess";
+import {createStyles} from "@material-ui/core/styles";
+import {FeatureToggle, useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
 
-const styles = theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: "100%"
-  }
-});
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        root: {
+            backgroundColor: theme.palette.background.paper,
+            width: "100%"
+        }
+    }));
 
-class ClientTabView extends React.Component {
-  handleChange = (event, value) => {
-    this.setState({ value });
+const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) => {
+    const [value, setValue] = useState(0);
+    const classes = useStyles();
+    const theme = useTheme();
+    const featureEnabled = useFeatureEnabled("access-packages");
 
-    if (value === 0) {
-      this.props.showUpdateButton(true);
-    } else {
-      this.props.showUpdateButton(false);
-    }
-  };
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
+    const handleChange = (event, value) => {
+        setValue(value);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0
+        if (value === 0) {
+            showUpdateButton(true);
+        } else {
+            showUpdateButton(false);
+        }
     };
-  }
+    const handleChangeIndex = (index) => {
+        setValue(index);
+    };
 
-  render() {
-    const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={this.state.value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-          >
-            <Tab label="Generelt" />
-            <Tab label="Komponenter" />
-            <Tab label="Tilgangspakke" />
-            <Tab label="Autentisering" />
-          </Tabs>
-        </AppBar>
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={this.state.value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-          <TabContainer dir={theme.direction}>
-            <ClientTabGeneral
-              client={this.props.client}
-              updateClientState={this.props.updateClientState}
-            />
-          </TabContainer>
+        <div className={classes.root}>
+            <AppBar position="static" color="inherit">
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                >
+                    <Tab label="Generelt"/>
+                    <Tab label="Komponenter" id={"clientTabHeaderComponents"}/>
+                    <Tab label="Autentisering" id={"clientTabHeaderAuthentication"}/>
+                    {featureEnabled && <Tab label="Tilgangspakke"/>}
+                </Tabs>
+            </AppBar>
+            <SwipeableViews
+                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+            >
+                <TabContainer dir={theme.direction}>
+                    <ClientTabGeneral
+                        client={client}
+                        updateClientState={updateClientState}
+                    />
+                </TabContainer>
 
-          <TabContainer dir={theme.direction}>
-            <ClientTabComponent
-              client={this.props.client}
-              notify={this.props.notify}
-            />
-          </TabContainer>
-          <TabContainer dir={theme.direction}>
-            <ClientTabAccess
-            client={this.props.client}
-            />
-          </TabContainer>
+                <TabContainer dir={theme.direction}>
+                    <ClientTabComponent
+                        client={client}
+                        notify={notify}
+                    />
+                </TabContainer>
+                <TabContainer dir={theme.direction}>
+                    <ClientTabAuthenticationInformation
+                        client={client}
+                        notify={notify}
+                    />
+                </TabContainer>
+                <FeatureToggle feature="access-packages">
+                <TabContainer dir={theme.direction}>
+                    <ClientTabAccess
+                        client={client}
+                    />
+                </TabContainer>
+                </FeatureToggle>
 
-          <TabContainer dir={theme.direction}>
-            <ClientTabAuthenticationInformation
-              client={this.props.client}
-              notify={this.props.notify}
-            />
-          </TabContainer>
-        </SwipeableViews>
-      </div>
+            </SwipeableViews>
+        </div>
     );
-  }
 }
 
 ClientTabView.propTypes = {
-  client: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-  notify: PropTypes.func.isRequired,
-  updateClientState: PropTypes.func.isRequired,
-  showUpdateButton: PropTypes.func.isRequired
+    client: PropTypes.object,
+    notify: PropTypes.func.isRequired,
+    updateClientState: PropTypes.func.isRequired,
+    showUpdateButton: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(ClientTabView);
+export default ClientTabView;

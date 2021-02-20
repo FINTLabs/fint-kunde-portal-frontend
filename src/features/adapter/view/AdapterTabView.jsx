@@ -51,8 +51,8 @@ class AdapterTabView extends React.Component {
             variant="fullWidth"
           >
             <Tab label="Generelt" />
-            <Tab label="Komponenter" />
-            <Tab label="Autentisering" />
+            <Tab label="Komponenter" id={"adapterTabHeaderComponents"}/>
+            <Tab label="Autentisering" id={"adapterTabHeaderAuthenticate"}/>
           </Tabs>
         </AppBar>
         <SwipeableViews

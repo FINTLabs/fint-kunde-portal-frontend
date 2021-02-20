@@ -141,7 +141,7 @@ class ClientList extends Component {
                             Klienter
                         </Typography>
                         <Divider/>
-                        <List>
+                        <List id={"clientList"}>
                             {clients.map(client => (
                                 <ListItem className={classes.listItem} key={client.dn}>
                                     <ListItemAvatar>

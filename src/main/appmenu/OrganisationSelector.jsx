@@ -42,7 +42,7 @@ class OrganisationSelector extends Component {
 
     if (this.props.context.organisations.length > 0) {
       return (
-        <div className={classes.root}>
+        <div className={classes.root} id={"organisationSelector"}>
           <Button
             aria-owns={open ? "menu-appbar" : null}
             aria-haspopup="true"
@@ -72,6 +72,7 @@ class OrganisationSelector extends Component {
               <MenuItem
                 key={organisation.dn}
                 onClick={() => this.handleClose(organisation)}
+                id={organisation.orgNumber}
               >
                 {organisation.displayName}
               </MenuItem>

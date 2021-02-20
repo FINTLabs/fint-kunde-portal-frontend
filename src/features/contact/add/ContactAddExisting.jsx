@@ -24,7 +24,6 @@ import AddIconCircle from "@material-ui/icons/AddCircle";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";
 import PropTypes from "prop-types";
-import ContactNew from "./ContactNew";
 import { withContext } from "../../../data/context/withContext";
 
 const styles = theme => ({
@@ -76,7 +75,6 @@ class ContactAddExisting extends React.Component {
     this.setState({
       filteredContacts: contacts.filter(
         c =>
-          //c.firstName.toLowerCase().includes(searchString.toLowerCase())
           c.nin === searchString ||
           c.lastName.toLowerCase().includes(searchString.toLowerCase())
       )
@@ -139,22 +137,6 @@ class ContactAddExisting extends React.Component {
     });
   };
 
-  onCloseCreateContact = contact => {
-    this.props.fetchContacts().then(() => {
-      this.onSearch(contact.nin);
-    });
-    /*
-    this.setState({
-      filteredContacts: [contact],
-    });
-    */
-    /*
-    this.setState({
-      searchString: `${contact.firstName}`,
-    });
-    */
-  };
-
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -179,6 +161,7 @@ class ContactAddExisting extends React.Component {
           color="secondary"
           className={classes.addButton}
           onClick={this.openAddDialog}
+          id={"addContactFab"}
         >
           <Add />
         </Fab>
@@ -199,17 +182,14 @@ class ContactAddExisting extends React.Component {
               inputProps={{
                 "aria-label": "Description"
               }}
+              id={"addContactSearchField"}
               onChange={this.onChangeSearch}
               onKeyUp={() => this.onSearch(this.state.searchString)}
-            />
-            <ContactNew
-              notify={this.props.notify}
-              onClose={this.onCloseCreateContact}
             />
           </DialogTitle>
           <DialogContent>
             <div className={classes.contactList}>
-              <List>
+              <List id={"addContactSearchResult"}>
                 {this.state.filteredContacts.map(contact => (
                   <ListItem className={classes.listItem} key={contact.dn}>
                     <ListItemAvatar>
@@ -225,6 +205,7 @@ class ContactAddExisting extends React.Component {
                       <IconButton
                         color="secondary"
                         aria-label="Add"
+                        id={"addContactButton"}
                         onClick={() => this.askToAddContact(contact)}
                       >
                         <AddIconCircle />
@@ -240,6 +221,7 @@ class ContactAddExisting extends React.Component {
               onClick={this.handleCancel}
               variant="contained"
               color="primary"
+              id={"closeContactAddExisting"}
             >
               Lukk
             </Button>
