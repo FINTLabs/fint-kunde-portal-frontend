@@ -85,7 +85,7 @@ const MenuItems = () => {
                 <ListItemText primary="Opprett support sak"/>
             </ListItem>
             <Divider/>
-            <ListItem button component={Button}
+            <ListItem button component={Link}
                       href="https://idp.felleskomponent.no/nidp/app/logout">
                 <ListItemIcon>
                     <LogoutIcon/>
