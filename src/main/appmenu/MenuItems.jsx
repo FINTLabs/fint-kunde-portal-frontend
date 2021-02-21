@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ClientIcon from "@material-ui/icons/ImportantDevices";
 import ApiIcon from "@material-ui/icons/WebAsset";
@@ -15,6 +15,8 @@ import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
 import {FeatureToggle} from "@fintlabs/fint-feature-toggle-react";
 import List from "@material-ui/core/List";
+import LogIcon from "@material-ui/icons/Receipt";
+
 
 const MenuItems = () => {
     return (
@@ -23,7 +25,7 @@ const MenuItems = () => {
                 <ListItemIcon>
                     <DashboardIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Dashboard"id={"HomeMenuButtonText"}/>
+                <ListItemText primary="Dashboard" id={"HomeMenuButtonText"}/>
             </ListItem>
             <Divider/>
             <ListItem button component={Link} to="/contacts">
@@ -77,6 +79,14 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Relasjonstest"/>
             </ListItem>
+            <FeatureToggle feature="audit-log">
+                <ListItem button component={Link} to="/logs">
+                    <ListItemIcon>
+                        <LogIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Hendelseslogg"/>
+                </ListItem>
+            </FeatureToggle>
             <Divider/>
             <ListItem button component={Link} to="/support/issue">
                 <ListItemIcon>

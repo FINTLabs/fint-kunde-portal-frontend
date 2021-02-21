@@ -14,12 +14,15 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    menuItem: {
+        textTransform: "capitalize",
     }
 }));
-export default function ComponentSelector(props) {
+export default function ResourceSelector(props) {
 
     const classes = useStyles();
-    const {name, value, components, disabled, required, error = false, onClear} = props;
+    const {name, value, resources, disabled, required, error = false, onClear, component} = props;
 
     const inputLabel = useRef();
     const [labelWidth, setLabelWidth] = useState(0);
@@ -36,30 +39,44 @@ export default function ComponentSelector(props) {
             className={classes.formControl}
             error={error}
         >
-            <InputLabel ref={inputLabel} htmlFor={name}>Komponent</InputLabel>
+            <InputLabel ref={inputLabel} htmlFor={name}>Ressurs</InputLabel>
             <Select
-
                 value={value}
                 onChange={props.handleChange}
+                className={classes.menuItem}
                 input={
                     <OutlinedInput
                         labelWidth={labelWidth}
                         name={name}
                         id={name}
                         endAdornment={
-                            onClear && (<IconButton onClick={onClear}>
-                                <ClearIcon fontSize='small'/>
-                            </IconButton>)
+                            <>
+                                {value.length > 0 && (
+                                    <IconButton
+                                        aria-label="clear"
+                                        onClick={onClear}
+                                    >
+                                        <ClearIcon fontSize='small'/>
+                                    </IconButton>)
+                                }
+                            </>
                         }
                     />
                 }
             >
-                {components.map(component => {
-                    return (
-                        <MenuItem key={component.dn} value={component.basePath}>
-                            {component.description}
-                        </MenuItem>
-                    );
+                {resources.map(resource => {
+                    if (resource.path === component) {
+                        return resource.classes.map(theClass => {
+                            return (
+                                <MenuItem key={theClass.path} value={theClass.name} className={classes.menuItem}
+                                >
+                                    {theClass.name}
+                                </MenuItem>
+                            );
+                        })
+
+                    }return null
+
                 })}
             </Select>
 
@@ -70,14 +87,14 @@ export default function ComponentSelector(props) {
 }
 
 
-ComponentSelector.defaultProps = {
+ResourceSelector.defaultProps = {
     disabled: false,
     required: true,
     onClear: null
 };
-ComponentSelector.propTypes = {
+ResourceSelector.propTypes = {
     classes: PropTypes.any,
-    components: PropTypes.any.isRequired,
+    resources: PropTypes.any.isRequired,
     handleChange: PropTypes.any.isRequired,
     name: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
