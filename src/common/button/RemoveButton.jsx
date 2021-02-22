@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Tooltip from "@material-ui/core/Tooltip";
 import { IconButton, withStyles } from "@material-ui/core";
-import RemoveIcon from "../../../node_modules/@material-ui/icons/RemoveCircle";
+import RemoveIcon from "../../../node_modules/@material-ui/icons/CheckBox";
 
 const styles = theme => ({
   addIcon: {
-    color: theme.palette.secondary.dark
+    color: theme.palette.secondary.main
   },
   removeIcon: {
-    color: theme.palette.primary.light
+    color: theme.palette.secondary.main
   }
 });
 class RemoveButton extends Component {
