@@ -48,7 +48,7 @@ describe('Testing adapters page', () => {
     it('Switch Tab to Komponenter should give a different view', () => {
         cy.get("#adapterTabHeaderComponents").click();
     });
-    it('Components list should be 5 lines', () => {
+    it('Adapter list should be 5 lines', () => {
         cy.get("#componentList")
             .find('li')
             .should(

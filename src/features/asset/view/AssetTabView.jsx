@@ -59,8 +59,8 @@ class AssetTabView extends React.Component {
             variant="fullWidth"
           >
             <Tab label="Generelt" />
-            <Tab label="Adapters" />
-            <Tab label="Klienter" />
+            <Tab label="Adapters" id={"assetTabHeaderAdapters"}/>
+            <Tab label="Klienter" id={"assetTabHeaderClients"}/>
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -82,6 +82,7 @@ class AssetTabView extends React.Component {
               fetchAssets={this.props.fetchAssets}
               fetchAdapters={this.props.fetchAdapters}
               adapters={this.props.adapters}
+
             />
           </TabContainer>
 

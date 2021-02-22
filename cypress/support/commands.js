@@ -103,3 +103,23 @@ Cypress.Commands.add('removeComponentApiCall', () => {
         url: 'http://localhost:3000/api/components',
     }, {statusCode: 200, fixture: 'components-after-remove-component.json'});
 });
+Cypress.Commands.add('removeAdapterFromAssetApiCall', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/adapters/test_no',
+    }, {statusCode: 200, fixture: 'adapters-after-remove-adapter.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/assets/test_no/',
+    }, {statusCode: 200, fixture: 'assets-after-remove-adapter.json'});
+});
+Cypress.Commands.add('removeClientFromAssetApiCall', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/clients/test_no',
+    }, {statusCode: 200, fixture: 'clients-after-remove-client.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/assets/test_no/',
+    }, {statusCode: 200, fixture: 'assets-after-remove-adapter.json'});
+});

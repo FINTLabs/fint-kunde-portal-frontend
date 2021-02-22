@@ -50,7 +50,7 @@ describe('Testing clients page', () => {
     it('Switch Tab to Komponenter should give a different view', () => {
         cy.get("#clientTabHeaderComponents").click();
     });
-    it('Components list should be 5 lines', () => {
+    it('Client list should be 5 lines', () => {
         cy.get("#componentList")
             .find('li')
             .should(
