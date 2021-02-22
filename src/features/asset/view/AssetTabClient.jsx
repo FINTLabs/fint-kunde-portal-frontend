@@ -182,7 +182,7 @@ class AssetTabClient extends React.Component {
             message={this.state.message}
             onClose={this.onCloseLink}
           />
-          <List>
+          <List id={"assetClientsList"}>
             {organisationClients.map(client => (
               <ListItem className={classes.listItem} key={client.dn}>
                 <ListItemAvatar>

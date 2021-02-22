@@ -122,6 +122,7 @@ class AssetView extends React.Component {
                   onClick={this.handleUpdate}
                   variant="contained"
                   color="secondary"
+                  id={"updateButton"}
                 >
                   Oppdater
                 </Button>

@@ -40,6 +40,7 @@ class AssetTabGeneral extends React.Component {
           fullWidth
           onChange={this.props.updateAssetState}
           value={this.props.asset.description}
+          id={"assetDescriptionTextField"}
         />
         <TextField
           name="name"

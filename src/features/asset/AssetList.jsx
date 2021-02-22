@@ -132,7 +132,7 @@ class AssetList extends Component {
               Ressurser
             </Typography>
             <Divider />
-            <List>
+            <List id={"assetList"}>
               {this.props.assets.map(asset => (
                 <ListItem
                   className={

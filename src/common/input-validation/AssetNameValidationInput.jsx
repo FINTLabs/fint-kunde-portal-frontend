@@ -46,6 +46,7 @@ class AssetNameValidationInput extends React.Component {
           fullWidth
           name={name}
           onChange={this.onChangeUsername}
+          id={"name"}
         />
         <FormHelperText>
           {this.state.assetNameValid

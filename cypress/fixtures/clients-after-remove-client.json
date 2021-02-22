@@ -1,0 +1,16 @@
+[
+  {
+    "dn": "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
+    "name": "test123@client.fintlabs.no",
+    "shortDescription": "Til testing nummer 2",
+    "assetId": "test.no",
+    "asset": "ou=test_no,ou=assets,ou=test_no,ou=organisations,o=test",
+    "note": "Opprettet av Test Testesen\n12.02.2021",
+    "clientId": "def987",
+    "components": [
+      "ou=test_fullmakt,ou=components,o=test",
+      "ou=test_kodeverk,ou=components,o=test",
+      "ou=test_organisasjon,ou=components,o=test"
+    ]
+  }
+]

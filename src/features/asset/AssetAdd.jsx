@@ -110,6 +110,7 @@ class AssetAdd extends React.Component {
             color="secondary"
             className={classes.addButton}
             onClick={this.openAddDialog}
+            id={"assetAddFAB"}
           >
             <Add />
           </Fab>
@@ -147,6 +148,7 @@ class AssetAdd extends React.Component {
                 required
                 fullWidth
                 onChange={this.updateAssetState}
+                id={"description"}
               />
             </DialogContent>
             <DialogActions>
@@ -162,6 +164,7 @@ class AssetAdd extends React.Component {
                 onClick={this.handleAddAsset}
                 variant="contained"
                 color="primary"
+                id={"addNewAssetButton"}
               >
                 Legg til
               </Button>

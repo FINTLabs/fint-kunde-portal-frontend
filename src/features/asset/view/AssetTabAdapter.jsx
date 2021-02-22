@@ -174,7 +174,7 @@ class AssetTabAdapter extends React.Component {
             message={this.state.message}
             onClose={this.onCloseLink}
           />
-          <List>
+          <List id={"assetAdapterList"}>
             {organisationAdapters.map(adapter => (
               <ListItem className={classes.listItem} key={adapter.dn}>
                 <ListItemAvatar>
