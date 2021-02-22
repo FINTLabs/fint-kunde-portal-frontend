@@ -1,0 +1,30 @@
+{
+  "status": "OK",
+  "message": null,
+  "healthData": [
+    {
+      "component": "administrasjon-personal consumer",
+      "status": "SENT_FROM_CONSUMER_TO_PROVIDER",
+      "timestamp": 1614001718284,
+      "time": "2021-02-22T13:48:38.284Z"
+    },
+    {
+      "component": "provider",
+      "status": "RECEIVED_IN_PROVIDER_FROM_CONSUMER",
+      "timestamp": 1614001718286,
+      "time": "2021-02-22T13:48:38.286Z"
+    },
+    {
+      "component": "adapter",
+      "status": "APPLICATION_HEALTHY",
+      "timestamp": 1614001718291,
+      "time": "2021-02-22T13:48:38.291Z"
+    },
+    {
+      "component": "administrasjon-personal consumer",
+      "status": "RECEIVED_IN_CONSUMER_FROM_PROVIDER",
+      "timestamp": 1614001718295,
+      "time": "2021-02-22T13:48:38.295Z"
+    }
+  ]
+}

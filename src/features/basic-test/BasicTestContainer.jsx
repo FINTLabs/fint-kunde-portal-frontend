@@ -264,7 +264,7 @@ class BasicTestContainer extends Component {
               {healthResult && (
                 <div>
                   <div>
-                    <Table className={classes.table}>
+                    <Table className={classes.table} >
                       <TableBody>
                         <TableRow>
                           <TableCell>
@@ -280,7 +280,7 @@ class BasicTestContainer extends Component {
                     </Table>
                   </div>
                   <div>
-                    <Table className={classes.table}>
+                    <Table className={classes.table} id={"healthTable"}>
                       <TableHead>
                         <TableRow>
                           <TableCell>Status</TableCell>
@@ -307,7 +307,7 @@ class BasicTestContainer extends Component {
           </div>
           <div>
             <h4>Cache status</h4>
-            <Table className={classes.table}>
+            <Table className={classes.table} id={"cacheTable"}>
               <TableHead>
                 <TableRow>
                   <TableCell>Status</TableCell>

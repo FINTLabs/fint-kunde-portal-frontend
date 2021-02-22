@@ -38,7 +38,7 @@ export default function ComponentSelector(props) {
         >
             <InputLabel ref={inputLabel} htmlFor={name}>Komponent</InputLabel>
             <Select
-
+                id={"componentSelector"}
                 value={value}
                 onChange={props.handleChange}
                 input={

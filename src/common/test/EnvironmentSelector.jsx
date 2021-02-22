@@ -33,6 +33,7 @@ export default function EnvironmentSelector(props) {
         >
             <InputLabel ref={inputLabel} htmlFor={name}>Miljø</InputLabel>
             <Select
+                id={"enviromentSelector"}
                 value={value}
                 onChange={props.handleChange}
                 input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}

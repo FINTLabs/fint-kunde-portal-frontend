@@ -65,6 +65,7 @@ class BasicTestRunButton extends React.Component {
             className={buttonClassname}
             onClick={this.props.onClick}
             disabled={this.props.disabled || loading}
+            id={"runBasisTestButton"}
           >
             <RunIcon />
           </Fab>

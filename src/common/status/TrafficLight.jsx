@@ -58,8 +58,8 @@ class TrafficLight extends Component {
   render() {
     const { status, classes } = this.props;
     return (
-      <div>
-        <Tooltip title={status} placement="right">
+      <div id={"basisTestTooltip"}>
+        <Tooltip title={status} placement="right" >
           {status === "RUNNING" ? (
             <CircularProgress
               className={classes.progress}

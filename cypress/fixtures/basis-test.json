@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "lastUpdated": 1614001277910,
+      "size": 18,
+      "resource": "person",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614001377966,
+      "size": 9,
+      "resource": "personalressurs",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614001677913,
+      "size": 8,
+      "resource": "arbeidsforhold",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614001077891,
+      "size": 2,
+      "resource": "fravar",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614000877914,
+      "size": 1,
+      "resource": "fastlonn",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614001478988,
+      "size": 1,
+      "resource": "variabellonn",
+      "status": "OK",
+      "message": null
+    },
+    {
+      "lastUpdated": 1614000977909,
+      "size": 1,
+      "resource": "fasttillegg",
+      "status": "OK",
+      "message": null
+    }
+  ],
+  "message": null
+}
