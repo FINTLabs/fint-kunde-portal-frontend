@@ -56,6 +56,18 @@ Cypress.Commands.add('apiIntercept', () => {
         method: 'GET',
         url: 'http://localhost:3000/api/feature',
     }, {statusCode: 200, fixture: 'feature.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/assets/test_no/primary',
+    }, {statusCode: 200, fixture: 'primary.json'});
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/api/clients/test_no',
+    }, {statusCode: 201});
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/api/adapters/test_no',
+    }, {statusCode: 201});
 });
 
 Cypress.Commands.add('goToHome', () => {

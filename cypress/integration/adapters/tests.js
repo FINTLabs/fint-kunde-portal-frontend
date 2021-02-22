@@ -85,10 +85,10 @@ describe('Testing adapters page', () => {
     it('Check that password is not present', () => {
         cy.get("#adornment-password").invoke('val').should("contain", "**********");
     });
-    it('Check that client ID is present', () => {
+    it('Check that adapter ID is present', () => {
         cy.get("#id").invoke('val').should("contain", "abc123");
     });
-    it('Check that client secret is not present', () => {
+    it('Check that adapter secret is not present', () => {
         cy.get("#client-secret").invoke('val').then(value => expect(value).to.eql(" "));
     });
     it('Check that resource is present', () => {
@@ -131,5 +131,25 @@ describe('Testing adapters page', () => {
     it('Closing the the pop up by clicking the "Lukk"-button brings you back', () => {
         cy.get("#closeButton").click();
         cy.get("#closeButton").should("not.exist")
+    });
+    it('Click add FAB gives opens a pop up', () => {
+        cy.apiIntercept();
+        cy.get("#adapterAddFAB").click();
+    });
+    it('Adding user name', () => {
+        cy.get("#userNameInput").type("testadapter");
+    });
+    it('Adding adapter short description', () => {
+        cy.get("#newAdapterShortDesc").type("Klient short description");
+    });
+    it('Adding adapter note', () => {
+        cy.get("#newAdapterNote").type("Klient notat");
+    });
+    it('Adding adapter', () => {
+        cy.apiIntercept();
+        cy.get("#addNewAdapterButton").click();
+    });
+    it('Confirm ok by snackbar', () => {
+        cy.get("#notifySnackbar").contains('Adapteret ble opprettet');
     });
 });

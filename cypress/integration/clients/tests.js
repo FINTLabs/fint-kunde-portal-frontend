@@ -90,8 +90,10 @@ describe('Testing clients page', () => {
     });
     it('Check that resource is present', () => {
         cy.get("#asset-id").invoke('val').should("contain", "test.no");
+        cy.wait(500);
     });
     it('Check that copying name value gets copied and is corrrect', () => {
+        cy.apiIntercept();
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
             cy.get("#nameFormControl").find("button").first().click();
@@ -104,6 +106,7 @@ describe('Testing clients page', () => {
         });
     });
     it('Check that copying all gets copied and is corrrect', () => {
+        cy.apiIntercept();
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
             cy.get("#copyAllAuthInformation").click();
@@ -126,5 +129,25 @@ describe('Testing clients page', () => {
     it('Closing the the pop up by clicking the "Lukk"-button brings you back', () => {
         cy.get("#closeButton").click();
         cy.get("#closeButton").should("not.exist")
+    });
+    it('Click add FAB gives opens a pop up', () => {
+        cy.apiIntercept();
+        cy.get("#clientAddFAB").click();
+    });
+    it('Adding user name', () => {
+        cy.get("#userNameInput").type("testclient");
+    });
+    it('Adding client short description', () => {
+        cy.get("#newClientShortDesc").type("Klient short description");
+    });
+    it('Adding client note', () => {
+        cy.get("#newClientNote").type("Klient notat");
+    });
+    it('Adding client', () => {
+        cy.apiIntercept();
+        cy.get("#addNewClientButton").click();
+    });
+    it('Confirm ok by snackbar', () => {
+        cy.get("#notifySnackbar").contains('Klienten ble opprettet');
     });
 });

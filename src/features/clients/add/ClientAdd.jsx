@@ -121,6 +121,7 @@ class ClientAdd extends React.Component {
             color="secondary"
             className={classes.addButton}
             onClick={this.openAddDialog}
+            id={"clientAddFAB"}
           >
             <Add />
           </Fab>
@@ -150,6 +151,7 @@ class ClientAdd extends React.Component {
                 required
                 fullWidth
                 onChange={this.updateClientState}
+                id={"newClientShortDesc"}
               />
               <TextField
                 name="note"
@@ -159,6 +161,7 @@ class ClientAdd extends React.Component {
                 multiline
                 rows="4"
                 onChange={this.updateClientState}
+                id={"newClientNote"}
               />
             </DialogContent>
             <DialogActions>
@@ -174,6 +177,7 @@ class ClientAdd extends React.Component {
                 onClick={this.handleAddClient}
                 variant="contained"
                 color="primary"
+                id={"addNewClientButton"}
               >
                 Legg til
               </Button>
