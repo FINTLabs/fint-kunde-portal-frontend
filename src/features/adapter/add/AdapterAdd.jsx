@@ -121,6 +121,7 @@ class AdapterAdd extends React.Component {
             color="secondary"
             className={classes.addButton}
             onClick={this.openAddDialog}
+            id={"adapterAddFAB"}
           >
             <Add />
           </Fab>
@@ -149,6 +150,7 @@ class AdapterAdd extends React.Component {
                 required
                 fullWidth
                 onChange={this.updateAdapterState}
+                id={"newAdapterShortDesc"}
               />
               <TextField
                 name="note"
@@ -158,6 +160,7 @@ class AdapterAdd extends React.Component {
                 multiline
                 rows="4"
                 onChange={this.updateAdapterState}
+                id={"newAdapterNote"}
               />
             </DialogContent>
             <DialogActions>
@@ -173,6 +176,7 @@ class AdapterAdd extends React.Component {
                 onClick={this.handleAddAdapter}
                 variant="contained"
                 color="primary"
+                id={"addNewAdapterButton"}
               >
                 Legg til
               </Button>

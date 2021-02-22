@@ -60,6 +60,7 @@ class UsernameValidationInput extends React.Component {
             name={name}
             onChange={this.onChangeUsername}
             className={classes.input}
+            id={"userNameInput"}
           />
           <Typography variant="caption" className={classes.realm}>
             {realm}
