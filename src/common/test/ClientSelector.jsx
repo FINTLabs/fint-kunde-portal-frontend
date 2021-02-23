@@ -39,6 +39,7 @@ export default function ClientSelector(props) {
             >
                 <InputLabel ref={inputLabel} htmlFor={name}>Klient</InputLabel>
                 <Select
+                    id={"clientSelector"}
                     value={value}
                     onChange={props.handleChange}
                     input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
