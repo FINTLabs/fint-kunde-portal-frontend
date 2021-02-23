@@ -94,7 +94,7 @@ describe('Testing adapters page', () => {
     it('Check that resource is present', () => {
         cy.get("#asset-id").invoke('val').should("contain", "test.no");
     });
-    it('Check that copying name value gets copied and is corrrect', () => {
+    /*it('Check that copying name value gets copied and is corrrect', () => {
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
             cy.get("#nameFormControl").find("button").first().click();
@@ -127,7 +127,7 @@ describe('Testing adapters page', () => {
                 "  ]\n" +
                 "}");
         });
-    });
+    });*/
     it('Closing the the pop up by clicking the "Lukk"-button brings you back', () => {
         cy.get("#closeButton").click();
         cy.get("#closeButton").should("not.exist")

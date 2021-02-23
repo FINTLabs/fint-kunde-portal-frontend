@@ -92,7 +92,7 @@ describe('Testing clients page', () => {
         cy.get("#asset-id").invoke('val').should("contain", "test.no");
         cy.wait(500);
     });
-    it('Check that copying name value gets copied and is corrrect', () => {
+    /*it('Check that copying name value gets copied and is corrrect', () => {
         cy.apiIntercept();
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns(win.prompt).as('copyToClipboardPrompt');
@@ -125,7 +125,7 @@ describe('Testing clients page', () => {
                 "  \"assetId\": \"test.no\"\n" +
                 "}");
         });
-    });
+    });*/
     it('Closing the the pop up by clicking the "Lukk"-button brings you back', () => {
         cy.get("#closeButton").click();
         cy.get("#closeButton").should("not.exist")
