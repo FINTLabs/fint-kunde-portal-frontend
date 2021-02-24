@@ -117,6 +117,7 @@ class LinkWalkerAddTest extends React.Component {
             color="secondary"
             className={classes.addButton}
             onClick={this.openAddDialog}
+            id={"linkWalkerFAB"}
           >
             <Add />
           </Fab>
@@ -153,6 +154,7 @@ class LinkWalkerAddTest extends React.Component {
                 fullWidth
                 disabled={this.state.endpoint === ""}
                 onChange={this.handleChange}
+                id={"resourceTextField"}
               />
 
               <ClientSelector
@@ -181,6 +183,7 @@ class LinkWalkerAddTest extends React.Component {
                 onClick={() => this.addTest()}
                 variant="contained"
                 color="primary"
+                id={"runTestButton"}
               >
                 Kjør test
               </Button>

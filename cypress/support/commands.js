@@ -80,6 +80,14 @@ Cypress.Commands.add('apiIntercept', () => {
         method: 'POST',
         url: 'http://localhost:3000/api/tests/health',
     }, {statusCode: 200, fixture: 'health.json'});
+    cy.intercept({
+        method: 'PUT',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 200});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 200, fixture: "emptyJsonArray.json"});
 });
 
 Cypress.Commands.add('goToHome', () => {
@@ -134,4 +142,25 @@ Cypress.Commands.add('removeClientFromAssetApiCall', () => {
         method: 'GET',
         url: 'http://localhost:3000/api/assets/test_no/',
     }, {statusCode: 200, fixture: 'assets-after-remove-adapter.json'});
+});
+Cypress.Commands.add('getTest', () => {
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 201});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 200, fixture: 'linkwalker.json'});
+});
+Cypress.Commands.add('updateTest', () => {
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 201});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/tests/links/test_no',
+    }, {statusCode: 200, fixture: 'linkwalker-updated.json'});
+
 });

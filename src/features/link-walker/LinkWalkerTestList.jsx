@@ -131,6 +131,7 @@ class LinkWalkerTestList extends Component {
           aria-label="Refresh"
           color="primary"
           onClick={() => this.refreshTestList()}
+          id={"updateButton"}
         >
           <RefreshIcon />
         </IconButton>
@@ -139,6 +140,7 @@ class LinkWalkerTestList extends Component {
           aria-label="Refresh"
           color="primary"
           onClick={() => this.clearTests()}
+          id={"removeButton"}
         >
           <ClearIcon />
         </IconButton>
@@ -161,12 +163,12 @@ class LinkWalkerTestList extends Component {
                     <TableCell>
                       <TrafficLight status={test.status} />
                     </TableCell>
-                    <TableCell>{test.time}</TableCell>
-                    <TableCell>
+                    <TableCell id={"timeCell"}>{test.time}</TableCell>
+                    <TableCell id={"resourceUrlCell"}>
                       {test.testRequest.baseUrl + test.testRequest.endpoint}
                     </TableCell>
-                    <TableCell>{test.reason}</TableCell>
-                    <TableCell numeric>{test.remaining}</TableCell>
+                    <TableCell id={"descriptionOfFaultCell"}>{test.reason}</TableCell>
+                    <TableCell numeric id={"testRemainingCell"}>{test.remaining}</TableCell>
                     <TableCell>
                       {test.status !== "RUNNING" && (
                         <Tooltip placement="top" title="Last ned rapport">
