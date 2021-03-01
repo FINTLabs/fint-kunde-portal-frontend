@@ -96,7 +96,7 @@ const MenuItems = () => {
             </ListItem>
             <Divider/>
             <ListItem button component={Link}
-                      href="https://idp.felleskomponent.no/nidp/app/logout">
+                      to="https://idp.felleskomponent.no/nidp/app/logout">
                 <ListItemIcon>
                     <LogoutIcon/>
                 </ListItemIcon>
