@@ -18,29 +18,6 @@ class ContactApi {
       return response;
     });
   }
-
-  static updateContact(contact) {
-    const request = new Request(`/api/contacts/${contact.nin}`, {
-      method: "PUT",
-      headers: new Headers({
-        "Content-Type": "application/json"
-      }),
-      credentials: "same-origin",
-      body: JSON.stringify({
-        nin: contact.nin,
-        firstName: contact.firstName,
-        lastName: contact.lastName,
-        mail: contact.mail,
-        mobile: contact.mobile
-      })
-    });
-
-    return fetch(request).then(response => {
-      return response.json();
-    }).catch(error => {
-      return error;
-    });
-  }
 }
 
 export default ContactApi;

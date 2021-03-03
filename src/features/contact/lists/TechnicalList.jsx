@@ -13,13 +13,11 @@ import {
   withStyles
 } from "@material-ui/core";
 import RemoveIcon from "@material-ui/icons/RemoveCircle";
-import EditIcon from "@material-ui/icons/Edit";
 import ContactIcon from "@material-ui/icons/Person";
 import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import blue from "@material-ui/core/colors/blue";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import ContactView from "../view/ContactView";
 import { withContext } from "../../../data/context/withContext";
 
 const styles = theme => ({
@@ -54,7 +52,6 @@ class TechnicalList extends React.Component {
     super(props);
     this.state = {
       askToRemoveContact: false,
-      showContact: false,
       contact: {},
       message: ""
     };
@@ -96,20 +93,6 @@ class TechnicalList extends React.Component {
       });
   };
 
-  showContact = contact => {
-    this.setState({
-      contact: contact,
-      showContact: true
-    });
-  };
-
-  onCloseContactView = () => {
-    this.setState({
-      showContact: false
-      //contact: null,
-    });
-  };
-
   setLegalContact = contact => {
     OrganisationApi.unsetLegalContact(
       this.props.legalContact,
@@ -137,12 +120,6 @@ class TechnicalList extends React.Component {
           show={this.state.askToRemoveContact}
           message={this.state.message}
           onClose={this.onCloseRemoveContact}
-        />
-        <ContactView
-          contact={this.state.contact}
-          onClose={this.onCloseContactView}
-          show={this.state.showContact}
-          notify={this.props.notify}
         />
         <div className={classes.technicalContactList}>
           <Typography variant="h5" className={classes.title}>
@@ -175,13 +152,6 @@ class TechnicalList extends React.Component {
                     id={"changeLegalButton"}
                   >
                     <SetLegalIcon className={classes.setLegalIcon} />
-                  </IconButton>
-                  <IconButton
-                    aria-label="Settings"
-                    onClick={() => this.showContact(contact)}
-                    id={"editContactButton"}
-                  >
-                    <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>

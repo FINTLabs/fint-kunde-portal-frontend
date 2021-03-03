@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
   Avatar,
   Divider,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -12,10 +11,8 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
 import ContactIcon from "@material-ui/icons/Person";
 import blue from "@material-ui/core/colors/blue";
-import ContactView from "../view/ContactView";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 
 const styles = theme => ({
@@ -47,34 +44,11 @@ const styles = theme => ({
 });
 
 class LegalList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showContact: false };
-  }
-
-  showContact = () => {
-    this.setState({
-      showContact: true
-    });
-  };
-
-  onCloseContactView = () => {
-    this.setState({
-      showContact: false
-      //contact: null,
-    });
-  };
 
   render() {
     const { classes, legalContact } = this.props;
     return (
       <div className={classes.root}>
-        <ContactView
-          contact={legalContact}
-          onClose={this.onCloseContactView}
-          show={this.state.showContact}
-          notify={this.props.notify}
-        />
         <div className={classes.legalContactList}>
           <FeatureHelperText >
             <p>Kontakter er personer som har tilgang til kundeportalen.</p>
@@ -104,12 +78,6 @@ class LegalList extends React.Component {
                 secondary={legalContact.lastName}
               />
               <ListItemSecondaryAction>
-                <IconButton
-                  aria-label="Settings"
-                  onClick={() => this.showContact()}
-                >
-                  <EditIcon />
-                </IconButton>
               </ListItemSecondaryAction>
             </ListItem>
           </List>
