@@ -6,7 +6,7 @@ import AddIcon from "../../../node_modules/@material-ui/icons/CheckBoxOutlineBla
 
 const styles = theme => ({
   addIcon: {
-    color: theme.palette.secondary.main
+    //color: theme.palette.secondary.main
   }
 });
 class AddButton extends Component {

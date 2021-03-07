@@ -39,14 +39,8 @@ const styles = theme => ({
   },
   itemAvatar: {
     color: "#fff",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.light
   },
-  removeIcon: {
-    color: theme.palette.primary.light
-  },
-  setLegalIcon: {
-    color: blue[700]
-  }
 });
 
 class TechnicalList extends React.Component {
@@ -167,7 +161,7 @@ class TechnicalList extends React.Component {
                     onClick={() => this.askToRemoveContact(contact)}
                     id={"removeUserButton"}
                   >
-                    <RemoveIcon className={classes.removeIcon} />
+                    <RemoveIcon />
                   </IconButton>
                   <IconButton
                     aria-label="Legal"

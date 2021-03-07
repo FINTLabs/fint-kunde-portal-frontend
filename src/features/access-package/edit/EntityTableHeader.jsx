@@ -16,15 +16,15 @@ const TableHeader = (props) => {
                 <TableCell align="right">Entitet</TableCell>
                 <Tooltip placement={"top"} title={"Bestemmer om det er mulig å for klienten å lese flere objekter i liste"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="right">Bulk<BulkIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Bulk<BulkIcon className={classes.icon}/></TableCell>
                 </Tooltip>
                 <Tooltip placement={"top"} title={"Bestemmer om det er mulig for klienten å lese et objekt enkeltvis"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="right">Single<SingleIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Single<SingleIcon className={classes.icon}/></TableCell>
                 </Tooltip>
                 <Tooltip placement={"top"} title={"Bestemmer om det er mulig for klienten å endre et objekt"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="right">Endre<ModifyIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Endre<ModifyIcon className={classes.icon}/></TableCell>
                 </Tooltip>
             </TableRow>
         );

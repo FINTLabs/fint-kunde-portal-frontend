@@ -2,12 +2,16 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { withStyles, Paper } from "@material-ui/core";
 import classNames from "classnames";
+import Box from "@material-ui/core/Box";
 
 const styles = theme => ({
   helpText: {
     marginBottom: theme.spacing(2),
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[300],
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingTop: theme.spacing(),
+    paddingBottom: theme.spacing(),
+    backgroundColor: theme.palette.grey[200],
     fontFamily: theme.typography.body1.fontFamily,
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.body1.fontWeight
@@ -48,7 +52,7 @@ class FeatureHelperText extends Component {
     });
     return (
       <div className={classHidden}>
-        <Paper className={classes.helpText}>{this.props.children}</Paper>
+        <Box className={classes.helpText} borderRadius={5} mt={4}>{this.props.children}</Box>
       </div>
     );
     /*

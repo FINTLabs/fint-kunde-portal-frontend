@@ -24,7 +24,7 @@ const styles = theme => ({
     }
   },
   fabProgress: {
-    color: green[500],
+    color: theme.palette.secondary.main,
     position: "absolute",
     top: -6,
     left: -6,

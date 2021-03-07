@@ -34,7 +34,7 @@ LoadingProgress.propTypes = {
 };
 
 LoadingProgress.defaultProps = {
-  color: "secondary",
+  color: "primary",
   size: 125
 };
 
