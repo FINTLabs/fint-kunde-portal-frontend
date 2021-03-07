@@ -26,6 +26,7 @@ import RemoveButton from "../../common/button/RemoveButton";
 import AddButton from "../../common/button/AddButton";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import Sort from "../../common/utils/Sort";
+import Box from "@material-ui/core/Box";
 
 const styles = theme => ({
     root: {
@@ -45,7 +46,7 @@ const styles = theme => ({
     },
     itemAvatar: {
         color: "#fff",
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.light
     }
 });
 

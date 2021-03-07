@@ -32,7 +32,7 @@ const styles = theme => ({
     avatar: {
         margin: 10,
         color: "#fff",
-        backgroundColor: green[500]
+        backgroundColor: theme.palette.secondary.light
     }
 });
 

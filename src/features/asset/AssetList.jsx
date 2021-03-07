@@ -35,11 +35,11 @@ const styles = theme => ({
   },
   primaryAsset: {
     borderBottom: "1px dashed lightgray",
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.grey[200]
   },
   itemAvatar: {
     color: "#fff",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.light
   }
 });
 

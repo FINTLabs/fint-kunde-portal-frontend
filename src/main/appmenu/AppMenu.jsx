@@ -14,6 +14,7 @@ import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
 import {makeStyles, useTheme} from "@material-ui/core";
+import FintLogo from "../../images/fint-by-vigo-white.svg";
 
 const drawerWidth = 240;
 
@@ -97,7 +98,8 @@ const useStyles = makeStyles((theme) =>
         logo: {
             height: "8%",
             width: "8%",
-            marginRight: theme.spacing(4)
+            marginRight: theme.spacing(4),
+            marginBottom: theme.spacing()
         },
         flex: {
             flex: 1
@@ -145,7 +147,7 @@ const AppMenu = (props) => {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <img src="/fint.svg" alt="logo" className={classes.logo}/>
+                    <img src={FintLogo} alt="logo" className={classes.logo}/>
                     <Typography
                         variant="h6"
                         color="inherit"

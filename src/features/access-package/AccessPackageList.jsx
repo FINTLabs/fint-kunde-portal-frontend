@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
     itemAvatar: {
         color: "#fff",
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.light
     },
     dialogButtons: {
         marginTop: theme.spacing(2),
