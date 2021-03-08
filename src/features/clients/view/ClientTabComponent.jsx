@@ -24,6 +24,7 @@ import { withContext } from "../../../data/context/withContext";
 import RemoveButton from "../../../common/button/RemoveButton";
 import AddButton from "../../../common/button/AddButton";
 import TestAuthApi from "../../../data/api/TestAuthApi";
+import Sort from "../../../common/utils/Sort";
 
 const styles = theme => ({
   title: {
@@ -190,7 +191,7 @@ class ClientTabComponent extends React.Component {
             onClose={this.onCloseLink}
           />
           <List id={"componentList"}>
-            {organisationComponents.map(component => (
+            {organisationComponents.sort(Sort.alphabetically).map(component => (
               <ListItem className={classes.listItem} key={component.dn}>
                 <ListItemAvatar>
                   <Avatar className={classes.itemAvatar}>
