@@ -9,8 +9,8 @@ const styles = theme => ({
 
     logo: {
         marginBottom: theme.spacing(2),
-        height: "25%",
-        width: "25%"
+        //height: "25%",
+        width: 178
     }
 });
 

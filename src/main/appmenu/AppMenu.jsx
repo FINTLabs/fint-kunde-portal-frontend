@@ -96,8 +96,8 @@ const useStyles = makeStyles((theme) =>
             }
         },
         logo: {
-            height: "8%",
-            width: "8%",
+            //height: "8%",
+            width: 86,
             marginRight: theme.spacing(4),
             marginBottom: theme.spacing()
         },
