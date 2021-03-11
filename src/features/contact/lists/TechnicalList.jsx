@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
     Avatar,
     Divider,
-    IconButton,
     List,
     ListItem,
     ListItemAvatar,
@@ -19,6 +18,7 @@ import RolesIcon from "@material-ui/icons/LockOpenRounded";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import {withContext} from "../../../data/context/withContext";
+import TooltipIconButton from "../../../common/button/TooltipIconButton";
 
 const styles = theme => ({
     root: {
@@ -135,27 +135,33 @@ class TechnicalList extends React.Component {
                                     secondary=""
                                 />
                                 <ListItemSecondaryAction>
-                                    <IconButton
-                                        aria-label="Roles"
+                                    <TooltipIconButton
+                                        ariaLabel="Roles"
                                         onClick={() => {
                                         }}
+                                        id="manageRoles"
+                                        toolTip="Administrer roller for kontakten"
                                     >
                                         <RolesIcon/>
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Legal"
+                                    </TooltipIconButton>
+
+                                    <TooltipIconButton
+                                        ariaLabel="Juridisk kontakt"
                                         onClick={() => this.setLegalContact(contact)}
-                                        id={"changeLegalButton"}
+                                        id="changeLegalButton"
+                                        toolTip="Angi som juridisk kontakt"
                                     >
                                         <SetLegalIcon/>
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Remove"
+                                    </TooltipIconButton>
+
+                                    <TooltipIconButton
+                                        ariaLabel="Fjern kontakt"
                                         onClick={() => this.askToRemoveContact(contact)}
-                                        id={"removeUserButton"}
+                                        id="removeUserButton"
+                                        toolTip="Fjern teknisk kontakt"
                                     >
                                         <RemoveIcon/>
-                                    </IconButton>
+                                    </TooltipIconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>
                         ))}
