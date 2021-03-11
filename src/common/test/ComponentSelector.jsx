@@ -8,7 +8,7 @@ import {makeStyles} from "@material-ui/core";
 import PropTypes from "prop-types";
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from "@material-ui/core/IconButton";
-
+import Sort from '../../common/utils/Sort';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -54,7 +54,7 @@ export default function ComponentSelector(props) {
                     />
                 }
             >
-                {components.map(component => {
+                {components.sort(Sort.alphabetically).map(component => {
                     return (
                         <MenuItem key={component.dn} value={component.basePath}>
                             {component.description}
