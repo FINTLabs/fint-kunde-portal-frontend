@@ -37,7 +37,7 @@ const styles = theme => ({
   },
   itemAvatar: {
     color: "#fff",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.light
   }
 });
 

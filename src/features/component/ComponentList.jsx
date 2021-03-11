@@ -45,7 +45,7 @@ const styles = theme => ({
     },
     itemAvatar: {
         color: "#fff",
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.light
     }
 });
 
@@ -266,7 +266,6 @@ ComponentList.propTypes = {
     classes: PropTypes.any.isRequired,
     components: PropTypes.array.isRequired,
     fetchComponents: PropTypes.any.isRequired,
-    //fetchOrganisation: PropTypes.any.isRequired,
     organisation: PropTypes.any.isRequired
 };
 

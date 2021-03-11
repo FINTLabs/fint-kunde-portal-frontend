@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   Avatar,
-  Divider,
-  IconButton,
+  Divider, IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -12,11 +11,10 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
 import ContactIcon from "@material-ui/icons/Person";
 import blue from "@material-ui/core/colors/blue";
-import ContactView from "../view/ContactView";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
+import RolesIcon from "@material-ui/icons/LockOpenRounded";
 
 const styles = theme => ({
   root: {
@@ -36,7 +34,7 @@ const styles = theme => ({
   },
   itemAvatar: {
     color: "#fff",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.light
   },
   removeIcon: {
     color: theme.palette.primary.light
@@ -47,34 +45,11 @@ const styles = theme => ({
 });
 
 class LegalList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showContact: false };
-  }
-
-  showContact = () => {
-    this.setState({
-      showContact: true
-    });
-  };
-
-  onCloseContactView = () => {
-    this.setState({
-      showContact: false
-      //contact: null,
-    });
-  };
 
   render() {
     const { classes, legalContact } = this.props;
     return (
       <div className={classes.root}>
-        <ContactView
-          contact={legalContact}
-          onClose={this.onCloseContactView}
-          show={this.state.showContact}
-          notify={this.props.notify}
-        />
         <div className={classes.legalContactList}>
           <FeatureHelperText >
             <p>Kontakter er personer som har tilgang til kundeportalen.</p>
@@ -105,10 +80,11 @@ class LegalList extends React.Component {
               />
               <ListItemSecondaryAction>
                 <IconButton
-                  aria-label="Settings"
-                  onClick={() => this.showContact()}
+                    aria-label="Roles"
+                    onClick={() => {
+                    }}
                 >
-                  <EditIcon />
+                  <RolesIcon/>
                 </IconButton>
               </ListItemSecondaryAction>
             </ListItem>

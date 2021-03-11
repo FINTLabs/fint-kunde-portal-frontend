@@ -1,50 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
 import Chip from "@material-ui/core/Chip";
-import { withStyles } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import CommonComponentIcon from "@material-ui/icons/Share";
+import {withStyles} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const styles = theme => ({
-  chip: {
-    color: "#595a5b", //"rgba(0, 0, 0, 0.54)",
-    backgroundColor: "#fff",
-    webkitBoxShadow:
-      "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)",
-    mozBoxShadow:
-      "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)",
-    boxShadow:
-      "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)",
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  },
-  avatar: {
-    color: "#fff",
-    backgroundColor: theme.palette.primary.main
-  }
+    chip: {
+        margin: theme.spacing(0.5),
+    }
 });
 
-class CommonComponentLabel extends Component {
-  render() {
-    const { classes } = this.props;
+function CommonComponentLabel(props) {
+    const {classes} = props;
     return (
-      <Tooltip
-        placement="top"
-        title="Dette er en felles løsning som ikke trenger adapter."
-      >
-        <Chip
-          avatar={
-            <Avatar className={classes.avatar}>
-              <CommonComponentIcon />
-            </Avatar>
-          }
-          className={classes.chip}
-          label="Felles"
-          color="secondary"
-        />
-      </Tooltip>
+
+        <Tooltip
+            placement="top"
+            title="Dette er en felles løsning som ikke trenger adapter."
+        >
+            <Chip
+                size="small"
+                variant="outlined"
+                label="Felles"
+                className={classes.chip}
+            />
+        </Tooltip>
     );
-  }
 }
 
 export default withStyles(styles)(CommonComponentLabel);

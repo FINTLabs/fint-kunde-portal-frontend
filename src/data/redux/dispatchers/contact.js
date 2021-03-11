@@ -1,4 +1,4 @@
-import {fetchContactError, fetchContactsSuccess, updateKontaktSuccess} from "../actions/contacts";
+import {fetchContactError, fetchContactsSuccess } from "../actions/contacts";
 import ContactApi from "../../api/ContactApi";
 
 export function fetchContacts() {
@@ -12,15 +12,3 @@ export function fetchContacts() {
         })
     }
 }
-
-export function updateContact(kontakt) {
-    return function (dispatch) {
-        return ContactApi.updateContact(kontakt).then(response => {
-            dispatch(updateKontaktSuccess(response));
-            return response;
-        }).catch(error => {
-            throw (error);
-        });
-    };
-}
-

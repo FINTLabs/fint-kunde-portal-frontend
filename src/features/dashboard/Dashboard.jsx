@@ -1,6 +1,14 @@
 import React, {Component} from "react";
-import {Avatar, Card, CardContent, CardHeader, Divider, Grid, Typography, withStyles} from "@material-ui/core";
-import {green} from "@material-ui/core/colors";
+import {
+    Avatar,
+    Card,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    Typography,
+    withStyles
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AdapterIcon from "@material-ui/icons/Link";
@@ -32,7 +40,7 @@ const styles = theme => ({
     avatar: {
         margin: 10,
         color: "#fff",
-        backgroundColor: green[500]
+        backgroundColor: theme.palette.secondary.light
     }
 });
 

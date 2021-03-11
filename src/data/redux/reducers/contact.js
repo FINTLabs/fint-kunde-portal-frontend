@@ -1,4 +1,4 @@
-import {FETCH_CONTACTS_SUCCESS, UPDATE_CONTACT_SUCCESS} from "../actions/types";
+import {FETCH_CONTACTS_SUCCESS} from "../actions/types";
 
 export default function contact(state = [], action) {
     switch (action.type) {
@@ -6,8 +6,6 @@ export default function contact(state = [], action) {
             return {
                 ...state, contacts: action.payload
             };
-        case UPDATE_CONTACT_SUCCESS:
-            return state
         default:
             return state
     }

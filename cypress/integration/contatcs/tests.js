@@ -100,36 +100,4 @@ describe('Testing contacts page', () => {
             cy.get("#legalContactNameField").contains("Testesen");
         }
     );
-    it('Clicking Edit button should open edit view', () => {
-            cy.get("#editContactButton").click();
-        }
-    );
-    it('First name should be correct', () => {
-            cy.get("#editUserFirstNameTextfield").invoke('val').should("contain", "Test Nummer 2");
-        }
-    );
-    it('Last name should be correct', () => {
-            cy.get("#editUserLasttNameTextfield").invoke('val').should("contain", "Testesen");
-        }
-    );
-    it('Mail should be correct', () => {
-            cy.get("#editUserMailTextfield").invoke('val').should("contain", "test2@test.test");
-        }
-    );
-    it('Mobile number should be correct', () => {
-            cy.get("#editUserMobileNumberTextfield").invoke('val').should("contain", "99999999");
-        }
-    );
-    it('Changing values works', () => {
-            cy.get("#editUserFirstNameTextfield").clear().type("Fornavn");
-            cy.get("#editUserLasttNameTextfield").clear().type("Etternavn");
-            cy.get("#editUserMailTextfield").clear().type("test@testesen.testigjen");
-            cy.get("#editUserMobileNumberTextfield").clear().type("88888888");
-        }
-    );
-    it('Click ok button should show the user updated', () => {
-            cy.get("#confirmEditUserButton").click();
-            cy.get("#contactEditDialog").should("be.visible");
-        }
-    );
 });

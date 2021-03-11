@@ -12,15 +12,12 @@ import {
     Typography,
     withStyles
 } from "@material-ui/core";
-import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
-import EditIcon from "@material-ui/icons/EditRounded";
+import RemoveIcon from "@material-ui/icons/RemoveCircle";
+import ContactIcon from "@material-ui/icons/Person";
+import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import RolesIcon from "@material-ui/icons/LockOpenRounded";
-import ContactIcon from "@material-ui/icons/PersonRounded";
-import SetLegalIcon from "@material-ui/icons/AccountBalanceRounded";
-import blue from "@material-ui/core/colors/blue";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import ContactView from "../view/ContactView";
 import {withContext} from "../../../data/context/withContext";
 
 const styles = theme => ({
@@ -40,14 +37,8 @@ const styles = theme => ({
     },
     itemAvatar: {
         color: "#fff",
-        backgroundColor: theme.palette.secondary.dark
+        backgroundColor: theme.palette.secondary.light
     },
-    removeIcon: {
-        color: theme.palette.primary.light
-    },
-    setLegalIcon: {
-        color: blue[700]
-    }
 });
 
 class TechnicalList extends React.Component {
@@ -55,7 +46,6 @@ class TechnicalList extends React.Component {
         super(props);
         this.state = {
             askToRemoveContact: false,
-            showContact: false,
             contact: {},
             message: ""
         };
@@ -97,20 +87,6 @@ class TechnicalList extends React.Component {
             });
     };
 
-    showContact = contact => {
-        this.setState({
-            contact: contact,
-            showContact: true
-        });
-    };
-
-    onCloseContactView = () => {
-        this.setState({
-            showContact: false
-            //contact: null,
-        });
-    };
-
     setLegalContact = contact => {
         OrganisationApi.unsetLegalContact(
             this.props.legalContact,
@@ -125,10 +101,10 @@ class TechnicalList extends React.Component {
                         this.props.notify("Juridisk ansvarlig er oppdatert.");
                         this.props.afterUpdateLegalContact();
                     })
-                    .catch(error => {
+                    .catch(() => {
                     });
             })
-            .catch(error => {
+            .catch(() => {
             });
     };
 
@@ -140,12 +116,6 @@ class TechnicalList extends React.Component {
                     show={this.state.askToRemoveContact}
                     message={this.state.message}
                     onClose={this.onCloseRemoveContact}
-                />
-                <ContactView
-                    contact={this.state.contact}
-                    onClose={this.onCloseContactView}
-                    show={this.state.showContact}
-                    notify={this.props.notify}
                 />
                 <div className={classes.technicalContactList}>
                     <Typography variant="h5" className={classes.title}>
@@ -166,11 +136,11 @@ class TechnicalList extends React.Component {
                                 />
                                 <ListItemSecondaryAction>
                                     <IconButton
-                                        aria-label="Remove"
-                                        onClick={() => this.askToRemoveContact(contact)}
-                                        id={"removeUserButton"}
+                                        aria-label="Roles"
+                                        onClick={() => {
+                                        }}
                                     >
-                                        <RemoveIcon/>
+                                        <RolesIcon/>
                                     </IconButton>
                                     <IconButton
                                         aria-label="Legal"
@@ -180,18 +150,11 @@ class TechnicalList extends React.Component {
                                         <SetLegalIcon/>
                                     </IconButton>
                                     <IconButton
-                                        aria-label="Roles"
-                                        onClick={() => {
-                                        }}
+                                        aria-label="Remove"
+                                        onClick={() => this.askToRemoveContact(contact)}
+                                        id={"removeUserButton"}
                                     >
-                                        <RolesIcon/>
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Settings"
-                                        onClick={() => this.showContact(contact)}
-                                        id={"editContactButton"}
-                                    >
-                                        <EditIcon/>
+                                        <RemoveIcon/>
                                     </IconButton>
                                 </ListItemSecondaryAction>
                             </ListItem>

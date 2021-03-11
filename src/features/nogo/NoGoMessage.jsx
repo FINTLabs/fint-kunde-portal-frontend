@@ -1,59 +1,48 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
+import React, {Component} from "react";
+import {withStyles} from "@material-ui/core";
 import Button from "../../../node_modules/@material-ui/core/Button/Button";
-import Grid from "../../../node_modules/@material-ui/core/Grid/Grid";
-import Paper from "../../../node_modules/@material-ui/core/Paper/Paper";
+import FintLogo from "../../images/fint-by-vigo.svg";
+import Box from "@material-ui/core/Box";
 
 const styles = theme => ({
-  message: {
-    //border: "dotted 1px gray",
-    backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(4),
-    marginBottom: theme.spacing(2),
-    color: theme.palette.primary.contrastText,
-    minHeight: "10px",
-    minWidth: "500px"
-  },
-  logo: {
-    marginBottom: theme.spacing(2),
-    height: "25%",
-    width: "25%"
-  }
+
+    logo: {
+        marginBottom: theme.spacing(2),
+        //height: "25%",
+        width: 178
+    }
 });
 
 class NoGoMessage extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <React.Fragment>
-        <Paper className={classes.message}>
-          <Grid container justify="center" alignItems="center">
-            <img src="/fint.svg" alt="logo" className={classes.logo} />
-          </Grid>
-          <Grid container justify="center" alignItems="center">
-            {this.props.message}
-          </Grid>
-        </Paper>
-        <Button
-          href={this.props.gotoUrl}
-          fullWidth
-          variant="contained"
-          color="secondary"
-        >
-          {this.props.buttonTitle}
-        </Button>
-      </React.Fragment>
-    );
-  }
+    render() {
+        const {classes} = this.props;
+        return (
+            <>
+                <Box display="flex" flexDirection="column"  m={4} alignItems="center">
+                    <img src={FintLogo} alt="logo" className={classes.logo}/>
+                    <Box>
+                        {this.props.message}
+                    </Box>
+                </Box>
+                <Button
+                    href={this.props.gotoUrl}
+                    fullWidth
+                    variant="outlined"
+                    color="secondary"
+                >
+                    {this.props.buttonTitle}
+                </Button>
+            </>
+        );
+    }
 }
 
 NoGoMessage.propTypes = {
-  buttonTitle: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
-  gotoUrl: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+    buttonTitle: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
+    gotoUrl: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(NoGoMessage);

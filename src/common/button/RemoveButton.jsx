@@ -6,7 +6,7 @@ import RemoveIcon from "../../../node_modules/@material-ui/icons/CheckBox";
 
 const styles = theme => ({
   addIcon: {
-    color: theme.palette.secondary.main
+    //color: theme.palette.secondary.main
   },
   removeIcon: {
     color: theme.palette.secondary.main
