@@ -26,7 +26,6 @@ import RemoveButton from "../../common/button/RemoveButton";
 import AddButton from "../../common/button/AddButton";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import Sort from "../../common/utils/Sort";
-import Box from "@material-ui/core/Box";
 
 const styles = theme => ({
     root: {
@@ -267,7 +266,6 @@ ComponentList.propTypes = {
     classes: PropTypes.any.isRequired,
     components: PropTypes.array.isRequired,
     fetchComponents: PropTypes.any.isRequired,
-    //fetchOrganisation: PropTypes.any.isRequired,
     organisation: PropTypes.any.isRequired
 };
 

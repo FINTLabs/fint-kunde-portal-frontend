@@ -16,7 +16,8 @@ import PropTypes from "prop-types";
 
 const styles = theme => ({
     dialogTitle: {
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.contrastText
     },
     endpointMainTitle: {
         fontWeight: "bold",
@@ -64,6 +65,7 @@ class ComponentsView extends React.Component {
                             <DialogTitle
                                 id="form-dialog-title"
                                 className={classes.dialogTitle}
+
                             >
                                 Komponent: {component.description}
                             </DialogTitle>
@@ -331,7 +333,6 @@ class ComponentsView extends React.Component {
 
 ComponentsView.propTypes = {
     show: PropTypes.bool.isRequired,
-    //component: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired
 };
 

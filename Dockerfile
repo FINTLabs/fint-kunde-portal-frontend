@@ -6,7 +6,7 @@ COPY cypress.json cypress ./
 COPY cypress ./cypress
 ENV CI=true
 RUN yarn install --frozen-lockfile
-##RUN yarn ci
+RUN yarn ci
 
 FROM node:10-alpine AS builder
 COPY . /src

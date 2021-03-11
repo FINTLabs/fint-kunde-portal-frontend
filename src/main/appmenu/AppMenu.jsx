@@ -15,19 +15,12 @@ import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
 import {makeStyles, useTheme} from "@material-ui/core";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
+import Box from "@material-ui/core/Box";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) =>
     createStyles({
-        root: {
-            flexGrow: 1,
-            height: "100%",
-            zIndex: 1,
-            overflow: "hidden",
-            position: "relative",
-            display: "flex"
-        },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
             transition: theme.transitions.create(["width", "margin"], {
@@ -42,12 +35,6 @@ const useStyles = makeStyles((theme) =>
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen
             })
-        },
-        appFrame: {
-            position: "relative",
-            display: "flex",
-            width: "100%",
-            height: "100%"
         },
         menuButton: {
             marginLeft: 12,
@@ -88,7 +75,7 @@ const useStyles = makeStyles((theme) =>
             flexGrow: 1,
             backgroundColor: theme.palette.background.default,
             padding: 24,
-            height: "calc(100% - 56px)",
+            minHeight: "100vh",
             marginTop: 56,
             [theme.breakpoints.up("sm")]: {
                 height: "calc(100% - 64px)",
@@ -96,7 +83,6 @@ const useStyles = makeStyles((theme) =>
             }
         },
         logo: {
-            //height: "8%",
             width: 86,
             marginRight: theme.spacing(4),
             marginBottom: theme.spacing()
@@ -126,7 +112,7 @@ const AppMenu = (props) => {
 
     const {me} = props;
     return (
-        <div className={classes.appFrame}>
+        <Box display="flex" position="relative" width={1} height={1}>
             <AppBar
                 position="absolute"
                 className={classNames(
@@ -143,7 +129,7 @@ const AppMenu = (props) => {
                             classes.menuButton,
                             open && classes.hide
                         )}
-                            id={"menuBurger"}
+                        id={"menuBurger"}
                     >
                         <MenuIcon/>
                     </IconButton>
@@ -161,7 +147,7 @@ const AppMenu = (props) => {
                         color="inherit"
                         noWrap
                         className={classes.flexName}
-                            id={"userNameField"}
+                        id={"userNameField"}
                     >
                         {me.firstName + " " + me.lastName + "  |"}
                     </Typography>
@@ -177,10 +163,10 @@ const AppMenu = (props) => {
                     )
                 }}
                 open={open}
-                    id={"menuToolbar"}
+                id={"menuToolbar"}
             >
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose} >
+                    <IconButton onClick={handleDrawerClose}>
                         {theme.direction === "rtl" ? (
                             <ChevronRightIcon/>
                         ) : (
@@ -189,12 +175,12 @@ const AppMenu = (props) => {
                     </IconButton>
                 </div>
                 <Divider/>
-                    <MenuItems/>
+                <MenuItems/>
             </Drawer>
             <main className={classes.content}>
                 <Routes/>
             </main>
-        </div>
+        </Box>
     );
 }
 

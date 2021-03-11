@@ -1,167 +1,168 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Avatar,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemSecondaryAction,
-  ListItemText,
-  Typography,
-  withStyles
+    Avatar,
+    Divider,
+    IconButton,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemSecondaryAction,
+    ListItemText,
+    Typography,
+    withStyles
 } from "@material-ui/core";
 import RemoveIcon from "@material-ui/icons/RemoveCircle";
 import ContactIcon from "@material-ui/icons/Person";
 import SetLegalIcon from "@material-ui/icons/AccountBalance";
-import blue from "@material-ui/core/colors/blue";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import { withContext } from "../../../data/context/withContext";
+import {withContext} from "../../../data/context/withContext";
 
 const styles = theme => ({
-  root: {
-    display: "flex",
-    justifyContent: "center"
-  },
-  technicalContactList: {
-    width: "75%"
-  },
-  title: {
-    paddingLeft: theme.spacing(3),
-    paddingBottom: theme.spacing(1)
-  },
-  listItem: {
-    borderBottom: "1px dashed lightgray"
-  },
-  itemAvatar: {
-    color: "#fff",
-    backgroundColor: theme.palette.secondary.light
-  },
+    root: {
+        display: "flex",
+        justifyContent: "center"
+    },
+    technicalContactList: {
+        width: "75%"
+    },
+    title: {
+        paddingLeft: theme.spacing(3),
+        paddingBottom: theme.spacing(1)
+    },
+    listItem: {
+        borderBottom: "1px dashed lightgray"
+    },
+    itemAvatar: {
+        color: "#fff",
+        backgroundColor: theme.palette.secondary.light
+    },
 });
 
 class TechnicalList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      askToRemoveContact: false,
-      contact: {},
-      message: ""
-    };
-  }
-
-  askToRemoveContact = contact => {
-    this.setState({
-      askToRemoveContact: true,
-      message: `Er du sikker på at du vil fjerne ${contact.firstName} ${
-        contact.lastName
-      } fra organisasjonen?`,
-      contact: contact
-    });
-  };
-
-  onCloseRemoveContact = confirmed => {
-    this.setState({
-      askToRemoveContact: false
-    });
-
-    if (confirmed) {
-      this.removeContact(this.state.contact);
+    constructor(props) {
+        super(props);
+        this.state = {
+            askToRemoveContact: false,
+            contact: {},
+            message: ""
+        };
     }
-  };
 
-  removeContact = contact => {
-    OrganisationApi.removeTechnicalContact(
-      contact,
-      this.props.context.currentOrganisation.name
-    )
-      .then(response => {
-        this.props.notify(
-          `${contact.firstName} ${contact.lastName} ble fjernet.`
-        );
-        this.props.fetchTechnicalContacts();
-      })
-      .catch(error => {
-        alert(error);
-      });
-  };
+    askToRemoveContact = contact => {
+        this.setState({
+            askToRemoveContact: true,
+            message: `Er du sikker på at du vil fjerne ${contact.firstName} ${
+                contact.lastName
+            } fra organisasjonen?`,
+            contact: contact
+        });
+    };
 
-  setLegalContact = contact => {
-    OrganisationApi.unsetLegalContact(
-      this.props.legalContact,
-      this.props.context.currentOrganisation.name
-    )
-      .then(() => {
-        OrganisationApi.setLegalContact(
-          contact,
-          this.props.context.currentOrganisation.name
+    onCloseRemoveContact = confirmed => {
+        this.setState({
+            askToRemoveContact: false
+        });
+
+        if (confirmed) {
+            this.removeContact(this.state.contact);
+        }
+    };
+
+    removeContact = contact => {
+        OrganisationApi.removeTechnicalContact(
+            contact,
+            this.props.context.currentOrganisation.name
         )
-          .then(() => {
-            this.props.notify("Juridisk ansvarlig er oppdatert.");
-            this.props.afterUpdateLegalContact();
-          })
-          .catch(error => {});
-      })
-      .catch(error => {});
-  };
+            .then(response => {
+                this.props.notify(
+                    `${contact.firstName} ${contact.lastName} ble fjernet.`
+                );
+                this.props.fetchTechnicalContacts();
+            })
+            .catch(error => {
+                alert(error);
+            });
+    };
 
-  render() {
-    const { classes, technicalContacts } = this.props;
-    return (
-      <div className={classes.root}>
-        <WarningMessageBox
-          show={this.state.askToRemoveContact}
-          message={this.state.message}
-          onClose={this.onCloseRemoveContact}
-        />
-        <div className={classes.technicalContactList}>
-          <Typography variant="h5" className={classes.title}>
-            Teknisk kontakter
-          </Typography>
-          <Divider />
-          <List id={"technicalContactsList"}>
-            {technicalContacts.map(contact => (
-              <ListItem className={classes.listItem} key={contact.dn}>
-                <ListItemAvatar>
-                  <Avatar className={classes.itemAvatar}>
-                    <ContactIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary={contact.firstName}
-                  secondary={contact.lastName}
+    setLegalContact = contact => {
+        OrganisationApi.unsetLegalContact(
+            this.props.legalContact,
+            this.props.context.currentOrganisation.name
+        )
+            .then(() => {
+                OrganisationApi.setLegalContact(
+                    contact,
+                    this.props.context.currentOrganisation.name
+                )
+                    .then(() => {
+                        this.props.notify("Juridisk ansvarlig er oppdatert.");
+                        this.props.afterUpdateLegalContact();
+                    })
+                    .catch(() => {
+                    });
+            })
+            .catch(() => {
+            });
+    };
+
+    render() {
+        const {classes, technicalContacts} = this.props;
+        return (
+            <div className={classes.root}>
+                <WarningMessageBox
+                    show={this.state.askToRemoveContact}
+                    message={this.state.message}
+                    onClose={this.onCloseRemoveContact}
                 />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    aria-label="Remove"
-                    onClick={() => this.askToRemoveContact(contact)}
-                    id={"removeUserButton"}
-                  >
-                    <RemoveIcon />
-                  </IconButton>
-                  <IconButton
-                    aria-label="Legal"
-                    onClick={() => this.setLegalContact(contact)}
-                    id={"changeLegalButton"}
-                  >
-                    <SetLegalIcon className={classes.setLegalIcon} />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      </div>
-    );
-  }
+                <div className={classes.technicalContactList}>
+                    <Typography variant="h5" className={classes.title}>
+                        Teknisk kontakter
+                    </Typography>
+                    <Divider/>
+                    <List id={"technicalContactsList"}>
+                        {technicalContacts.map(contact => (
+                            <ListItem className={classes.listItem} key={contact.dn}>
+                                <ListItemAvatar>
+                                    <Avatar className={classes.itemAvatar}>
+                                        <ContactIcon/>
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={contact.firstName}
+                                    secondary={contact.lastName}
+                                />
+                                <ListItemSecondaryAction>
+                                    <IconButton
+                                        aria-label="Remove"
+                                        onClick={() => this.askToRemoveContact(contact)}
+                                        id={"removeUserButton"}
+                                    >
+                                        <RemoveIcon/>
+                                    </IconButton>
+                                    <IconButton
+                                        aria-label="Legal"
+                                        onClick={() => this.setLegalContact(contact)}
+                                        id={"changeLegalButton"}
+                                    >
+                                        <SetLegalIcon className={classes.setLegalIcon}/>
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                    </List>
+                </div>
+            </div>
+        );
+    }
 }
 
 TechnicalList.propTypes = {
-  afterUpdateLegalContact: PropTypes.any.isRequired,
-  classes: PropTypes.any.isRequired,
-  fetchTechnicalContacts: PropTypes.any.isRequired,
-  notify: PropTypes.any.isRequired,
-  technicalContacts: PropTypes.array.isRequired
+    afterUpdateLegalContact: PropTypes.any.isRequired,
+    classes: PropTypes.any.isRequired,
+    fetchTechnicalContacts: PropTypes.any.isRequired,
+    notify: PropTypes.any.isRequired,
+    technicalContacts: PropTypes.array.isRequired
 };
 export default withStyles(styles)(withContext(TechnicalList));

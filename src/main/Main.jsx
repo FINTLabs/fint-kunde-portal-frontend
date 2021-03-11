@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
 import {BrowserRouter} from "react-router-dom";
 import AppMenu from "./appmenu/AppMenu";
 import MeApi from "../data/api/MeApi";
@@ -9,15 +7,6 @@ import Provider from "react-redux/es/components/Provider";
 import store from "../data/redux/store/configure-store";
 import {CookiesProvider} from "react-cookie";
 import AppProvider from "../data/context/AppProvider";
-
-const styles = theme => ({
-    root: {
-        width: "100%",
-        height: "100%",
-        zIndex: 1,
-        overflow: "hidden"
-    }
-});
 
 class Main extends React.Component {
     constructor(props, context) {
@@ -60,15 +49,12 @@ class Main extends React.Component {
     }
 
     renderAppMenu() {
-        const {classes} = this.props;
         return (
             <Provider store={store}>
                 <CookiesProvider>
                     <AppProvider>
                         <BrowserRouter basename="/">
-                            <div className={classes.root}>
-                                <AppMenu me={this.state.me}/>
-                            </div>
+                            <AppMenu me={this.state.me}/>
                         </BrowserRouter>
                     </AppProvider>
                 </CookiesProvider>
@@ -77,9 +63,6 @@ class Main extends React.Component {
     }
 }
 
-Main.propTypes = {
-    classes: PropTypes.object.isRequired,
-    theme: PropTypes.object.isRequired
-};
+Main.propTypes = {};
 
-export default withStyles(styles, {withTheme: true})(Main);
+export default Main;
