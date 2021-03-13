@@ -15,6 +15,7 @@ import ContactIcon from "@material-ui/icons/Person";
 import blue from "@material-ui/core/colors/blue";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import TooltipIconButton from "../../../common/button/TooltipIconButton";
 
 const styles = theme => ({
   root: {
@@ -79,13 +80,15 @@ class LegalList extends React.Component {
                 secondary={legalContact.lastName}
               />
               <ListItemSecondaryAction>
-                <IconButton
-                    aria-label="Roles"
+                <TooltipIconButton
+                    ariaLabel="Roles"
                     onClick={() => {
                     }}
+                    id="manageRoles"
+                    toolTip="Administrer roller for kontakten"
                 >
                   <RolesIcon/>
-                </IconButton>
+                </TooltipIconButton>
               </ListItemSecondaryAction>
             </ListItem>
           </List>
