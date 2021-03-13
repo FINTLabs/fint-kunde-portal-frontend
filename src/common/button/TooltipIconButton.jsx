@@ -1,6 +1,5 @@
 import React from 'react';
 import {IconButton, Tooltip} from "@material-ui/core";
-import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import Proptypes from "prop-types";
 
 const TooltipIconButton = ({toolTip, id, ariaLabel, onClick, children}) => {
