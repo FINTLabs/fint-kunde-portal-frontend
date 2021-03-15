@@ -90,7 +90,7 @@ class ClientApi {
 
   static addClientToComponent(Adapter, component, organisation) {
 
-    const request = new Request(`/api/components/${component.name}/${organisation}/clients/${Adapter.name}`, {
+    const request = new Request(`/api/components/organisation/${organisation}/${component.name}/clients/${Adapter.name}`, {
       method: 'PUT',
       headers: {
         'Accept': '*/*',
@@ -110,7 +110,7 @@ class ClientApi {
 
   static deleteClientFromComponent(adapter, component, organisation) {
 
-    const request = new Request(`/api/components/${component.name}/${organisation}/clients/${adapter.name}`, {
+    const request = new Request(`/api/components/organisation/${organisation}/${component.name}/clients/${adapter.name}`, {
       method: 'DELETE',
       credentials: 'same-origin',
     });
