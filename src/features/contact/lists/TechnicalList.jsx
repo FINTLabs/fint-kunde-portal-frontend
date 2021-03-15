@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {
     Avatar,
@@ -11,16 +11,20 @@ import {
     ListItemText,
     Typography
 } from "@material-ui/core";
-import RemoveIcon from "@material-ui/icons/RemoveCircle";
-import ContactIcon from "@material-ui/icons/Person";
-import SetLegalIcon from "@material-ui/icons/AccountBalance";
-import RolesIcon from "@material-ui/icons/LockOpenRounded";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import TooltipIconButton from "../../../common/button/TooltipIconButton";
 import RoleDialog from "../role/RoleDialog";
 import AppContext from "../../../data/context/AppContext";
 import {createStyles, makeStyles} from "@material-ui/core/styles";
+import ContactIcon from "@material-ui/icons/Person";
+import TooltipIconButton from "../../../common/button/TooltipIconButton";
+import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
+import SetLegalIcon from "@material-ui/icons/AccountBalance";
+import {useDispatch, useSelector} from "react-redux";
+import {setRoleContact} from "../../../data/redux/actions/roles";
+import Chip from "@material-ui/core/Chip";
+
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -35,6 +39,9 @@ const useStyles = makeStyles((theme) =>
             color: "#fff",
             backgroundColor: theme.palette.secondary.light
         },
+        roleChip: {
+            marginRight: theme.spacing()
+        }
     }));
 
 const TechnicalList = props => {
@@ -44,6 +51,9 @@ const TechnicalList = props => {
     const classes = useStyles();
     const {technicalContacts} = props;
     const [showRoleDialog, setShowRoleDialog] = useState(false);
+    const roleTypes = useSelector(state => state.roles.roles);
+    const dispatch = useDispatch();
+
     const appContext = useContext(AppContext);
 
     const askToRemoveContact = contact => {
@@ -51,7 +61,6 @@ const TechnicalList = props => {
         setMessage(`Er du sikker på at du vil fjerne ${contact.firstName} ${contact.lastName} fra organisasjonen?`);
         setContact(contact);
     };
-
     const onCloseRemoveContact = confirmed => {
         setShowConfirmRemoveContact(false);
 
@@ -97,6 +106,29 @@ const TechnicalList = props => {
             });
     };
 
+    const manageRoles = contact => {
+        dispatch(setRoleContact(contact));
+        setShowRoleDialog(true);
+    }
+
+    const getRoleTags = (roles) => {
+        if (roleTypes) {
+            return roles
+                .filter(role => role.endsWith(appContext.currentOrganisation.name))
+                .map(role => role.replace(`@${appContext.currentOrganisation.name}`, ''))
+                .map(role => roleTypes.filter(r => r.id === role)[0])
+                .map(role => (
+                    <Chip key={role}
+                          icon={<RolesIcon/>}
+                          size="small"
+                          className={classes.roleChip}
+                          label={role.name}/>
+                ))
+        }
+        return <div/>;
+    }
+
+
     return (
         <Box display="flex" justifyContent="center">
             <WarningMessageBox
@@ -104,8 +136,10 @@ const TechnicalList = props => {
                 message={message}
                 onClose={onCloseRemoveContact}
             />
-            <RoleDialog onClose={() => setShowRoleDialog(false)} open={showRoleDialog}
-                        selectedValue={null}/>
+            <RoleDialog
+                onClose={() => setShowRoleDialog(false)}
+                open={showRoleDialog}
+            />
             <Box width="75%">
                 <Typography variant="h5" className={classes.title}>
                     Teknisk kontakter
@@ -121,12 +155,12 @@ const TechnicalList = props => {
                             </ListItemAvatar>
                             <ListItemText
                                 primary={`${contact.firstName} ${contact.lastName}`}
-                                secondary=""
+                                secondary={getRoleTags(contact.roles)}
                             />
                             <ListItemSecondaryAction>
                                 <TooltipIconButton
                                     ariaLabel="Roles"
-                                    onClick={() => setShowRoleDialog(true)}
+                                    onClick={() => manageRoles(contact)}
                                     id="manageRoles"
                                     toolTip="Administrer roller for kontakten"
                                 >
@@ -152,6 +186,7 @@ const TechnicalList = props => {
                                 </TooltipIconButton>
                             </ListItemSecondaryAction>
                         </ListItem>
+
                     ))}
                 </List>
             </Box>

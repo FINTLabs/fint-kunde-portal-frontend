@@ -18,13 +18,14 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        MeApi.getMe().then(([response, json]) => {
+        // TODO: Use redux instead
+        MeApi.getMe().then((response) => {
             if (response.status === 200) {
                 this.setState({
                     contactExists: true,
                     contactHasOrganisations:
-                        json.legal.length > 0 || json.technical.length > 0,
-                    me: json
+                        response.data.legal.length > 0 || response.data.technical.length > 0,
+                    me: response.data
                 });
             } else {
                 this.setState({

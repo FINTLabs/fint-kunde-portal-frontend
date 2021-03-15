@@ -7,6 +7,8 @@ import organisation from "../reducers/organisation";
 import adapter from "../reducers/adapter";
 import contact from "../reducers/contact";
 import asset from "../reducers/asset";
+import roles from "../reducers/roles";
+import me from "../reducers/me";
 import linkwalker from "../reducers/linkwalker";
 import access_package from "../reducers/access_package";
 import component_configuration from "../reducers/component-configuration";
@@ -26,7 +28,9 @@ const store = createStore(
         linkwalker,
         access_package,
         access_package_template,
-        component_configuration
+        component_configuration,
+        roles,
+        me
     }),
     composeEnhancers(
         applyMiddleware(thunkMiddleware, logger))

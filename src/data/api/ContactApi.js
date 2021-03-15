@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class ContactApi {
 
   static fetchContacts() {
@@ -17,6 +19,10 @@ class ContactApi {
     }).then(response => {
       return response;
     });
+  }
+
+  static getContactByNin(nin) {
+    return axios.get(`/api/contacts/${nin}`);
   }
 }
 
