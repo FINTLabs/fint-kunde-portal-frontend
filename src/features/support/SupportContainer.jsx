@@ -184,10 +184,9 @@ class SupportContainer extends Component {
         this.getTicketType();
         this.getTicketPriority()
 
-        MeApi.getMe().then(([response, json]) => {
+        MeApi.getMe().then(response => {
             if (response.status === 200) {
-                console.log(json);
-                this.setState({meSupportId: json.supportId})
+                this.setState({meSupportId: response.data.supportId})
             }
         })
     }
@@ -195,7 +194,6 @@ class SupportContainer extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         const {currentOrganisation} = this.props.context;
         if (prevProps.context !== this.props.context) {
-            //this.props.fetchClients(currentOrganisation.name);
             this.getOrganisationComponents(currentOrganisation.name);
         }
     }

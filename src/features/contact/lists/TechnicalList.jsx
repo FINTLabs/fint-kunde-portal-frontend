@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) =>
             backgroundColor: theme.palette.secondary.light
         },
         roleChip: {
-            marginRight: theme.spacing()
+            marginRight: theme.spacing(),
+            marginTop: theme.spacing()
         }
     }));
 
