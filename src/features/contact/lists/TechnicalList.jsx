@@ -119,14 +119,14 @@ const TechnicalList = props => {
                 .map(role => role.replace(`@${appContext.currentOrganisation.name}`, ''))
                 .map(role => roleTypes.filter(r => r.id === role)[0])
                 .map(role => (
-                    <Chip key={role}
+                    <Chip key={role.id}
                           icon={<RolesIcon/>}
                           size="small"
                           className={classes.roleChip}
                           label={role.name}/>
                 ))
         }
-        return <div/>;
+        return null;
     }
 
 
@@ -157,6 +157,7 @@ const TechnicalList = props => {
                             <ListItemText
                                 primary={`${contact.firstName} ${contact.lastName}`}
                                 secondary={getRoleTags(contact.roles)}
+                                secondaryTypographyProps={{component: 'div'}}
                             />
                             <ListItemSecondaryAction>
                                 <TooltipIconButton
@@ -187,7 +188,6 @@ const TechnicalList = props => {
                                 </TooltipIconButton>
                             </ListItemSecondaryAction>
                         </ListItem>
-
                     ))}
                 </List>
             </Box>

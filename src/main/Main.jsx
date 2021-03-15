@@ -1,67 +1,54 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import AppMenu from "./appmenu/AppMenu";
 import MeApi from "../data/api/MeApi";
 import NoGoContainer from "../features/nogo/NoGoContainer";
-import Provider from "react-redux/es/components/Provider";
-import store from "../data/redux/store/configure-store";
-import {CookiesProvider} from "react-cookie";
-import AppProvider from "../data/context/AppProvider";
+import {useDispatch} from "react-redux";
+import {fetchMe} from "../data/redux/dispatchers/me";
 
-class Main extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            contactExists: false,
-            contactHasOrganisations: false
-        };
-    }
+const Main = () => {
 
-    componentDidMount() {
+    const [contactExists, setContactExists] = useState(false);
+    const [contactHasOrganisations, setContactHasOrganisations] = useState(false);
+    const [me, setMe] = useState();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
         // TODO: Use redux instead
         MeApi.getMe().then((response) => {
             if (response.status === 200) {
-                this.setState({
-                    contactExists: true,
-                    contactHasOrganisations:
-                        response.data.legal.length > 0 || response.data.technical.length > 0,
-                    me: response.data
-                });
+                setMe(response.data);
+                setContactExists(true);
+                setContactHasOrganisations(response.data.legal.length > 0 || response.data.technical.length > 0);
             } else {
-                this.setState({
-                    contactExists: false,
-                    contactHasOrganisations: false
-                });
+                setContactExists(false);
+                setContactHasOrganisations(false);
             }
         });
-    }
+        dispatch(fetchMe());
 
-    render() {
-        const {contactExists, contactHasOrganisations} = this.state;
-        if (contactExists && contactHasOrganisations) {
-            return this.renderAppMenu();
-        }
+    },[dispatch]);
+
+    function renderAppMenu() {
         return (
-            <NoGoContainer
-                contactExists={contactExists}
-                contactHasOrganisations={contactHasOrganisations}
-            />
+
+            <BrowserRouter basename="/">
+                <AppMenu me={me}/>
+            </BrowserRouter>
+
         );
     }
 
-    renderAppMenu() {
-        return (
-            <Provider store={store}>
-                <CookiesProvider>
-                    <AppProvider>
-                        <BrowserRouter basename="/">
-                            <AppMenu me={this.state.me}/>
-                        </BrowserRouter>
-                    </AppProvider>
-                </CookiesProvider>
-            </Provider>
-        );
+    if (contactExists && contactHasOrganisations && me) {
+        return renderAppMenu();
     }
+    return (
+        <NoGoContainer
+            contactExists={contactExists}
+            contactHasOrganisations={contactHasOrganisations}
+        />
+    );
+
 }
 
 Main.propTypes = {};
