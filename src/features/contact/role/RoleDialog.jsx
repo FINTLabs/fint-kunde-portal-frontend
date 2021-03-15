@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) =>
         },
     }));
 const RoleDialog = props => {
-    const {onClose, open, contact} = props;
+    const {onClose, open} = props;
     const dispatch = useDispatch();
     const roles = useSelector(state => state.roles.roles);
     const currentContact = useSelector(state => state.roles.roleContact);
