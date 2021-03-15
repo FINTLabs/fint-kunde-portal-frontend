@@ -56,17 +56,12 @@ class LinkWalkerAddTest extends React.Component {
 
   addTest = () => {
     let test = this.getTest();
-    const { organisationName, clientConfig } = this.props;
-    LinkWalkerApi.addTest(
-      clientConfig.linkwalkerBaseUrl,
-      test,
-      organisationName
-    )
+    const { organisationName } = this.props;
+    LinkWalkerApi.addTest(test, organisationName)
       .then(response => {
         if (response.status === 201) {
           this.props.notify("Testen ble opprettet");
           this.props.fetchLinkWalkerTests(
-            clientConfig.linkwalkerBaseUrl,
             organisationName
           );
         } else {
@@ -194,7 +189,6 @@ class LinkWalkerAddTest extends React.Component {
 
 LinkWalkerAddTest.propTypes = {
   classes: PropTypes.object.isRequired,
-  clientConfig: PropTypes.object.isRequired,
   clients: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   fetchLinkWalkerTests: PropTypes.func.isRequired,

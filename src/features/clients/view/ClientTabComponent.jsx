@@ -59,7 +59,7 @@ class ClientTabComponent extends React.Component {
     });
   };
   unLinkComponent = component => {
-    const { clientConfig, currentOrganisation } = this.props.context;
+    const { currentOrganisation } = this.props.context;
 
     ClientApi.deleteClientFromComponent(
       this.props.client,
@@ -71,15 +71,12 @@ class ClientTabComponent extends React.Component {
           `${this.props.client.name} ble lagt til ${component.description}`
         );
         this.props.fetchComponents();
-        TestAuthApi.clearAuth(
-          clientConfig.testServiceBaseUrl,
-          currentOrganisation.name
-        ).then(response => {});
+        TestAuthApi.clearAuth(currentOrganisation.name).then(response => {});
       })
       .catch(error => {});
   };
   linkComponent = component => {
-    const { clientConfig, currentOrganisation } = this.props.context;
+    const { currentOrganisation } = this.props.context;
 
     ClientApi.addClientToComponent(
       this.props.client,
@@ -91,10 +88,7 @@ class ClientTabComponent extends React.Component {
           `${this.props.client.name} ble lagt til ${component.description}`
         );
         this.props.fetchComponents();
-        TestAuthApi.clearAuth(
-          clientConfig.testServiceBaseUrl,
-          currentOrganisation.name
-        ).then(response => {});
+        TestAuthApi.clearAuth(currentOrganisation.name).then(response => {});
       })
       .catch(error => {});
   };

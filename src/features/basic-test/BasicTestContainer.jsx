@@ -127,14 +127,12 @@ class BasicTestContainer extends Component {
     this.notify("Testen ble startet!");
     const test = this.getTest();
 
-    const { clientConfig } = this.props.context;
-
     this.setState({ healthResult: { status: "RUNNING", healthData: [] } });
 
-    TestAuthApi.authInit(clientConfig.testServiceBaseUrl, test)
+    TestAuthApi.authInit(test)
       .then(([response]) => {
         if (response.status < 400) {
-          BasicTestApi.runTest(clientConfig.testServiceBaseUrl, test)
+          BasicTestApi.runTest(test)
             .then(([response, json]) => {
               if (response.status === 200) {
                 this.setState({ testCases: json.cases });
@@ -156,7 +154,7 @@ class BasicTestContainer extends Component {
               });
             });
 
-          HealthTestApi.runTest(clientConfig.testServiceBaseUrl, test)
+          HealthTestApi.runTest(test)
             .then(([response, json]) => {
               if (response.status === 200) {
                 this.setState({ healthResult: json });
@@ -186,8 +184,7 @@ class BasicTestContainer extends Component {
 
   render() {
     if (
-      this.props.context.currentOrganisation === undefined ||
-      this.props.context.clientConfig === undefined
+      this.props.context.currentOrganisation === undefined
     ) {
       return <LoadingProgress />;
     } else {

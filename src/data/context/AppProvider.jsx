@@ -5,7 +5,6 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import PropTypes from "prop-types";
 
 import { Cookies, withCookies } from "react-cookie";
-import ClientConfigApi from "../api/ClientConfigApi";
 
 class AppProvider extends Component {
   constructor(props) {
@@ -13,7 +12,6 @@ class AppProvider extends Component {
     this.state = {
       currentOrganisation: undefined,
       organisations: undefined,
-      clientConfig: undefined,
       setCurrentOrganisation: organisation => {
         this.setCurrentOrganisation(organisation);
       },
@@ -49,16 +47,6 @@ class AppProvider extends Component {
         this.setState({
           organisations: json,
           currentOrganisation: updatedOrganisation
-        });
-      });
-
-    ClientConfigApi.fetchClientConfig()
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        this.setState({
-          clientConfig: json
         });
       });
   };
