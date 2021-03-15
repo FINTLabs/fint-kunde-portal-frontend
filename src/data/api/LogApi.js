@@ -2,7 +2,7 @@ class LogApi {
 
   static fetchLog(environment, organisation, query) {
 
-    const url = `/api/events/${environment}/${organisation}/${query}`;
+    const url = `/api/events/${organisation}/${environment}/${query}`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -11,7 +11,7 @@ class LogApi {
   }
 
   static fetchLogById(environment, organisation, corrId) {
-    return fetch(`/api/events/${environment}/${organisation}/id/${corrId}`, {
+    return fetch(`/api/events/${organisation}/${environment}/id/${corrId}`, {
       method: 'GET',
       credentials: 'same-origin'
     })
