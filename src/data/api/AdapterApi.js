@@ -61,7 +61,7 @@ class AdapterApi {
 
   static addAdapterToComponent(adapter, component, organisation) {
 
-    const request = new Request(`/api/components/${component.name}/${organisation}/adapters/${adapter.name}`, {
+    const request = new Request(`/api/components/organisation/${organisation}/${component.name}/adapters/${adapter.name}`, {
       method: 'PUT',
       headers: {
         'Accept': '*/*',
@@ -94,7 +94,7 @@ class AdapterApi {
 
   static deleteAdapterFromComponent(adapter, component, organisation) {
 
-    const request = new Request(`/api/components/${component.name}/${organisation}/adapters/${adapter.name}`, {
+    const request = new Request(`/api/components/organisation/${organisation}/${component.name}/adapters/${adapter.name}`, {
       method: 'DELETE',
       credentials: 'same-origin'
     });
