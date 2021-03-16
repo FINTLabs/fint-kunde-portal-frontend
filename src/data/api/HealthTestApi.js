@@ -1,7 +1,7 @@
 class HealthTestApi {
 
-  static runTest(test) {
-    const request = new Request(`/api/tests/health`, {
+  static runTest(organisationName, test) {
+    const request = new Request(`/api/tests/${organisationName}/health`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',
