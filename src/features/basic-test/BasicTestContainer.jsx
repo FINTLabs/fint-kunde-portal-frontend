@@ -125,7 +125,8 @@ class BasicTestContainer extends Component {
     });
     this.notify("Testen ble startet!");
     const test = this.getTest();
-    const orgName = this.state.currentOrganisation.name;
+    const { currentOrganisation } = this.props.context;
+    const orgName = currentOrganisation.name;
 
     this.setState({ healthResult: { status: "RUNNING", healthData: [] } });
 
