@@ -1,7 +1,7 @@
 class LinkWalkerApi {
 
   static getTests(organisationName) {
-    const url = `/api/tests/links/${organisationName}`;
+    const url = `/api/tests/${organisationName}/links`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -10,7 +10,7 @@ class LinkWalkerApi {
   }
 
   static getFailedTestResults(organisationName, id) {
-    const url = `/api/tests/links/${organisationName}/${id}?status=FAILED`;
+    const url = `/api/tests/${organisationName}/links/${id}?status=FAILED`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -19,7 +19,7 @@ class LinkWalkerApi {
   }
 
   static getAllTestResults(organisationName, id) {
-    const url = `/api/tests/links/${organisationName}/${id}`;
+    const url = `/api/tests/${organisationName}/links/${id}`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -28,7 +28,7 @@ class LinkWalkerApi {
   }
 
   static addTest(test, organisationName) {
-    const request = new Request(`/api/tests/links/${organisationName}`, {
+    const request = new Request(`/api/tests/${organisationName}/links`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',
@@ -46,7 +46,7 @@ class LinkWalkerApi {
   }
 
   static clearTests(organisationName) {
-    const request = new Request(`/api/tests/links/${organisationName}`, {
+    const request = new Request(`/api/tests/${organisationName}/links`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'
