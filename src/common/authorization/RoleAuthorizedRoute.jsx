@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
+import {Route} from "react-router-dom";
 import {useSelector} from "react-redux";
 import AppContext from "../../data/context/AppContext";
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
 
+const RoleAuthorizedRoute = ({path, component, role}) => {
 
-const RoleAuthorization = ({children, role}) => {
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
 
@@ -20,20 +20,16 @@ const RoleAuthorization = ({children, role}) => {
         return me.roles.includes(getFullyQualifiedRole(role))
             || me.roles.includes(getFullyQualifiedRole('ROLE_ADMIN'));
     }
-
     if (authorized()) {
-        return <>
-            {children}
-        </>;
+        return <Route path={path} component={component}/>;
     }
 
-
-    return <Redirect to="/"/>;
+    return null;
 };
 
-RoleAuthorization.propTypes = {
-    children: PropTypes.node.isRequired,
+RoleAuthorizedRoute.propTypes = {
     role: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
+    component: PropTypes.object.isRequired
 };
-
-export default RoleAuthorization;
+export default RoleAuthorizedRoute;

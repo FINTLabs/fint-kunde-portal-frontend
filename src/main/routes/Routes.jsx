@@ -12,6 +12,7 @@ import LinkWalkerContainer from "../../features/link-walker/LinkWalkerContainer"
 import BasicTestContainer from "../../features/basic-test/BasicTestContainer";
 import AccessPackageContainer from "../../features/access-package/AccessPackageContainer";
 import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import RoleAuthorizedRoute from "../../common/authorization/RoleAuthorizedRoute";
 
 function Routes() {
     const featureAuditLogEnabled = useFeatureEnabled("audit-log");
@@ -19,7 +20,7 @@ function Routes() {
     return (
         <div>
             <Route exact path="/" component={Dashboard}/>
-            <Route path="/clients" component={ClientsContainer}/>
+            <RoleAuthorizedRoute path="/clients" component={ClientsContainer} role="ROLE_CLIENT"/>
             <Route path="/adapters" component={AdapterContainer}/>
             <Route path="/contacts" component={ContactContainer}/>
             <Route path="/assets" component={AssetContainer}/>
