@@ -19,11 +19,5 @@ pipeline {
                 }
             }
         }
-        stage('Build backend') {
-            when { branch 'master' }
-            steps {
-                build job: 'FINTLabs/fint-kunde-portal-backend/master', wait: false
-            }
-        }
     }
 }

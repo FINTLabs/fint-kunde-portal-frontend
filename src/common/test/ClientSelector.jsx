@@ -46,7 +46,7 @@ export default function ClientSelector(props) {
                 >
                     {selectableClients.map(client => {
                         return (
-                            <MenuItem key={client.dn} value={client.dn}>
+                            <MenuItem key={client.name} value={client.name}>
                                 {client.shortDescription}
                             </MenuItem>
                         );

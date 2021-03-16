@@ -112,8 +112,7 @@ class BasicTestContainer extends Component {
   getTest = () => {
     return {
       endpoint: `${this.state.endpoint}`,
-      baseUrl: this.state.baseUrl,
-      client: this.state.client
+      baseUrl: this.state.baseUrl
     };
   };
 
@@ -126,13 +125,15 @@ class BasicTestContainer extends Component {
     });
     this.notify("Testen ble startet!");
     const test = this.getTest();
+    const { currentOrganisation } = this.props.context;
+    const orgName = currentOrganisation.name;
 
     this.setState({ healthResult: { status: "RUNNING", healthData: [] } });
 
-    TestAuthApi.authInit(test)
+    TestAuthApi.authInit(orgName, this.state.client, test)
       .then(([response]) => {
         if (response.status < 400) {
-          BasicTestApi.runTest(test)
+          BasicTestApi.runTest(orgName, test)
             .then(([response, json]) => {
               if (response.status === 200) {
                 this.setState({ testCases: json.cases });
@@ -154,7 +155,7 @@ class BasicTestContainer extends Component {
               });
             });
 
-          HealthTestApi.runTest(test)
+          HealthTestApi.runTest(orgName, test)
             .then(([response, json]) => {
               if (response.status === 200) {
                 this.setState({ healthResult: json });

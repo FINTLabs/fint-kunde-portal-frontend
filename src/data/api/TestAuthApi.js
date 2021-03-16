@@ -1,8 +1,8 @@
 class TestAuthApi {
 
-  static authInit(test) {
+  static authInit(organisationName, client, test) {
 
-    const request = new Request(`/api/tests/auth/init`, {
+    const request = new Request(`/api/tests/${organisationName}/auth/init/${client}`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',
@@ -18,9 +18,9 @@ class TestAuthApi {
   }
 
   static clearAuth(organisationName) {
-    const url = `/api/tests/auth/clear/${organisationName}`;
+    const url = `/api/tests/${organisationName}/auth/clear`;
     return fetch(url, {
-        method: 'GET',
+        method: 'DELETE',
         credentials: 'same-origin'
       })
       .then(response => Promise.all([response]));
