@@ -85,7 +85,7 @@ class LinkWalkerTestList extends Component {
 
   getDownloadUrl = test => {
     const { organisationName } = this.props;
-    return `/api/tests/links/${organisationName}/${test.id}/download`;
+    return `/api/tests/${organisationName}/links/${test.id}/download`;
 
     /*
         const {organisationName, clientConfig} = this.props;
