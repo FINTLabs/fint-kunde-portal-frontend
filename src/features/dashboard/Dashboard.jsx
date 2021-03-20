@@ -1,196 +1,123 @@
-import React, {Component} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
-    Avatar,
     Card,
+    CardActions,
     CardContent,
     CardHeader,
-    Divider,
     Grid,
-    Typography,
-    withStyles
+    makeStyles,
+    Typography
 } from "@material-ui/core";
-import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import AdapterIcon from "@material-ui/icons/Link";
-import ApiIcon from "@material-ui/icons/WebAsset";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import {fetchAdapters} from "../../data/redux/dispatchers/adapter";
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {fetchClients} from "../../data/redux/dispatchers/client";
-import {fetchComponents} from "../../data/redux/dispatchers/component";
-import LoadingProgress from "../../common/status/LoadingProgress";
-import {withContext} from "../../data/context/withContext";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
+import {createStyles} from "@material-ui/core/styles";
+import AppContext from "../../data/context/AppContext";
+import HealthDashboardApi from "../../data/api/HealthDashboardApi";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 
-const styles = theme => ({
-    root: {
-        marginTop: theme.spacing(3),
-        width: "100%",
-        height: "100%"
-    },
-    cardContent: {
-        textAlign: "center"
-    },
-    cardLink: {
-        textDecoration: "none"
-    },
-    card: {},
-    cardHeader: {},
-    avatar: {
-        margin: 10,
-        color: "#fff",
-        backgroundColor: theme.palette.secondary.light
-    }
-});
-
-class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    componentDidMount() {
-        this.refresh();
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (
-            this.props.context.currentOrganisation !==
-            prevProps.context.currentOrganisation
-        ) {
-            this.refresh();
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        root: {
+            marginTop: theme.spacing(3),
+            width: "100%",
+            height: "100%"
+        },
+        cardContent: {
+            textAlign: "center"
+        },
+        cardLink: {
+            textDecoration: "none"
+        },
+        cardHeader: {},
+        avatar: {
+            margin: 10,
+            color: "#fff",
+            backgroundColor: theme.palette.secondary.light
+        },
+        healthy: {
+            color: theme.palette.success
         }
+
+
+    }));
+
+const Dashboard = () => {
+    const classes = useStyles();
+    const orgId = useContext(AppContext).currentOrganisation.name.replace("_", ".");
+    const [health, setHealth] = useState();
+
+    useEffect(() => {
+        HealthDashboardApi.getHealthDashboardData(orgId)
+            .then(response => {
+                if (response.status === 200) {
+                    setHealth(response.data);
+                }
+            });
+    });
+
+    const isHealthy = (component) => {
+        return component.health.filter(health => health.status === "APPLICATION_HEALTHY").length === 1;
     }
 
-    refresh = () => {
-        this.props.fetchAdapters(this.props.context.currentOrganisation.name);
-        this.props.fetchClients(this.props.context.currentOrganisation.name);
-        this.props.fetchComponents();
-    };
+    const getAdapterName = (component) => {
+        if (component.clients.length > 0) {
+            return component.clients[0].client;
+        }
+        return "";
+    }
+    return (
+        <div className={classes.root}>
+            <Grid container spacing={10}>
+                <Grid item xs={12}>
+                    <FeatureHelperText>
+                        <p>
+                            FINT kundeportal skal benyttes av fylkeskommuner og andre
+                            organisasjoner som benytter FINT til å gi tilgang til egne
+                            data.
+                        </p>
+                        <p>
+                            Kundeportalen skal gi personer som har fått tildelt roller i
+                            en organisasjon mulighet for å administrere tilgangsstyring
+                            til data.
+                        </p>
+                    </FeatureHelperText>
+                </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+                {health && health.components.map(component => (
+                    <Grid item xs={4}>
+                        <Card key={component.id} variant="outlined">
 
-    render() {
-        const {classes, clients, adapters, components} = this.props;
-        if (clients && adapters && components) {
-            return (
-                <div className={classes.root}>
-                    <Grid container spacing={10}>
-                        <Grid item xs={12}>
-                            <FeatureHelperText>
-                                <p>
-                                    FINT kundeportal skal benyttes av fylkeskommuner og andre
-                                    organisasjoner som benytter FINT til å gi tilgang til egne
-                                    data.
-                                </p>
-                                <p>
-                                    Kundeportalen skal gi personer som har fått tildelt roller i
-                                    en organisasjon mulighet for å administrere tilgangsstyring
-                                    til data.
-                                </p>
-                            </FeatureHelperText>
-                        </Grid>
-                    </Grid>
 
-                    <Grid container spacing={10}>
-                        <Grid item xs={4}>
-                            <Link to="clients" className={classes.cardLink}>
-                                <Card className={classes.card} id={"clientCard"}
-                                >
-                                    <CardHeader
-                                        title="Klienter"
-                                        avatar={
-                                            <Avatar className={classes.avatar}>
-                                                <ClientIcon className={classes.avatar}/>
-                                            </Avatar>
-                                        }
-                                        subheader="Antall"
-                                        className={classes.cardHeader}
-                                    />
-                                    <Divider/>
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography variant="h2">{clients.length}</Typography>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </Grid>
+                            <CardHeader title={component.id} subheader={getAdapterName(component)}/>
 
-                        <Grid item xs={4}>
-                            <Link to="adapters" className={classes.cardLink}>
-                                <Card className={classes.card} id={"adapterCard"}
-                                >
-                                    <CardHeader
-                                        title="Adapter"
-                                        avatar={
-                                            <Avatar className={classes.avatar}>
-                                                <AdapterIcon className={classes.avatar}/>
-                                            </Avatar>
-                                        }
-                                        subheader="Antall"
-                                    />
-                                    <Divider/>
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography variant="h2">{adapters.length}</Typography>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </Grid>
-
-                        <Grid item xs={4}>
-                            <Link to="components" className={classes.cardLink}>
-                                <Card className={classes.card} id={"componentCard"}>
-                                    <CardHeader
-                                        title="Komponenter"
-                                        avatar={
-                                            <Avatar className={classes.avatar}>
-                                                <ApiIcon className={classes.avatar}/>
-                                            </Avatar>
-                                        }
-                                        subheader="Antall"
-                                    />
-                                    <Divider/>
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography variant="h2">
-                                            {this.props.context.currentOrganisation.components.length}
+                            <CardContent>
+                                <Box display="flex">
+                                    <Box height="48px" width="48px" borderRadius="50%"
+                                         bgcolor={isHealthy(component) ? "green" : "red"}/>
+                                    <Box display="flex" flexDirection="column">
+                                        <Typography>
+                                            {'Sist oppdatert:'}
                                         </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        </Grid>
+                                        <Typography>
+                                            {new Date(component.lastUpdated).toLocaleString()}
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small">Se mer</Button>
+                            </CardActions>
+                        </Card>
                     </Grid>
-                </div>
-            );
-        } else {
-            return <LoadingProgress/>;
-        }
-    }
-}
+                ))}
+            </Grid>
+        </div>
+    );
 
-Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-    return {
-        adapters: state.adapter.adapters,
-        components: state.component.components,
-        clients: state.client.clients
-    };
-}
+Dashboard.propTypes = {};
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(
-        {
-            fetchAdapters: fetchAdapters,
-            fetchClients: fetchClients,
-            fetchComponents: fetchComponents
-        },
-        dispatch
-    );
-}
 
-export default withStyles(styles)(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(withContext(Dashboard))
-);
+export default Dashboard;
