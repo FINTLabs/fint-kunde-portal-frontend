@@ -22,12 +22,14 @@ import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationM
 const MenuItems = () => {
     return (
         <List id="menuList">
-            <ListItem button component={Link} to="/dashboard" id="HomeMenuButton">
-                <ListItemIcon>
-                    <DashboardIcon/>
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" id="HomeMenuButtonText"/>
-            </ListItem>
+            <RoleAuthorizationMenu role="ROLE_DASHBOARD">
+                <ListItem button component={Link} to="/dashboard" id="HomeMenuButton">
+                    <ListItemIcon>
+                        <DashboardIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" id="HomeMenuButtonText"/>
+                </ListItem>
+            </RoleAuthorizationMenu>
             <Divider/>
             <RoleAuthorizationMenu role="ROLE_ORGANISATION">
                 <ListItem button component={Link} to="/contacts">
