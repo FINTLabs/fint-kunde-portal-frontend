@@ -4,6 +4,7 @@ import AppContext from "../../data/context/AppContext";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import {getFullyQualifiedRole} from "./role-utilities";
 
 
 const RoleAuthorizationMenu = ({children, role}) => {
@@ -11,17 +12,12 @@ const RoleAuthorizationMenu = ({children, role}) => {
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
     const isRoleFeatureEnabled = useFeatureEnabled("roles");
 
-
-    const getFullyQualifiedRole = (role) => {
-        return `${role}@${currentOrganisation}`;
-    }
-
     const authorized = () => {
         if (!me) {
             return false
         }
-        return me.roles.includes(getFullyQualifiedRole(role))
-            || me.roles.includes(getFullyQualifiedRole('ROLE_ADMIN'));
+        return me.roles.includes(getFullyQualifiedRole(role, currentOrganisation))
+            || me.roles.includes(getFullyQualifiedRole('ROLE_ADMIN', currentOrganisation));
     }
 
     if (!isRoleFeatureEnabled) {
