@@ -3,11 +3,14 @@ import {useSelector} from "react-redux";
 import AppContext from "../../data/context/AppContext";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
 
 
-const RoleAuthorization = ({children, role}) => {
+const RoleAuthorizationMenu = ({children, role}) => {
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
+    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+
 
     const getFullyQualifiedRole = (role) => {
         return `${role}@${currentOrganisation}`;
@@ -21,19 +24,22 @@ const RoleAuthorization = ({children, role}) => {
             || me.roles.includes(getFullyQualifiedRole('ROLE_ADMIN'));
     }
 
+    if (!isRoleFeatureEnabled) {
+        return <>{children}</>;
+    }
+
     if (authorized()) {
         return <>
             {children}
         </>;
     }
 
-
     return <Redirect to="/"/>;
 };
 
-RoleAuthorization.propTypes = {
+RoleAuthorizationMenu.propTypes = {
     children: PropTypes.node.isRequired,
     role: PropTypes.string.isRequired,
 };
 
-export default RoleAuthorization;
+export default RoleAuthorizationMenu;

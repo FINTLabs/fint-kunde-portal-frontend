@@ -24,6 +24,7 @@ import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import Chip from "@material-ui/core/Chip";
+import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
 
 
 const useStyles = makeStyles((theme) =>
@@ -54,6 +55,7 @@ const TechnicalList = props => {
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const roleTypes = useSelector(state => state.roles.roles);
     const dispatch = useDispatch();
+    const isRoleFeatureEnabled = useFeatureEnabled("roles");
 
     const appContext = useContext(AppContext);
 
@@ -137,10 +139,10 @@ const TechnicalList = props => {
                 message={message}
                 onClose={onCloseRemoveContact}
             />
-            <RoleDialog
+            {isRoleFeatureEnabled && <RoleDialog
                 onClose={() => setShowRoleDialog(false)}
                 open={showRoleDialog}
-            />
+            />}
             <Box width="75%">
                 <Typography variant="h5" className={classes.title}>
                     Teknisk kontakter
@@ -156,10 +158,11 @@ const TechnicalList = props => {
                             </ListItemAvatar>
                             <ListItemText
                                 primary={`${contact.firstName} ${contact.lastName}`}
-                                secondary={getRoleTags(contact.roles)}
+                                secondary={isRoleFeatureEnabled && getRoleTags(contact.roles)}
                                 secondaryTypographyProps={{component: 'div'}}
                             />
                             <ListItemSecondaryAction>
+                                {isRoleFeatureEnabled &&
                                 <TooltipIconButton
                                     ariaLabel="Roles"
                                     onClick={() => manageRoles(contact)}
@@ -168,6 +171,7 @@ const TechnicalList = props => {
                                 >
                                     <RolesIcon/>
                                 </TooltipIconButton>
+                                }
 
                                 <TooltipIconButton
                                     ariaLabel="Juridisk kontakt"

@@ -50,10 +50,8 @@ const RoleDialog = props => {
     }
     const onRoleChange = (organisationName, nin, roleId) => {
         if (hasRole(roleId)) {
-            console.log("Removing role");
             dispatch(removeRole(organisationName, nin, roleId));
         } else {
-            console.log("Adding role");
             dispatch(addRole(organisationName, nin, roleId));
         }
     }
