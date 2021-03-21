@@ -1,35 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {BrowserRouter} from "react-router-dom";
 import AppMenu from "./appmenu/AppMenu";
-import MeApi from "../data/api/MeApi";
 import NoGoContainer from "../features/nogo/NoGoContainer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchMe} from "../data/redux/dispatchers/me";
 import {fetchFeatures} from "../data/redux/dispatchers/features";
 
 const Main = () => {
-
-    const [contactExists, setContactExists] = useState(false);
-    const [contactHasOrganisations, setContactHasOrganisations] = useState(false);
-    const [me, setMe] = useState();
+    const me = useSelector(state => state.me.me);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // TODO: Use redux instead
-        MeApi.getMe().then((response) => {
-            if (response.status === 200) {
-                setMe(response.data);
-                setContactExists(true);
-                setContactHasOrganisations(response.data.legal.length > 0 || response.data.technical.length > 0);
-            } else {
-                setContactExists(false);
-                setContactHasOrganisations(false);
-            }
-        });
         dispatch(fetchMe());
         dispatch(fetchFeatures());
-
-    },[dispatch]);
+    }, [dispatch]);
 
     function renderAppMenu() {
         return (
@@ -41,13 +25,21 @@ const Main = () => {
         );
     }
 
-    if (contactExists && contactHasOrganisations && me) {
+    const contactExists = () => {
+        return me !== undefined;
+    }
+
+    const contactHasOrganisations = () => {
+        return contactExists() && (me.legal.length > 0 || me.technical.length > 0);
+    }
+
+    if (contactHasOrganisations()) {
         return renderAppMenu();
     }
     return (
         <NoGoContainer
-            contactExists={contactExists}
-            contactHasOrganisations={contactHasOrganisations}
+            contactExists={contactExists()}
+            contactHasOrganisations={contactHasOrganisations()}
         />
     );
 
