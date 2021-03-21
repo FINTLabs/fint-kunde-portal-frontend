@@ -3,8 +3,8 @@ import {useSelector} from "react-redux";
 import AppContext from "../../data/context/AppContext";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
 import {getFullyQualifiedRole} from "./role-utilities";
+import useFeatureEnabled from "../feature-toggle/useFeatureEnabled";
 
 
 const RoleAuthorizationMenu = ({children, role}) => {

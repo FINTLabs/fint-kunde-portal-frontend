@@ -3,7 +3,7 @@ import {Redirect, Route} from "react-router-dom";
 import {useSelector} from "react-redux";
 import AppContext from "../../data/context/AppContext";
 import PropTypes from "prop-types";
-import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import useFeatureEnabled from "../feature-toggle/useFeatureEnabled";
 
 const RoleAuthorizedRoute = ({path, component, role}) => {
 

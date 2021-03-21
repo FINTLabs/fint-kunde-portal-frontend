@@ -5,16 +5,14 @@ import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {hasRoleInCurrentOrganisation} from "../../common/authorization/role-utilities";
 import AppContext from "../../data/context/AppContext";
 import Box from "@material-ui/core/Box";
-import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import useFeatureEnabled from "../../common/feature-toggle/useFeatureEnabled";
 
 const Home = () => {
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
     const isRoleFeatureEnabled = useFeatureEnabled("roles");
 
-    console.log("isRoleFeatureEnabled", isRoleFeatureEnabled)
     if (isRoleFeatureEnabled) {
-        console.log("hasRoleInCurrentOrganisation", hasRoleInCurrentOrganisation(me, currentOrganisation))
         if (hasRoleInCurrentOrganisation(me, currentOrganisation)) {
             return <Redirect to="/dashboard"/>;
         }

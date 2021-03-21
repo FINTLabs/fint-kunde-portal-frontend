@@ -10,10 +10,10 @@ import LogContainer from "../../features/logs/LogContainer";
 import LinkWalkerContainer from "../../features/link-walker/LinkWalkerContainer";
 import BasicTestContainer from "../../features/basic-test/BasicTestContainer";
 import AccessPackageContainer from "../../features/access-package/AccessPackageContainer";
-import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
 import RoleAuthorizedRoute from "../../common/authorization/RoleAuthorizedRoute";
 import {Route} from "react-router-dom";
 import Home from "../../features/home/Home";
+import useFeatureEnabled from "../../common/feature-toggle/useFeatureEnabled";
 
 function Routes() {
     const featureAuditLogEnabled = useFeatureEnabled("audit-log");

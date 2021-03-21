@@ -24,7 +24,7 @@ import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import Chip from "@material-ui/core/Chip";
-import {useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 
 
 const useStyles = makeStyles((theme) =>

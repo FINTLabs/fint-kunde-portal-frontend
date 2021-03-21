@@ -5,6 +5,7 @@ import MeApi from "../data/api/MeApi";
 import NoGoContainer from "../features/nogo/NoGoContainer";
 import {useDispatch} from "react-redux";
 import {fetchMe} from "../data/redux/dispatchers/me";
+import {fetchFeatures} from "../data/redux/dispatchers/features";
 
 const Main = () => {
 
@@ -26,6 +27,7 @@ const Main = () => {
             }
         });
         dispatch(fetchMe());
+        dispatch(fetchFeatures());
 
     },[dispatch]);
 

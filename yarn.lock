@@ -1176,11 +1176,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
 
-"@fintlabs/fint-feature-toggle-react@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@fintlabs/fint-feature-toggle-react/-/fint-feature-toggle-react-1.0.1.tgz#099a87e612902b9127f57b72a53e820c7c46ff12"
-  integrity sha512-yx5sOw5rnZ3OaX1U3Q7Xi1kUgmB94qM6wNfU+UoDFKIT2mCVyWqtaiMtyRQ5sSWxK5nYITMFUijMDGAYsvAmhw==
-
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"

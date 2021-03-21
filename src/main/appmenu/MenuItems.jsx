@@ -13,10 +13,10 @@ import ContactSupport from "@material-ui/icons/ContactSupport"
 import KeyIcon from "@material-ui/icons/Lock"
 import {Link} from "react-router-dom";
 import Divider from "@material-ui/core/Divider/Divider";
-import {FeatureToggle} from "@fintlabs/fint-feature-toggle-react";
 import List from "@material-ui/core/List";
 import LogIcon from "@material-ui/icons/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
+import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
 
 
 const MenuItems = () => {
