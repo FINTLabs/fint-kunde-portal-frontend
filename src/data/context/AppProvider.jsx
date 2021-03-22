@@ -14,8 +14,6 @@ class AppProvider extends Component {
             currentOrganisation: undefined,
             organisations: undefined,
             clientConfig: undefined,
-            contactOrganisationsLoading: false,
-            clientConfigLoading: false,
             setCurrentOrganisation: organisation => {
                 this.setCurrentOrganisation(organisation);
             },
@@ -54,8 +52,11 @@ class AppProvider extends Component {
                 }
             })
             .catch(() => {
-            })
-            .finally(() => this.setState({contactOrganisationsLoading: false,}));
+                this.setState({
+                    organisations: [],
+                    currentOrganisation: {}
+                })
+            });
 
         ClientConfigApi.fetchClientConfig()
             .then(response => {
@@ -65,12 +66,11 @@ class AppProvider extends Component {
                 this.setState({
                     clientConfig: json
                 });
-            })
-            .finally(() => this.setState({clientConfigLoading: false}));
+            });
     }
 
     render() {
-        if (this.state.contactOrganisationsLoading || this.state.clientConfigLoading) {
+        if (this.state.organisations === undefined || this.state.currentOrganisation === undefined) {
             return <LoadingProgress/>;
         } else {
             return (
