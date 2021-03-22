@@ -1,104 +1,93 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import PropTypes from "prop-types";
 import {
     Avatar,
-    Divider,
-    IconButton,
+    Box,
     List,
     ListItem,
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
+    Typography
 } from "@material-ui/core";
-import RemoveIcon from "@material-ui/icons/RemoveCircle";
-import ContactIcon from "@material-ui/icons/Person";
-import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import {withContext} from "../../../data/context/withContext";
+import RoleDialog from "../role/RoleDialog";
+import AppContext from "../../../data/context/AppContext";
+import {createStyles, makeStyles} from "@material-ui/core/styles";
+import ContactIcon from "@material-ui/icons/Person";
+import TooltipIconButton from "../../../common/button/TooltipIconButton";
+import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
+import SetLegalIcon from "@material-ui/icons/AccountBalance";
+import {useDispatch, useSelector} from "react-redux";
+import {setRoleContact} from "../../../data/redux/actions/roles";
+import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
+import RoleTags from "./RoleTags";
 
-const styles = theme => ({
-    root: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    technicalContactList: {
-        width: "75%"
-    },
-    title: {
-        paddingLeft: theme.spacing(3),
-        paddingBottom: theme.spacing(1)
-    },
-    listItem: {
-        borderBottom: "1px dashed lightgray"
-    },
-    itemAvatar: {
-        color: "#fff",
-        backgroundColor: theme.palette.secondary.light
-    },
-});
 
-class TechnicalList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            askToRemoveContact: false,
-            contact: {},
-            message: ""
-        };
-    }
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        itemAvatar: {
+            color: "#fff",
+            backgroundColor: theme.palette.secondary.light
+        }
+    }));
 
-    askToRemoveContact = contact => {
-        this.setState({
-            askToRemoveContact: true,
-            message: `Er du sikker på at du vil fjerne ${contact.firstName} ${
-                contact.lastName
-            } fra organisasjonen?`,
-            contact: contact
-        });
+const TechnicalList = props => {
+    const [showConfirmRemoveContact, setShowConfirmRemoveContact] = useState(false);
+    const [message, setMessage] = useState("");
+    const [contact, setContact] = useState({});
+    const classes = useStyles();
+    const {technicalContacts} = props;
+    const [showRoleDialog, setShowRoleDialog] = useState(false);
+    const dispatch = useDispatch();
+    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+    const roleTypes = useSelector(state => state.roles.roles);
+    const orgId = useContext(AppContext).currentOrganisation.name;
+
+    const askToRemoveContact = contact => {
+        setShowConfirmRemoveContact(true);
+        setMessage(`Er du sikker på at du vil fjerne ${contact.firstName} ${contact.lastName} fra organisasjonen?`);
+        setContact(contact);
     };
-
-    onCloseRemoveContact = confirmed => {
-        this.setState({
-            askToRemoveContact: false
-        });
+    const onCloseRemoveContact = confirmed => {
+        setShowConfirmRemoveContact(false);
 
         if (confirmed) {
-            this.removeContact(this.state.contact);
+            removeContact(contact);
         }
     };
 
-    removeContact = contact => {
+    const removeContact = contact => {
         OrganisationApi.removeTechnicalContact(
             contact,
-            this.props.context.currentOrganisation.name
+            orgId
         )
             .then(response => {
-                this.props.notify(
+                props.notify(
                     `${contact.firstName} ${contact.lastName} ble fjernet.`
                 );
-                this.props.fetchTechnicalContacts();
+                props.fetchTechnicalContacts();
             })
             .catch(error => {
                 alert(error);
             });
     };
 
-    setLegalContact = contact => {
+    const setLegalContact = contact => {
         OrganisationApi.unsetLegalContact(
-            this.props.legalContact,
-            this.props.context.currentOrganisation.name
+            props.legalContact,
+            orgId
         )
             .then(() => {
                 OrganisationApi.setLegalContact(
                     contact,
-                    this.props.context.currentOrganisation.name
+                    orgId
                 )
                     .then(() => {
-                        this.props.notify("Juridisk ansvarlig er oppdatert.");
-                        this.props.afterUpdateLegalContact();
+                        props.notify("Juridisk ansvarlig er oppdatert.");
+                        props.afterUpdateLegalContact();
                     })
                     .catch(() => {
                     });
@@ -107,62 +96,83 @@ class TechnicalList extends React.Component {
             });
     };
 
-    render() {
-        const {classes, technicalContacts} = this.props;
-        return (
-            <div className={classes.root}>
-                <WarningMessageBox
-                    show={this.state.askToRemoveContact}
-                    message={this.state.message}
-                    onClose={this.onCloseRemoveContact}
-                />
-                <div className={classes.technicalContactList}>
-                    <Typography variant="h5" className={classes.title}>
-                        Teknisk kontakter
-                    </Typography>
-                    <Divider/>
-                    <List id={"technicalContactsList"}>
-                        {technicalContacts.map(contact => (
-                            <ListItem className={classes.listItem} key={contact.dn}>
-                                <ListItemAvatar>
-                                    <Avatar className={classes.itemAvatar}>
-                                        <ContactIcon/>
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText
-                                    primary={contact.firstName}
-                                    secondary={contact.lastName}
-                                />
-                                <ListItemSecondaryAction>
-                                    <IconButton
-                                        aria-label="Remove"
-                                        onClick={() => this.askToRemoveContact(contact)}
-                                        id={"removeUserButton"}
-                                    >
-                                        <RemoveIcon/>
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Legal"
-                                        onClick={() => this.setLegalContact(contact)}
-                                        id={"changeLegalButton"}
-                                    >
-                                        <SetLegalIcon className={classes.setLegalIcon}/>
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                        ))}
-                    </List>
-                </div>
-            </div>
-        );
+    const manageRoles = contact => {
+        dispatch(setRoleContact(contact));
+        setShowRoleDialog(true);
     }
+
+    return (
+        <Box display="flex" justifyContent="center">
+            <WarningMessageBox
+                show={showConfirmRemoveContact}
+                message={message}
+                onClose={onCloseRemoveContact}
+            />
+            {isRoleFeatureEnabled && <RoleDialog
+                onClose={() => setShowRoleDialog(false)}
+                open={showRoleDialog}
+            />}
+            <Box width="75%">
+                <Typography variant="h5">
+                    Teknisk kontakter
+                </Typography>
+                <List id={"technicalContactsList"}>
+                    {technicalContacts.map(contact => (
+                        <ListItem divider key={contact.dn}>
+                            <ListItemAvatar>
+                                <Avatar className={classes.itemAvatar}>
+                                    <ContactIcon/>
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={`${contact.firstName} ${contact.lastName}`}
+                                secondary={isRoleFeatureEnabled &&
+                                <RoleTags orgId={orgId} contactRoles={contact.roles}
+                                          roleTypes={roleTypes}/>}
+                                secondaryTypographyProps={{component: 'div'}}
+                            />
+                            <ListItemSecondaryAction>
+                                {isRoleFeatureEnabled &&
+                                <TooltipIconButton
+                                    ariaLabel="Roles"
+                                    onClick={() => manageRoles(contact)}
+                                    id="manageRoles"
+                                    toolTip="Administrer roller for kontakten"
+                                >
+                                    <RolesIcon/>
+                                </TooltipIconButton>
+                                }
+
+                                <TooltipIconButton
+                                    ariaLabel="Juridisk kontakt"
+                                    onClick={() => setLegalContact(contact)}
+                                    id="changeLegalButton"
+                                    toolTip="Angi som juridisk kontakt"
+                                >
+                                    <SetLegalIcon/>
+                                </TooltipIconButton>
+
+                                <TooltipIconButton
+                                    ariaLabel="Fjern kontakt"
+                                    onClick={() => askToRemoveContact(contact)}
+                                    id="removeUserButton"
+                                    toolTip="Fjern teknisk kontakt"
+                                >
+                                    <RemoveIcon/>
+                                </TooltipIconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))}
+                </List>
+            </Box>
+        </Box>
+    );
 }
 
 TechnicalList.propTypes = {
     afterUpdateLegalContact: PropTypes.any.isRequired,
-    classes: PropTypes.any.isRequired,
     fetchTechnicalContacts: PropTypes.any.isRequired,
     notify: PropTypes.any.isRequired,
     technicalContacts: PropTypes.array.isRequired
 };
-export default withStyles(styles)(withContext(TechnicalList));
+export default TechnicalList;

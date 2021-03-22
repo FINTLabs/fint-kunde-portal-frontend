@@ -86,21 +86,6 @@ class LinkWalkerTestList extends Component {
   getDownloadUrl = test => {
     const { organisationName } = this.props;
     return `/api/tests/${organisationName}/links/${test.id}/download`;
-
-    /*
-        const {organisationName, clientConfig} = this.props;
-        LinkWalkerApi.getAllTestResults(clientConfig.linkwalkerBaseUrl, organisationName, test.id)
-            .then(([response, json]) => {
-                if (response.status === 200) {
-                    console.log(json);
-                    const report = CvsReport.getExcelReport(json);
-
-                    Filesaver.saveAs(new Blob([report], {type: "application/octet-stream"}), 'test.xlsx');
-
-                }
-
-            });
-            */
   };
 
   closeTestView = () => {

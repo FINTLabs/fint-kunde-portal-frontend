@@ -9,7 +9,8 @@ import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
 import ClientTabAccess from "./ClientTabAccess";
 import {createStyles} from "@material-ui/core/styles";
-import {FeatureToggle, useFeatureEnabled} from "@fintlabs/fint-feature-toggle-react";
+import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
+import FeatureToggle from "../../../common/feature-toggle/FeatureToggle";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -80,11 +81,11 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
                     />
                 </TabContainer>
                 <FeatureToggle feature="access-packages">
-                <TabContainer dir={theme.direction}>
-                    <ClientTabAccess
-                        client={client}
-                    />
-                </TabContainer>
+                    <TabContainer dir={theme.direction}>
+                        <ClientTabAccess
+                            client={client}
+                        />
+                    </TabContainer>
                 </FeatureToggle>
 
             </SwipeableViews>

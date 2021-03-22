@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import LogApi from "../../data/api/LogApi";
 import LogList from "./LogList";
 import {Box, Input, Typography} from "@material-ui/core";
@@ -17,7 +17,7 @@ import EntityApi from "../../data/api/EntityApi";
 import ResourceSelector from "../../common/test/ResourceSelector";
 import Button from "@material-ui/core/Button";
 
-class LogContainer extends React.Component {
+class LogContainer extends Component {
 
     constructor(props, context) {
         super(props, context);

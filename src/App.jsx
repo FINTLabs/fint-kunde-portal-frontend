@@ -2,6 +2,10 @@ import React from "react";
 import "./App.css";
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import Main from "./main/Main";
+import {Provider} from "react-redux";
+import store from "./data/redux/store/configure-store";
+import {CookiesProvider} from "react-cookie";
+import AppProvider from "./data/context/AppProvider";
 
 
 const theme = createMuiTheme({
@@ -27,9 +31,15 @@ const theme = createMuiTheme({
 
 function App() {
     return (
-        <MuiThemeProvider theme={theme}>
-            <Main/>
-        </MuiThemeProvider>
+        <Provider store={store}>
+            <CookiesProvider>
+                <AppProvider>
+                    <MuiThemeProvider theme={theme}>
+                        <Main/>
+                    </MuiThemeProvider>
+                </AppProvider>
+            </CookiesProvider>
+        </Provider>
     );
 }
 

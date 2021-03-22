@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class ContactApi {
 
   static fetchContacts() {
@@ -10,13 +12,11 @@ class ContactApi {
   }
 
   static fetchContactOrganisatons() {
-    const url = "/api/contacts/organisations";
-    return fetch(url, {
-      method: "GET",
-      credentials: "same-origin"
-    }).then(response => {
-      return response;
-    });
+    return axios.get('/api/contacts/organisations');
+  }
+
+  static getContactByNin(nin) {
+    return axios.get(`/api/contacts/${nin}`);
   }
 }
 

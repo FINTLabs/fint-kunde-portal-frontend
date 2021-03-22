@@ -1,66 +1,48 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {BrowserRouter} from "react-router-dom";
 import AppMenu from "./appmenu/AppMenu";
-import MeApi from "../data/api/MeApi";
 import NoGoContainer from "../features/nogo/NoGoContainer";
-import Provider from "react-redux/es/components/Provider";
-import store from "../data/redux/store/configure-store";
-import {CookiesProvider} from "react-cookie";
-import AppProvider from "../data/context/AppProvider";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchMe} from "../data/redux/dispatchers/me";
+import {fetchFeatures} from "../data/redux/dispatchers/features";
 
-class Main extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            contactExists: false,
-            contactHasOrganisations: false
-        };
-    }
+const Main = () => {
+    const me = useSelector(state => state.me.me);
+    const dispatch = useDispatch();
 
-    componentDidMount() {
-        MeApi.getMe().then(([response, json]) => {
-            if (response.status === 200) {
-                this.setState({
-                    contactExists: true,
-                    contactHasOrganisations:
-                        json.legal.length > 0 || json.technical.length > 0,
-                    me: json
-                });
-            } else {
-                this.setState({
-                    contactExists: false,
-                    contactHasOrganisations: false
-                });
-            }
-        });
-    }
+    useEffect(() => {
+        dispatch(fetchMe());
+        dispatch(fetchFeatures());
+    }, [dispatch]);
 
-    render() {
-        const {contactExists, contactHasOrganisations} = this.state;
-        if (contactExists && contactHasOrganisations) {
-            return this.renderAppMenu();
-        }
+    function renderAppMenu() {
         return (
-            <NoGoContainer
-                contactExists={contactExists}
-                contactHasOrganisations={contactHasOrganisations}
-            />
+
+            <BrowserRouter basename="/">
+                <AppMenu me={me}/>
+            </BrowserRouter>
+
         );
     }
 
-    renderAppMenu() {
-        return (
-            <Provider store={store}>
-                <CookiesProvider>
-                    <AppProvider>
-                        <BrowserRouter basename="/">
-                            <AppMenu me={this.state.me}/>
-                        </BrowserRouter>
-                    </AppProvider>
-                </CookiesProvider>
-            </Provider>
-        );
+    const contactExists = () => {
+        return me !== undefined;
     }
+
+    const contactHasOrganisations = () => {
+        return contactExists() && (me.legal.length > 0 || me.technical.length > 0);
+    }
+
+    if (contactHasOrganisations()) {
+        return renderAppMenu();
+    }
+    return (
+        <NoGoContainer
+            contactExists={contactExists()}
+            contactHasOrganisations={contactHasOrganisations()}
+        />
+    );
+
 }
 
 Main.propTypes = {};
