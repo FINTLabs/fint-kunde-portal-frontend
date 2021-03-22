@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {
     Avatar,
     Box,
-    Divider,
     List,
     ListItem,
     ListItemAvatar,
@@ -23,26 +22,15 @@ import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
 import SetLegalIcon from "@material-ui/icons/AccountBalance";
 import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
-import Chip from "@material-ui/core/Chip";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
+import RoleTags from "./RoleTags";
 
 
 const useStyles = makeStyles((theme) =>
     createStyles({
-        title: {
-            paddingLeft: theme.spacing(3),
-            paddingBottom: theme.spacing(1)
-        },
-        listItem: {
-            borderBottom: "1px dashed lightgray"
-        },
         itemAvatar: {
             color: "#fff",
             backgroundColor: theme.palette.secondary.light
-        },
-        roleChip: {
-            marginRight: theme.spacing(),
-            marginTop: theme.spacing()
         }
     }));
 
@@ -53,11 +41,10 @@ const TechnicalList = props => {
     const classes = useStyles();
     const {technicalContacts} = props;
     const [showRoleDialog, setShowRoleDialog] = useState(false);
-    const roleTypes = useSelector(state => state.roles.roles);
     const dispatch = useDispatch();
     const isRoleFeatureEnabled = useFeatureEnabled("roles");
-
-    const appContext = useContext(AppContext);
+    const roleTypes = useSelector(state => state.roles.roles);
+    const orgId = useContext(AppContext).currentOrganisation.name;
 
     const askToRemoveContact = contact => {
         setShowConfirmRemoveContact(true);
@@ -75,7 +62,7 @@ const TechnicalList = props => {
     const removeContact = contact => {
         OrganisationApi.removeTechnicalContact(
             contact,
-            appContext.currentOrganisation.name
+            orgId
         )
             .then(response => {
                 props.notify(
@@ -91,12 +78,12 @@ const TechnicalList = props => {
     const setLegalContact = contact => {
         OrganisationApi.unsetLegalContact(
             props.legalContact,
-            appContext.currentOrganisation.name
+            orgId
         )
             .then(() => {
                 OrganisationApi.setLegalContact(
                     contact,
-                    appContext.currentOrganisation.name
+                    orgId
                 )
                     .then(() => {
                         props.notify("Juridisk ansvarlig er oppdatert.");
@@ -114,24 +101,6 @@ const TechnicalList = props => {
         setShowRoleDialog(true);
     }
 
-    const getRoleTags = (roles) => {
-        if (roleTypes) {
-            return roles
-                .filter(role => role.endsWith(appContext.currentOrganisation.name))
-                .map(role => role.replace(`@${appContext.currentOrganisation.name}`, ''))
-                .map(role => roleTypes.filter(r => r.id === role)[0])
-                .map(role => (
-                    <Chip key={role.id}
-                          icon={<RolesIcon/>}
-                          size="small"
-                          className={classes.roleChip}
-                          label={role.name}/>
-                ))
-        }
-        return null;
-    }
-
-
     return (
         <Box display="flex" justifyContent="center">
             <WarningMessageBox
@@ -144,13 +113,12 @@ const TechnicalList = props => {
                 open={showRoleDialog}
             />}
             <Box width="75%">
-                <Typography variant="h5" className={classes.title}>
+                <Typography variant="h5">
                     Teknisk kontakter
                 </Typography>
-                <Divider/>
                 <List id={"technicalContactsList"}>
                     {technicalContacts.map(contact => (
-                        <ListItem className={classes.listItem} key={contact.dn}>
+                        <ListItem divider key={contact.dn}>
                             <ListItemAvatar>
                                 <Avatar className={classes.itemAvatar}>
                                     <ContactIcon/>
@@ -158,7 +126,9 @@ const TechnicalList = props => {
                             </ListItemAvatar>
                             <ListItemText
                                 primary={`${contact.firstName} ${contact.lastName}`}
-                                secondary={isRoleFeatureEnabled && getRoleTags(contact.roles)}
+                                secondary={isRoleFeatureEnabled &&
+                                <RoleTags orgId={orgId} contactRoles={contact.roles}
+                                          roleTypes={roleTypes}/>}
                                 secondaryTypographyProps={{component: 'div'}}
                             />
                             <ListItemSecondaryAction>

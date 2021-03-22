@@ -12,7 +12,6 @@ import AssetIcon from "@material-ui/icons/Storage";
 import ContactSupport from "@material-ui/icons/ContactSupport"
 import KeyIcon from "@material-ui/icons/Lock"
 import {Link} from "react-router-dom";
-import Divider from "@material-ui/core/Divider/Divider";
 import List from "@material-ui/core/List";
 import LogIcon from "@material-ui/icons/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
@@ -30,7 +29,6 @@ const MenuItems = () => {
                     <ListItemText primary="Dashboard" id="HomeMenuButtonText"/>
                 </ListItem>
             </RoleAuthorizationMenu>
-            <Divider/>
             <RoleAuthorizationMenu role="ROLE_ORGANISATION">
                 <ListItem button component={Link} to="/contacts">
                     <ListItemIcon>
@@ -81,7 +79,6 @@ const MenuItems = () => {
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>
-            <Divider/>
             <RoleAuthorizationMenu role="ROLE_TEST">
                 <ListItem button component={Link} to="/test/basic">
                     <ListItemIcon>
@@ -106,7 +103,6 @@ const MenuItems = () => {
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>
-            <Divider/>
             <RoleAuthorizationMenu role="ROLE_SUPPORT">
                 <ListItem button component={Link} to="/support/issue">
                     <ListItemIcon>
@@ -115,7 +111,6 @@ const MenuItems = () => {
                     <ListItemText primary="Opprett support sak"/>
                 </ListItem>
             </RoleAuthorizationMenu>
-            <Divider/>
             <ListItem button component="a"
                       href="https://idp.felleskomponent.no/nidp/app/logout">
                 <ListItemIcon>
