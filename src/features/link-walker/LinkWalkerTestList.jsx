@@ -62,23 +62,19 @@ class LinkWalkerTestList extends Component {
   };
 
   refreshTestList = () => {
-    const { organisationName, clientConfig } = this.props;
+    const { organisationName } = this.props;
     this.props.fetchLinkWalkerTests(
-      clientConfig.linkwalkerBaseUrl,
       organisationName
     );
   };
 
   clearTests = () => {
-    const { organisationName, clientConfig } = this.props;
-    LinkWalkerApi.clearTests(
-      clientConfig.linkwalkerBaseUrl,
-      organisationName
-    ).then(response => {
+    const { organisationName } = this.props;
+    LinkWalkerApi.clearTests(organisationName)
+    .then(response => {
       if (response.status === 200) {
         this.props.notify("Testloggen ble slette!");
         this.props.fetchLinkWalkerTests(
-          clientConfig.linkwalkerBaseUrl,
           organisationName
         );
       } else {
@@ -88,10 +84,8 @@ class LinkWalkerTestList extends Component {
   };
 
   getDownloadUrl = test => {
-    const { organisationName, clientConfig } = this.props;
-    return `${
-      clientConfig.linkwalkerBaseUrl
-    }/api/tests/links/${organisationName}/${test.id}/download`;
+    const { organisationName } = this.props;
+    return `/api/tests/${organisationName}/links/${test.id}/download`;
 
     /*
         const {organisationName, clientConfig} = this.props;
@@ -190,7 +184,6 @@ class LinkWalkerTestList extends Component {
           closeTestView={this.closeTestView}
           test={this.state.test}
           organisationName={this.props.organisationName}
-          clientConfig={this.props.clientConfig}
         />
       </div>
     );

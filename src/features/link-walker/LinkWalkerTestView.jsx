@@ -53,12 +53,9 @@ class LinkWalkerTestView extends React.Component {
   }
 
   downloadTestToJson = test => {
-    const { organisationName, clientConfig } = this.props;
-    LinkWalkerApi.getAllTestResults(
-      clientConfig.linkwalkerBaseUrl,
-      organisationName,
-      test.id
-    ).then(([response, json]) => {
+    const { organisationName } = this.props;
+    LinkWalkerApi.getAllTestResults(organisationName, test.id)
+    .then(([response, json]) => {
       if (response.status === 200) {
         downloadCsv(
           CvsReport.getReport(json),

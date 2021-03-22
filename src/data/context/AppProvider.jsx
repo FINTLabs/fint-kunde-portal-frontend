@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import AppContext from "./AppContext";
 import ContactApi from "../api/ContactApi";
 import PropTypes from "prop-types";
-
 import {Cookies, withCookies} from "react-cookie";
 import ClientConfigApi from "../api/ClientConfigApi";
 import LoadingProgress from "../../common/status/LoadingProgress";
@@ -22,7 +21,7 @@ class AppProvider extends Component {
             }
         };
     }
-
+  
     componentDidMount() {
         this.refreshState();
     }

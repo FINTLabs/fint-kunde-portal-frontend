@@ -1,7 +1,7 @@
 class BasicTestApi {
 
-  static runTest(baseUrl, test) {
-    const request = new Request(`${baseUrl}/api/tests/basic`, {
+  static runTest(organisationName, test) {
+    const request = new Request(`/api/tests/${organisationName}/basic`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',

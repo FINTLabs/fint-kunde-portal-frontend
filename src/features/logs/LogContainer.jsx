@@ -95,7 +95,7 @@ class LogContainer extends Component {
     }
 
     getOrgId = () => {
-        return this.props.context.currentOrganisation.name.replace('_', '.');
+        return this.props.context.currentOrganisation.name;
     }
 
     getAction = () => {

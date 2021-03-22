@@ -1,7 +1,7 @@
 class LinkWalkerApi {
 
-  static getTests(baseUrl, organisationName) {
-    const url = `${baseUrl}/api/tests/links/${organisationName}`;
+  static getTests(organisationName) {
+    const url = `/api/tests/${organisationName}/links`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -9,8 +9,8 @@ class LinkWalkerApi {
       .then(response => Promise.all([response, response.json()]));
   }
 
-  static getFailedTestResults(baseUrl, organisationName, id) {
-    const url = `${baseUrl}/api/tests/links/${organisationName}/${id}?status=FAILED`;
+  static getFailedTestResults(organisationName, id) {
+    const url = `/api/tests/${organisationName}/links/${id}?status=FAILED`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -18,8 +18,8 @@ class LinkWalkerApi {
       .then(response => Promise.all([response, response.json()]));
   }
 
-  static getAllTestResults(baseUrl, organisationName, id) {
-    const url = `${baseUrl}/api/tests/links/${organisationName}/${id}`;
+  static getAllTestResults(organisationName, id) {
+    const url = `/api/tests/${organisationName}/links/${id}`;
     return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -27,8 +27,8 @@ class LinkWalkerApi {
       .then(response => Promise.all([response, response.json()]));
   }
 
-  static addTest(baseUrl, test, organisationName) {
-    const request = new Request(`${baseUrl}/api/tests/links/${organisationName}`, {
+  static addTest(test, organisationName) {
+    const request = new Request(`/api/tests/${organisationName}/links`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',
@@ -45,8 +45,8 @@ class LinkWalkerApi {
     });
   }
 
-  static clearTests(baseUrl, organisationName) {
-    const request = new Request(`${baseUrl}/api/tests/links/${organisationName}`, {
+  static clearTests(organisationName) {
+    const request = new Request(`/api/tests/${organisationName}/links`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'

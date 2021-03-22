@@ -51,9 +51,8 @@ class LinkWalkerContainer extends Component {
   };
 
   componentDidMount() {
-    const { currentOrganisation, clientConfig } = this.props.context;
+    const { currentOrganisation } = this.props.context;
     this.props.fetchLinkWalkerTests(
-      clientConfig.linkwalkerBaseUrl,
       currentOrganisation.name
     );
     this.props.fetchClients(currentOrganisation.name);
@@ -61,10 +60,9 @@ class LinkWalkerContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { currentOrganisation, clientConfig } = this.props.context;
+    const { currentOrganisation } = this.props.context;
     if (prevProps.context !== this.props.context) {
       this.props.fetchLinkWalkerTests(
-        clientConfig.linkwalkerBaseUrl,
         currentOrganisation.name
       );
       this.props.fetchClients(currentOrganisation.name);
@@ -91,7 +89,6 @@ class LinkWalkerContainer extends Component {
         />
         <LinkWalkerAddTest
           organisationName={this.props.context.currentOrganisation.name}
-          clientConfig={this.props.context.clientConfig}
           notify={this.notify}
           fetchLinkWalkerTests={this.props.fetchLinkWalkerTests}
           clients={this.props.clients}
@@ -101,7 +98,6 @@ class LinkWalkerContainer extends Component {
           tests={this.props.tests}
           fetchLinkWalkerTests={this.props.fetchLinkWalkerTests}
           organisationName={this.props.context.currentOrganisation.name}
-          clientConfig={this.props.context.clientConfig}
           notify={this.notify}
         />
       </div>
