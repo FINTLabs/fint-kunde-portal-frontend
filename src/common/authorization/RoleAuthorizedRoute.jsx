@@ -37,6 +37,6 @@ const RoleAuthorizedRoute = ({path, component, role}) => {
 RoleAuthorizedRoute.propTypes = {
     role: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
-    component: PropTypes.object.isRequired
+    component: PropTypes.any.isRequired
 };
 export default RoleAuthorizedRoute;
