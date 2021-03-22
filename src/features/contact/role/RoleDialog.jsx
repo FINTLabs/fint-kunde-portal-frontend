@@ -62,7 +62,7 @@ const RoleDialog = props => {
             <DialogContent>
                 <List>
                     {roles && roles.map((role) => (
-                        <ListItem divider key={role.id}>
+                        <ListItem divider key={role.id} dense>
                             <ListItemIcon>
                                 <RolesIcon/>
                             </ListItemIcon>
