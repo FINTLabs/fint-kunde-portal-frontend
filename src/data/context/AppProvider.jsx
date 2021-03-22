@@ -11,7 +11,6 @@ class AppProvider extends Component {
         this.state = {
             currentOrganisation: undefined,
             organisations: undefined,
-            clientConfig: undefined,
             setCurrentOrganisation: organisation => {
                 this.setCurrentOrganisation(organisation);
             },
@@ -34,7 +33,6 @@ class AppProvider extends Component {
     refreshState = () => {
         const {cookies} = this.props;
 
-        this.setState({contactOrganisationsLoading: true, clientConfigLoading: true});
         ContactApi.fetchContactOrganisatons()
             .then(response => {
                 if (response.status === 200) {
