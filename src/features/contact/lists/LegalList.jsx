@@ -78,6 +78,7 @@ function LegalList({classes, legalContact}) {
                                       secondaryTypographyProps={{component: 'div'}}
                         />
                         <ListItemSecondaryAction>
+                            {isRoleFeatureEnabled &&
                             <TooltipIconButton
                                 ariaLabel="Roles"
                                 onClick={() => manageRoles(legalContact)}
@@ -85,7 +86,7 @@ function LegalList({classes, legalContact}) {
                                 toolTip="Administrer roller for kontakten"
                             >
                                 <RolesIcon/>
-                            </TooltipIconButton>
+                            </TooltipIconButton>}
                         </ListItemSecondaryAction>
                     </ListItem>
                 </List>
