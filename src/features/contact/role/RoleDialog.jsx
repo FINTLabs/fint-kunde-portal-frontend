@@ -74,7 +74,8 @@ const RoleDialog = props => {
                                         onChange={() => {
                                             onRoleChange(appContext.currentOrganisation.name, currentContact.nin, role.id)
                                         }}
-                                        checked={hasRole(role.id)}
+                                        disabled={role.id !== 'ROLE_ADMIN' && hasRole('ROLE_ADMIN')}
+                                        checked={hasRole(role.id) || hasRole('ROLE_ADMIN')}
                                         inputProps={{'aria-labelledby': 'switch-role'}}
                                     />}
                             </ListItemSecondaryAction>
