@@ -81,7 +81,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.fetchComponents(this.props.context.currentOrganisation.name);
       })
       .catch(error => {});
   };
@@ -95,7 +95,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.fetchComponents(this.props.context.currentOrganisation.name);
       })
       .catch(error => {});
   };
@@ -164,7 +164,7 @@ class AdapterTabComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchComponents();
+    this.props.fetchComponents(this.props.context.currentOrganisation.name);
   }
 
   render() {
