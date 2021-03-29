@@ -70,7 +70,7 @@ class ClientTabComponent extends React.Component {
         this.props.notify(
           `${this.props.client.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.fetchComponents(currentOrganisation.name);
         TestAuthApi.clearAuth(currentOrganisation.name).then(response => {});
       })
       .catch(error => {});
@@ -87,7 +87,7 @@ class ClientTabComponent extends React.Component {
         this.props.notify(
           `${this.props.client.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.fetchComponents(currentOrganisation.name);
         TestAuthApi.clearAuth(currentOrganisation.name).then(response => {});
       })
       .catch(error => {});
@@ -151,7 +151,7 @@ class ClientTabComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchComponents();
+    this.props.fetchComponents(this.props.context.currentOrganisation.name);
   }
 
   render() {
