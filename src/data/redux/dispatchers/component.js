@@ -4,7 +4,19 @@ import {
   fetchComponentsSuccess
 } from "../actions/component";
 
-export function fetchComponents() {
+export function fetchComponents(organisation = undefined) {
+
+  if (organisation) {
+    return (dispatch) => {
+      return ComponentApi.getOrganisationComponents(organisation).then(([response, json]) => {
+        if (response.status === 200) {
+          dispatch(fetchComponentsSuccess(json));
+        } else {
+          dispatch(fetchComponentsError());
+        }
+      })
+    } 
+  }
 
   return (dispatch) => {
     return ComponentApi.getApis().then(([response, json]) => {
