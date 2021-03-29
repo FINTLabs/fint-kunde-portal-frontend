@@ -8,9 +8,7 @@ import {
   unlinkComponentFromOrganisationSuccess
 } from "../actions/organisation";
 import OrganisationApi from "../../api/OrganisationApi";
-import {
-  fetchComponents
-} from "./component";
+// import { fetchComponents } from "./component";
 
 export function fetchTechnicalContacts(organisation) {
 
@@ -55,8 +53,8 @@ export function linkComponentToOrganisation(api) {
   return function (dispatch) {
     return OrganisationApi.linkComponent(api).then(responseApi => {
       //dispatch(linkComponentToOrganisationSuccess(responseApi));
-      fetchOrganisation();
-      fetchComponents();
+      //fetchOrganisation();
+      //fetchComponents();
       //return responseApi;
     }).catch(error => {
       //dispatch(linkComponentToOrganisationError(error))
@@ -68,8 +66,8 @@ export function unlinkComponentFromOrganisation(api) {
   return function (dispatch) {
     return OrganisationApi.unlinkComponent(api).then(responseApi => {
       dispatch(unlinkComponentFromOrganisationSuccess(responseApi));
-      fetchOrganisation();
-      fetchComponents();
+      //fetchOrganisation();
+      //fetchComponents();
       //return responseApi;
     }).catch(error => {
       throw (error);

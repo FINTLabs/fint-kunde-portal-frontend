@@ -80,7 +80,7 @@ class ComponentList extends Component {
                     notifyMessage: `${component.description} ble lagt til!`
                 });
                 context.refresh();
-                this.props.fetchComponents();
+                this.props.fetchOrganisation(context.currentOrganisation.name);
             })
             .catch(error => {
                 alert(error);
@@ -96,7 +96,7 @@ class ComponentList extends Component {
                     notifyMessage: `${component.description} ble fjernet!`
                 });
                 context.refresh();
-                this.props.fetchComponents();
+                this.props.fetchOrganisation(context.currentOrganisation.name);
             })
             .catch(error => {
                 alert(error);
@@ -139,17 +139,7 @@ class ComponentList extends Component {
         });
     };
     isLinkedToOrganisation = component => {
-        let componentOrganisations = component.organisations;
-
-        for (let i = 0; i < componentOrganisations.length; i++) {
-            if (
-                componentOrganisations[i].toLowerCase() ===
-                this.props.organisation.dn.toLowerCase()
-            ) {
-                return true;
-            }
-        }
-        return false;
+        return this.props.organisation.components.includes(component.dn);
     };
 
     renderAddRemove = component => {
@@ -265,7 +255,7 @@ class ComponentList extends Component {
 ComponentList.propTypes = {
     classes: PropTypes.any.isRequired,
     components: PropTypes.array.isRequired,
-    fetchComponents: PropTypes.any.isRequired,
+    fetchOrganisation: PropTypes.any.isRequired,
     organisation: PropTypes.any.isRequired
 };
 
