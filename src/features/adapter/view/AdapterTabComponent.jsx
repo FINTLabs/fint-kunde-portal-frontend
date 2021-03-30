@@ -118,30 +118,14 @@ class AdapterTabComponent extends React.Component {
     }
   };
   isLinkedToAdapter = component => {
-    for (let i = 0; i < component.adapters.length; i++) {
-      if (
-        component.adapters[i].toLowerCase() ===
-        this.props.adapter.dn.toLowerCase()
-      ) {
-        return true;
-      }
-    }
-    return false;
+    return this.props.adapter.components.includes(component.dn);
   };
   getOrganisationComponents = () => {
     const { currentOrganisation } = this.props.context;
     if (currentOrganisation.name === "fintlabs_no") {
-      return this.props.components
-        .filter(component => component.organisations.length > 0)
-        .filter(component =>
-          component.organisations.find(o => o === currentOrganisation.dn)
-        );
+      return this.props.components;
     }
     return this.props.components
-      .filter(component => component.organisations.length > 0)
-      .filter(component =>
-        component.organisations.find(o => o === currentOrganisation.dn)
-      )
       .filter(component => !component.openData || !component.common);
   };
 

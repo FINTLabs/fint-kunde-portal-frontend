@@ -6,9 +6,7 @@ import {
   fetchAdaptersError,
   updateAdapterSuccess
 } from "../actions/adapter";
-import {
-  fetchComponents
-} from "./component";
+// import { fetchComponents } from "./component";
 
 
 export function deleteAdapterFromComponent(adapter, component, org) {
@@ -17,7 +15,7 @@ export function deleteAdapterFromComponent(adapter, component, org) {
     return AdapterApi.deleteAdapterFromComponent(adapter, component, org).then(() => {
       //dispatch(removeAdapterFromComponentSuccess(adapter));
       fetchAdapters(org);
-      fetchComponents();
+      //fetchComponents();
       //return;
     }).catch(error => {
       throw (error);
@@ -41,7 +39,7 @@ export function addAdapterToComponent(adapter, component, org) {
     return AdapterApi.addAdapterToComponent(adapter, component, org).then(responseAdapter => {
       //dispatch(addAdapterToComponentSuccess(responseAdapter));
       fetchAdapters(org);
-      fetchComponents();
+      //fetchComponents();
       //return responseAdapter;
     }).catch(error => {
       throw (error);
