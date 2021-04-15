@@ -70,9 +70,11 @@ const RoleDialog = props => {
                             <ListItemIcon>
                                 <RolesIcon/>
                             </ListItemIcon>
-                            <ListItemText primary={role.name} secondary={role.description.split('...').map((item,key) => {
-                                return <React.Fragment key={key}>{item}.<br/></React.Fragment>
-                            })}/>
+                            <ListItemText primary={role.name}
+                                          secondary={role.description.split('...').map((item, key) => {
+                                              return <React.Fragment
+                                                  key={key}>{item}.<br/></React.Fragment>
+                                          })}/>
                             <ListItemSecondaryAction>
                                 {loading ? <CircularProgress/> :
                                     <Switch
