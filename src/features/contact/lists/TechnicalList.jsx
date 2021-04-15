@@ -24,6 +24,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import RoleTags from "./RoleTags";
+import {fetchTechnicalContacts} from "../../../data/redux/dispatchers/organisation";
 
 
 const useStyles = makeStyles((theme) =>
@@ -101,6 +102,11 @@ const TechnicalList = props => {
         setShowRoleDialog(true);
     }
 
+    const onCloseRoleDialog = () => {
+        setShowRoleDialog(false);
+        dispatch(fetchTechnicalContacts(orgId));
+    }
+
     return (
         <Box display="flex" justifyContent="center">
             <WarningMessageBox
@@ -109,7 +115,7 @@ const TechnicalList = props => {
                 onClose={onCloseRemoveContact}
             />
             {isRoleFeatureEnabled && <RoleDialog
-                onClose={() => setShowRoleDialog(false)}
+                onClose={onCloseRoleDialog}
                 open={showRoleDialog}
             />}
             <Box width="75%">
