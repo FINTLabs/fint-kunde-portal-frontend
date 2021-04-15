@@ -24,7 +24,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import RoleTags from "./RoleTags";
-import {fetchTechnicalContacts} from "../../../data/redux/dispatchers/organisation";
+import {
+    fetchLegalContact,
+    fetchTechnicalContacts
+} from "../../../data/redux/dispatchers/organisation";
 
 
 const useStyles = makeStyles((theme) =>
@@ -103,8 +106,9 @@ const TechnicalList = props => {
     }
 
     const onCloseRoleDialog = () => {
-        setShowRoleDialog(false);
+        dispatch(fetchLegalContact(orgId));
         dispatch(fetchTechnicalContacts(orgId));
+        setShowRoleDialog(false);
     }
 
     return (
