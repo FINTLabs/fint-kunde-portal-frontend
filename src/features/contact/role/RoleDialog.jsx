@@ -56,6 +56,10 @@ const RoleDialog = props => {
         }
     }
 
+    const isAdmin = () => {
+        return hasRole('ROLE_ADMIN');
+    }
+
     return (
         <Dialog onClose={onClose} aria-labelledby="roller" open={open} fullWidth>
             <DialogTitle className={classes.dialogTitle}>Roller</DialogTitle>
@@ -76,8 +80,7 @@ const RoleDialog = props => {
                                         onChange={() => {
                                             onRoleChange(appContext.currentOrganisation.name, currentContact.nin, role.id)
                                         }}
-                                        disabled={role.id !== 'ROLE_ADMIN' && hasRole('ROLE_ADMIN')}
-                                        checked={hasRole(role.id) || hasRole('ROLE_ADMIN')}
+                                        checked={hasRole(role.id) || isAdmin()}
                                         inputProps={{'aria-labelledby': 'switch-role'}}
                                     />}
                             </ListItemSecondaryAction>
