@@ -9,6 +9,15 @@ class AdapterApi {
       .then(response => Promise.all([response, response.json()]));
   }
 
+  static getAdapter(adapter, organisation) {
+    const url = `/api/adapters/${organisation}/${adapter.name}`;
+    return fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin'
+      })
+      .then(response => Promise.all([response, response.json()]));
+  }
+
   static updateAdapter(adapter, organisation) {
     const request = new Request(`/api/adapters/${organisation}/${adapter.name}`, {
       method: 'PUT',

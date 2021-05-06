@@ -4,7 +4,8 @@ import {
   deleteAdapterSuccess,
   fetchAdapersSuccess,
   fetchAdaptersError,
-  updateAdapterSuccess
+  updateAdapterSuccess,
+  getAdapterSuccess
 } from "../actions/adapter";
 // import { fetchComponents } from "./component";
 
@@ -63,6 +64,17 @@ export function createAdapter(adapter, org) {
   return function (dispatch) {
     return AdapterApi.createAdapter(adapter, org.name).then(responseAdapter => {
       dispatch(createAdapterSuccess(responseAdapter));
+      return responseAdapter;
+    }).catch(error => {
+      throw (error);
+    });
+  };
+}
+
+export function getAdapter(adapter, org) {
+  return (dispatch) => {
+    return AdapterApi.getAdapter(adapter, org.name).then(responseAdapter => {
+      dispatch(getAdapterSuccess(responseAdapter));
       return responseAdapter;
     }).catch(error => {
       throw (error);

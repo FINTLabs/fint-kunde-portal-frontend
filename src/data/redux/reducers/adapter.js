@@ -2,7 +2,8 @@ import {
   CREATE_ADAPTER_SUCCESS,
   DELETE_ADAPTER_SUCCESS,
   FETCH_ADAPTERS_SUCCESS,
-  UPDATE_ADAPTER_SUCCESS
+  UPDATE_ADAPTER_SUCCESS,
+  GET_ADAPTER_SUCCESS
 } from "../actions/types";
 
 export default function adapter(state = [], action) {
@@ -13,6 +14,12 @@ export default function adapter(state = [], action) {
       };
     case UPDATE_ADAPTER_SUCCESS:
       return state;
+    case GET_ADAPTER_SUCCESS:
+      return {
+        ...state, adapters: [
+          action.adapter, ...state.adapters.filter(adapter => action.adapter !== adapter)
+        ]
+      };
     case CREATE_ADAPTER_SUCCESS:
       return {
         ...state, adapters: [...state.adapters, action.adapter]

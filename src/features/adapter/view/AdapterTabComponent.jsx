@@ -17,7 +17,8 @@ import { green } from "@material-ui/core/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import {
   addAdapterToComponent,
-  deleteAdapterFromComponent
+  deleteAdapterFromComponent,
+  getAdapter
 } from "../../../data/redux/dispatchers/adapter";
 import AdapterApi from "../../../data/api/AdapterApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
@@ -81,7 +82,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents(this.props.context.currentOrganisation.name);
+        this.props.getAdapter(this.props.adapter, this.props.context.currentOrganisation);
       })
       .catch(error => {});
   };
@@ -95,7 +96,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents(this.props.context.currentOrganisation.name);
+        this.props.getAdapter(this.props.adapter, this.props.context.currentOrganisation);
       })
       .catch(error => {});
   };
@@ -224,6 +225,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
+      getAdapter: getAdapter,
       fetchComponents: fetchComponents,
       addAdapterToComponent: addAdapterToComponent,
       deleteAdapterFromComponent: deleteAdapterFromComponent
