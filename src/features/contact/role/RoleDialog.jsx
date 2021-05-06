@@ -56,45 +56,57 @@ const RoleDialog = props => {
         }
     }
 
-    return (
-        <Dialog onClose={onClose} aria-labelledby="roller" open={open} fullWidth>
-            <DialogTitle className={classes.dialogTitle}>Roller</DialogTitle>
-            <DialogContent>
-                <List>
-                    {roles && roles.map((role) => (
-                        <ListItem divider key={role.id} dense>
-                            <ListItemIcon>
-                                <RolesIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={role.name} secondary={role.description}/>
-                            <ListItemSecondaryAction>
-                                {loading ? <CircularProgress/> :
-                                    <Switch
-                                        edge="end"
-                                        onChange={() => {
-                                            onRoleChange(appContext.currentOrganisation.name, currentContact.nin, role.id)
-                                        }}
-                                        disabled={role.id !== 'ROLE_ADMIN' && hasRole('ROLE_ADMIN')}
-                                        checked={hasRole(role.id) || hasRole('ROLE_ADMIN')}
-                                        inputProps={{'aria-labelledby': 'switch-role'}}
-                                    />}
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    ))}
-                </List>
-            </DialogContent>
-            <DialogActions>
-                <Button
-                    onClick={onClose}
-                    variant="contained"
-                    color="secondary"
-                    id={"componentOKButton"}
-                >
-                    Lukk
-                </Button>
-            </DialogActions>
-        </Dialog>
-    );
+    const isAdmin = () => {
+        return hasRole('ROLE_ADMIN');
+    }
+    if (currentContact) {
+
+        return (
+            <Dialog onClose={onClose} aria-labelledby="roller" open={open} fullWidth>
+                <DialogTitle className={classes.dialogTitle}>Roller
+                    - {`${currentContact.firstName} ${currentContact.lastName}`}</DialogTitle>
+                <DialogContent>
+                    <List>
+                        {roles && roles.map((role) => (
+                            <ListItem divider key={role.id} dense>
+                                <ListItemIcon>
+                                    <RolesIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={role.name}
+                                              secondary={role.description.split('...').map((item, key) => {
+                                                  return <React.Fragment
+                                                      key={key}>{item}.<br/></React.Fragment>
+                                              })}/>
+                                <ListItemSecondaryAction>
+                                    {loading ? <CircularProgress/> :
+                                        <Switch
+                                            edge="end"
+                                            onChange={() => {
+                                                onRoleChange(appContext.currentOrganisation.name, currentContact.nin, role.id)
+                                            }}
+                                            checked={hasRole(role.id) || isAdmin()}
+                                            inputProps={{'aria-labelledby': 'switch-role'}}
+                                        />}
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                    </List>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        onClick={onClose}
+                        variant="contained"
+                        color="secondary"
+                        id={"componentOKButton"}
+                    >
+                        Lukk
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        );
+    }
+
+    return <div/>;
 };
 
 RoleDialog.propTypes = {
