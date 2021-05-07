@@ -154,11 +154,9 @@ const AccessPackageList = () => {
                     <div className={classes.componentList}>
                         <FeatureHelperText>
                             <p>En tilgangspakke benyttes for å sette opp riktige tilganger til klienter du oppretter
-                                i
-                                kundeportalen.</p>
+                                i kundeportalen.</p>
                             <p>Du kan velge fra pakkeoversikten for å se innholdet i standardpakker eller lage en
-                                egendefinert
-                                tilgangspakke.</p>
+                                egendefinert tilgangspakke.</p>
                         </FeatureHelperText>
                         <Typography variant="h5" className={classes.title}>
                             Tilgangspakker

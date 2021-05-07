@@ -10,15 +10,15 @@ const EntityTable = (props) => {
             <TableCell align="right">{entity.name}</TableCell>
             <TableCell align="center">
                 <Checkbox
-                    name="collection"
-                    checked={selectedAccessPackage.collection.includes(entity.path)}
+                    name="read"
+                    checked={selectedAccessPackage.read.includes(entity.path)}
                     onChange={(event) => updateAccesses(event, entity.path)}
                 />
             </TableCell>
             <TableCell align="center">
                 <Checkbox
-                    name="read"
-                    checked={selectedAccessPackage.read.includes(entity.path)}
+                    name="collection"
+                    checked={selectedAccessPackage.collection.includes(entity.path)}
                     onChange={(event) => updateAccesses(event, entity.path)}
                 />
             </TableCell>

@@ -1,7 +1,7 @@
 import React from 'react';
 import TableCell from "@material-ui/core/TableCell";
 import {TableRow} from "@material-ui/core";
-import ModifyIcon from "@material-ui/icons/Build";
+import ModifyIcon from "@material-ui/icons/Edit";
 import BulkIcon from "@material-ui/icons/FormatListBulleted";
 import SingleIcon from "@material-ui/icons/LooksOne";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -14,17 +14,17 @@ const TableHeader = (props) => {
             <TableRow key={"headerRow"}>
                 <TableCell>Komponent</TableCell>
                 <TableCell align="right">Entitet</TableCell>
-                <Tooltip placement={"top"} title={"Bestemmer om det er mulig å for klienten å lese flere objekter i liste"}
+                <Tooltip placement={"top"} title={"Skal klienten kunne utføre enkeltoppslag"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="center">Bulk<BulkIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Enkeltoppslag<SingleIcon className={classes.icon}/></TableCell>
                 </Tooltip>
-                <Tooltip placement={"top"} title={"Bestemmer om det er mulig for klienten å lese et objekt enkeltvis"}
+                <Tooltip placement={"top"} title={"Skal klienten kunne utføre masseoppslag"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="center">Single<SingleIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Masseoppslag<BulkIcon className={classes.icon}/></TableCell>
                 </Tooltip>
-                <Tooltip placement={"top"} title={"Bestemmer om det er mulig for klienten å endre et objekt"}
+                <Tooltip placement={"top"} title={"Har klienten skriverettigheter (opprette, endre og slette)"}
                          classes={{tooltip: classes.customWidth}}>
-                    <TableCell align="center">Endre<ModifyIcon className={classes.icon}/></TableCell>
+                    <TableCell align="center">Skriverettighet<ModifyIcon className={classes.icon}/></TableCell>
                 </Tooltip>
             </TableRow>
         );
