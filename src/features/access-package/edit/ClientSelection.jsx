@@ -51,7 +51,7 @@ const ClientSelection = (props) => {
     const [showWarning, setShowWarning] = useState(false);
     const [switchValue, setSwitchValue] = useState(false);
     const [switchClient, setSwitchClient] = useState(null);
-    const warningMessageText = "Når du aktiverer en aksesspakke på en klient, vil andre aksesspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
+    const warningMessageText = "Når du aktiverer en tilgangspakke på en klient, vil andre tilgangspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
 
 
     const dispatch = useDispatch();
@@ -86,9 +86,9 @@ const ClientSelection = (props) => {
                 <Typography variant="h4" className={classes.header}> Knytte tilgangspakken til klient
                 </Typography>
                 <FeatureHelperText>
-                    <p>En klient kan bare være knyttet til én aksesspakke.
-                        Dersom du knytter en klient, som allerede har en tilgangspakke, til en ny aksesspakke,
-                        fjernes den gamle aksesspakken fra klienten.</p>
+                    <p>En klient kan bare være knyttet til én tilgangspakke.
+                        Dersom du knytter en klient, som allerede har en tilgangspakke, til en ny tilgangspakke,
+                        fjernes den gamle tilgangspakken fra klienten.</p>
                 </FeatureHelperText>
                 {clients.map(client => {
                     return (

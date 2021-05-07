@@ -32,7 +32,7 @@ const ClientTabAccessPackageList = (props) => {
         showWarning, setShowWarning, handleClientChanging, setSwitchValue
     } = props;
     const classes = useStyles();
-    const warningMessageText = "Når du aktiverer en aksesspakke på en klient, vil andre aksesspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
+    const warningMessageText = "Når du aktiverer en tilgangspakke på en klient, vil andre tilgangspakker som er koblet til denne klienten bli fjernet. Ønsker du å fortsette?";
 
 
     return (
