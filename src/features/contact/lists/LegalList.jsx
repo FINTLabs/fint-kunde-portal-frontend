@@ -21,6 +21,10 @@ import {useDispatch, useSelector} from "react-redux";
 import AppContext from "../../../data/context/AppContext";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import RoleDialog from "../role/RoleDialog";
+import {
+    fetchLegalContact,
+    fetchTechnicalContacts
+} from "../../../data/redux/dispatchers/organisation";
 
 const styles = theme => ({
     itemAvatar: {
@@ -41,10 +45,16 @@ function LegalList({classes, legalContact}) {
         setShowRoleDialog(true);
     }
 
+    const onCloseRoleDialog = () => {
+        setShowRoleDialog(false);
+        dispatch(fetchLegalContact(orgId));
+        dispatch(fetchTechnicalContacts(orgId));
+    }
+
     return (
         <Box display="flex" justifyContent="center" mb={5}>
             {isRoleFeatureEnabled && <RoleDialog
-                onClose={() => setShowRoleDialog(false)}
+                onClose={onCloseRoleDialog}
                 open={showRoleDialog}
             />}
             <Box width="75%">
