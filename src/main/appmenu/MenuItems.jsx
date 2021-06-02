@@ -75,7 +75,7 @@ const MenuItems = () => {
                         <ListItemIcon>
                             <KeyIcon/>
                         </ListItemIcon>
-                        <ListItemText primary="Rettighetspakker"/>
+                        <ListItemText primary="Tilgangspakker"/>
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>

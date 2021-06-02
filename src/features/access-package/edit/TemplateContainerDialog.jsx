@@ -33,7 +33,7 @@ const TemplateContainerDialog = (props) => {
     const [showWarning, setShowWarning] = useState(false);
     const [pickedTemplate, setPickedTemplate] = useState(null);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
-    const warningMessageText = "Bekreft valget. Oppsettet på denne aksesspakken vil endres til malen: " + pickedTemplate;
+    const warningMessageText = "Bekreft valget. Oppsettet på denne tilgangspakken vil endres til malen: " + pickedTemplate;
     const dispatch = useDispatch();
     const classes = useStyles();
 
