@@ -13,7 +13,7 @@
     "expect": "^24.8.0",
     "file-saver": "^2.0.2",
     "generate-password": "^1.6.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-cookie": "^4.0.0",
