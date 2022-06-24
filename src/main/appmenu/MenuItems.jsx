@@ -16,7 +16,6 @@ import List from "@material-ui/core/List";
 import LogIcon from "@material-ui/icons/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
-import SamtrykkeIcon from '@material-ui/icons/Security';
 
 
 const MenuItems = () => {
@@ -101,16 +100,6 @@ const MenuItems = () => {
                             <LogIcon/>
                         </ListItemIcon>
                         <ListItemText primary="Hendelseslogg"/>
-                    </ListItem>
-                </RoleAuthorizationMenu>
-            </FeatureToggle>
-            <FeatureToggle feature="audit-log">
-                <RoleAuthorizationMenu role="ROLE_LOG">
-                    <ListItem button component={Link} to="/samtykke">
-                        <ListItemIcon>
-                            <SamtrykkeIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Samtykke"/>
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>
