@@ -84,7 +84,7 @@ class ConsentContainer extends React.Component {
                             Nedenfor er en liste over <strong>tjenester</strong>. Klikk på overskriften for å se en fullstendig liste over behandlinger
                             eller legg til en ny behandlinger.
                         </p>
-                        <p>Jennifer Testing 3</p>
+                        <p>Jennifer Testing 4</p>
                     </FeatureHelperText>
                     <Typography variant="h5" className={classes.title}>
                         Samtykke
