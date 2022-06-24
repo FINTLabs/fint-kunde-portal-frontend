@@ -3,14 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {Divider, Typography, withStyles} from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
-import {
-    fetchServices,
-} from "./data/redux/dispatchers/service";
-import {fetchPolicies} from "./data/redux/dispatchers/policy";
+import {fetchServices,createService} from "./data/redux/dispatchers/service";
+import {createPolicy, fetchPolicies} from "./data/redux/dispatchers/policy";
 import {fetchPolicypurpose} from "./data/redux/dispatchers/policypurpose";
 import {fetchPersonaldata} from "./data/redux/dispatchers/personaldata";
-import ConsentList from "./list/ConsentList";
-import ConsentServiceAdd from "./ConsentServiceAdd";
+import ConsentList from "./list/ConsentAccordion";
+import ConsentServiceAdd from "./ConsentServiceAddDialog";
 import { withContext } from "../../data/context/withContext";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
@@ -55,15 +53,7 @@ class ConsentContainer extends React.Component {
         });
     };
 
-
-
-    addNewService = (newServiceName) => {
-        // add a new service here
-        console.log("add a new service here" + newServiceName);
-    };
-
     render() {
-
         if (
             this.props.personaldata === undefined ||
             this.props.services === undefined ||
@@ -79,8 +69,6 @@ class ConsentContainer extends React.Component {
 
     renderConsent() {
         const { classes } = this.props;
-        console.log("jennifer container personal data:" + this.props.personaldata);
-
         return (
             <div className={classes.root}>
                 <div className={classes.componentList}>
@@ -93,28 +81,26 @@ class ConsentContainer extends React.Component {
 
                     <FeatureHelperText>
                         <p>
-                            bla
-                        </p>
-                        <p>
-                            bla again
+                            Nedenfor er en liste over <strong>tjenester</strong>. Klikk på overskriften for å se en fullstendig liste over behandlinger
+                            eller legg til en ny behandlinger.
                         </p>
                     </FeatureHelperText>
                     <Typography variant="h5" className={classes.title}>
                         Samtykke
                     </Typography>
                     <Divider/>
-
                     <ConsentList
                         notify={this.notify}
                         services={this.props.services}
                         policies={this.props.policies}
                         policypurpose={this.props.policypurpose}
                         personaldata={this.props.personaldata}
-                        addNewPolicy={this.addNewPolicy}
+                        createPolicy={this.props.createPolicy}
                     />
+
                     <ConsentServiceAdd
                         notify={this.notify}
-                        addNewService={this.addNewService}
+                        createService={this.props.createService}
                     />
 
                 </div>
@@ -127,8 +113,6 @@ ConsentContainer.propTypes = {};
 
 function mapStateToProps(state) {
     return {
-        // RENAME SERVIES TO CONSENT ??
-        // ALSO TRY TO HAVE ONLY IN STATE NOT IN PROPS THRU THIS WHOLE THING
         services: state.consent.services,
         policies: state.consent.policies,
         policypurpose: state.consent.policypurpose,
@@ -143,7 +127,9 @@ function mapDispatchToProps(dispatch) {
             fetchServices: fetchServices, // data redux dispatcher services
             fetchPolicies: fetchPolicies,
             fetchPolicypurpose: fetchPolicypurpose,
-            fetchPersonaldata: fetchPersonaldata
+            fetchPersonaldata: fetchPersonaldata,
+            createService: createService,
+            createPolicy: createPolicy,
         },
         dispatch
     );

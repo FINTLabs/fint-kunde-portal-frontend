@@ -41,7 +41,7 @@ function Routes() {
             <RoleAuthorizedRoute path="/access_package" component={AccessPackageContainer}
                                  role="ROLE_ACCESS_PACKAGE"/>
             <RoleAuthorizedRoute path="/samtykke" component={ConsentContainer}
-                                 role="ROLE_ACCESS_PACKAGE"/>
+                                 role="ROLE_DASHBOARD"/>
         </div>
     );
 }

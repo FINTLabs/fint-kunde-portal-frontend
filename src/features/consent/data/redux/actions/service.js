@@ -6,7 +6,9 @@ import {
     FETCH_POLICYPURPOSE_SUCCESS,
     FETCH_POLICYPURPOSE_ERROR,
     FETCH_PERSONALDATA_SUCCESS,
-    FETCH_PERSONALDATA_ERROR
+    FETCH_PERSONALDATA_ERROR,
+    CREATE_POLICY_SUCCESS,
+    CREATE_SERVICE_SUCCESS
 } from "./types";
 
 export function fetchServiceSuccess(payload) {
@@ -55,5 +57,17 @@ export function fetchPersonaldataSuccess(payload) {
 export function fetchPersonaldataError() {
     return {
         type: FETCH_PERSONALDATA_ERROR
+    }
+}
+export function createPolicySuccess(payload) {
+    return {
+        type: CREATE_POLICY_SUCCESS,
+        payload
+    }
+}
+export function createServiceSuccess(payload) {
+    return {
+        type: CREATE_SERVICE_SUCCESS,
+        payload
     }
 }

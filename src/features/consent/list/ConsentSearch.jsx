@@ -17,7 +17,7 @@ const ConsentSearch = (props) => {
                 <Input
                     fullWidth
                     value={props.searchValue}
-                    placeholder="Filtrer på tjenste - Ved blank vises alle"
+                    placeholder="Filtrer på tjenste"
                     onChange={props.updateSearch}
                     endAdornment={
                         <>

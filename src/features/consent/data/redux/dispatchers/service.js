@@ -1,5 +1,5 @@
 import ConsentApi from "../../ConsentApi";
-import {fetchServiceError, fetchServiceSuccess} from "../actions/service"
+import {createServiceSuccess, fetchServiceError, fetchServiceSuccess} from "../actions/service"
 
 export function fetchServices() {
 
@@ -12,4 +12,16 @@ export function fetchServices() {
             }
         })
     }
+}
+
+export function createService(name) {
+    console.log("jennifer - in create policy dispatcher",name);
+    return function (dispatch) {
+        return ConsentApi.createService(name).then(response => {
+            dispatch(createServiceSuccess(response));
+            return response;
+        }).catch(error => {
+            throw (error);
+        });
+    };
 }
