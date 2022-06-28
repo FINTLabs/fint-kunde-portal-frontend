@@ -8,11 +8,11 @@ import {
     DialogTitle,
     withStyles,
     Fab,
-    Box,
-    Tooltip,
+    Box, Tooltip, MenuItem, ListItemIcon, Menu
 } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import {Add} from "@material-ui/icons";
+import {Add, CreateNewFolder} from "@material-ui/icons";
+import VerifiedUser from '@material-ui/icons/VerifiedUser';
 import FormControl from "@material-ui/core/FormControl";
 
 
@@ -77,6 +77,17 @@ class ConsentAddService extends React.Component {
             });
     };
 
+    showAddPolicyDialog = () => {
+        this.setState({
+            policyAddIsOpen: true,
+        });
+    };
+
+    hideAddPolicyDialog = () => {
+        this.setState({
+            policyAddIsOpen: false,
+        });
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -96,7 +107,7 @@ class ConsentAddService extends React.Component {
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                     <Tooltip title="Legg til">
                         <Fab
-                            onClick={this.showAddServiceDialog}
+                            onClick={this.showMenu}
                             color="secondary"
                             className={classes.addButton}
                         >
@@ -104,14 +115,41 @@ class ConsentAddService extends React.Component {
                         </Fab>
                     </Tooltip>
                 </Box>
+                <Menu
+                    anchorEl={this.state.anchorEl}
+                    id="account-menu"
+                    open={this.state.menuIsOpen}
+                    onClose={this.closeMenu}
+                    onClick={this.closeMenu}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+
+                    <MenuItem onClick={this.showAddServiceDialog}>
+                        <ListItemIcon>
+                            <CreateNewFolder fontSize="small" />
+                        </ListItemIcon>
+                        Legg til Tjenster
+                    </MenuItem>
+                    <MenuItem onClick={this.showAddPolicyDialog}>
+                        <ListItemIcon>
+                            <VerifiedUser fontSize="small" />
+                        </ListItemIcon>
+                        Legg til Behandlingsgrunnlag
+                    </MenuItem>
+                </Menu>
+
                 <Dialog
                     open={this.state.showAddService}
+                    onClose={this.hideAddServiceDialog}
                     aria-labelledby="form-dialog-title"
+                    fullWidth={true}
+                    maxWidth={'md'}
                 >
                     <DialogTitle id="form-dialog-title">Legg til Tjenster</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            information about adding a new serivce to this and stuff and interesting items goes here.
+                            Legg til en ny tjeneste.
                         </DialogContentText>
                         <FormControl className={classes.inputForm} id={"serviceFormControl"}>
                             <TextField
@@ -126,22 +164,58 @@ class ConsentAddService extends React.Component {
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
-                        <Button
-                            onClick={this.hideAddServiceDialog}
-                            color="primary"
-                            variant="contained"
-                        >
+                        <Button onClick={this.hideAddServiceDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button
-                            onClick={this.handleAddService}
-                            color="primary"
-                            variant="contained"
-                        >
+                        <Button onClick={this.handleAddService} color="primary">
                             Add
                         </Button>
                     </DialogActions>
                 </Dialog>
+
+                <Dialog
+                    open={this.state.policyAddIsOpen}
+                    onClose={this.hideAddPolicyDialog}
+                    aria-labelledby="form-dialog-title"
+                    fullWidth={true}
+                    maxWidth={'md'}
+                >
+                    <DialogTitle id="form-dialog-title">Behandlingsgrunnlag</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Legg til en ny behandlingsgrunnlag.
+                        </DialogContentText>
+                        <FormControl className={classes.inputForm} id={"serviceFormControl"}>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="Behandlings code"
+                                type="text"
+                                fullWidth
+                            />
+                        </FormControl>
+                        <FormControl className={classes.inputForm} id={"serviceFormControl"}>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="name"
+                                label="Behandlings navn"
+                                type="text"
+                                fullWidth
+                            />
+                        </FormControl>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.hideAddPolicyDialog} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={this.hideAddPolicyDialog} color="primary">
+                            Add
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
             </div>
 
         )
@@ -149,4 +223,6 @@ class ConsentAddService extends React.Component {
 }
 
 ConsentAddService.propTypes = {};
+
+// export default ConsentAddService;
 export default withStyles(styles)(ConsentAddService);
