@@ -19,7 +19,7 @@ class NoGoContainer extends Component {
       buttonTitle = "Trykk her for å gå til Kundeportalen";
     }
     return (
-      <Grid container justify="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         <Grid item>
           <NoGoMessage
             message={message}

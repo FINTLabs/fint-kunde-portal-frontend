@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
+import {createTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import Main from "./main/Main";
 import {Provider} from "react-redux";
 import store from "./data/redux/store/configure-store";
@@ -8,7 +8,7 @@ import {CookiesProvider} from "react-cookie";
 import AppProvider from "./data/context/AppProvider";
 
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         secondary: {
             light: '#7fb434',
