@@ -104,16 +104,6 @@ const MenuItems = () => {
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>
-            <FeatureToggle feature="audit-log">
-                <RoleAuthorizationMenu role="ROLE_LOG">
-                    <ListItem button component={Link} to="/samtykke">
-                        <ListItemIcon>
-                            <SamtrykkeIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Samtykke"/>
-                    </ListItem>
-                </RoleAuthorizationMenu>
-            </FeatureToggle>
             <RoleAuthorizationMenu role="ROLE_SUPPORT">
                 <ListItem button component={Link} to="/support/issue">
                     <ListItemIcon>
