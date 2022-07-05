@@ -396,7 +396,7 @@ class SupportContainer extends Component {
                             margin="normal"
                             variant="outlined"
                             multiline
-                            rows={10}
+                            minRows={10}
                             fullWidth
                             required
                             error={this.state.descriptionError}
