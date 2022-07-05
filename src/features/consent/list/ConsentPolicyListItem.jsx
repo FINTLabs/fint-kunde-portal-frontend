@@ -39,10 +39,7 @@ class ConsentPolicyListItem extends React.Component {
         const reason = this.props.policypurpose.find(element => element.systemId === policy.policyPurposeSystemIds[0]);
 
         if (policy && (policy.active || this.props.showNonActive)) {
-            return <ListItem
-                key={policy.systemId}
-                // onClick={() => this.handleOpenPolicy(policy.systemId)}
-            >
+            return <ListItem key={policy.systemId}>
                 <ListItemAvatar>
                     <Avatar>
                         {

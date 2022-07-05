@@ -145,7 +145,7 @@ const ConsentAccordion = (props) => {
                         .filter(service => service.name.match(new RegExp(searchValue, "i")))
                         .map(service => (
 
-                            <Accordion key={service.id}>
+                            <Accordion key={service.systemId}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMore />}
                                     aria-controls="panel1bh-content"
@@ -180,11 +180,11 @@ const ConsentAccordion = (props) => {
                                         </Grid>
                                         <Grid item xs={12}>
 
-                                            <List id={"samtykkeList"}>
+                                            <List id={"samtykkeList"} >
                                                 {service.policySystemIds
                                                     .map((data) => (
                                                         <ConsentPolicyListItem
-                                                            // key={data}
+                                                            key={data}
                                                             idToFind={data}
                                                             showNonActive={showNonActive}
                                                             confirm={handleAskToChangeActive}
