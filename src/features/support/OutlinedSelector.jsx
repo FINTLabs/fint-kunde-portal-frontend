@@ -1,11 +1,12 @@
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import MenuItem from "@material-ui/core/MenuItem";
 import React from "react";
-import {makeStyles} from "@material-ui/core";
-
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    MenuItem
+} from '@mui/material';
+import {makeStyles} from "@mui/styles";
 const useStyles = makeStyles(theme => ({
     formControl: {
         marginTop: theme.spacing(1),

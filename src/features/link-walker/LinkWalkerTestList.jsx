@@ -1,22 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import ClearIcon from "@material-ui/icons/Clear";
-import DownloadReportIcon from "@material-ui/icons/GetApp";
+import {
+  Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+    IconButton,
+    Typography,
+    Tooltip
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import RefreshIcon from "@mui/icons-material/Refresh";
+import ClearIcon from "@mui/icons-material/Clear";
+import DownloadReportIcon from "@mui/icons-material/GetApp";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import LinkWalkerTestView from "./LinkWalkerTestView";
 import TrafficLight from "../../common/status/TrafficLight";
-import Typography from "@material-ui/core/Typography";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
-import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 const styles = theme => ({
   root: {

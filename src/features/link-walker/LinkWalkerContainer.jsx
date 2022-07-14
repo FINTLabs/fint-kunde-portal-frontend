@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from '@mui/styles';
 import { withContext } from "../../data/context/withContext";
 import LinkWalkerTestList from "./LinkWalkerTestList";
 import { connect } from "react-redux";

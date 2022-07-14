@@ -6,11 +6,11 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import ComponentIcon from "@material-ui/icons/WebAsset";
-import { green } from "@material-ui/core/colors/index";
+  Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import ComponentIcon from "@mui/icons-material/WebAsset";
+import { green } from "@mui/material/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import AssetApi from "../../../data/api/AssetApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";

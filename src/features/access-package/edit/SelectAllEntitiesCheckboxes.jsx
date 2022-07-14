@@ -1,7 +1,6 @@
 import React from 'react';
-import TableCell from "@material-ui/core/TableCell";
-import {Checkbox, TableRow, Typography} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import {Checkbox, TableRow, Typography, TableCell} from "@mui/material";
+import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles(theme => ({
     cell: {

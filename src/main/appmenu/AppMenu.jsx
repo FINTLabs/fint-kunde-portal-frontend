@@ -1,21 +1,21 @@
 import React, {useState} from "react";
-import {createStyles} from "@material-ui/core/styles";
+import {createStyles} from "@mui/material/styles";
 import classNames from "classnames";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Drawer from "@mui/material/Drawer";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
-import {makeStyles, useTheme} from "@material-ui/core";
+import {makeStyles, useTheme} from "@mui/styles";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 
 const drawerWidth = 240;
 

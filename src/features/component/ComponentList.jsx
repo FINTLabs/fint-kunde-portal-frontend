@@ -8,11 +8,11 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
-} from "@material-ui/core";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ComponentIcon from "@material-ui/icons/WebAsset";
+    Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import SettingsIcon from "@mui/icons-material/Settings";
+import ComponentIcon from "@mui/icons-material/WebAsset";
 import OrganisationApi from "../../data/api/OrganisationApi";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import PropTypes from "prop-types";

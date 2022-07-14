@@ -8,12 +8,12 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
-} from "@material-ui/core";
-import ContactIcon from "@material-ui/icons/Person";
+    Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import ContactIcon from "@mui/icons-material/Person";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
-import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import RolesIcon from "@mui/icons-material/LockOpenRounded";
 import TooltipIconButton from "../../../common/button/TooltipIconButton";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import RoleTags from "./RoleTags";

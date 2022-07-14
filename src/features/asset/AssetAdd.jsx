@@ -1,16 +1,16 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
   Fab
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { Add } from "@material-ui/icons";
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import TextField from "@mui/material/TextField";
+import { Add } from "@mui/icons-material";
 import { withContext } from "../../data/context/withContext";
 import AssetNameValidationInput from "../../common/input-validation/AssetNameValidationInput";
 

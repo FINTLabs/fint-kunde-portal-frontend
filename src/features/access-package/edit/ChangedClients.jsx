@@ -1,12 +1,9 @@
 import React from 'react';
-import {Typography} from "@material-ui/core";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
-import {makeStyles} from "@material-ui/core/styles";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import AddIcon from "@material-ui/icons/AddCircleRounded";
-import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
+import { Typography, ListItem, ListItemText, List } from '@mui/material';
+import {makeStyles} from "@mui/styles";
+import { ListItemIcon} from "@mui/material";
+import AddIcon from "@mui/icons-material/AddCircleRounded";
+import RemoveIcon from "@mui/icons-material/RemoveCircleRounded";
 
 const useStyles = makeStyles(theme => ({
     addingText: {

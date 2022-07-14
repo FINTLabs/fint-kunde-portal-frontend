@@ -3,9 +3,10 @@ import {
   FormControl,
   FormHelperText,
   Input,
-  InputLabel,
-  withStyles
-} from "@material-ui/core";
+  InputLabel
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+
 import PropTypes from "prop-types";
 
 const styles = () => {};

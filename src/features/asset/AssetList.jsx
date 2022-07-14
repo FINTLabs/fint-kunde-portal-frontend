@@ -8,10 +8,10 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import { Delete, Edit, InsertLink } from "@material-ui/icons";
+  Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import { Delete, Edit, InsertLink } from "@mui/icons-material";
 import AssetView from "./view/AssetView";
 import PropTypes from "prop-types";
 import { withContext } from "../../data/context/withContext";

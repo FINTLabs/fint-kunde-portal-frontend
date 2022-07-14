@@ -5,7 +5,7 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchLegalContact, fetchTechnicalContacts} from "../../data/redux/dispatchers/organisation";
 import ContactList from "./ContactList";
 import ContactAdd from "./add/ContactAddExisting";
-import {withStyles} from "@material-ui/core";
+import { withStyles } from '@mui/styles';
 import {fetchContacts} from "../../data/redux/dispatchers/contact";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import PropTypes from "prop-types";

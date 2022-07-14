@@ -1,7 +1,7 @@
 import React from "react";
-import Chip from "@material-ui/core/Chip";
-import {withStyles} from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
+import { Chip, Tooltip} from "@mui/material";
+import { withStyles } from '@mui/styles';
+
 
 const styles = theme => ({
     chip: {

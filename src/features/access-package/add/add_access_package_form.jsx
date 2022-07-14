@@ -1,8 +1,6 @@
 import React, {useContext, useState} from 'react';
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@material-ui/core";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,TextField,Button} from "@mui/material";
 import PackageNameValidationInput from "../../../common/input-validation/PackageIdValidationInput";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import AppContext from "../../../data/context/AppContext";

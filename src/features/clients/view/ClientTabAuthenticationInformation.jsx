@@ -7,14 +7,14 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  Tooltip,
-  withStyles
-} from "@material-ui/core";
-import ContentCopy from "@material-ui/icons/FileCopy";
+  Tooltip
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import ContentCopy from "@mui/icons-material/FileCopy";
 import ClientApi from "../../../data/api/ClientApi";
 import * as PasswordGenerator from "generate-password";
-import GetSecretIcon from "@material-ui/icons/GetApp";
-import RefreshIcon from "@material-ui/icons/Refresh";
+import GetSecretIcon from "@mui/icons-material/GetApp";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { Link } from "react-router-dom";
 import { withContext } from "../../../data/context/withContext";
 import PropTypes from "prop-types";

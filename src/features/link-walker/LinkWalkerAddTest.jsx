@@ -1,16 +1,17 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import {
+  Button,
+  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+  Fab,
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+
+import { Add } from "@mui/icons-material";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import PropTypes from "prop-types";
 import ClientSelector from "../../common/test/ClientSelector";

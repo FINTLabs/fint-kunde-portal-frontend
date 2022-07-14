@@ -1,7 +1,9 @@
 import React from "react";
 import SwipeableViews from "react-swipeable-views";
-import AppBar from "@material-ui/core/AppBar";
-import { Tab, Tabs, withStyles } from "@material-ui/core";
+import AppBar from "@mui/material/AppBar";
+import { Tab, Tabs } from "@mui/material";
+import { withStyles } from '@mui/styles';
+
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import AssetTabAdapter from "./AssetTabAdapter";

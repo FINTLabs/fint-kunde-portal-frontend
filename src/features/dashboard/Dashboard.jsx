@@ -7,13 +7,13 @@ import {
     Divider,
     Grid,
     Typography,
-    withStyles
-} from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import AdapterIcon from "@material-ui/icons/Link";
-import ApiIcon from "@material-ui/icons/WebAsset";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
+import AdapterIcon from "@mui/icons-material/Link";
+import ApiIcon from "@mui/icons-material/WebAsset";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import {fetchAdapters} from "../../data/redux/dispatchers/adapter";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";

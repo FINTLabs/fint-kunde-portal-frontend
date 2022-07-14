@@ -1,6 +1,5 @@
 import React from 'react';
-import {Fab} from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
+import {Fab, Tooltip} from "@mui/material";
 import * as PropTypes from "prop-types";
 
 const ToolTipFab = (props) => {

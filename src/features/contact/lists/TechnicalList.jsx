@@ -9,17 +9,18 @@ import {
     ListItemSecondaryAction,
     ListItemText,
     Typography
-} from "@material-ui/core";
+} from "@mui/material";
+import {makeStyles} from "@mui/styles";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import RoleDialog from "../role/RoleDialog";
 import AppContext from "../../../data/context/AppContext";
-import {createStyles, makeStyles} from "@material-ui/core/styles";
-import ContactIcon from "@material-ui/icons/Person";
+import {createStyles} from "@mui/material";
+import ContactIcon from "@mui/icons-material/Person";
 import TooltipIconButton from "../../../common/button/TooltipIconButton";
-import RolesIcon from "@material-ui/icons/LockOpenRounded";
-import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
-import SetLegalIcon from "@material-ui/icons/AccountBalance";
+import RolesIcon from "@mui/icons-material/LockOpenRounded";
+import RemoveIcon from "@mui/icons-material/RemoveCircleRounded";
+import SetLegalIcon from "@mui/icons-material/AccountBalance";
 import {useDispatch, useSelector} from "react-redux";
 import {setRoleContact} from "../../../data/redux/actions/roles";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";

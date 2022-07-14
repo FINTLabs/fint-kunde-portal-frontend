@@ -1,7 +1,7 @@
 import React from "react";
-import {Box, Typography} from "@material-ui/core";
-import InfoIcon from "@material-ui/icons/InfoOutlined";
-import {grey} from "@material-ui/core/colors";
+import {Box, Typography} from "@mui/material";
+import InfoIcon from "@mui/icons-material/InfoOutlined";
+import {grey} from "@mui/material/colors";
 
 const HelpCard = ({header, children, dense = false}) => {
     return (

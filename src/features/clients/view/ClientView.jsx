@@ -1,12 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
-  withStyles
-} from "@material-ui/core";
+  DialogTitle
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import ClientTabView from "./ClientTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
 

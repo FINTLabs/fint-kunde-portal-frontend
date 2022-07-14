@@ -9,11 +9,11 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
-} from "@material-ui/core";
-import {Delete, Edit} from "@material-ui/icons";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
+    Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import {Delete, Edit} from "@mui/icons-material";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import ClientView from "./view/ClientView";
 import {withContext} from "../../data/context/withContext";

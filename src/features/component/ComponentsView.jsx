@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import {
     Checkbox,
     Dialog,
@@ -10,8 +9,9 @@ import {
     TableBody,
     TableCell,
     TableRow,
-    withStyles
-} from "@material-ui/core";
+    Button
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 
 const styles = theme => ({

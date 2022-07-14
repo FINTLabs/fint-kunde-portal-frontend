@@ -1,12 +1,12 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import AssetTabView from "./AssetTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
 import { bindActionCreators } from "redux";

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from "@material-ui/core";
+import { withStyles } from '@mui/styles';
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {
   createAdapter,

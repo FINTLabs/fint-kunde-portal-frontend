@@ -1,15 +1,15 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
-} from "@material-ui/core";
+  DialogTitle,
+  Button,
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
-import InformationIcon from "@material-ui/icons/Info";
-import { withStyles } from "@material-ui/core";
+import InformationIcon from "@mui/icons-material/Info";
 
 const styles = theme => ({
   icon: {

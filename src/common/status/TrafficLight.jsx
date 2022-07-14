@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { Tooltip, CircularProgress } from "@mui/material";
+import { withStyles } from '@mui/styles';
+
 
 const styles = theme => ({
   failed: {

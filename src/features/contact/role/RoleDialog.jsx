@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 import {useDispatch, useSelector} from "react-redux";
-import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import RolesIcon from "@mui/icons-material/LockOpenRounded";
 import {addRole, fetchRoles, removeRole} from "../../../data/redux/dispatchers/roles";
 import {
     CircularProgress,
@@ -15,9 +15,10 @@ import {
     ListItemSecondaryAction,
     ListItemText,
     Switch
-} from "@material-ui/core";
-import {createStyles, makeStyles} from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+} from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import {createStyles} from "@mui/material/styles";
+import Button from "@mui/material/Button";
 import AppContext from "../../../data/context/AppContext";
 
 const useStyles = makeStyles((theme) =>

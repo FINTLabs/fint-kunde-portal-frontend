@@ -1,5 +1,6 @@
 import React, {useContext, useState} from "react";
-import {Divider, List, makeStyles, Typography} from "@material-ui/core";
+import {Divider, List, Typography} from "@mui/material";
+import {makeStyles} from "@mui/styles";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
 import EditAccessPackageContainer from "./edit/EditAccessPackageContainer";

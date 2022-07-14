@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Fab} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
-import {makeStyles} from "@material-ui/core/styles";
+import { Fab } from '@mui/material';
+import {makeStyles} from "@mui/styles";
+import {Add} from "@mui/icons-material";
 import {useSelector} from "react-redux";
 import AddAccessPackageForm from "./add_access_package_form";
 

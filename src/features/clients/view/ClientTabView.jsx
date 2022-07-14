@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import SwipeableViews from "react-swipeable-views";
-import AppBar from "@material-ui/core/AppBar";
-import {makeStyles, Tab, Tabs, useTheme} from "@material-ui/core";
+import AppBar from "@mui/material/AppBar";
+import { Tab, Tabs, useTheme} from "@mui/material";
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import ClientTabComponent from "./ClientTabComponent";
 import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
 import ClientTabAccess from "./ClientTabAccess";
-import {createStyles} from "@material-ui/core/styles";
+import {createStyles} from "@mui/material/styles";
+import { makeStyles } from '@mui/styles';
+
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import FeatureToggle from "../../../common/feature-toggle/FeatureToggle";
 

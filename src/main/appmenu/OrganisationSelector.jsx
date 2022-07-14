@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Menu, MenuItem, withStyles } from "@material-ui/core";
-import OrganisationIcon from "@material-ui/icons/Domain";
+import { Button, Menu, MenuItem } from "@mui/material";
+import { withStyles } from '@mui/styles';
+
+import OrganisationIcon from "@mui/icons-material/Domain";
 import { withContext } from "../../data/context/withContext";
 
 const styles = theme => ({

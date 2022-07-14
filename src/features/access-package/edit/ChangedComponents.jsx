@@ -1,12 +1,8 @@
 import React from 'react';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import {Typography} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import AddIcon from "@material-ui/icons/AddCircleRounded";
-import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
+import { List, ListItem, ListItemText, Typography, ListItemIcon } from '@mui/material';
+import {makeStyles} from "@mui/styles";
+import AddIcon from "@mui/icons-material/AddCircleRounded";
+import RemoveIcon from "@mui/icons-material/RemoveCircleRounded";
 import {useSelector} from "react-redux";
 
 

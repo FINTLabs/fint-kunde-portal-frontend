@@ -1,14 +1,15 @@
 import React, {Component} from "react";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import LogIcon from "@material-ui/icons/Timeline";
-import {Box, Typography, withStyles} from "@material-ui/core";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LogIcon from "@mui/icons-material/Timeline";
+import {Box, Typography} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import moment from "moment";
 import LogEntry from "./LogEntry";
-import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Divider from "@mui/material/Divider";
+import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
 
 const styles = theme => ({
     expansionPanelSummary: {

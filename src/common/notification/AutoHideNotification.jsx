@@ -1,5 +1,7 @@
 import React from "react";
-import { Snackbar, withStyles } from "@material-ui/core";
+import { Snackbar } from "@mui/material";
+import { withStyles } from '@mui/styles';
+
 import PropTypes from "prop-types";
 
 const styles = () => {};

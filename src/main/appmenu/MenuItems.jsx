@@ -1,22 +1,22 @@
 import React from 'react';
-import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import ApiIcon from "@material-ui/icons/WebAsset";
-import AdapterIcon from "@material-ui/icons/Link";
-import ContactIcon from "@material-ui/icons/Person";
-import RelationTestIcon from "@material-ui/icons/TrendingFlat";
-import BasicTestIcon from "@material-ui/icons/Done";
-import LogoutIcon from "@material-ui/icons/ExitToApp";
-import AssetIcon from "@material-ui/icons/Storage";
-import ContactSupport from "@material-ui/icons/ContactSupport"
-import KeyIcon from "@material-ui/icons/Lock"
+import {ListItem, ListItemIcon, ListItemText} from "@mui/material";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
+import ApiIcon from "@mui/icons-material/WebAsset";
+import AdapterIcon from "@mui/icons-material/Link";
+import ContactIcon from "@mui/icons-material/Person";
+import RelationTestIcon from "@mui/icons-material/TrendingFlat";
+import BasicTestIcon from "@mui/icons-material/Done";
+import LogoutIcon from "@mui/icons-material/ExitToApp";
+import AssetIcon from "@mui/icons-material/Storage";
+import ContactSupport from "@mui/icons-material/ContactSupport"
+import KeyIcon from "@mui/icons-material/Lock"
 import {Link} from "react-router-dom";
-import List from "@material-ui/core/List";
-import LogIcon from "@material-ui/icons/Receipt";
+import List from "@mui/material/List";
+import LogIcon from "@mui/icons-material/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
-import SamtrykkeIcon from '@material-ui/icons/Security';
+import SamtrykkeIcon from '@mui/icons-material/Security';
 
 
 const MenuItems = () => {

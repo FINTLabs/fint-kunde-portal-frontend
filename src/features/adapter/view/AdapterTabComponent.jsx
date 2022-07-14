@@ -6,14 +6,14 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import ComponentIcon from "@material-ui/icons/WebAsset";
+  Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import ComponentIcon from "@mui/icons-material/WebAsset";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchComponents } from "../../../data/redux/dispatchers/component";
-import { green } from "@material-ui/core/colors/index";
+import { green } from "@mui/material/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import {
   addAdapterToComponent,

@@ -1,16 +1,16 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { Add } from "@material-ui/icons";
+  Fab,
+  TextField,
+  Button
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import AdapterApi from "../../../data/api/AdapterApi";
 import AssetApi from "../../../data/api/AssetApi";

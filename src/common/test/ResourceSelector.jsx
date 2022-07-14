@@ -1,13 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import {makeStyles} from "@material-ui/core";
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, IconButton } from '@mui/material';
+import {makeStyles} from "@mui/styles";
 import PropTypes from "prop-types";
-import ClearIcon from '@material-ui/icons/Clear';
-import IconButton from "@material-ui/core/IconButton";
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 const useStyles = makeStyles(theme => ({

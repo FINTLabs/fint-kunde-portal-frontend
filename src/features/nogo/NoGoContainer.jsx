@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import NoGoMessage from "./NoGoMessage";
-import Grid from "../../../node_modules/@material-ui/core/Grid/Grid";
+import Grid from "../../../node_modules/@mui/material/Grid/Grid";
 
 class NoGoContainer extends Component {
   render() {

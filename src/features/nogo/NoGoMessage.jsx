@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React, {Component} from "react";
-import {withStyles} from "@material-ui/core";
-import Button from "../../../node_modules/@material-ui/core/Button/Button";
+import { withStyles } from '@mui/styles';
+import Button from "../../../node_modules/@mui/material/Button/Button";
 import FintLogo from "../../images/fint-by-vigo.svg";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 
 const styles = theme => ({
 

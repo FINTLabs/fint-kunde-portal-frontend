@@ -5,12 +5,13 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemSecondaryAction,
-    ListItemText, makeStyles
-} from "@material-ui/core";
-import LockIcon from "@material-ui/icons/Lock";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
+    ListItemText,
+    FormControl,
+    FormControlLabel,
+    Switch
+} from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import LockIcon from "@mui/icons-material/Lock";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
 const useStyles = makeStyles((theme) => ({

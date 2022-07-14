@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import {makeStyles} from "@material-ui/core";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    FormHelperText,
+    OutlinedInput
+} from '@mui/material';
+import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles(theme => ({
     formControl: {

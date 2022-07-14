@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import AppContext from "../../../data/context/AppContext";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@mui/styles";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import {fetchComponents} from "../../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../../data/redux/dispatchers/entity";

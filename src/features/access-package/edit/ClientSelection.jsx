@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@mui/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {
     Avatar,
@@ -8,12 +8,12 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography
-} from "@material-ui/core";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import FormControl from "@material-ui/core/FormControl";
+    Typography,
+    Switch,
+    FormControl,
+    FormControlLabel
+} from "@mui/material";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";

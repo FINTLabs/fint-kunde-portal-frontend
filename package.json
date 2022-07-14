@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.0",
+    "@mui/styles": "^5.9.0",
     "axios": "^0.21.2",
     "classnames": "^2.2.6",
     "crypto-browserify": "^3.12.0",
@@ -30,6 +34,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "stream-browserify": "^3.0.0",
+    "typescript": "^4.7.4",
     "xlsx": "^0.18.5"
   },
   "scripts": {

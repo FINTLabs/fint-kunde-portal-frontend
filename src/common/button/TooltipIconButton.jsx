@@ -1,5 +1,5 @@
 import React from 'react';
-import {IconButton, Tooltip} from "@material-ui/core";
+import {IconButton, Tooltip} from "@mui/material";
 import Proptypes from "prop-types";
 
 const TooltipIconButton = ({toolTip, id, ariaLabel, onClick, children}) => {

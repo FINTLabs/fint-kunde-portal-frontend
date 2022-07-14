@@ -7,12 +7,12 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import ComponentIcon from "@material-ui/icons/WebAsset";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import { green } from "@material-ui/core/colors/index";
+  Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import ComponentIcon from "@mui/icons-material/WebAsset";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
+import { green } from "@mui/material/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";

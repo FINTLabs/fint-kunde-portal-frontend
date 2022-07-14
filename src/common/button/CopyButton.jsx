@@ -1,5 +1,5 @@
-import { IconButton } from "@material-ui/core";
-import { ContentCopy } from "@material-ui/icons";
+import { IconButton } from "@mui/material";
+import { ContentCopy } from "@mui/icons-material";
 import React from "react";
 
 class CopyButton extends React.Component {

@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import Tooltip from "@material-ui/core/Tooltip";
-import { IconButton, withStyles } from "@material-ui/core";
-import RemoveIcon from "../../../node_modules/@material-ui/icons/CheckBox";
+import { IconButton, Tooltip } from "@mui/material";
+import { withStyles } from '@mui/styles';
+
+import RemoveIcon from "@mui/icons-material/CheckBox";
 
 const styles = theme => ({
   addIcon: {

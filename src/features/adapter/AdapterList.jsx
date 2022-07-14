@@ -8,10 +8,10 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import { Delete, Edit, InsertLink } from "@material-ui/icons";
+  Typography
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import { Delete, Edit, InsertLink } from "@mui/icons-material";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import AdapterView from "./view/AdapterView";
 import { withContext } from "../../data/context/withContext";

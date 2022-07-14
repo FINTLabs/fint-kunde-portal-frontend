@@ -1,13 +1,14 @@
 import React, {Component} from "react";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import moment from "moment";
 import LogApi from "../../data/api/LogApi";
-import Box from "@material-ui/core/Box";
-import {Typography, withStyles} from "@material-ui/core";
+import Box from "@mui/material/Box";
+import {Typography} from "@mui/material";
+import { withStyles } from '@mui/styles';
 
 
 const styles = theme => ({

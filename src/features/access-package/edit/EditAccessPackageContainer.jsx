@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
-import Dialog from "@material-ui/core/Dialog";
-import AppBar from "@material-ui/core/AppBar";
-import {makeStyles} from "@material-ui/core/styles";
-import {Add} from "@material-ui/icons";
-import TemplateIcon from "@material-ui/icons/CloudDownload";
+import Dialog from '@mui/material/Dialog';
+import AppBar from '@mui/material/AppBar';
+import {makeStyles} from "@mui/styles";
+import Add from "@mui/icons-material/Add";
+import TemplateIcon from "@mui/icons-material/CloudDownload";
 import {useDispatch, useSelector} from "react-redux";
-import Divider from "@material-ui/core/Divider";
+import Divider from '@mui/material/Divider';
 import EntitySelection from "./EntitySelection";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import ClientSelection from "./ClientSelection";
 import EditAccessPackageAppBar from "./EditAccessPackageAppBar";
 import EditAccessPackageDialog from "./EditAccessPackageDialog";
 import ConfirmAccessPackageUpdate from "./ConfirmAccessPackageUpdate";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 import TemplateContainerDialog from "./TemplateContainerDialog";
-import Box from "@material-ui/core/Box";
+import Box from '@mui/material/Box';
 import ToolTipFab from "../../../common/fab/ToolTipFab";
 
 const useStyles = makeStyles(theme => ({

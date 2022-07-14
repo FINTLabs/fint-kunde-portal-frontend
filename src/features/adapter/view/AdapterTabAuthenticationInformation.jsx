@@ -7,18 +7,18 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  Tooltip,
-  withStyles
-} from "@material-ui/core";
+  Tooltip
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import AdapterApi from "../../../data/api/AdapterApi";
 import * as PasswordGenerator from "generate-password";
-import GetSecretIcon from "@material-ui/icons/GetApp";
-import RefreshIcon from "@material-ui/icons/Refresh";
+import GetSecretIcon from "@mui/icons-material/GetApp";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { withContext } from "../../../data/context/withContext";
 import { Link } from "react-router-dom";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import ContentCopy from "@material-ui/icons/FileCopy";
+import ContentCopy from "@mui/icons-material/FileCopy";
 
 const styles = theme => ({
   root: {

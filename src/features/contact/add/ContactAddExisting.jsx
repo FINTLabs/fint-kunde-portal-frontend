@@ -1,12 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
 import {
   Avatar,
   IconButton,
@@ -16,11 +8,17 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import ContactIcon from "@material-ui/icons/Person";
-import AddIconCircle from "@material-ui/icons/AddCircle";
+  Fab,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button
+} from "@mui/material";
+import { withStyles } from '@mui/styles';
+import { Add } from "@mui/icons-material";
+import ContactIcon from "@mui/icons-material/Person";
+import AddIconCircle from "@mui/icons-material/AddCircle";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";
 import PropTypes from "prop-types";

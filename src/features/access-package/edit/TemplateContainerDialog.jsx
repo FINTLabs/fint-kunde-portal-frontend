@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import {Avatar, DialogActions, ListItemAvatar, makeStyles} from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
+import { DialogTitle, DialogContent, List, ListItem, ListItemText, Avatar, DialogActions, ListItemAvatar, Dialog, Button } from '@mui/material';
+
+import {makeStyles} from "@mui/styles";
 import {useDispatch, useSelector} from "react-redux";
-import LockIcon from "@material-ui/icons/LockOpen";
+import LockIcon from "@mui/icons-material/LockOpen";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import Button from "@material-ui/core/Button";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 
 const useStyles = makeStyles((theme) => ({
