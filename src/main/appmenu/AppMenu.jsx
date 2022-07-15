@@ -22,7 +22,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) =>
     createStyles({
         appBar: {
-            zIndex: theme.zIndex.drawer + 1,
+            zIndex: (theme.zIndex.drawer + 1) + ' !important',
             transition: theme.transitions.create(["width", "margin"], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
         },
         appBarShift: {
             marginLeft: drawerWidth,
-            width: `calc(100% - ${drawerWidth}px)`,
+            width: `calc(100% - ${drawerWidth}px) !important`,
             transition: theme.transitions.create(["width", "margin"], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen
@@ -64,11 +64,11 @@ const useStyles = makeStyles((theme) =>
             }
         },
         toolbar: {
+            ...theme.mixins.toolbar,
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-end",
-            padding: "0 8px",
-            ...theme.mixins.toolbar
+            padding: "0 8px"
         },
         content: {
             width: "100%",
@@ -103,10 +103,12 @@ const AppMenu = (props) => {
     const [open, setOpen] = useState(false);
     const theme = useTheme();
     const handleDrawerOpen = () => {
+        console.log('jennifer',true);
         setOpen(true);
     };
 
     const handleDrawerClose = () => {
+        console.log('jennifer',theme.zIndex.drawer)
         setOpen(false);
     };
 
@@ -133,7 +135,7 @@ const AppMenu = (props) => {
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <img src={FintLogo} alt="logo" className={classes.logo}/>
+                    <img src={FintLogo} alt="logo" className={classes.logo }/>
                     <Typography
                         variant="h6"
                         color="inherit"
