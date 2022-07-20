@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
+import { styled } from '@mui/material/styles';
 import AppContext from "../../../data/context/AppContext";
-import {makeStyles} from "@mui/styles";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import {fetchComponents} from "../../../data/redux/dispatchers/component";
 import {fetchEntities} from "../../../data/redux/dispatchers/entity";
@@ -9,8 +9,18 @@ import {useDispatch, useSelector} from "react-redux";
 import AddAccessPackageToClient from "./AddAccessPackageToClient";
 
 
-const useStyles = makeStyles(theme => ({
-    root: {
+const PREFIX = 'ClientTabAccess';
+
+const classes = {
+    root: `${PREFIX}-root`
+};
+
+const Root = styled('div/')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.root}`]: {
         backgroundColor: theme.palette.background.paper,
         width: "100%"
     }
@@ -19,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 const ClientTabAccess = (props) => {
     const {client} = props;
     const context = useContext(AppContext);
-    const classes = useStyles();
+
     const dispatch = useDispatch();
     const access = useSelector(state => state.access_package.accessPackages);
 

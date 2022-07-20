@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import Button from "@mui/material/Button";
 import {
   Dialog,
@@ -6,7 +7,6 @@ import {
   DialogContent,
   DialogTitle
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import AssetTabView from "./AssetTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
 import { bindActionCreators } from "redux";
@@ -15,7 +15,9 @@ import { connect } from "react-redux";
 import { withContext } from "../../../data/context/withContext";
 import { fetchClients } from "../../../data/redux/dispatchers/client";
 
-const styles = () => ({});
+const PREFIX = 'AssetView';
+const classes = {};
+const Root = styled('div')(() => ({}));
 
 class AssetView extends React.Component {
   showUpdateButton = show => {
@@ -82,7 +84,7 @@ class AssetView extends React.Component {
 
   render() {
     return (
-      <div>
+      <Root>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -130,7 +132,7 @@ class AssetView extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
@@ -154,7 +156,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

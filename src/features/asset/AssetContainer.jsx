@@ -1,7 +1,7 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from '@mui/styles';
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {
   createAsset,
@@ -15,9 +15,15 @@ import { withContext } from "../../data/context/withContext";
 import OrganisationApi from "../../data/api/OrganisationApi";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 
-const styles = () => ({
-  root: {}
-});
+const PREFIX = 'AssetContainer';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')(() => ({
+  [`&.${classes.root}`]: {}
+}));
 
 class AssetContainer extends React.Component {
   constructor(props) {
@@ -92,9 +98,9 @@ class AssetContainer extends React.Component {
   }
 
   renderAssets() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -114,7 +120,7 @@ class AssetContainer extends React.Component {
           primaryAssetId={this.state.primaryAssetId}
           notify={this.notify}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -140,7 +146,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

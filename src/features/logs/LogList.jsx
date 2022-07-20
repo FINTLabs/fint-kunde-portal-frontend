@@ -1,8 +1,8 @@
 import React, {Component} from "react";
+import { styled } from '@mui/material/styles';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogIcon from "@mui/icons-material/Timeline";
 import {Box, Typography} from "@mui/material";
-import { withStyles } from '@mui/styles';
 import moment from "moment";
 import LogEntry from "./LogEntry";
 import Divider from "@mui/material/Divider";
@@ -11,20 +11,34 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 
-const styles = theme => ({
-    expansionPanelSummary: {
+const PREFIX = 'LogList';
+
+const classes = {
+    expansionPanelSummary: `${PREFIX}-expansionPanelSummary`,
+    expansionPanelBox: `${PREFIX}-expansionPanelBox`,
+    expansionPanelId: `${PREFIX}-expansionPanelId`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.expansionPanelSummary}`]: {
         display: "flex",
         flexDirection: "column",
     },
-    expansionPanelBox: {
+
+    [`& .${classes.expansionPanelBox}`]: {
         display: "flex",
         flexDirection: "row",
     },
-    expansionPanelId: {
+
+    [`& .${classes.expansionPanelId}`]: {
         display: "flex",
         flexDirection: "column",
-    },
-});
+    }
+}));
 
 class LogList extends Component {
     constructor(props, context) {
@@ -44,7 +58,7 @@ class LogList extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <Box w={1}>
+            <StyledBox w={1}>
                 {
                     this.distinct().length > 0 &&
                     <Box w={1} display='flex' justifyContent='flex-end' alignItems='center' m={1}>
@@ -112,9 +126,9 @@ class LogList extends Component {
                             </Accordion>
                         )
                 return null})}
-            </Box>
+            </StyledBox>
         );
     }
 }
 
-export default withStyles(styles)(LogList);
+export default (LogList);

@@ -1,4 +1,5 @@
 import React, {useContext, useEffect} from 'react';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
@@ -16,25 +17,33 @@ import {
     ListItemText,
     Switch
 } from "@mui/material";
-import {makeStyles} from "@mui/styles";
-import {createStyles} from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import AppContext from "../../../data/context/AppContext";
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-        dialogTitle: {
-            backgroundColor: theme.palette.secondary.main,
-            color: theme.palette.primary.contrastText
-        },
-    }));
+const PREFIX = 'RoleDialog';
+
+const classes = {
+    dialogTitle: `${PREFIX}-dialogTitle`
+};
+
+const Root = styled('div/')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.dialogTitle}`]: {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.contrastText
+    }
+}));
+
 const RoleDialog = props => {
     const {onClose, open} = props;
     const dispatch = useDispatch();
     const roles = useSelector(state => state.roles.roles);
     const currentContact = useSelector(state => state.roles.roleContact);
     const loading = useSelector(state => state.roles.loading);
-    const classes = useStyles();
+
     const appContext = useContext(AppContext);
 
 

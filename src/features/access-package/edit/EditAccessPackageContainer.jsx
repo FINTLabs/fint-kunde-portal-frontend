@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
+import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
-import {makeStyles} from "@mui/styles";
 import Add from "@mui/icons-material/Add";
 import TemplateIcon from "@mui/icons-material/CloudDownload";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,32 +21,53 @@ import TemplateContainerDialog from "./TemplateContainerDialog";
 import Box from '@mui/material/Box';
 import ToolTipFab from "../../../common/fab/ToolTipFab";
 
-const useStyles = makeStyles(theme => ({
-    appBar: {
+const PREFIX = 'EditAccessPackageContainer';
+
+const classes = {
+    appBar: `${PREFIX}-appBar`,
+    title: `${PREFIX}-title`,
+    addButton: `${PREFIX}-addButton`,
+    templateButton: `${PREFIX}-templateButton`,
+    listItem: `${PREFIX}-listItem`,
+    cancelTemplateButton: `${PREFIX}-cancelTemplateButton`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.appBar}`]: {
         position: 'relative',
     },
-    title: {
+
+    [`& .${classes.title}`]: {
         marginLeft: theme.spacing(2),
         flex: 1,
     },
-    addButton: {
+
+    [`& .${classes.addButton}`]: {
         margin: theme.spacing(1),
         top: theme.spacing(16),
         right: theme.spacing(3),
         position: "absolute"
     },
-    templateButton: {
+
+    [`& .${classes.templateButton}`]: {
         margin: theme.spacing(1),
         top: theme.spacing(25),
         right: theme.spacing(3),
         position: "absolute"
     },
-    listItem: {
+
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray"
     },
-    cancelTemplateButton: {
+
+    [`& .${classes.cancelTemplateButton}`]: {
         inlineSize: "-webkit-fill-available",
-    },
+    }
 }));
 
 const EditAccessPackageContainer = (props) => {
@@ -54,7 +75,7 @@ const EditAccessPackageContainer = (props) => {
         open, handleClose, handleSaveAccess, setEditOpen, openSave, handleSaveClose,
         setSnackBarOpen, setSnackBarMessage
     } = props;
-    const classes = useStyles();
+
     const [componentSelectorOpen, setComponentSelectorOpen] = useState(false);
     const [templateSelectorOpen, setTemplateSelectorOpen] = useState(false);
     const [openCloseDialog, setOpenCloseDialog] = useState(false);
@@ -128,7 +149,7 @@ const EditAccessPackageContainer = (props) => {
     }
 
     return (
-        <>
+        (<Root>
             <Dialog fullScreen open={open} onClose={handleClose}>
                 <EditAccessPackageAppBar
                     classes={classes}
@@ -202,7 +223,7 @@ const EditAccessPackageContainer = (props) => {
                     </DialogActions>
                 </Dialog>
             </Dialog>
-        </>
+        </Root>)
     );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Button,
   TextField,
@@ -9,7 +10,6 @@ import {
   DialogTitle,
   Fab,
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 
 import { Add } from "@mui/icons-material";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
@@ -18,8 +18,14 @@ import ClientSelector from "../../common/test/ClientSelector";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import EnvironmentSelector from "../../common/test/EnvironmentSelector";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'LinkWalkerAddTest';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -27,7 +33,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class LinkWalkerAddTest extends React.Component {
   constructor(props) {
@@ -105,9 +111,9 @@ class LinkWalkerAddTest extends React.Component {
   };
 
   render() {
-    const { components, classes } = this.props;
+    const { components, } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -183,7 +189,7 @@ class LinkWalkerAddTest extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
@@ -197,4 +203,4 @@ LinkWalkerAddTest.propTypes = {
   organisationName: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(LinkWalkerAddTest);
+export default (LinkWalkerAddTest);

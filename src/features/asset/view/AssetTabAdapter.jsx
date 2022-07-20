@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Avatar,
   List,
@@ -8,7 +9,6 @@ import {
   ListItemText,
   Typography
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import ComponentIcon from "@mui/icons-material/WebAsset";
 import { green } from "@mui/material/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
@@ -19,31 +19,51 @@ import { withContext } from "../../../data/context/withContext";
 import RemoveButton from "../../../common/button/RemoveButton";
 import AddButton from "../../../common/button/AddButton";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AssetTabAdapter';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  componentList: `${PREFIX}-componentList`,
+  avtarstyle: `${PREFIX}-avtarstyle`,
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledTypography = styled(Typography)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
     justifyContent: "center"
   },
-  componentList: {
+
+  [`& .${classes.componentList}`]: {
     width: "75%"
   },
-  avtarstyle: {
+
+  [`& .${classes.avtarstyle}`]: {
     margin: 1,
     color: "#fff",
     backgroundColor: green[500]
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.main
   }
-});
+}));
 
 class AssetTabAdapter extends React.Component {
   askToUnLinkAdapter = adapter => {
@@ -158,7 +178,7 @@ class AssetTabAdapter extends React.Component {
   }
 
   renderAdapters() {
-    const { classes } = this.props;
+    const { } = this.props;
     const organisationAdapters = this.props.adapters;
 
     if (organisationAdapters.length > 0) {
@@ -206,12 +226,12 @@ class AssetTabAdapter extends React.Component {
       );
     } else {
       return (
-        <Typography variant="subheading">
+        <StyledTypography variant="subheading">
           Det er ikke lagt til noen adapters for denne organisasjonen.
-        </Typography>
+        </StyledTypography>
       );
     }
   }
 }
 
-export default withStyles(styles)(withContext(AssetTabAdapter));
+export default (withContext(AssetTabAdapter));

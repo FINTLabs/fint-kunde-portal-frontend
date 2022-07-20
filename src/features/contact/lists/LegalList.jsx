@@ -1,4 +1,5 @@
 import React, {useContext, useState} from "react";
+import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import {
     Avatar,
@@ -10,7 +11,6 @@ import {
     ListItemText,
     Typography
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import ContactIcon from "@mui/icons-material/Person";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 import RolesIcon from "@mui/icons-material/LockOpenRounded";
@@ -26,14 +26,24 @@ import {
     fetchTechnicalContacts
 } from "../../../data/redux/dispatchers/organisation";
 
-const styles = theme => ({
-    itemAvatar: {
+const PREFIX = 'LegalList';
+
+const classes = {
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
-    },
-});
+    }
+}));
 
-function LegalList({classes, legalContact}) {
+function LegalList({ legalContact}) {
     const isRoleFeatureEnabled = useFeatureEnabled("roles");
     const roleTypes = useSelector(state => state.roles.roles);
     const orgId = useContext(AppContext).currentOrganisation.name;
@@ -52,7 +62,7 @@ function LegalList({classes, legalContact}) {
     }
 
     return (
-        <Box display="flex" justifyContent="center" mb={5}>
+        <StyledBox display="flex" justifyContent="center" mb={5}>
             {isRoleFeatureEnabled && <RoleDialog
                 onClose={onCloseRoleDialog}
                 open={showRoleDialog}
@@ -101,11 +111,11 @@ function LegalList({classes, legalContact}) {
                     </ListItem>
                 </List>
             </Box>
-        </Box>
+        </StyledBox>
     );
 }
 
 LegalList.propTypes = {
     legalContact: PropTypes.object.isRequired
 };
-export default withStyles(styles)(LegalList);
+export default (LegalList);

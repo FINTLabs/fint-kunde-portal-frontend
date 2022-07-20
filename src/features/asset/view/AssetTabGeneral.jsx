@@ -1,15 +1,24 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
-import { withStyles } from '@mui/styles';
+const PREFIX = 'AssetTabGeneral';
 
-const styles = theme => ({
-  primaryAsset: {
+const classes = {
+  primaryAsset: `${PREFIX}-primaryAsset`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.primaryAsset}`]: {
     backgroundColor: theme.palette.secondary.light,
     padding: theme.spacing(1),
     marginBottom: theme.spacing(1)
   }
-});
+}));
 
 class AssetTabGeneral extends React.Component {
   constructor(props) {
@@ -18,10 +27,10 @@ class AssetTabGeneral extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
 
     return (
-      <div>
+      <Root>
         {this.props.asset.primaryAsset === true && (
           <div className={classes.primaryAsset}>PRIMÆR RESSURS</div>
         )}
@@ -50,7 +59,7 @@ class AssetTabGeneral extends React.Component {
           disabled
           fullWidth
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -60,4 +69,4 @@ AssetTabGeneral.propTypes = {
   updateAssetState: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(AssetTabGeneral);
+export default (AssetTabGeneral);

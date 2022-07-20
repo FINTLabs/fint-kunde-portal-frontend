@@ -1,22 +1,34 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import { List, ListItem, ListItemText, Typography, ListItemIcon } from '@mui/material';
-import {makeStyles} from "@mui/styles";
 import AddIcon from "@mui/icons-material/AddCircleRounded";
 import RemoveIcon from "@mui/icons-material/RemoveCircleRounded";
 import {useSelector} from "react-redux";
 
 
-const useStyles = makeStyles(theme => ({
-    addingText: {
+const PREFIX = 'ChangedComponents';
+
+const classes = {
+    addingText: `${PREFIX}-addingText`,
+    removingText: `${PREFIX}-removingText`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.addingText}`]: {
         color: "green",
     },
-    removingText: {
+
+    [`& .${classes.removingText}`]: {
         color: "red",
     }
 }));
 
 const ChangedComponents = (props) => {
-    const classes = useStyles();
+
     const {oldAccessPackage, newAccessPackage} = props;
     const componentConfiguration = useSelector(state => state.component_configuration.componentConfiguration);
     const componentList = [];
@@ -65,14 +77,14 @@ const ChangedComponents = (props) => {
     addDissimilarityToList(newAccessPackage.components, oldAccessPackage.components, componentList);
 
     return (
-        <div>
+        <Root>
             <List dense>
                 {componentList.length > 0 ? <Typography>Komponenter</Typography> : null}
                 {componentList.map(entry => {
                     return accessListItem(entry);
                 })}
             </List>
-        </div>
+        </Root>
     );
 };
 

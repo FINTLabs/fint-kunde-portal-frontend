@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,15 +9,22 @@ import moment from "moment";
 import LogApi from "../../data/api/LogApi";
 import Box from "@mui/material/Box";
 import {Typography} from "@mui/material";
-import { withStyles } from '@mui/styles';
+const PREFIX = 'LogEntry';
 
+const classes = {
+    tableMessage: `${PREFIX}-tableMessage`
+};
 
-const styles = theme => ({
-    tableMessage: {
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.tableMessage}`]: {
         maxWidth: 120,
         overflow: "auto"
     }
-});
+}));
 
 class LogEntry extends Component {
     constructor(props) {
@@ -34,9 +42,9 @@ class LogEntry extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { } = this.props;
         return (
-            <Box width={1}>
+            <StyledBox width={1}>
                 {this.state.items.length>0 && <Typography variant={"body2"}
                                                           color={"primary"}>ID: {this.state.items[0].corrId}</Typography>}
                 <Table size="small" aria-label="a dense table">
@@ -62,10 +70,10 @@ class LogEntry extends Component {
                         ))}
                     </TableBody>
                 </Table>
-            </Box>
+            </StyledBox>
         );
     }
 }
 LogEntry.propTypes = {};
 
-export default withStyles(styles)(LogEntry);
+export default (LogEntry);

@@ -1,29 +1,45 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { CircularProgress, Fab } from '@mui/material';
-import { withStyles } from '@mui/styles';
 import RunIcon from "@mui/icons-material/PlayArrow";
 import green from "@mui/material/colors/green";
 
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'BasicTestRunButton';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  wrapper: `${PREFIX}-wrapper`,
+  buttonSuccess: `${PREFIX}-buttonSuccess`,
+  fabProgress: `${PREFIX}-fabProgress`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     display: "flex",
     alignItems: "center",
     float: "right"
   },
-  wrapper: {
+
+  [`& .${classes.wrapper}`]: {
     margin: theme.spacing(1),
     position: "relative"
   },
-  buttonSuccess: {
+
+  [`& .${classes.buttonSuccess}`]: {
     backgroundColor: green[500],
     "&:hover": {
       backgroundColor: green[700]
     }
   },
-  fabProgress: {
+
+  [`& .${classes.fabProgress}`]: {
     color: theme.palette.secondary.main,
     position: "absolute",
     top: -6,
@@ -40,7 +56,7 @@ const styles = theme => ({
     marginLeft: -12,
   },
   */
-});
+}));
 
 class BasicTestRunButton extends React.Component {
   timer = null;
@@ -52,13 +68,13 @@ class BasicTestRunButton extends React.Component {
 
   render() {
     const { loading, success } = this.props;
-    const { classes } = this.props;
+    const { } = this.props;
     const buttonClassname = classNames({
       [classes.buttonSuccess]: success
     });
 
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <div className={classes.wrapper}>
           <Fab
             color="primary"
@@ -73,7 +89,7 @@ class BasicTestRunButton extends React.Component {
             <CircularProgress size={68} className={classes.fabProgress} />
           )}
         </div>
-      </div>
+      </Root>
     );
   }
 }
@@ -82,4 +98,4 @@ BasicTestRunButton.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(BasicTestRunButton);
+export default (BasicTestRunButton);

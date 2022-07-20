@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Dialog,
   DialogActions,
@@ -14,7 +15,6 @@ import {
     Typography,
     Divider
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import TrafficLight from "../../common/status/TrafficLight";
 import CvsReport from "./CvsReport";
@@ -22,19 +22,33 @@ import downloadCsv from "download-csv";
 import dateFormat from "dateformat";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'LinkWalkerTestView';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  table: `${PREFIX}-table`,
+  tableHeader: `${PREFIX}-tableHeader`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     width: "100%",
     overflowX: "auto"
   },
-  table: {
+
+  [`& .${classes.table}`]: {
     minWidth: "100%"
   },
-  tableHeader: {
+
+  [`& .${classes.tableHeader}`]: {
     fontWeight: "bold",
     fontStyle: "italic"
   }
-});
+}));
 
 class LinkWalkerTestView extends React.Component {
   handleClose = () => {
@@ -80,11 +94,11 @@ class LinkWalkerTestView extends React.Component {
     if (this.props.test !== undefined) {
       return this.renderTestView();
     }
-    return <div />;
+    return <Root />;
   }
 
   renderTestView() {
-    const { classes } = this.props;
+    const { } = this.props;
     const test = Object.assign({}, this.props.test);
     const relations = Object.entries(test.relations);
     return (
@@ -215,4 +229,4 @@ LinkWalkerTestView.propTypes = {
   test: PropTypes.any
 };
 
-export default withStyles(styles)(LinkWalkerTestView);
+export default (LinkWalkerTestView);

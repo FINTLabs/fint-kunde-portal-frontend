@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Dialog,
   DialogActions,
@@ -9,14 +10,19 @@ import {
   TextField,
   Button
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import AdapterApi from "../../../data/api/AdapterApi";
 import AssetApi from "../../../data/api/AssetApi";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'AdapterAdd';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -24,7 +30,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class AdapterAdd extends React.Component {
   updateAdapterState = event => {
@@ -113,9 +119,9 @@ class AdapterAdd extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -183,11 +189,11 @@ class AdapterAdd extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 AdapterAdd.propTypes = {};
 
-export default withStyles(styles)(AdapterAdd);
+export default (AdapterAdd);

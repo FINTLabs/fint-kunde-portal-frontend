@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
   Button,
@@ -9,7 +10,6 @@ import {
   InputLabel,
   Tooltip
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import ContentCopy from "@mui/icons-material/FileCopy";
 import ClientApi from "../../../data/api/ClientApi";
 import * as PasswordGenerator from "generate-password";
@@ -20,34 +20,56 @@ import { withContext } from "../../../data/context/withContext";
 import PropTypes from "prop-types";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'ClientTabAuthenticationInformation';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  oauthSecret: `${PREFIX}-oauthSecret`,
+  auth: `${PREFIX}-auth`,
+  authSecret: `${PREFIX}-authSecret`,
+  close: `${PREFIX}-close`,
+  copyAllAuthButtonIcon: `${PREFIX}-copyAllAuthButtonIcon`,
+  gotoAssetButton: `${PREFIX}-gotoAssetButton`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     backgroundColor: theme.palette.background.paper,
     width: "100%"
   },
-  oauthSecret: {
+
+  [`& .${classes.oauthSecret}`]: {
     width: "100%"
   },
-  auth: {
+
+  [`& .${classes.auth}`]: {
     marginTop: "0px",
     marginBottom: "10px",
     padding: "10px"
   },
-  authSecret: {
+
+  [`& .${classes.authSecret}`]: {
     width: "100%"
   },
-  close: {
+
+  [`& .${classes.close}`]: {
     width: theme.spacing(4),
     height: theme.spacing(4)
   },
-  copyAllAuthButtonIcon: {
+
+  [`& .${classes.copyAllAuthButtonIcon}`]: {
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(2)
   },
-  gotoAssetButton: {
+
+  [`& .${classes.gotoAssetButton}`]: {
     marginTop: theme.spacing(1)
   }
-});
+}));
 
 class ClientTabAuthenticationInformation extends React.Component {
   constructor(props) {
@@ -127,9 +149,9 @@ class ClientTabAuthenticationInformation extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div>
+      <Root>
         <WarningMessageBox
           show={this.state.askToResetPassword}
           message={this.state.message}
@@ -304,7 +326,7 @@ class ClientTabAuthenticationInformation extends React.Component {
             Kopier autentiseringsinformasjon
           </Button>
         </CopyToClipboard>
-      </div>
+      </Root>
     );
   }
 }
@@ -314,6 +336,6 @@ ClientTabAuthenticationInformation.propTypes = {
   notify: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(
+export default (
   withContext(ClientTabAuthenticationInformation)
 );

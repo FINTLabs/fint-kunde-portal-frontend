@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
     Checkbox,
     Dialog,
@@ -11,22 +12,35 @@ import {
     TableRow,
     Button
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 
-const styles = theme => ({
-    dialogTitle: {
+const PREFIX = 'ComponentsView';
+
+const classes = {
+    dialogTitle: `${PREFIX}-dialogTitle`,
+    endpointMainTitle: `${PREFIX}-endpointMainTitle`,
+    endpointsCell: `${PREFIX}-endpointsCell`
+};
+
+const Root = styled('div/')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.dialogTitle}`]: {
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.primary.contrastText
     },
-    endpointMainTitle: {
+
+    [`& .${classes.endpointMainTitle}`]: {
         fontWeight: "bold",
         fontStyle: "italic"
     },
-    endpointsCell: {
+
+    [`& .${classes.endpointsCell}`]: {
         paddingLeft: theme.spacing(5)
     }
-});
+}));
 
 class ComponentsView extends React.Component {
     handleClose = () => {
@@ -51,7 +65,7 @@ class ComponentsView extends React.Component {
     }
 
     render() {
-        const {classes, component} = this.props;
+        const { component} = this.props;
         if (component) {
             return (
                 <div>
@@ -336,4 +350,4 @@ ComponentsView.propTypes = {
     onClose: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(ComponentsView);
+export default (ComponentsView);

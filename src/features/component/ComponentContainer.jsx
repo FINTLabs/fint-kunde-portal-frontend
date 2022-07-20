@@ -1,7 +1,7 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from '@mui/styles';
 import LoadingProgress from "../../common/status/LoadingProgress";
 import ComponentList from "./ComponentList";
 import { fetchComponents } from "../../data/redux/dispatchers/component";
@@ -11,9 +11,15 @@ import {
 } from "../../data/redux/dispatchers/organisation";
 import { withContext } from "../../data/context/withContext";
 
-const styles = () => ({
-  root: {}
-});
+const PREFIX = 'ComponentContainer';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')(() => ({
+  [`&.${classes.root}`]: {}
+}));
 
 class ComponentContainer extends React.Component {
   constructor(props) {
@@ -49,10 +55,10 @@ class ComponentContainer extends React.Component {
   }
 
   renderPosts() {
-    const { classes, components } = this.props;
+    const {  components } = this.props;
     //const components = this.getComponentsList();
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <ComponentList
           components={components}
           organisation={this.props.context.currentOrganisation}
@@ -62,7 +68,7 @@ class ComponentContainer extends React.Component {
           }
           fetchComponents={this.props.fetchComponents}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -88,7 +94,7 @@ function matchDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     matchDispatchToProps

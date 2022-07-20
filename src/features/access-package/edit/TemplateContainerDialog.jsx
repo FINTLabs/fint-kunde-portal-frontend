@@ -1,25 +1,36 @@
 import React, {useState} from 'react';
+import { styled } from '@mui/material/styles';
 import { DialogTitle, DialogContent, List, ListItem, ListItemText, Avatar, DialogActions, ListItemAvatar, Dialog, Button } from '@mui/material';
 
-import {makeStyles} from "@mui/styles";
 import {useDispatch, useSelector} from "react-redux";
 import LockIcon from "@mui/icons-material/LockOpen";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 
-const useStyles = makeStyles((theme) => ({
-    listItem: {
+const PREFIX = 'TemplateContainerDialog';
+
+const classes = {
+    listItem: `${PREFIX}-listItem`,
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledDialog = styled(Dialog)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray",
         '&:first-child': {
             borderTop: "1px dashed lightgray"
         },
         padding: theme.spacing(),
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
-    },
-
+    }
 }));
 
 const TemplateContainerDialog = (props) => {
@@ -30,7 +41,7 @@ const TemplateContainerDialog = (props) => {
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const warningMessageText = "Bekreft valget. Oppsettet på denne tilgangspakken vil endres til malen: " + pickedTemplate;
     const dispatch = useDispatch();
-    const classes = useStyles();
+
 
     function handlePickingTemplate(templateName) {
         setShowWarning(true);
@@ -63,7 +74,7 @@ const TemplateContainerDialog = (props) => {
     }
 
     return (
-        <Dialog
+        <StyledDialog
             open={templateSelectorOpen}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
@@ -101,7 +112,7 @@ const TemplateContainerDialog = (props) => {
                 onClose={handleTemplateChange}
                 message={warningMessageText}
                 title={"Endre til mal"}/>
-        </Dialog>
+        </StyledDialog>
     );
 };
 

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {createStyles} from "@mui/material/styles";
+import { styled } from '@mui/material/styles';
 import classNames from "classnames";
 import Drawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
@@ -13,97 +13,125 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
-import {makeStyles, useTheme} from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
 import Box from "@mui/material/Box";
 
-const drawerWidth = 240;
+const PREFIX = 'AppMenu';
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-        appBar: {
-            zIndex: (theme.zIndex.drawer + 1) + ' !important',
-            transition: theme.transitions.create(["width", "margin"], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen
-            })
-        },
-        appBarShift: {
-            marginLeft: drawerWidth,
-            width: `calc(100% - ${drawerWidth}px) !important`,
-            transition: theme.transitions.create(["width", "margin"], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen
-            })
-        },
-        menuButton: {
-            marginLeft: 12,
-            marginRight: 36
-        },
-        hide: {
-            display: "none"
-        },
-        drawerPaper: {
-            position: "relative",
-            whiteSpace: "nowrap",
-            width: drawerWidth,
-            transition: theme.transitions.create("width", {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.enteringScreen
-            })
-        },
-        drawerPaperClose: {
-            overflowX: "hidden",
-            transition: theme.transitions.create("width", {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen
-            }),
-            width: theme.spacing(7),
-            [theme.breakpoints.up("sm")]: {
-                width: theme.spacing(9)
-            }
-        },
-        toolbar: {
-            ...theme.mixins.toolbar,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            padding: "0 8px"
-        },
-        content: {
-            width: "100%",
-            flexGrow: 1,
-            backgroundColor: theme.palette.background.default,
-            padding: 24,
-            minHeight: "100vh",
-            marginTop: 56,
-            [theme.breakpoints.up("sm")]: {
-                height: "calc(100% - 64px)",
-                marginTop: 64
-            }
-        },
-        logo: {
-            width: 86,
-            marginRight: theme.spacing(4),
-            marginBottom: theme.spacing()
-        },
-        flex: {
-            flex: 1
-        },
-        flexName: {
-            flex: 1,
-            textAlign: "end",
-            marginBottom: "2px"
-        },
-    }));
+const classes = {
+    appBar: `${PREFIX}-appBar`,
+    appBarShift: `${PREFIX}-appBarShift`,
+    menuButton: `${PREFIX}-menuButton`,
+    hide: `${PREFIX}-hide`,
+    drawerPaper: `${PREFIX}-drawerPaper`,
+    drawerPaperClose: `${PREFIX}-drawerPaperClose`,
+    toolbar: `${PREFIX}-toolbar`,
+    content: `${PREFIX}-content`,
+    logo: `${PREFIX}-logo`,
+    flex: `${PREFIX}-flex`,
+    flexName: `${PREFIX}-flexName`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.appBar}`]: {
+        zIndex: (theme.zIndex.drawer + 1) + ' !important',
+        transition: theme.transitions.create(["width", "margin"], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen
+        })
+    },
+
+    [`& .${classes.appBarShift}`]: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px) !important`,
+        transition: theme.transitions.create(["width", "margin"], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen
+        })
+    },
+
+    [`& .${classes.menuButton}`]: {
+        marginLeft: 12,
+        marginRight: 36
+    },
+
+    [`& .${classes.hide}`]: {
+        display: "none"
+    },
+
+    [`& .${classes.drawerPaper}`]: {
+        position: "relative",
+        whiteSpace: "nowrap",
+        width: drawerWidth,
+        transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen
+        })
+    },
+
+    [`& .${classes.drawerPaperClose}`]: {
+        overflowX: "hidden",
+        transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up("sm")]: {
+            width: theme.spacing(9)
+        }
+    },
+
+    [`& .${classes.toolbar}`]: {
+        ...theme.mixins.toolbar,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: "0 8px"
+    },
+
+    [`& .${classes.content}`]: {
+        width: "100%",
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.default,
+        padding: 24,
+        minHeight: "100vh",
+        marginTop: 56,
+        [theme.breakpoints.up("sm")]: {
+            height: "calc(100% - 64px)",
+            marginTop: 64
+        }
+    },
+
+    [`& .${classes.logo}`]: {
+        width: 86,
+        marginRight: theme.spacing(4),
+        marginBottom: theme.spacing()
+    },
+
+    [`& .${classes.flex}`]: {
+        flex: 1
+    },
+
+    [`& .${classes.flexName}`]: {
+        flex: 1,
+        textAlign: "end",
+        marginBottom: "2px"
+    }
+}));
+
+const drawerWidth = 240;
 
 const AppMenu = (props) => {
 
-    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const theme = useTheme();
     const handleDrawerOpen = () => {
-        console.log('jennifer',true);
         setOpen(true);
     };
 
@@ -114,7 +142,7 @@ const AppMenu = (props) => {
 
     const {me} = props;
     return (
-        <Box display="flex" position="relative" width={1} height={1}>
+        <StyledBox display="flex" position="relative" width={1} height={1}>
             <AppBar
                 position="absolute"
                 className={classNames(
@@ -182,7 +210,7 @@ const AppMenu = (props) => {
             <main className={classes.content}>
                 <Routes/>
             </main>
-        </Box>
+        </StyledBox>
     );
 }
 

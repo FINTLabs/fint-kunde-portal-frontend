@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
     FormControl,
     InputLabel,
@@ -6,9 +7,18 @@ import {
     OutlinedInput,
     MenuItem
 } from '@mui/material';
-import {makeStyles} from "@mui/styles";
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'OutlinedSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -17,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function OutlinedSelector(props) {
-    const classes = useStyles();
+
     const {name, title, value, data, disabled = false} = props;
 
     const inputLabel = React.useRef();
@@ -27,7 +37,7 @@ export default function OutlinedSelector(props) {
     }, []);
 
     return (
-        <FormControl variant="outlined" className={classes.formControl} disabled={disabled}>
+        <StyledFormControl variant="outlined" className={classes.formControl} disabled={disabled}>
             <InputLabel ref={inputLabel} htmlFor={name}>
                 {title}
             </InputLabel>
@@ -41,7 +51,7 @@ export default function OutlinedSelector(props) {
                 })}
 
             </Select>
-        </FormControl>
+        </StyledFormControl>
     );
 
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Button,
   Dialog,
@@ -9,14 +10,19 @@ import {
   Fab,
   TextField
 } from '@mui/material';
-import { withStyles } from '@mui/styles';
 import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import ClientApi from "../../../data/api/ClientApi";
 import AssetApi from "../../../data/api/AssetApi";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'ClientAdd';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -24,7 +30,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class ClientAdd extends React.Component {
   updateClientState = event => {
@@ -113,9 +119,9 @@ class ClientAdd extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -184,11 +190,11 @@ class ClientAdd extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 ClientAdd.propTypes = {};
 
-export default withStyles(styles)(ClientAdd);
+export default (ClientAdd);

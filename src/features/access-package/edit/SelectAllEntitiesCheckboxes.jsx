@@ -1,21 +1,31 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import {Checkbox, TableRow, Typography, TableCell} from "@mui/material";
-import {makeStyles} from "@mui/styles";
+const PREFIX = 'SelectAllEntitiesCheckboxes';
 
-const useStyles = makeStyles(theme => ({
-    cell: {
+const classes = {
+    cell: `${PREFIX}-cell`
+};
+
+const StyledTableRow = styled(TableRow)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.cell}`]: {
         paddingTop: 0,
         paddingBottom: 0,
     }
 }));
+
 const SelectAllEntitiesCheckboxes = (props) => {
     const {checkAll, selectedAccessPackage} = props;
-    const classes = useStyles();
+
 
 
     if (selectedAccessPackage.components.length > 0) {
         return (
-            <TableRow>
+            <StyledTableRow>
                 <TableCell colSpan={2} align="right" className={classes.cell}>
                     <Typography variant="subtitle2">Velg alle</Typography>
                 </TableCell>
@@ -49,7 +59,7 @@ const SelectAllEntitiesCheckboxes = (props) => {
                         onChange={(e) => checkAll(e, "modify")}
                     />
                 </TableCell>
-            </TableRow>
+            </StyledTableRow>
         );
     } else {
         return null;

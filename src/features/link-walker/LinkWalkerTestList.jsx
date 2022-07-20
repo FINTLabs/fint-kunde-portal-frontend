@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import {
   Table,
@@ -11,7 +12,6 @@ import {
     Typography,
     Tooltip
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ClearIcon from "@mui/icons-material/Clear";
 import DownloadReportIcon from "@mui/icons-material/GetApp";
@@ -20,34 +20,58 @@ import LinkWalkerTestView from "./LinkWalkerTestView";
 import TrafficLight from "../../common/status/TrafficLight";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'LinkWalkerTestList';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  table: `${PREFIX}-table`,
+  statusFailed: `${PREFIX}-statusFailed`,
+  statusRunning: `${PREFIX}-statusRunning`,
+  statusOk: `${PREFIX}-statusOk`,
+  button: `${PREFIX}-button`,
+  title: `${PREFIX}-title`,
+  help: `${PREFIX}-help`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     width: "90%",
     overflowX: "auto"
   },
-  table: {
+
+  [`& .${classes.table}`]: {
     minWidth: 700
   },
-  statusFailed: {
+
+  [`& .${classes.statusFailed}`]: {
     color: "red"
   },
-  statusRunning: {
+
+  [`& .${classes.statusRunning}`]: {
     color: "#f4a142"
   },
-  statusOk: {
+
+  [`& .${classes.statusOk}`]: {
     color: "green"
   },
-  button: {
+
+  [`& .${classes.button}`]: {
     margin: theme.spacing(1)
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1)
   },
-  help: {
+
+  [`& .${classes.help}`]: {
     margin: theme.spacing(1) / 2
   }
-});
+}));
 
 class LinkWalkerTestList extends Component {
   constructor(props) {
@@ -95,9 +119,9 @@ class LinkWalkerTestList extends Component {
   };
 
   render() {
-    const { tests, classes } = this.props;
+    const { tests, } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <div className={classes.help}>
           <FeatureHelperText>
             En relasjonstest sjekker at alle relasjonene i en komponent virker.
@@ -172,7 +196,7 @@ class LinkWalkerTestList extends Component {
           test={this.state.test}
           organisationName={this.props.organisationName}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -182,4 +206,4 @@ LinkWalkerTestList.propTypes = {
   tests: PropTypes.any.isRequired
 };
 
-export default withStyles(styles)(LinkWalkerTestList);
+export default (LinkWalkerTestList);
