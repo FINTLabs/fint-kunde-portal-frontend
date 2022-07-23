@@ -31,9 +31,9 @@ export default function OutlinedSelector(props) {
     const {name, title, value, data, disabled = false} = props;
 
     const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [labelwidth, setLabelwidth] = React.useState(0);
     React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
@@ -44,7 +44,7 @@ export default function OutlinedSelector(props) {
             <Select
                 value={value}
                 onChange={props.onChange}
-                input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                input={<OutlinedInput labelwidth={labelwidth} name={name} id={name}/>}
             >
                 {data.map((type, i) => {
                     return (<MenuItem key={i} value={type.value}>{type.name}</MenuItem>);

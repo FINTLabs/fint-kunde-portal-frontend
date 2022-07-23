@@ -26,9 +26,9 @@ export default function ClientSelector(props) {
     let selectableClients = clients.filter(c => c.assetId !== null);
 
     const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [labelwidth, setLabelwidth] = React.useState(0);
     React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
@@ -44,7 +44,7 @@ export default function ClientSelector(props) {
                     id={"clientSelector"}
                     value={value}
                     onChange={props.handleChange}
-                    input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                    input={<OutlinedInput labelwidth={labelwidth} name={name} id={name}/>}
                 >
                     {selectableClients.map(client => {
                         return (

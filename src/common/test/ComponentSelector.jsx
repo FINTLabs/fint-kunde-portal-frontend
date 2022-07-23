@@ -18,9 +18,9 @@ export default function ComponentSelector(props) {
     const {name, value, components, disabled, required, error = false, onClear} = props;
 
     const inputLabel = useRef();
-    const [labelWidth, setLabelWidth] = useState(0);
+    const [labelwidth, setLabelwidth] = useState(0);
     useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
@@ -39,7 +39,7 @@ export default function ComponentSelector(props) {
                 onChange={props.handleChange}
                 input={
                     <OutlinedInput
-                        labelWidth={labelWidth}
+                        labelwidth={labelwidth}
                         name={name}
                         id={name}
                         endAdornment={

@@ -254,7 +254,7 @@ class ContactAddExisting extends React.Component {
 }
 
 ContactAddExisting.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   contacts: PropTypes.any.isRequired,
   fetchTechnicalContacts: PropTypes.any.isRequired,
   notify: PropTypes.any.isRequired

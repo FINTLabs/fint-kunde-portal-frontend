@@ -95,7 +95,7 @@ class BasicTestRunButton extends React.Component {
 }
 
 BasicTestRunButton.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object
 };
 
 export default (BasicTestRunButton);

@@ -20,9 +20,9 @@ export default function ResourceSelector(props) {
     const {name, value, resources, disabled, required, error = false, onClear, component} = props;
 
     const inputLabel = useRef();
-    const [labelWidth, setLabelWidth] = useState(0);
+    const [labelwidth, setLabelwidth] = useState(0);
     useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
@@ -41,7 +41,7 @@ export default function ResourceSelector(props) {
                 className={classes.menuItem}
                 input={
                     <OutlinedInput
-                        labelWidth={labelWidth}
+                        labelwidth={labelwidth}
                         name={name}
                         id={name}
                         endAdornment={
