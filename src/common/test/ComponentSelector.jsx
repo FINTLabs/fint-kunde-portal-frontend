@@ -1,20 +1,31 @@
 import React, {useEffect, useRef, useState} from "react";
+import { styled } from '@mui/material/styles';
 import { FormControl, InputLabel,Select, MenuItem, OutlinedInput } from '@mui/material';
-import {makeStyles} from "@mui/styles";
 import PropTypes from "prop-types";
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from "@mui/material/IconButton";
 import Sort from '../../common/utils/Sort';
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'ComponentSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     }
 }));
+
 export default function ComponentSelector(props) {
 
-    const classes = useStyles();
+
     const {name, value, components, disabled, required, error = false, onClear} = props;
 
     const inputLabel = useRef();
@@ -24,7 +35,7 @@ export default function ComponentSelector(props) {
     }, []);
 
     return (
-        <FormControl
+        <StyledFormControl
             disabled={disabled}
             variant="outlined"
             fullWidth
@@ -59,8 +70,7 @@ export default function ComponentSelector(props) {
                 })}
             </Select>
 
-        </FormControl>
-
+        </StyledFormControl>
     );
 
 }

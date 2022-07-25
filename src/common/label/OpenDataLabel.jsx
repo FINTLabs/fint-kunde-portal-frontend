@@ -1,18 +1,26 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import { Chip, Tooltip} from "@mui/material";
-import { withStyles } from '@mui/styles';
+const PREFIX = 'OpenDataLabel';
 
+const classes = {
+    chip: `${PREFIX}-chip`
+};
 
-const styles = theme => ({
-    chip: {
+const StyledTooltip = styled(Tooltip)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.chip}`]: {
         margin: theme.spacing(0.5),
-    },
-});
+    }
+}));
 
 function OpenDataLabel(props) {
-    const {classes} = props;
+    // const {classes} = props;
     return (
-        <Tooltip
+        <StyledTooltip
             placement="top"
             title="Dette er åpne data som ikke trenger å tilordnes organisasjonen. Denne komponenten trenger ikke adapter eller klienter."
         >
@@ -22,8 +30,8 @@ function OpenDataLabel(props) {
                 label="Åpne Data"
                 className={classes.chip}
             />
-        </Tooltip>
+        </StyledTooltip>
     );
 }
 
-export default withStyles(styles)(OpenDataLabel);
+export default (OpenDataLabel);

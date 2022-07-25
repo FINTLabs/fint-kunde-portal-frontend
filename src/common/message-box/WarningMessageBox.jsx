@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Dialog,
   DialogActions,
@@ -7,19 +8,30 @@ import {
   DialogTitle,
   Button
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import WarningIcon from "@mui/icons-material/Warning";
 
-const styles = theme => ({
-  warningIcon: {
+const PREFIX = 'WarningMessageBox';
+
+const classes = {
+  warningIcon: `${PREFIX}-warningIcon`,
+  text: `${PREFIX}-text`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.warningIcon}`]: {
     color: theme.palette.primary.main,
     fontSize: "80px",
     float: "left",
     marginRight: theme.spacing(2)
   },
-  text: {}
-});
+
+  [`& .${classes.text}`]: {}
+}));
 
 class WarningMessageBox extends React.Component {
   handleClose = result => {
@@ -45,9 +57,9 @@ class WarningMessageBox extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div>
+      <Root>
         <Dialog
           open={this.state.open}
           // onClose={this.handleClose}
@@ -90,7 +102,7 @@ class WarningMessageBox extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Root>
     );
   }
 }
@@ -106,4 +118,4 @@ WarningMessageBox.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired
 };
-export default withStyles(styles)(WarningMessageBox);
+export default (WarningMessageBox);

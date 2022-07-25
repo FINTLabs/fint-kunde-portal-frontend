@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import {
   Dialog,
   DialogActions,
@@ -7,19 +8,30 @@ import {
   DialogTitle,
   Button,
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import InformationIcon from "@mui/icons-material/Info";
 
-const styles = theme => ({
-  icon: {
+const PREFIX = 'InformationMessageBox';
+
+const classes = {
+  icon: `${PREFIX}-icon`,
+  text: `${PREFIX}-text`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.icon}`]: {
     color: theme.palette.secondary.main,
     fontSize: "80px",
     float: "left",
     marginRight: theme.spacing(2)
   },
-  text: {}
-});
+
+  [`& .${classes.text}`]: {}
+}));
 
 class WarningMessageBox extends React.Component {
   handleClose = result => {
@@ -45,9 +57,9 @@ class WarningMessageBox extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <div >
+      <Root >
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -84,7 +96,7 @@ class WarningMessageBox extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Root>
     );
   }
 }
@@ -99,4 +111,4 @@ WarningMessageBox.propTypes = {
   show: PropTypes.bool.isRequired
 };
 
-export default withStyles(styles)(WarningMessageBox);
+export default (WarningMessageBox);

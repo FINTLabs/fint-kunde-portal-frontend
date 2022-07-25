@@ -1,24 +1,35 @@
 import PropTypes from "prop-types";
+import { styled } from '@mui/material/styles';
 import React, { Component } from "react";
 import { Tooltip, IconButton } from '@mui/material';
-import { withStyles } from '@mui/styles';
 
 import AddIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 
-const styles = theme => ({
-  addIcon: {
+const PREFIX = 'AddButton';
+
+const classes = {
+  addIcon: `${PREFIX}-addIcon`
+};
+
+const StyledTooltip = styled(Tooltip)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.addIcon}`]: {
     //color: theme.palette.secondary.main
   }
-});
+}));
+
 class AddButton extends Component {
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <Tooltip placement={this.props.placement} title={this.props.title}>
+      <StyledTooltip placement={this.props.placement} title={this.props.title}>
         <IconButton aria-label="Add" onClick={this.props.onClick}>
           <AddIcon className={classes.addIcon} />
         </IconButton>
-      </Tooltip>
+      </StyledTooltip>
     );
   }
 }
@@ -28,9 +39,9 @@ AddButton.defaultProps = {
 };
 
 AddButton.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   onClick: PropTypes.func,
   placement: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
-export default withStyles(styles)(AddButton);
+export default (AddButton);

@@ -202,7 +202,7 @@ class LinkWalkerTestList extends Component {
 }
 
 LinkWalkerTestList.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   tests: PropTypes.any.isRequired
 };
 

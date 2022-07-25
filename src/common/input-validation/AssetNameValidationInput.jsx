@@ -5,11 +5,9 @@ import {
   Input,
   InputLabel
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 
 import PropTypes from "prop-types";
 
-const styles = () => {};
 
 class AssetNameValidationInput extends React.Component {
   onChangeUsername = event => {
@@ -66,4 +64,4 @@ AssetNameValidationInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   assetNameIsValid: PropTypes.func.isRequired
 };
-export default withStyles(styles)(AssetNameValidationInput);
+export default AssetNameValidationInput;

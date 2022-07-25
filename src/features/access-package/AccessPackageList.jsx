@@ -26,8 +26,8 @@ const classes = {
     dialogContent: `${PREFIX}-dialogContent`
 };
 
-// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
-const Root = styled('div')((
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed. (done)
+const StyledDiv = styled('div')((
     {
         theme
     }
@@ -177,7 +177,7 @@ const AccessPackageList = () => {
 
     if (packages) {
         return (
-            <div>
+            <StyledDiv>
                 <div className={classes.root}>
                     <div className={classes.componentList}>
                         <FeatureHelperText>
@@ -218,7 +218,7 @@ const AccessPackageList = () => {
                     <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose}
                                           message={snackBarMessage}/>
                 </div>
-            </div>
+            </StyledDiv>
         );
     } else {
         return (<Root></Root>);

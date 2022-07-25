@@ -1,27 +1,40 @@
 import PropTypes from "prop-types";
+import { styled } from '@mui/material/styles';
 import React, { Component } from "react";
 import { IconButton, Tooltip } from "@mui/material";
-import { withStyles } from '@mui/styles';
 
 import RemoveIcon from "@mui/icons-material/CheckBox";
 
-const styles = theme => ({
-  addIcon: {
+const PREFIX = 'RemoveButton';
+
+const classes = {
+  addIcon: `${PREFIX}-addIcon`,
+  removeIcon: `${PREFIX}-removeIcon`
+};
+
+const StyledTooltip = styled(Tooltip)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.addIcon}`]: {
     //color: theme.palette.secondary.main
   },
-  removeIcon: {
+
+  [`& .${classes.removeIcon}`]: {
     color: theme.palette.secondary.main
   }
-});
+}));
+
 class RemoveButton extends Component {
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
-      <Tooltip placement={this.props.placement} title={this.props.title}>
+      <StyledTooltip placement={this.props.placement} title={this.props.title}>
         <IconButton aria-label="Remove" onClick={this.props.onClick}>
           <RemoveIcon className={classes.removeIcon} />
         </IconButton>
-      </Tooltip>
+      </StyledTooltip>
     );
   }
 }
@@ -31,9 +44,9 @@ RemoveButton.defaultProps = {
 };
 
 RemoveButton.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   onClick: PropTypes.func,
   placement: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
-export default withStyles(styles)(RemoveButton);
+export default (RemoveButton);

@@ -223,7 +223,7 @@ class LinkWalkerTestView extends React.Component {
 }
 
 LinkWalkerTestView.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   closeTestView: PropTypes.any.isRequired,
   showLinkWalkerTestView: PropTypes.any.isRequired,
   test: PropTypes.any

@@ -280,7 +280,7 @@ class ComponentList extends Component {
 }
 
 ComponentList.propTypes = {
-    classes: PropTypes.any.isRequired,
+    classes: PropTypes.any,
     components: PropTypes.array.isRequired,
     fetchComponents: PropTypes.any.isRequired,
     organisation: PropTypes.any.isRequired

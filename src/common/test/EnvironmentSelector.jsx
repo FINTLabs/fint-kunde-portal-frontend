@@ -1,17 +1,27 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
-import {makeStyles} from "@mui/styles";
 import PropTypes from "prop-types";
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'EnvironmentSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     }
 }));
 
 export default function EnvironmentSelector(props) {
-    const classes = useStyles();
+
     const {name, value} = props;
 
     const inputLabel = React.useRef();
@@ -21,7 +31,7 @@ export default function EnvironmentSelector(props) {
     }, []);
 
     return (
-        <FormControl
+        <StyledFormControl
             fullWidth
             required
             variant="outlined"
@@ -42,7 +52,7 @@ export default function EnvironmentSelector(props) {
                     Produksjon
                 </MenuItem>
             </Select>
-        </FormControl>
+        </StyledFormControl>
     );
 
 }

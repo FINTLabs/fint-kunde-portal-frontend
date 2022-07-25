@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from '@mui/material/styles';
 import PropTypes from "prop-types";
 import {
     FormControl,
@@ -8,20 +9,30 @@ import {
     FormHelperText,
     OutlinedInput
 } from '@mui/material';
-import {makeStyles} from "@mui/styles";
+const PREFIX = 'ClientSelector';
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const classes = {
+    formControl: `${PREFIX}-formControl`,
+    clientWarning: `${PREFIX}-clientWarning`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
-    clientWarning: {
+
+    [`& .${classes.clientWarning}`]: {
         color: theme.palette.primary.main
     }
 }));
 
 export default function ClientSelector(props) {
-    const classes = useStyles();
+
     const {name, value, clients, disabled} = props;
     let selectableClients = clients.filter(c => c.assetId !== null);
 
@@ -32,7 +43,7 @@ export default function ClientSelector(props) {
     }, []);
 
     return (
-        <div>
+        <Root>
             <FormControl
                 className={classes.formControl}
                 fullWidth
@@ -59,7 +70,7 @@ export default function ClientSelector(props) {
                     du kjører en test.
                 </FormHelperText>
             </FormControl>
-        </div>
+        </Root>
     );
 }
 

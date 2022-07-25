@@ -195,7 +195,7 @@ class LinkWalkerAddTest extends React.Component {
 }
 
 LinkWalkerAddTest.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   clients: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   fetchLinkWalkerTests: PropTypes.func.isRequired,

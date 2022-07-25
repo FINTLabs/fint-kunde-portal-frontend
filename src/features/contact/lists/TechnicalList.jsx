@@ -10,12 +10,10 @@ import {
     ListItemText,
     Typography
 } from "@mui/material";
-import {makeStyles} from "@mui/styles";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import RoleDialog from "../role/RoleDialog";
 import AppContext from "../../../data/context/AppContext";
-import {createStyles} from "@mui/material";
 import ContactIcon from "@mui/icons-material/Person";
 import TooltipIconButton from "../../../common/button/TooltipIconButton";
 import RolesIcon from "@mui/icons-material/LockOpenRounded";
@@ -29,21 +27,29 @@ import {
     fetchLegalContact,
     fetchTechnicalContacts
 } from "../../../data/redux/dispatchers/organisation";
+import {styled} from "@mui/material/styles";
 
+const PREFIX = 'TechnicalList';
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-        itemAvatar: {
-            color: "#fff",
-            backgroundColor: theme.palette.secondary.light
-        }
-    }));
+const classes = {
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.itemAvatar}`]: {
+        color: "#fff",
+        backgroundColor: theme.palette.secondary.light
+    }
+}));
 
 const TechnicalList = props => {
     const [showConfirmRemoveContact, setShowConfirmRemoveContact] = useState(false);
     const [message, setMessage] = useState("");
     const [contact, setContact] = useState({});
-    const classes = useStyles();
     const {technicalContacts} = props;
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const dispatch = useDispatch();
@@ -113,7 +119,7 @@ const TechnicalList = props => {
     }
 
     return (
-        <Box display="flex" justifyContent="center">
+        <StyledBox display="flex" justifyContent="center">
             <WarningMessageBox
                 show={showConfirmRemoveContact}
                 message={message}
@@ -176,7 +182,7 @@ const TechnicalList = props => {
                     ))}
                 </List>
             </Box>
-        </Box>
+        </StyledBox>
     );
 }
 

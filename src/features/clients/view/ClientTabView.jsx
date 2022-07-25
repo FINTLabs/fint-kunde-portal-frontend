@@ -8,23 +8,12 @@ import ClientTabComponent from "./ClientTabComponent";
 import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
 import ClientTabAccess from "./ClientTabAccess";
-import {createStyles} from "@mui/material/styles";
-import { makeStyles } from '@mui/styles';
-
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import FeatureToggle from "../../../common/feature-toggle/FeatureToggle";
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-        root: {
-            backgroundColor: theme.palette.background.paper,
-            width: "100%"
-        }
-    }));
 
 const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) => {
     const [value, setValue] = useState(0);
-    const classes = useStyles();
     const theme = useTheme();
     const featureEnabled = useFeatureEnabled("access-packages");
 
@@ -43,7 +32,7 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
 
 
     return (
-        <div className={classes.root}>
+        <div>
             <AppBar position="static" color="inherit">
                 <Tabs
                     value={value}

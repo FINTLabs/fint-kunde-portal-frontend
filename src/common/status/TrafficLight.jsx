@@ -1,10 +1,21 @@
 import React, { Component } from "react";
+import { styled } from '@mui/material/styles';
 import { Tooltip, CircularProgress } from "@mui/material";
-import { withStyles } from '@mui/styles';
+const PREFIX = 'TrafficLight';
 
+const classes = {
+  failed: `${PREFIX}-failed`,
+  ok: `${PREFIX}-ok`,
+  partiallyFailed: `${PREFIX}-partiallyFailed`,
+  progress: `${PREFIX}-progress`
+};
 
-const styles = theme => ({
-  failed: {
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.failed}`]: {
     height: "25px",
     width: "25px",
     backgroundColor: theme.palette.primary.main,
@@ -17,7 +28,8 @@ const styles = theme => ({
     boxShadow:
       "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)"
   },
-  ok: {
+
+  [`& .${classes.ok}`]: {
     height: "25px",
     width: "25px",
     backgroundColor: theme.palette.secondary.main,
@@ -30,7 +42,8 @@ const styles = theme => ({
     boxShadow:
       "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)"
   },
-  partiallyFailed: {
+
+  [`& .${classes.partiallyFailed}`]: {
     height: "25px",
     width: "25px",
     backgroundColor: "#ff9800",
@@ -43,12 +56,13 @@ const styles = theme => ({
     boxShadow:
       "0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)"
   },
-  progress: {}
-});
+
+  [`& .${classes.progress}`]: {}
+}));
 
 class TrafficLight extends Component {
   getColor = () => {
-    const { status, classes } = this.props;
+    const { status, } = this.props;
 
     if (status === "OK") return classes.ok;
     if (status === "FAILED") return classes.failed;
@@ -56,9 +70,9 @@ class TrafficLight extends Component {
   };
 
   render() {
-    const { status, classes } = this.props;
+    const { status, } = this.props;
     return (
-      <div id={"basisTestTooltip"}>
+      <Root id={"basisTestTooltip"}>
         <Tooltip title={status} placement="right" >
           {status === "RUNNING" ? (
             <CircularProgress
@@ -70,11 +84,11 @@ class TrafficLight extends Component {
             <span className={this.getColor()} />
           )}
         </Tooltip>
-      </div>
+      </Root>
     );
   }
 }
 
 TrafficLight.propTypes = {};
 
-export default withStyles(styles)(TrafficLight);
+export default (TrafficLight);
