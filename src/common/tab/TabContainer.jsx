@@ -12,7 +12,6 @@ class TabContainer extends React.Component {
     return (
       <Typography
         component="div"
-        dir={this.props.dir}
         style={{ padding: 8 * 3 }}
       >
         {this.props.children}
@@ -22,8 +21,7 @@ class TabContainer extends React.Component {
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default TabContainer;

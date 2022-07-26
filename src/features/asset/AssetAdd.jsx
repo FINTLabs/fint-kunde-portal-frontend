@@ -165,6 +165,7 @@ class AssetAdd extends React.Component {
                 fullWidth
                 onChange={this.updateAssetState}
                 id={"description"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
