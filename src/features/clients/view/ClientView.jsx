@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
 import Button from "@mui/material/Button";
 import {
   Dialog,
@@ -9,10 +8,6 @@ import {
 } from "@mui/material";
 import ClientTabView from "./ClientTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
-
-const PREFIX = 'ClientView';
-const classes = {};
-const Root = styled('div')(() => ({}));
 
 class ClientView extends React.Component {
   showUpdateButton = show => {
@@ -75,7 +70,7 @@ class ClientView extends React.Component {
 
   render() {
     return (
-      <Root>
+      <div>
         <AutoHideNotification
             showNotification={this.state.notify}
             message={this.state.notifyMessage}
@@ -120,7 +115,7 @@ class ClientView extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </Root>
+      </div>
     );
     }
 }

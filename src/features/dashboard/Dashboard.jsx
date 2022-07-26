@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { styled } from '@mui/material/styles';
 import {
     Avatar,
     Card,
@@ -8,7 +9,6 @@ import {
     Grid,
     Typography,
 } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AdapterIcon from "@mui/icons-material/Link";
@@ -23,26 +23,45 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {withContext} from "../../data/context/withContext";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 
-const styles = theme => ({
-    root: {
+const PREFIX = 'Dashboard';
+
+const classes = {
+    styledDiv: `${PREFIX}-styledDiv`,
+    cardContent: `${PREFIX}-cardContent`,
+    cardLink: `${PREFIX}-cardLink`,
+    card: `${PREFIX}-card`,
+    cardHeader: `${PREFIX}-cardHeader`,
+    avatar: `${PREFIX}-avatar`
+};
+
+const StyledDiv = styled("div")((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.styledDiv}`]: {
         marginTop: theme.spacing(3),
         width: "100%",
         height: "100%"
     },
-    cardContent: {
+
+    [`& .${classes.cardContent}`]: {
         textAlign: "center"
     },
-    cardLink: {
+
+    [`& .${classes.cardLink}`]: {
         textDecoration: "none"
     },
-    card: {},
-    cardHeader: {},
-    avatar: {
+
+    [`& .${classes.card}`]: {},
+    [`& .${classes.cardHeader}`]: {},
+
+    [`& .${classes.avatar}`]: {
         margin: 10,
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
     }
-});
+}));
 
 class Dashboard extends Component {
     constructor(props) {
@@ -70,10 +89,10 @@ class Dashboard extends Component {
     };
 
     render() {
-        const {classes, clients, adapters, components} = this.props;
+        const { clients, adapters, components} = this.props;
         if (clients && adapters && components) {
             return (
-                <div className={classes.root}>
+                <StyledDiv className={classes.styledDiv}>
                     <Grid container spacing={10}>
                         <Grid item xs={12}>
                             <FeatureHelperText>
@@ -157,7 +176,7 @@ class Dashboard extends Component {
                             </Link>
                         </Grid>
                     </Grid>
-                </div>
+                </StyledDiv>
             );
         } else {
             return <LoadingProgress/>;
@@ -188,7 +207,7 @@ function mapDispatchToProps(dispatch) {
     );
 }
 
-export default withStyles(styles)(
+export default (
     connect(
         mapStateToProps,
         mapDispatchToProps

@@ -34,7 +34,7 @@ const classes = {
   itemAvatar: `${PREFIX}-itemAvatar`
 };
 
-const StyledTypography = styled(Typography)((
+const StyledDiv = styled('div')((
   {
     theme
   }
@@ -187,7 +187,7 @@ class ClientTabComponent extends React.Component {
     const organisationComponents = this.getOrganisationComponents();
     if (organisationComponents.length > 0) {
       return (
-        <div>
+        <StyledDiv>
           <WarningMessageBox
             show={this.state.askUnLink}
             message={this.state.message}
@@ -226,13 +226,13 @@ class ClientTabComponent extends React.Component {
               </ListItem>
             ))}
           </List>
-        </div>
+        </StyledDiv>
       );
     } else {
       return (
-        <StyledTypography variant="subheading">
+        <Typography variant="subheading">
           Det er ikke lagt til noen komponenter for denne organisasjonen.
-        </StyledTypography>
+        </Typography>
       );
     }
   }

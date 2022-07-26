@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import LoadingProgress from "../../common/status/LoadingProgress";
@@ -10,16 +9,6 @@ import {fetchContacts} from "../../data/redux/dispatchers/contact";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import PropTypes from "prop-types";
 import {withContext} from "../../data/context/withContext";
-
-const PREFIX = 'ContactContainer';
-
-const classes = {
-    root: `${PREFIX}-root`
-};
-
-const Root = styled('div')(() => ({
-    [`&.${classes.root}`]: {}
-}));
 
 class ContactContainer extends React.Component {
     constructor(props) {
@@ -100,7 +89,7 @@ class ContactContainer extends React.Component {
     renderPosts() {
         const { legalContact, technicalContacts} = this.props;
         return (
-            <Root className={classes.root}>
+            <div>
                 <AutoHideNotification
                     showNotification={this.state.notify}
                     message={this.state.notifyMessage}
@@ -119,7 +108,7 @@ class ContactContainer extends React.Component {
                     fetchContacts={this.props.fetchContacts}
                     notify={this.notify}
                 />
-            </Root>
+            </div>
         );
     }
 }

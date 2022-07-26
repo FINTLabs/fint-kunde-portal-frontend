@@ -19,6 +19,7 @@ class AdapterTabGeneral extends React.Component {
           onChange={this.props.updateAdapterState}
           value={this.props.adapter.shortDescription}
           id={"shortDescriptionTextField"}
+          variant="standard"
         />
         <TextField
           name="note"
@@ -29,6 +30,7 @@ class AdapterTabGeneral extends React.Component {
           value={this.props.adapter.note}
           fullWidth
           id={"noteTextField"}
+          variant="standard"
         />
       </div>
     );

@@ -9,11 +9,10 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
-import { useTheme } from "@mui/styles";
+import {useTheme} from "@mui/material";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
 import Box from "@mui/material/Box";
 
@@ -132,11 +131,11 @@ const AppMenu = (props) => {
     const [open, setOpen] = useState(false);
     const theme = useTheme();
     const handleDrawerOpen = () => {
+        console.log('jennifer', theme.direction);
         setOpen(true);
     };
 
     const handleDrawerClose = () => {
-        console.log('jennifer',theme.zIndex.drawer)
         setOpen(false);
     };
 
@@ -197,11 +196,7 @@ const AppMenu = (props) => {
             >
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === "rtl" ? (
-                            <ChevronRightIcon/>
-                        ) : (
                             <ChevronLeftIcon/>
-                        )}
                     </IconButton>
                 </div>
                 <Divider/>

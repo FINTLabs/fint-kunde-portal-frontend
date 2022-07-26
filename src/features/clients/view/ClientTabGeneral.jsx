@@ -6,6 +6,7 @@ function ClientTabGeneral(props) {
     return (
         <div>
             <TextField
+                variant="standard"
                 autoFocus
                 name="shortDescription"
                 label="Kort beskrivelse"
@@ -15,6 +16,7 @@ function ClientTabGeneral(props) {
                 id={"shortDescriptionTextField"}
             />
             <TextField
+                variant="standard"
                 name="note"
                 label="Note"
                 multiline

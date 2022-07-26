@@ -31,11 +31,16 @@ const classes = {
     itemAvatar: `${PREFIX}-itemAvatar`
 };
 
-const StyledDiv = styled('div')((
+const Root = styled('div')((
     {
         theme
     }
 ) => ({
+    [`& .${classes.root}`]: {
+        display: "flex",
+        justifyContent: "center"
+    },
+
     [`& .${classes.componentList}`]: {
         width: "75%"
     },
@@ -134,7 +139,7 @@ class ClientList extends Component {
                     message={this.state.message}
                     onClose={this.onCloseDelete}
                 />
-                <StyledDiv sx={{
+                <Root sx={{
                     display: "flex",
                     justifyContent: "center"
                 }}>
@@ -187,7 +192,7 @@ class ClientList extends Component {
                             ))}
                         </List>
                     </div>
-                </StyledDiv>
+                </Root>
                 <ClientView
                     open={this.state.open}
                     client={this.state.clientToEdit}

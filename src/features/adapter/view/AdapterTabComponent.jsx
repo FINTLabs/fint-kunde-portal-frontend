@@ -30,7 +30,7 @@ import Sort from "../../../common/utils/Sort";
 const PREFIX = 'AdapterTabComponent';
 
 const classes = {
-  root: `${PREFIX}-root`,
+  styledDiv: `${PREFIX}-styledDiv`,
   componentList: `${PREFIX}-componentList`,
   avtarstyle: `${PREFIX}-avtarstyle`,
   title: `${PREFIX}-title`,
@@ -38,7 +38,7 @@ const classes = {
   itemAvatar: `${PREFIX}-itemAvatar`
 };
 
-const StyledTypography = styled(Typography)((
+const StyledDiv = styled('div')((
   {
     theme
   }
@@ -200,7 +200,7 @@ class AdapterTabComponent extends React.Component {
     const organisationComponents = this.getOrganisationComponents();
     if (organisationComponents.length > 0) {
       return (
-        <div>
+        <StyledDiv>
           <WarningMessageBox
             show={this.state.askUnLink}
             message={this.state.message}
@@ -239,13 +239,13 @@ class AdapterTabComponent extends React.Component {
               </ListItem>
             ))}
           </List>
-        </div>
+        </StyledDiv>
       );
     } else {
       return (
-        <StyledTypography variant="subheading">
+        <Typography variant="subheading">
           Det er ikke lagt til noen komponenter for denne organisasjonen.
-        </StyledTypography>
+        </Typography>
       );
     }
   }

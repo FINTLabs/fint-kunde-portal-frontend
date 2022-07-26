@@ -2,19 +2,29 @@ import React from "react";
 import SwipeableViews from "react-swipeable-views";
 import AppBar from "@mui/material/AppBar";
 import { Tab, Tabs } from "@mui/material";
-import { withStyles } from '@mui/styles';
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import AdapterTabComponent from "./AdapterTabComponent";
 import AdapterTabGeneral from "./AdapterTabGeneral";
 import AdapterTabAuthenticationInformation from "./AdapterTabAuthenticationInformation";
+import {styled} from "@mui/material/styles";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AdapterTabView';
+
+const classes = {
+  primaryAsset: `${PREFIX}-styledDiv`
+};
+
+const StyledDiv = styled('div')((
+    {
+      theme
+    }
+) => ({
+  [`& .${classes.styledDiv}`]: {
     backgroundColor: theme.palette.background.paper,
     width: "100%"
   }
-});
+}));
 
 class AdapterTabView extends React.Component {
   handleChange = (event, value) => {
@@ -38,10 +48,10 @@ class AdapterTabView extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    // const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root}>
+      <StyledDiv className={classes.styledDiv}>
         <AppBar position="static" color="default">
           <Tabs
             value={this.state.value}
@@ -56,43 +66,44 @@ class AdapterTabView extends React.Component {
           </Tabs>
         </AppBar>
         <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          // axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            axis={"x"}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AdapterTabGeneral
               adapter={this.props.adapter}
               updateAdapterState={this.props.updateAdapterState}
             />
           </TabContainer>
 
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AdapterTabComponent
               adapter={this.props.adapter}
               notify={this.props.notify}
             />
           </TabContainer>
 
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AdapterTabAuthenticationInformation
               adapter={this.props.adapter}
               notify={this.props.notify}
             />
           </TabContainer>
         </SwipeableViews>
-      </div>
+      </StyledDiv>
     );
   }
 }
 
 AdapterTabView.propTypes = {
   adapter: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object,
+  theme: PropTypes.object,
   notify: PropTypes.func.isRequired,
   updateAdapterState: PropTypes.func.isRequired,
   showUpdateButton: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(AdapterTabView);
+export default (AdapterTabView);

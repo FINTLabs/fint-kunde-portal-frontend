@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
 import Button from "@mui/material/Button";
 import {
   Dialog,
@@ -14,10 +13,6 @@ import { fetchAdapters } from "../../../data/redux/dispatchers/adapter";
 import { connect } from "react-redux";
 import { withContext } from "../../../data/context/withContext";
 import { fetchClients } from "../../../data/redux/dispatchers/client";
-
-const PREFIX = 'AssetView';
-const classes = {};
-const Root = styled('div')(() => ({}));
 
 class AssetView extends React.Component {
   showUpdateButton = show => {
@@ -84,7 +79,7 @@ class AssetView extends React.Component {
 
   render() {
     return (
-      <Root>
+      <div>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -132,7 +127,7 @@ class AssetView extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </Root>
+      </div>
     );
   }
 }

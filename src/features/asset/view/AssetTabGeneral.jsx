@@ -41,6 +41,7 @@ class AssetTabGeneral extends React.Component {
           value={this.props.asset.assetId}
           disabled
           fullWidth
+          variant="standard"
         />
         <TextField
           autoFocus
@@ -50,6 +51,7 @@ class AssetTabGeneral extends React.Component {
           onChange={this.props.updateAssetState}
           value={this.props.asset.description}
           id={"assetDescriptionTextField"}
+          variant="standard"
         />
         <TextField
           name="name"
@@ -58,6 +60,7 @@ class AssetTabGeneral extends React.Component {
           value={this.props.asset.name}
           disabled
           fullWidth
+          variant="standard"
         />
       </Root>
     );

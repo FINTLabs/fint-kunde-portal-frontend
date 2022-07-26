@@ -44,7 +44,7 @@ export default function OutlinedSelector(props) {
             <Select
                 value={value}
                 onChange={props.onChange}
-                input={<OutlinedInput labelwidth={labelwidth} name={name} id={name}/>}
+                input={<OutlinedInput name={name} id={name} label={title}/>}
             >
                 {data.map((type, i) => {
                     return (<MenuItem key={i} value={type.value}>{type.name}</MenuItem>);

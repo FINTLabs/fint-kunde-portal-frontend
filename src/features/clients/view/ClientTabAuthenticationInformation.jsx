@@ -43,7 +43,8 @@ const Root = styled('div')((
   },
 
   [`& .${classes.oauthSecret}`]: {
-    width: "100%"
+    width: "100%",
+    padding: "10px"
   },
 
   [`& .${classes.auth}`]: {
@@ -53,7 +54,8 @@ const Root = styled('div')((
   },
 
   [`& .${classes.authSecret}`]: {
-    width: "100%"
+    width: "100%",
+    padding: "10px"
   },
 
   [`& .${classes.close}`]: {
