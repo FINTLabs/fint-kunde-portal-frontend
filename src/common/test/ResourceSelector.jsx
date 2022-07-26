@@ -54,7 +54,7 @@ export default function ResourceSelector(props) {
                 className={classes.menuItem}
                 input={
                     <OutlinedInput
-                        labelwidth={labelwidth}
+                        label={"Ressurs"}
                         name={name}
                         id={name}
                         endAdornment={

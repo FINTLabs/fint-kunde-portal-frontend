@@ -50,7 +50,7 @@ export default function ComponentSelector(props) {
                 onChange={props.handleChange}
                 input={
                     <OutlinedInput
-                        labelwidth={labelwidth}
+                        label={"Komponent"}
                         name={name}
                         id={name}
                         endAdornment={
