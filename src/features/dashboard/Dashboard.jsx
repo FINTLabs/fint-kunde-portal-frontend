@@ -185,7 +185,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object
 };
 
 function mapStateToProps(state) {

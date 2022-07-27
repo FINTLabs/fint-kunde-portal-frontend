@@ -139,7 +139,7 @@ class AssetAdd extends React.Component {
           >
             <DialogTitle id="form-dialog-title">Ny ressurs</DialogTitle>
             <DialogContent>
-              <DialogContentText>
+              <DialogContentText sx={{pb:'5px'}}>
                 Vennligst fyll ut de obligatoriske feltene for å legge til ny
                 ressurs.
               </DialogContentText>
@@ -157,6 +157,7 @@ class AssetAdd extends React.Component {
                 InputProps={{
                   disableUnderline: true
                 }}
+                variant="standard"
               />
               <TextField
                 name="description"

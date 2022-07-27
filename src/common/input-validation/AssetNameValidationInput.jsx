@@ -34,7 +34,8 @@ class AssetNameValidationInput extends React.Component {
     const { name, title, className } = this.props;
     return (
       <FormControl
-        fullWidth
+        // fullWidth
+          sx={{width:"55%"}}
         error={!this.state.assetNameValid}
         className={className}
         required
