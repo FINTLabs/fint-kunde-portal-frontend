@@ -114,7 +114,7 @@ class AssetTabView extends React.Component {
 }
 
 AssetTabView.propTypes = {
-  asset: PropTypes.object.isRequired,
+  asset: PropTypes.object,
   classes: PropTypes.object,
   theme: PropTypes.object,
   notify: PropTypes.func.isRequired,

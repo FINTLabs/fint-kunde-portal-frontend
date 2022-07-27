@@ -98,7 +98,7 @@ class AdapterTabView extends React.Component {
 }
 
 AdapterTabView.propTypes = {
-  adapter: PropTypes.object.isRequired,
+  adapter: PropTypes.object,
   classes: PropTypes.object,
   theme: PropTypes.object,
   notify: PropTypes.func.isRequired,

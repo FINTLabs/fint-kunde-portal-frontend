@@ -21,7 +21,7 @@ const StyledDialog = styled(Dialog)((
 ) => ({
     [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray",
-        '&:first-child': {
+        '&:first-of-type': {
             borderTop: "1px dashed lightgray"
         },
         padding: theme.spacing(),

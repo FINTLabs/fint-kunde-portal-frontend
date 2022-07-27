@@ -157,6 +157,7 @@ class AdapterAdd extends React.Component {
                 fullWidth
                 onChange={this.updateAdapterState}
                 id={"newAdapterShortDesc"}
+                variant="standard"
               />
               <TextField
                 name="note"
@@ -167,6 +168,7 @@ class AdapterAdd extends React.Component {
                 rows="4"
                 onChange={this.updateAdapterState}
                 id={"newAdapterNote"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>

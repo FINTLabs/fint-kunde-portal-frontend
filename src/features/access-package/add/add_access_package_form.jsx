@@ -43,7 +43,7 @@ const AddAccessPackageForm = (props) => {
         >
             <DialogTitle id="form-dialog-title">Ny tilgangspakke</DialogTitle>
             <DialogContent>
-                <DialogContentText>
+                <DialogContentText sx={{pb:'5px'}}>
                     Vennligst fyll ut de obligatoriske feltene for å legge til ny
                     tilgangspakke.
                 </DialogContentText>

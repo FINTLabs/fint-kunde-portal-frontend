@@ -104,7 +104,7 @@ class LinkWalkerTestList extends Component {
           organisationName
         );
       } else {
-        this.props.notify("Oh shit, noe gikk galt!");
+        this.props.notify("Oh no, noe gikk galt!");
       }
     });
   };
