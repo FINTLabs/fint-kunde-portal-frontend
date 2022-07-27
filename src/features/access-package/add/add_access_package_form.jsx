@@ -62,6 +62,7 @@ const AddAccessPackageForm = (props) => {
                     fullWidth
                     value={description}
                     onChange={updateDescription}
+                    variant="standard"
                 />
             </DialogContent>
             <DialogActions>

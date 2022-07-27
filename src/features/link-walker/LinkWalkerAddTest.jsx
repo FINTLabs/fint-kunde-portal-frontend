@@ -155,6 +155,7 @@ class LinkWalkerAddTest extends React.Component {
                 fullWidth
                 disabled={this.state.endpoint === ""}
                 onChange={this.handleChange}
+                variant="standard"
               />
 
               <ClientSelector
@@ -168,6 +169,7 @@ class LinkWalkerAddTest extends React.Component {
                   this.state.baseUrl === "" ||
                   this.state.endpoint === ""
                 }
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>

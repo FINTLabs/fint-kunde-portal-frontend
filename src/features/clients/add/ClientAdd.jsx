@@ -158,6 +158,7 @@ class ClientAdd extends React.Component {
                 fullWidth
                 onChange={this.updateClientState}
                 id={"newClientShortDesc"}
+                variant="standard"
               />
               <TextField
                 name="note"
@@ -168,6 +169,7 @@ class ClientAdd extends React.Component {
                 rows="4"
                 onChange={this.updateClientState}
                 id={"newClientNote"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
