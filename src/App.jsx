@@ -10,6 +10,9 @@ import AppProvider from "./data/context/AppProvider";
 
 const theme = createTheme({
     palette: {
+        background: {
+            default: '#fafafa',
+        },
         secondary: {
             light: '#7fb434',
             main: '#5FA202',

@@ -12,7 +12,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
-import {useTheme} from "@mui/material";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
 import Box from "@mui/material/Box";
 
@@ -129,9 +128,7 @@ const AppMenu = (props) => {
 
 
     const [open, setOpen] = useState(false);
-    const theme = useTheme();
     const handleDrawerOpen = () => {
-        console.log('jennifer', theme.direction);
         setOpen(true);
     };
 
