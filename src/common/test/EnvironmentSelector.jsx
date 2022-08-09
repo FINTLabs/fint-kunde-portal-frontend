@@ -25,10 +25,6 @@ export default function EnvironmentSelector(props) {
     const {name, value} = props;
 
     const inputLabel = React.useRef();
-    const [labelwidth, setLabelwidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelwidth(inputLabel.current.offsetWidth);
-    }, []);
 
     return (
         <StyledFormControl
@@ -42,7 +38,7 @@ export default function EnvironmentSelector(props) {
                 id={"enviromentSelector"}
                 value={value}
                 onChange={props.handleChange}
-                input={<OutlinedInput labelwidth={labelwidth} name={name} id={name}/>}
+                input={<OutlinedInput label={"Miljø"} name={name} id={name}/>}
             >
                 <MenuItem value="https://play-with-fint.felleskomponent.no">
                     Play-With-FINT
