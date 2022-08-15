@@ -1,8 +1,8 @@
-import React, {useContext, useEffect} from 'react';
-import { styled } from '@mui/material/styles';
-import PropTypes from 'prop-types';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
+import React, {useContext, useEffect} from "react";
+import {styled} from "@mui/material/styles";
+import PropTypes from "prop-types";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
 import {useDispatch, useSelector} from "react-redux";
 import RolesIcon from "@mui/icons-material/LockOpenRounded";
 import {addRole, fetchRoles, removeRole} from "../../../data/redux/dispatchers/roles";

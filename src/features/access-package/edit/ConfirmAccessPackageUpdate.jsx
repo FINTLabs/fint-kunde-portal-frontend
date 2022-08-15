@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
-import DialogTitle from '@mui/material/DialogTitle';
+import React, {useContext} from "react";
+import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import AppContext from "../../../data/context/AppContext";

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {ListItem, ListItemIcon, ListItemText} from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ClientIcon from "@mui/icons-material/ImportantDevices";
@@ -16,8 +16,6 @@ import List from "@mui/material/List";
 import LogIcon from "@mui/icons-material/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
-import SamtrykkeIcon from '@mui/icons-material/Security';
-
 
 const MenuItems = () => {
     return (

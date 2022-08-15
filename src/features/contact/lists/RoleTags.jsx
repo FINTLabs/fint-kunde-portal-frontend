@@ -1,7 +1,5 @@
-import React from 'react';
-import {useTheme} from "@mui/material";
-import { Chip,  Box } from '@mui/material';
-
+import React from "react";
+import { useTheme, Chip,  Box } from "@mui/material";
 import RolesIcon from "@mui/icons-material/LockOpenRounded";
 import PropTypes from "prop-types";
 

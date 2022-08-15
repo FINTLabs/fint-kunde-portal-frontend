@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import React, {Component} from "react";
 import Button from "../../../node_modules/@mui/material/Button/Button";
 import FintLogo from "../../images/fint-by-vigo.svg";

@@ -1,5 +1,5 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import { styled } from "@mui/material/styles";
 import {Checkbox, TableRow, Typography, TableCell} from "@mui/material";
 const PREFIX = 'SelectAllEntitiesCheckboxes';
 

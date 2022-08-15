@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   IconButton,
@@ -170,7 +170,6 @@ class ContactAddExisting extends React.Component {
   }
 
   render() {
-    const { } = this.props;
     return (
       <Root className={classes.root}>
         <InformationMessageBox

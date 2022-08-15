@@ -1,14 +1,6 @@
 import React, {Component} from "react";
-import { styled } from '@mui/material/styles';
-import {
-    Avatar,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    Grid,
-    Typography,
-} from "@mui/material";
+import {styled} from "@mui/material/styles";
+import {Avatar, Card, CardContent, CardHeader, Divider, Grid, Typography,} from "@mui/material";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import AdapterIcon from "@mui/icons-material/Link";

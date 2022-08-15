@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext} from "react";
 import {useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import FeatureHelperText from "../../common/help/FeatureHelperText";

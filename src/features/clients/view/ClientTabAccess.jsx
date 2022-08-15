@@ -1,5 +1,5 @@
-import React, {useContext, useEffect} from 'react';
-import { styled } from '@mui/material/styles';
+import React, {useContext, useEffect} from "react";
+import { styled } from "@mui/material/styles";
 import AppContext from "../../../data/context/AppContext";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import {fetchComponents} from "../../../data/redux/dispatchers/component";

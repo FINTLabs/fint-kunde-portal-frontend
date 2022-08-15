@@ -1,7 +1,6 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import { Box, TableBody, Typography, Table, TableHead } from '@mui/material';
-
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Box, TableBody, Typography, Table, TableHead } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import SelectAllEntitiesCheckboxes from "./SelectAllEntitiesCheckboxes";

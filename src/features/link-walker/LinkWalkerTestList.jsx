@@ -1,17 +1,7 @@
-import React, { Component } from "react";
-import { styled } from '@mui/material/styles';
+import React, {Component} from "react";
+import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
-import {
-  Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
-    Paper,
-    IconButton,
-    Typography,
-    Tooltip
-} from "@mui/material";
+import {IconButton, Paper, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, Typography} from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import ClearIcon from "@mui/icons-material/Clear";
 import DownloadReportIcon from "@mui/icons-material/GetApp";

@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
   Button,
@@ -151,7 +151,6 @@ class ClientTabAuthenticationInformation extends React.Component {
   };
 
   render() {
-    const { } = this.props;
     return (
       <Root>
         <WarningMessageBox

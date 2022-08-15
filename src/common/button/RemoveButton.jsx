@@ -1,15 +1,11 @@
 import PropTypes from "prop-types";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import React, { Component } from "react";
 import { IconButton, Tooltip } from "@mui/material";
-
 import RemoveIcon from "@mui/icons-material/CheckBox";
 
-const PREFIX = 'RemoveButton';
-
 const classes = {
-  addIcon: `${PREFIX}-addIcon`,
-  removeIcon: `${PREFIX}-removeIcon`
+  removeIcon: `RemoveButton-removeIcon`
 };
 
 const StyledTooltip = styled(Tooltip)((
@@ -17,10 +13,6 @@ const StyledTooltip = styled(Tooltip)((
     theme
   }
 ) => ({
-  [`& .${classes.addIcon}`]: {
-    //color: theme.palette.secondary.main
-  },
-
   [`& .${classes.removeIcon}`]: {
     color: theme.palette.secondary.main
   }
@@ -28,7 +20,6 @@ const StyledTooltip = styled(Tooltip)((
 
 class RemoveButton extends Component {
   render() {
-    const { } = this.props;
     return (
       <StyledTooltip placement={this.props.placement} title={this.props.title}>
         <IconButton aria-label="Remove" onClick={this.props.onClick}>

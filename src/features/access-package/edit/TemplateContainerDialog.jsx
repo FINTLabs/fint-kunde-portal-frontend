@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import { styled } from '@mui/material/styles';
-import { DialogTitle, DialogContent, List, ListItem, ListItemText, Avatar, DialogActions, ListItemAvatar, Dialog, Button } from '@mui/material';
-
+import React, {useState} from "react";
+import { styled } from "@mui/material/styles";
+import { DialogTitle, DialogContent, List, ListItem, ListItemText, Avatar, DialogActions, ListItemAvatar, Dialog, Button } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import LockIcon from "@mui/icons-material/LockOpen";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";

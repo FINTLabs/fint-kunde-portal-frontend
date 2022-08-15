@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   List,
@@ -183,7 +183,6 @@ class ClientTabComponent extends React.Component {
   }
 
   renderComponents() {
-    const { } = this.props;
     const organisationComponents = this.getOrganisationComponents();
     if (organisationComponents.length > 0) {
       return (

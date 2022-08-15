@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
 function FeatureHelperText(props) {
     return (

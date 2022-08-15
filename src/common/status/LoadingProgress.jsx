@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { CircularProgress } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const CustomCircularProgress = styled(CircularProgress)(({ theme }) => ({
   position: "absolute",

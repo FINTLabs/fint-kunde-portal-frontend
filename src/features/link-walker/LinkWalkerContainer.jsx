@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { styled } from '@mui/material/styles';
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import { withContext } from "../../data/context/withContext";
 import LinkWalkerTestList from "./LinkWalkerTestList";
@@ -75,7 +74,6 @@ class LinkWalkerContainer extends Component {
   }
 
   renderTestList() {
-    const { } = this.props;
     return (
       <div>
         <AutoHideNotification

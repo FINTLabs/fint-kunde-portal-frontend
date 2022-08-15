@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Dialog,
   DialogActions,
@@ -98,7 +98,6 @@ class LinkWalkerTestView extends React.Component {
   }
 
   renderTestView() {
-    const { } = this.props;
     const test = Object.assign({}, this.props.test);
     const relations = Object.entries(test.relations);
     return (

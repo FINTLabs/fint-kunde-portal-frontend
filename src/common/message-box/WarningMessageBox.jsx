@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Dialog,
   DialogActions,
@@ -57,7 +57,6 @@ class WarningMessageBox extends React.Component {
   }
 
   render() {
-    const { } = this.props;
     return (
       <Root>
         <Dialog

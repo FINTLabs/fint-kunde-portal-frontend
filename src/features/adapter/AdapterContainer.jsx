@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LoadingProgress from "../../common/status/LoadingProgress";
@@ -74,7 +74,6 @@ class AdapterContainer extends React.Component {
   }
 
   renderAdapters() {
-    const { } = this.props;
     return (
       <Root className={classes.root}>
         <AutoHideNotification

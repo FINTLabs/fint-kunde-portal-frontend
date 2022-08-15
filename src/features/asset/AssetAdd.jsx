@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import {
   Dialog,
@@ -118,7 +118,6 @@ class AssetAdd extends React.Component {
   }
 
   render() {
-    const { } = this.props;
     return (
       <Root>
         <div>

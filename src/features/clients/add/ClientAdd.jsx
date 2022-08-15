@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Button,
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   Fab,
   TextField
-} from '@mui/material';
+} from "@mui/material";
 import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import ClientApi from "../../../data/api/ClientApi";
@@ -119,7 +119,6 @@ class ClientAdd extends React.Component {
   }
 
   render() {
-    const { } = this.props;
     return (
       <Root>
         <div>

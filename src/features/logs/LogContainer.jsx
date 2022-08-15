@@ -12,7 +12,7 @@ import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import EntityApi from "../../data/api/EntityApi";
 import ResourceSelector from "../../common/test/ResourceSelector";
 import Button from "@mui/material/Button";

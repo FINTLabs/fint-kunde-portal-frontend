@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
-import { styled } from '@mui/material/styles';
-import { FormControl, InputLabel,Select, MenuItem, OutlinedInput } from '@mui/material';
+import { styled } from "@mui/material/styles";
+import { FormControl, InputLabel,Select, MenuItem, OutlinedInput } from "@mui/material";
 import PropTypes from "prop-types";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
-import Sort from '../../common/utils/Sort';
+import Sort from "../../common/utils/Sort";
 
 const PREFIX = 'ComponentSelector';
 

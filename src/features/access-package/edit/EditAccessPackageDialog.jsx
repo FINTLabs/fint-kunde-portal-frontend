@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
     DialogTitle,
     DialogContent,
@@ -10,7 +10,7 @@ import {
     DialogActions,
     Button,
     Dialog
-} from '@mui/material';
+} from "@mui/material";
 
 
 const EditAccessPackageDialog = (props) => {

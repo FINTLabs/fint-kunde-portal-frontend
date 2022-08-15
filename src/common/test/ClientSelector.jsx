@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import {
     FormControl,
@@ -8,7 +8,7 @@ import {
     MenuItem,
     FormHelperText,
     OutlinedInput
-} from '@mui/material';
+} from "@mui/material";
 const PREFIX = 'ClientSelector';
 
 const classes = {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import { Tooltip, CircularProgress } from "@mui/material";
 const PREFIX = 'TrafficLight';
 

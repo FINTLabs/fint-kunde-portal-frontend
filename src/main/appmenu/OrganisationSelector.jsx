@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { Button, Menu, MenuItem } from "@mui/material";
 
@@ -50,7 +50,6 @@ class OrganisationSelector extends Component {
   };
 
   render() {
-    const { } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   List,
@@ -178,7 +178,6 @@ class AssetTabAdapter extends React.Component {
   }
 
   renderAdapters() {
-    const { } = this.props;
     const organisationAdapters = this.props.adapters;
 
     if (organisationAdapters.length > 0) {

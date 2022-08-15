@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import ComponentApi from "../../data/api/ComponentApi";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import ComponentSelector from "../../common/test/ComponentSelector";
-import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import EnvironmentSelector from "../../common/test/EnvironmentSelector";
 import ClientSelector from "../../common/test/ClientSelector";
 import PropTypes from "prop-types";
@@ -211,7 +211,6 @@ class BasicTestContainer extends Component {
 
   renderContainer() {
     const { testCases, healthResult } = this.state;
-    const { } = this.props;
 
     return (
       <Root className={classes.root}>

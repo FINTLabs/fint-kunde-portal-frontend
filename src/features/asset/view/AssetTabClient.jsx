@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   IconButton,
@@ -187,7 +187,6 @@ class AssetTabClient extends React.Component {
   }
 
   renderClients() {
-    const { } = this.props;
     const organisationClients = this.props.clients;
     if (organisationClients.length > 0) {
       return (

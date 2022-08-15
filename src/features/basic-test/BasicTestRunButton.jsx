@@ -1,8 +1,8 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { CircularProgress, Fab } from '@mui/material';
+import { CircularProgress, Fab } from "@mui/material";
 import RunIcon from "@mui/icons-material/PlayArrow";
 import green from "@mui/material/colors/green";
 
@@ -68,7 +68,6 @@ class BasicTestRunButton extends React.Component {
 
   render() {
     const { loading, success } = this.props;
-    const { } = this.props;
     const buttonClassname = classNames({
       [classes.buttonSuccess]: success
     });

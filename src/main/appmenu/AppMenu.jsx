@@ -1,19 +1,13 @@
 import React, {useState} from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import classNames from "classnames";
-import Drawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
+import {Drawer, AppBar, Toolbar, Typography, Divider, IconButton, Box} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuItems from "./MenuItems";
 import Routes from "../routes/Routes";
 import OrganisationSelector from "./OrganisationSelector";
 import FintLogo from "../../images/fint-by-vigo-white.svg";
-import Box from "@mui/material/Box";
 
 const PREFIX = 'AppMenu';
 

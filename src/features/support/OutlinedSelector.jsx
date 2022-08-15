@@ -1,12 +1,13 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
     FormControl,
     InputLabel,
     Select,
     OutlinedInput,
     MenuItem
-} from '@mui/material';
+} from "@mui/material";
+
 const PREFIX = 'OutlinedSelector';
 
 const classes = {

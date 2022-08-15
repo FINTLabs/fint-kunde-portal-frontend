@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import useFeatureEnabled from "./useFeatureEnabled";
 
 const FeatureToggle = ({feature, children}) => {

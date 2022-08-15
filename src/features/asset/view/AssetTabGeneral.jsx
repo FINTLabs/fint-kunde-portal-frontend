@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { TextField } from "@mui/material";
 const PREFIX = 'AssetTabGeneral';
@@ -27,7 +27,6 @@ class AssetTabGeneral extends React.Component {
   }
 
   render() {
-    const { } = this.props;
 
     return (
       <Root>

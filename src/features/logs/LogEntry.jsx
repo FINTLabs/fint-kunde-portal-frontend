@@ -1,14 +1,11 @@
 import React, {Component} from "react";
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import { styled } from "@mui/material/styles";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import moment from "moment";
 import LogApi from "../../data/api/LogApi";
 import Box from "@mui/material/Box";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
+
 const PREFIX = 'LogEntry';
 
 const classes = {
@@ -42,7 +39,6 @@ class LogEntry extends Component {
     }
 
     render() {
-        const { } = this.props;
         return (
             <StyledBox width={1}>
                 {this.state.items.length>0 && <Typography variant={"body2"}

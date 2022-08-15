@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LoadingProgress from "../../common/status/LoadingProgress";
@@ -10,16 +9,6 @@ import {
   unlinkComponentFromOrganisation
 } from "../../data/redux/dispatchers/organisation";
 import { withContext } from "../../data/context/withContext";
-
-const PREFIX = 'ComponentContainer';
-
-const classes = {
-  root: `${PREFIX}-root`
-};
-
-const Root = styled('div')(() => ({
-  [`&.${classes.root}`]: {}
-}));
 
 class ComponentContainer extends React.Component {
   constructor(props) {
@@ -56,9 +45,8 @@ class ComponentContainer extends React.Component {
 
   renderPosts() {
     const {  components } = this.props;
-    //const components = this.getComponentsList();
     return (
-      <Root className={classes.root}>
+      <div>
         <ComponentList
           components={components}
           organisation={this.props.context.currentOrganisation}
@@ -68,7 +56,7 @@ class ComponentContainer extends React.Component {
           }
           fetchComponents={this.props.fetchComponents}
         />
-      </Root>
+      </div>
     );
   }
 }

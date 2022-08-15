@@ -1,6 +1,6 @@
 import React from "react";
-import { styled } from '@mui/material/styles';
-import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from '@mui/material';
+import { styled } from "@mui/material/styles";
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from "@mui/material";
 import PropTypes from "prop-types";
 
 const PREFIX = 'EnvironmentSelector';

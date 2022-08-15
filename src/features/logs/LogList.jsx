@@ -1,15 +1,10 @@
 import React, {Component} from "react";
-import { styled } from '@mui/material/styles';
+import {styled} from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogIcon from "@mui/icons-material/Timeline";
-import {Box, Typography} from "@mui/material";
+import {Box, Typography, AccordionDetails, AccordionSummary, Accordion, Button, Divider} from "@mui/material";
 import moment from "moment";
 import LogEntry from "./LogEntry";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
 
 const PREFIX = 'LogList';
 
