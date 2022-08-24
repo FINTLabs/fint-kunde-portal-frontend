@@ -18,6 +18,7 @@ import ConsentContainer from "../../features/consent/ConsentContainer"
 
 function Routes() {
     const featureAuditLogEnabled = useFeatureEnabled("audit-log");
+    const featureSamtykkeEnabled = useFeatureEnabled("samtykke-admin");
 
     return (
         <div>
@@ -40,8 +41,9 @@ function Routes() {
                                  role="ROLE_SUPPORT"/>
             <RoleAuthorizedRoute path="/access_package" component={AccessPackageContainer}
                                  role="ROLE_ACCESS_PACKAGE"/>
-            <RoleAuthorizedRoute path="/samtykke" component={ConsentContainer}
-                                 role="ROLE_DASHBOARD"/>
+            {featureSamtykkeEnabled && <RoleAuthorizedRoute path="/samtykke" component={ConsentContainer}
+                                                            role="ROLE_DASHBOARD"/>}
+
         </div>
     );
 }
