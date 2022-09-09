@@ -36,21 +36,28 @@ class AdapterAdd extends React.Component {
 
   updateNote = (event, maxLength) => {
     if (event.target.value.length >= maxLength) {
-      this.setState({showNoteError: true, noteErrorMessage: "Maks karakterer brukt."})
+      this.setState({
+        showNoteError: true,
+        noteErrorMessage: "Maks karakterer brukt."})
     }
     else {
-      this.setState({showNoteError: false, noteErrorMessage: ""})
+      this.setState({
+        showNoteError: false,
+        noteErrorMessage: ""})
     }
     this.updateAdapterState(event)
   };
 
   updateShortDesc = (event, maxLength) => {
     if (event.target.value.length >= maxLength) {
-      this.setState({showSmallDescError: true,
+      this.setState({
+        showSmallDescError: true,
         smallDescErrorMessage: "Maks karakterer brukt."})
     }
     else {
-      this.setState({showSmallDescError: false, smallDescErrorMessage: ""})
+      this.setState({
+        showSmallDescError: false,
+        smallDescErrorMessage: ""})
     }
     this.updateAdapterState(event)
   };
