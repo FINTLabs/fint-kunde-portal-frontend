@@ -34,6 +34,32 @@ class AdapterAdd extends React.Component {
     return this.setState({ adapter: adapter });
   };
 
+  updateShortDescription = (event, MaxLength) => {
+    if (event.target.value.length >= MaxLength) {
+      this.setState({showSmallDescError: true, smallDescErrorMessage: "Maks karakterer brukt."})
+    }
+    else {
+      this.setState({showSmallDescError: false, smallDescErrorMessage: ""})
+    }
+    const field = event.target.name;
+    const adapter = this.state.adapter;
+    adapter[field] = event.target.value;
+    return this.setState({ adapter: adapter });
+  };
+
+  updateNote = (event, MaxLength) => {
+    if (event.target.value.length >= MaxLength) {
+      this.setState({showNoteError: true, noteErrorMessage: "Maks karakterer brukt."})
+    }
+    else {
+      this.setState({showNoteError: false, noteErrorMessage: ""})
+    }
+    const field = event.target.name;
+    const adapter = this.state.adapter;
+    adapter[field] = event.target.value;
+    return this.setState({ adapter: adapter });
+  };
+
   handleAddAdapter = () => {
     AdapterApi.createAdapter(this.state.adapter, this.props.organisation.name)
       .then(response => {
@@ -99,7 +125,9 @@ class AdapterAdd extends React.Component {
     return (
       this.state.usernameIsValid &&
       this.state.adapter.shortDescription.length > 0 &&
-      this.state.adapter.note.length > 0
+      this.state.adapter.shortDescription.length < 64 &&
+      this.state.adapter.note.length > 0 &&
+      this.state.adapter.note.length < 900
     );
   };
 
@@ -108,7 +136,11 @@ class AdapterAdd extends React.Component {
     this.state = {
       adapter: this.getEmptyAdapter(),
       showAdapterAdd: false,
-      usernameIsValid: false
+      usernameIsValid: false,
+      showSmallDescError: false,
+      SmallDescErrorMessage: "",
+      showNoteError: false,
+      noteErrorMessage: ""
     };
   }
 
@@ -140,7 +172,7 @@ class AdapterAdd extends React.Component {
               <UsernameValidationInput
                 title="Brukernavn"
                 name="name"
-                onChange={this.updateAdapterState}
+                onChange={event => this.updateAdapterState}
                 usernameIsValid={this.usernameIsValid}
                 realm={this.state.realm}
               />
@@ -149,8 +181,11 @@ class AdapterAdd extends React.Component {
                 label="Kort beskrivelse"
                 required
                 fullWidth
-                onChange={this.updateAdapterState}
+                onChange={event => this.updateShortDescription(event, 64)}
+                inputProps={{ maxLength: 64 }}
                 id={"newAdapterShortDesc"}
+                error={this.state.showSmallDescError}
+                helperText={this.state.smallDescErrorMessage}
               />
               <TextField
                 name="note"
@@ -159,8 +194,11 @@ class AdapterAdd extends React.Component {
                 required
                 multiline
                 rows="4"
-                onChange={this.updateAdapterState}
+                onChange={event => this.updateNote(event, 900)}
                 id={"newAdapterNote"}
+                inputProps={{ maxLength: 900 }}
+                error={this.state.showNoteError}
+                helperText={this.state.noteErrorMessage}
               />
             </DialogContent>
             <DialogActions>
