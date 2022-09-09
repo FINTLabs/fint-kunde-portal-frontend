@@ -34,30 +34,35 @@ class AdapterAdd extends React.Component {
     return this.setState({ adapter: adapter });
   };
 
-  updateShortDescription = (event, MaxLength) => {
-    if (event.target.value.length >= MaxLength) {
-      this.setState({showSmallDescError: true, smallDescErrorMessage: "Maks karakterer brukt."})
-    }
-    else {
-      this.setState({showSmallDescError: false, smallDescErrorMessage: ""})
-    }
-    const field = event.target.name;
-    const adapter = this.state.adapter;
-    adapter[field] = event.target.value;
-    return this.setState({ adapter: adapter });
-  };
-
-  updateNote = (event, MaxLength) => {
-    if (event.target.value.length >= MaxLength) {
+  updateNote = (event, maxLength) => {
+    if (event.target.value.length >= maxLength) {
       this.setState({showNoteError: true, noteErrorMessage: "Maks karakterer brukt."})
     }
     else {
       this.setState({showNoteError: false, noteErrorMessage: ""})
     }
-    const field = event.target.name;
-    const adapter = this.state.adapter;
-    adapter[field] = event.target.value;
-    return this.setState({ adapter: adapter });
+    this.updateAdapterState(event)
+  };
+
+  updateShortDesc = (event, maxLength) => {
+    if (event.target.value.length >= maxLength) {
+      this.setState({showSmallDescError: true,
+        smallDescErrorMessage: "Maks karakterer brukt."})
+    }
+    else {
+      this.setState({showSmallDescError: false, smallDescErrorMessage: ""})
+    }
+    this.updateAdapterState(event)
+  };
+
+  updateTest = (event, MaxLength) => {
+    if (event.target.name === "shortDescription") {
+
+    }
+    else if (event.target.name === "note") {
+
+    }
+    this.updateAdapterState(event);
   };
 
   handleAddAdapter = () => {
@@ -181,7 +186,7 @@ class AdapterAdd extends React.Component {
                 label="Kort beskrivelse"
                 required
                 fullWidth
-                onChange={event => this.updateShortDescription(event, 64)}
+                onChange={event => this.updateShortDesc(event, 64)}
                 inputProps={{ maxLength: 64 }}
                 id={"newAdapterShortDesc"}
                 error={this.state.showSmallDescError}
