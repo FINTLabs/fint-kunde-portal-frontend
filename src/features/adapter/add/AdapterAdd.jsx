@@ -62,16 +62,6 @@ class AdapterAdd extends React.Component {
     this.updateAdapterState(event)
   };
 
-  updateTest = (event, MaxLength) => {
-    if (event.target.name === "shortDescription") {
-
-    }
-    else if (event.target.name === "note") {
-
-    }
-    this.updateAdapterState(event);
-  };
-
   handleAddAdapter = () => {
     AdapterApi.createAdapter(this.state.adapter, this.props.organisation.name)
       .then(response => {
