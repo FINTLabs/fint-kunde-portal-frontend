@@ -25,7 +25,7 @@ const EditAccessPackageDialog = (props) => {
             <DialogTitle id="alert-dialog-title">{"Legg til komponenter"}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Velg komponenter du skal ha tilgang til
+                    Velg komponenter til tilgangspakken
                 </DialogContentText>
                 <List component="nav" aria-label="Komponentlist" dense>
                     {componentConfiguration.map(componentConfig => {
