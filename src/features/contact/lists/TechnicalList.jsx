@@ -47,6 +47,8 @@ const StyledBox = styled(Box)((
 }));
 
 const TechnicalList = props => {
+    const [showConfirmChangeLegal, setShowConfirmChangeLegal] = useState(false);
+    const [legalContact, setLegalContact] = useState({});
     const [showConfirmRemoveContact, setShowConfirmRemoveContact] = useState(false);
     const [message, setMessage] = useState("");
     const [contact, setContact] = useState({});
@@ -56,6 +58,20 @@ const TechnicalList = props => {
     const isRoleFeatureEnabled = useFeatureEnabled("roles");
     const roleTypes = useSelector(state => state.roles.roles);
     const orgId = useContext(AppContext).currentOrganisation.name;
+
+    const askToChangeLegalContact = contact => {
+        setShowConfirmChangeLegal(true);
+        setMessage(`Du endrer nå juridisk kontaktperson til ${contact.firstName} ${contact.lastName}. Ønsker du dette?`);
+        setLegalContact(contact);
+    };
+
+    const onCloseChangeLegalContact = confirmed => {
+        setShowConfirmChangeLegal(false);
+
+        if (confirmed) {
+            changeLegalContact(legalContact);
+        }
+    };
 
     const askToRemoveContact = contact => {
         setShowConfirmRemoveContact(true);
@@ -86,7 +102,7 @@ const TechnicalList = props => {
             });
     };
 
-    const setLegalContact = contact => {
+    const changeLegalContact = contact => {
         OrganisationApi.unsetLegalContact(
             props.legalContact,
             orgId
@@ -125,6 +141,11 @@ const TechnicalList = props => {
                 message={message}
                 onClose={onCloseRemoveContact}
             />
+            <WarningMessageBox
+                show={showConfirmChangeLegal}
+                message={message}
+                onClose={onCloseChangeLegalContact}
+            />
             {isRoleFeatureEnabled && <RoleDialog
                 onClose={onCloseRoleDialog}
                 open={showRoleDialog}
@@ -134,7 +155,9 @@ const TechnicalList = props => {
                     Teknisk kontakter
                 </Typography>
                 <List id={"technicalContactsList"}>
-                    {technicalContacts.map(contact => (
+                    {technicalContacts
+                        .sort((a, b) => a.firstName > b.firstName ? 1 : -1)
+                        .map(contact => (
                         <ListItem divider key={contact.dn}>
                             <ListItemAvatar>
                                 <Avatar className={classes.itemAvatar}>
@@ -162,7 +185,8 @@ const TechnicalList = props => {
 
                                 <TooltipIconButton
                                     ariaLabel="Juridisk kontakt"
-                                    onClick={() => setLegalContact(contact)}
+                                    // onClick={() => setLegalContact(contact)}
+                                    onClick={() => askToChangeLegalContact(contact)}
                                     id="changeLegalButton"
                                     toolTip="Angi som juridisk kontakt"
                                 >
