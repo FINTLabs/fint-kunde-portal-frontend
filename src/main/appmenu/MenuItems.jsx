@@ -16,6 +16,7 @@ import List from "@material-ui/core/List";
 import LogIcon from "@material-ui/icons/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
+import SamtrykkeIcon from '@material-ui/icons/Security';
 
 
 const MenuItems = () => {
