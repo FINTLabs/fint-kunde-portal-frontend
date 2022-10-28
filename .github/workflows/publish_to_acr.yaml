@@ -29,8 +29,8 @@ jobs:
 
       - name: Container build and push to a Azure Container Registry (ACR)
         run: |
-          docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{steps.get_repo.outputs.REPO}}:${{ github.sha }}
-          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{steps.get_repo.outputs.REPO}}:${{ github.sha }}
+          docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/kunde-portal-frontend:latest
+          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/kunde-portal-frontend:latest
 
       ## Uncomment to trigger a deployment
 #      - name: Start deployment workflow
