@@ -263,6 +263,12 @@ class SupportContainer extends Component {
                         return (
                             <LoadingProgress/>
                         );
+                    } else if(this.state.newTicket.id.length < 1){
+                       return(
+                           <Typography variant="h5">
+                               Oisann, det gikk ikke helt etter planen. Prøv igjen.
+                            </Typography>
+                       );
                     } else {
                         const {classes} = this.props;
                         return (
