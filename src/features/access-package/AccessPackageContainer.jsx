@@ -18,7 +18,7 @@ const AccessPackageContainer = () => {
 
     useEffect(() => {
             dispatch(fetchAccess(context.currentOrganisation.name));
-            dispatch(fetchComponents());
+            dispatch(fetchComponents(context.currentOrganisation.name));
             dispatch(fetchEntities());
             dispatch(fetchAccessTemplate());
             dispatch(fetchClients(context.currentOrganisation.name));

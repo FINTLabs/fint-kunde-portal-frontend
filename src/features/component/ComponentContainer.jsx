@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import ComponentList from "./ComponentList";
 import { fetchComponents } from "../../data/redux/dispatchers/component";
+import { fetchOrganisation } from "../../data/redux/dispatchers/organisation";
 import {
   linkComponentToOrganisation,
   unlinkComponentFromOrganisation
@@ -23,6 +24,7 @@ class ComponentContainer extends React.Component {
 
   componentDidMount() {
     this.props.fetchComponents();
+    this.props.fetchOrganisation(this.props.context.currentOrganisation.name);
   }
 
   /*
@@ -60,7 +62,7 @@ class ComponentContainer extends React.Component {
           unlinkComponentFromOrganisation={
             this.props.unlinkComponentFromOrganisation
           }
-          fetchComponents={this.props.fetchComponents}
+          fetchOrganisation={this.props.fetchOrganisation}
         />
       </div>
     );
@@ -81,6 +83,7 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators(
     {
       fetchComponents: fetchComponents,
+      fetchOrganisation: fetchOrganisation,
       linkComponentToOrganisation: linkComponentToOrganisation,
       unlinkComponentFromOrganisation: unlinkComponentFromOrganisation
     },

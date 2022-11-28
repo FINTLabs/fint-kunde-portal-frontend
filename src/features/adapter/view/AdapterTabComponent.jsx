@@ -17,7 +17,8 @@ import { green } from "@material-ui/core/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import {
   addAdapterToComponent,
-  deleteAdapterFromComponent
+  deleteAdapterFromComponent,
+  getAdapter
 } from "../../../data/redux/dispatchers/adapter";
 import AdapterApi from "../../../data/api/AdapterApi";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
@@ -81,7 +82,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.getAdapter(this.props.adapter, this.props.context.currentOrganisation);
       })
       .catch(error => {});
   };
@@ -95,7 +96,7 @@ class AdapterTabComponent extends React.Component {
         this.props.notify(
           `${this.props.adapter.name} ble lagt til ${component.description}`
         );
-        this.props.fetchComponents();
+        this.props.getAdapter(this.props.adapter, this.props.context.currentOrganisation);
       })
       .catch(error => {});
   };
@@ -118,30 +119,14 @@ class AdapterTabComponent extends React.Component {
     }
   };
   isLinkedToAdapter = component => {
-    for (let i = 0; i < component.adapters.length; i++) {
-      if (
-        component.adapters[i].toLowerCase() ===
-        this.props.adapter.dn.toLowerCase()
-      ) {
-        return true;
-      }
-    }
-    return false;
+    return this.props.adapter.components.includes(component.dn);
   };
   getOrganisationComponents = () => {
     const { currentOrganisation } = this.props.context;
     if (currentOrganisation.name === "fintlabs_no") {
-      return this.props.components
-        .filter(component => component.organisations.length > 0)
-        .filter(component =>
-          component.organisations.find(o => o === currentOrganisation.dn)
-        );
+      return this.props.components;
     }
     return this.props.components
-      .filter(component => component.organisations.length > 0)
-      .filter(component =>
-        component.organisations.find(o => o === currentOrganisation.dn)
-      )
       .filter(component => !component.openData || !component.common);
   };
 
@@ -164,7 +149,7 @@ class AdapterTabComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchComponents();
+    this.props.fetchComponents(this.props.context.currentOrganisation.name);
   }
 
   render() {
@@ -240,6 +225,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
+      getAdapter: getAdapter,
       fetchComponents: fetchComponents,
       addAdapterToComponent: addAdapterToComponent,
       deleteAdapterFromComponent: deleteAdapterFromComponent

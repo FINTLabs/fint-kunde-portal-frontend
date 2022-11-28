@@ -4,9 +4,16 @@ import {
   FETCH_ADAPTERS_ERROR,
   FETCH_ADAPTERS_SUCCESS,
   REMOVE_ADAPTER_FROM_COMPONENT,
-  UPDATE_ADAPTER_SUCCESS
+  UPDATE_ADAPTER_SUCCESS,
+  GET_ADAPTER_SUCCESS
 } from "./types";
 
+export function getAdapterSuccess(payload) {
+  return {
+    type: GET_ADAPTER_SUCCESS,
+    payload
+  }
+}
 
 export function fetchAdapersSuccess(payload) {
   return {
