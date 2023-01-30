@@ -112,8 +112,6 @@ const MenuItems = () => {
                 </ListItem>
             </RoleAuthorizationMenu>
 
-
-
             <ListItem button component="a"
                       href="https://uustatus.no/nb/erklaringer/publisert/1226249b-ebc9-4d91-93b5-fa6b1df72691">
                 <ListItemIcon>
@@ -130,8 +128,8 @@ const MenuItems = () => {
                 <ListItemText primary="UU (nynorsk)" secondary={"Tilgjengelighetserklæring"}/>
             </ListItem>
 
-
             <Divider></Divider>
+
             <ListItem button component="a"
                       href="https://idp.felleskomponent.no/nidp/app/logout">
                 <ListItemIcon>
