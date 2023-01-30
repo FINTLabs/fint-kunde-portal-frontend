@@ -16,9 +16,8 @@ import List from "@material-ui/core/List";
 import LogIcon from "@material-ui/icons/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
-import SamtrykkeIcon from '@material-ui/icons/Security';
-
-
+import Divider from '@material-ui/core/Divider';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 const MenuItems = () => {
     return (
         <List id="menuList">
@@ -112,6 +111,27 @@ const MenuItems = () => {
                     <ListItemText primary="Opprett support sak"/>
                 </ListItem>
             </RoleAuthorizationMenu>
+
+
+
+            <ListItem button component="a"
+                      href="https://uustatus.no/nb/erklaringer/publisert/1226249b-ebc9-4d91-93b5-fa6b1df72691">
+                <ListItemIcon>
+                    <AccessibilityNewIcon/>
+                </ListItemIcon>
+                <ListItemText primary="UU (bokmål)" secondary={"Tilgjengelighetserklæring"}/>
+            </ListItem>
+
+            <ListItem button component="a"
+                      href="https://uustatus.no/nn/erklaringer/publisert/1226249b-ebc9-4d91-93b5-fa6b1df72691">
+                <ListItemIcon>
+
+                </ListItemIcon>
+                <ListItemText primary="UU (nynorsk)" secondary={"Tilgjengelighetserklæring"}/>
+            </ListItem>
+
+
+            <Divider></Divider>
             <ListItem button component="a"
                       href="https://idp.felleskomponent.no/nidp/app/logout">
                 <ListItemIcon>
@@ -119,6 +139,7 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Logg ut"/>
             </ListItem>
+
         </List>
     );
 };
