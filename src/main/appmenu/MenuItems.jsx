@@ -128,7 +128,7 @@ const MenuItems = () => {
                 <ListItemText primary="UU (nynorsk)" secondary={"Tilgjengelighetserklæring"}/>
             </ListItem>
 
-            <Divider></Divider>
+            <Divider/>
 
             <ListItem button component="a"
                       href="https://idp.felleskomponent.no/nidp/app/logout">
