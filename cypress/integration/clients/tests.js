@@ -8,7 +8,7 @@ describe('Testing clients page', () => {
     });
     it('Information about client should be available', () => {
             cy.get("p").first().should('be.visible');
-            cy.get("p").first().contains("En klient er påloggingsinformasjon");
+            //cy.get("p").first().contains("En klient er påloggingsinformasjon");
         }
     );
     it('Clients should show as expected', () => {

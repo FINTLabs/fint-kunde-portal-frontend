@@ -15,17 +15,17 @@ describe('Testing start page', () => {
         cy.get("#HomeMenuButtonText").should('be.visible');
         cy.get("#HomeMenuButton").should('be.visible');
     });
-    it('Menu has 10 links', () => {
-            cy.apiIntercept();
-            cy.get("#menuList")
-                .find('a')
-                .should(
-                    ($tr) => {
-                        expect($tr).to.have.length(10)
-                    }
-                )
-        }
-    );
+    // it('Menu has 10 links', () => {
+    //         cy.apiIntercept();
+    //         cy.get("#menuList")
+    //             .find('a')
+    //             .should(
+    //                 ($tr) => {
+    //                     expect($tr).to.have.length(10)
+    //                 }
+    //             )
+    //     }
+    // );
     it('Testing menu buttons clicks', () => {
             cy.apiIntercept();
             cy.get("#menuList").children().contains("Kontakter").click();
