@@ -16,8 +16,8 @@ import List from "@mui/material/List";
 import LogIcon from "@mui/icons-material/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
-import SamtrykkeIcon from '@material-ui/icons/Security';
-
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import Divider from "@mui/material/Divider"
 
 const MenuItems = () => {
     return (
@@ -119,14 +119,6 @@ const MenuItems = () => {
                     <AccessibilityNewIcon/>
                 </ListItemIcon>
                 <ListItemText primary="UU (bokmål)" secondary={"Tilgjengelighetserklæring"}/>
-            </ListItem>
-
-            <ListItem button component="a"
-                      href="https://uustatus.no/nn/erklaringer/publisert/1226249b-ebc9-4d91-93b5-fa6b1df72691">
-                <ListItemIcon>
-
-                </ListItemIcon>
-                <ListItemText primary="UU (nynorsk)" secondary={"Tilgjengelighetserklæring"}/>
             </ListItem>
 
             <Divider/>

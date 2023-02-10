@@ -1,10 +1,17 @@
 describe('Testing start page', () => {
+    // beforeEach(() => {
+    //     cy.apiIntercept();
+    //     cy.goToHome();
+    // })
+
     it('Toolbar should have title', () => {
         cy.apiIntercept();
         cy.goToHome();
         cy.get("#toolbar").contains("Kundeportal");
     });
     it('Users name should be showing', () => {
+        cy.apiIntercept();
+            // cy.goToHome();
             cy.get("#userNameField").contains("Test Testesen");
         }
     );
@@ -15,19 +22,21 @@ describe('Testing start page', () => {
         cy.get("#HomeMenuButtonText").should('be.visible');
         cy.get("#HomeMenuButton").should('be.visible');
     });
-    // it('Menu has 10 links', () => {
-    //         cy.apiIntercept();
-    //         cy.get("#menuList")
-    //             .find('a')
-    //             .should(
-    //                 ($tr) => {
-    //                     expect($tr).to.have.length(10)
-    //                 }
-    //             )
-    //     }
-    // );
+    it('Menu has 11 links', () => {
+            // cy.apiIntercept();
+            cy.get("#menuList")
+                .find('a')
+                .should(
+                    ($tr) => {
+                        expect($tr).to.have.length(11)
+                    }
+                )
+        }
+    );
     it('Testing menu buttons clicks', () => {
             cy.apiIntercept();
+        // cy.get('#menuBurger').click();
+        cy.get("#menuList").should("be.visible");
             cy.get("#menuList").children().contains("Kontakter").click();
             cy.url().should('include', '/contacts');
             cy.get("#menuList").children().contains("Komponenter").click();
@@ -49,7 +58,8 @@ describe('Testing start page', () => {
         }
     );
     it('Menu can close', () => {
-            cy.apiIntercept();
+            // cy.apiIntercept();
+        // cy.get('#menuBurger').click();
             cy.get("#menuToolbar")
                 .find('button').click();
             cy.get("#HomeMenuButtonText").should('not.be.visible');

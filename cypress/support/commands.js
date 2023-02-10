@@ -26,7 +26,16 @@ Cypress.Commands.add('apiIntercept', () => {
     }, {statusCode: 200, fixture: 'components.json'});
     cy.intercept({
         method: 'GET',
+        url: 'http://localhost:3000/api/components/organisation/test_no',
+    }, {statusCode: 200, fixture: 'components.json'});
+
+    cy.intercept({
+        method: 'GET',
         url: 'http://localhost:3000/api/assets/test_no/',
+    }, {statusCode: 200, fixture: 'assets.json'});
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/api/assets/test_nr_to_no/',
     }, {statusCode: 200, fixture: 'assets.json'});
     cy.intercept({
         method: 'GET',
@@ -70,7 +79,7 @@ Cypress.Commands.add('apiIntercept', () => {
     }, {statusCode: 201});
     cy.intercept({
         method: 'POST',
-        url: 'http://localhost:3000/api/tests/test_no/auth/init',
+        url: 'http://localhost:3000/api/tests/test_no/auth/init/test@client.fintlabs.no',
     }, {statusCode: 204});
     cy.intercept({
         method: 'POST',
