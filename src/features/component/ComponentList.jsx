@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { styled } from "@mui/material/styles";
 import {
     Avatar,
     Divider,
@@ -8,11 +9,10 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
-} from "@material-ui/core";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ComponentIcon from "@material-ui/icons/WebAsset";
+    Typography
+} from "@mui/material";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ComponentIcon from "@mui/icons-material/WebAsset";
 import OrganisationApi from "../../data/api/OrganisationApi";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import PropTypes from "prop-types";
@@ -27,27 +27,44 @@ import AddButton from "../../common/button/AddButton";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import Sort from "../../common/utils/Sort";
 
-const styles = theme => ({
-    root: {
+const PREFIX = 'ComponentList';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    componentList: `${PREFIX}-componentList`,
+    title: `${PREFIX}-title`,
+    listItem: `${PREFIX}-listItem`,
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.root}`]: {
         display: "flex",
         justifyContent: "center"
     },
-    componentList: {
+
+    [`& .${classes.componentList}`]: {
         width: "75%"
     },
 
-    title: {
+    [`& .${classes.title}`]: {
         paddingLeft: theme.spacing(3),
         paddingBottom: theme.spacing(1)
     },
-    listItem: {
+
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray"
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
     }
-});
+}));
 
 class ComponentList extends Component {
     askToLinkComponent = component => {
@@ -186,11 +203,11 @@ class ComponentList extends Component {
     }
 
     render() {
-        const {classes, organisation} = this.props;
+        const { organisation} = this.props;
         const components = this.props.components.sort(Sort.alphabetically);
 
         return (
-            <div className={classes.root}>
+            <Root className={classes.root}>
                 <WarningMessageBox
                     show={this.state.askUnLink}
                     message={this.state.message}
@@ -257,16 +274,16 @@ class ComponentList extends Component {
                         ))}
                     </List>
                 </div>
-            </div>
+            </Root>
         );
     }
 }
 
 ComponentList.propTypes = {
-    classes: PropTypes.any.isRequired,
+    classes: PropTypes.any,
     components: PropTypes.array.isRequired,
     fetchComponents: PropTypes.any.isRequired,
     organisation: PropTypes.any.isRequired
 };
 
-export default withStyles(styles)(withContext(ComponentList));
+export default (withContext(ComponentList));

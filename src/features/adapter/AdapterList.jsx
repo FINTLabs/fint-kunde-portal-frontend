@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   Divider,
@@ -8,10 +9,9 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import { Delete, Edit, InsertLink } from "@material-ui/icons";
+  Typography
+} from "@mui/material";
+import { Delete, Edit, InsertLink } from "@mui/icons-material";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import AdapterView from "./view/AdapterView";
 import { withContext } from "../../data/context/withContext";
@@ -20,26 +20,44 @@ import FeatureHelperText from "../../common/help/FeatureHelperText";
 import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 import Sort from "../../common/utils/Sort";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AdapterList';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  componentList: `${PREFIX}-componentList`,
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
     justifyContent: "center"
   },
-  componentList: {
+
+  [`& .${classes.componentList}`]: {
     width: "75%"
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.light
   }
-});
+}));
 
 class AdapterList extends Component {
   editAdapter = adapter => {
@@ -105,11 +123,10 @@ class AdapterList extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     const adapters = this.props.adapters.sort(Sort.alphabetically);
 
     return (
-      <div>
+      <Root>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={`Adapter ${this.state.adapterDeletedName} ble slettet!`}
@@ -177,7 +194,7 @@ class AdapterList extends Component {
           onClose={this.onCloseEdit}
           updateAdapter={this.updateAdapter}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -186,4 +203,4 @@ AdapterList.propTypes = {
   adapters: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(withContext(AdapterList));
+export default (withContext(AdapterList));

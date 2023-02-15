@@ -5,15 +5,10 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchLegalContact, fetchTechnicalContacts} from "../../data/redux/dispatchers/organisation";
 import ContactList from "./ContactList";
 import ContactAdd from "./add/ContactAddExisting";
-import {withStyles} from "@material-ui/core";
 import {fetchContacts} from "../../data/redux/dispatchers/contact";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import PropTypes from "prop-types";
 import {withContext} from "../../data/context/withContext";
-
-const styles = () => ({
-    root: {}
-});
 
 class ContactContainer extends React.Component {
     constructor(props) {
@@ -92,9 +87,9 @@ class ContactContainer extends React.Component {
     }
 
     renderPosts() {
-        const {classes, legalContact, technicalContacts} = this.props;
+        const { legalContact, technicalContacts} = this.props;
         return (
-            <div className={classes.root}>
+            <div>
                 <AutoHideNotification
                     showNotification={this.state.notify}
                     message={this.state.notifyMessage}
@@ -147,7 +142,7 @@ function matchDispatchToProps(dispatch) {
     );
 }
 
-export default withStyles(styles)(
+export default (
     connect(
         mapStateToProps,
         matchDispatchToProps

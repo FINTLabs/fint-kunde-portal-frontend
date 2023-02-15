@@ -1,14 +1,17 @@
-import React from 'react';
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import {Checkbox} from "@material-ui/core";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import React from "react";
+import {
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    List,
+    ListItem,
+    ListItemText,
+    Checkbox,
+    DialogActions,
+    Button,
+    Dialog
+} from "@mui/material";
+
 
 const EditAccessPackageDialog = (props) => {
     const {componentSelectorOpen, handleCloseComponentSelector, componentConfiguration, selectedAccessPackage, chooseComponent} = props;

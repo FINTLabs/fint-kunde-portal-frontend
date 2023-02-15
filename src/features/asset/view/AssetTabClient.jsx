@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   IconButton,
@@ -7,12 +8,11 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import ComponentIcon from "@material-ui/icons/WebAsset";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import { green } from "@material-ui/core/colors/index";
+  Typography
+} from "@mui/material";
+import ComponentIcon from "@mui/icons-material/WebAsset";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
+import { green } from "@mui/material/colors/index";
 import LoadingProgress from "../../../common/status/LoadingProgress";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";
@@ -22,31 +22,51 @@ import { Link } from "react-router-dom";
 import RemoveButton from "../../../common/button/RemoveButton";
 import AddButton from "../../../common/button/AddButton";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AssetTabClient';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  componentList: `${PREFIX}-componentList`,
+  avtarstyle: `${PREFIX}-avtarstyle`,
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledDiv = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
     justifyContent: "center"
   },
-  componentList: {
+
+  [`& .${classes.componentList}`]: {
     width: "75%"
   },
-  avtarstyle: {
+
+  [`& .${classes.avtarstyle}`]: {
     margin: 1,
     color: "#fff",
     backgroundColor: green[500]
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.main
   }
-});
+}));
 
 class AssetTabClient extends React.Component {
   askToUnLinkClient = client => {
@@ -167,11 +187,10 @@ class AssetTabClient extends React.Component {
   }
 
   renderClients() {
-    const { classes } = this.props;
     const organisationClients = this.props.clients;
     if (organisationClients.length > 0) {
       return (
-        <div>
+        <StyledDiv>
           <WarningMessageBox
             show={this.state.askUnLink}
             message={this.state.message}
@@ -219,7 +238,7 @@ class AssetTabClient extends React.Component {
               </ListItem>
             ))}
           </List>
-        </div>
+        </StyledDiv>
       );
     } else {
       return (
@@ -231,4 +250,4 @@ class AssetTabClient extends React.Component {
   }
 }
 
-export default withStyles(styles)(withContext(AssetTabClient));
+export default (withContext(AssetTabClient));

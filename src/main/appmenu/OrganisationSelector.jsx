@@ -1,17 +1,31 @@
 import React, { Component } from "react";
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { Button, Menu, MenuItem, withStyles } from "@material-ui/core";
-import OrganisationIcon from "@material-ui/icons/Domain";
+import { Button, Menu, MenuItem } from "@mui/material";
+
+import OrganisationIcon from "@mui/icons-material/Domain";
 import { withContext } from "../../data/context/withContext";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'OrganisationSelector';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  organsationIcon: `${PREFIX}-organsationIcon`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     marginRight: theme.spacing(1)
   },
-  organsationIcon: {
+
+  [`& .${classes.organsationIcon}`]: {
     marginLeft: theme.spacing(1)
   }
-});
+}));
 
 class OrganisationSelector extends Component {
   constructor(props) {
@@ -36,13 +50,12 @@ class OrganisationSelector extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     if (this.props.context.organisations.length > 0) {
       return (
-        <div className={classes.root} id={"organisationSelector"}>
+        <Root className={classes.root} id={"organisationSelector"}>
           <Button
             aria-owns={open ? "menu-appbar" : null}
             aria-haspopup="true"
@@ -78,7 +91,7 @@ class OrganisationSelector extends Component {
               </MenuItem>
             ))}
           </Menu>
-        </div>
+        </Root>
       );
     } else {
       return <div />;
@@ -87,7 +100,7 @@ class OrganisationSelector extends Component {
 }
 
 OrganisationSelector.propTypes = {
-  classes: PropTypes.any.isRequired
+  classes: PropTypes.any
 };
 
-export default withStyles(styles)(withContext(OrganisationSelector));
+export default (withContext(OrganisationSelector));

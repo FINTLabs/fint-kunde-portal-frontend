@@ -1,36 +1,49 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import {makeStyles} from "@material-ui/core";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    FormHelperText,
+    OutlinedInput
+} from "@mui/material";
+const PREFIX = 'ClientSelector';
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const classes = {
+    formControl: `${PREFIX}-formControl`,
+    clientWarning: `${PREFIX}-clientWarning`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
-    clientWarning: {
+
+    [`& .${classes.clientWarning}`]: {
         color: theme.palette.primary.main
     }
 }));
 
 export default function ClientSelector(props) {
-    const classes = useStyles();
+
     const {name, value, clients, disabled} = props;
     let selectableClients = clients.filter(c => c.assetId !== null);
 
     const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [labelwidth, setLabelwidth] = React.useState(0);
     React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
-        <div>
+        <Root>
             <FormControl
                 className={classes.formControl}
                 fullWidth
@@ -42,7 +55,7 @@ export default function ClientSelector(props) {
                     id={"clientSelector"}
                     value={value}
                     onChange={props.handleChange}
-                    input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                    input={<OutlinedInput labelwidth={labelwidth} name={name} id={name}/>}
                 >
                     {selectableClients.map(client => {
                         return (
@@ -57,7 +70,7 @@ export default function ClientSelector(props) {
                     du kjører en test.
                 </FormHelperText>
             </FormControl>
-        </div>
+        </Root>
     );
 }
 

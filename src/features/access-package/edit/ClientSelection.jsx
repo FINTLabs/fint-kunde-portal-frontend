@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {makeStyles} from "@material-ui/core/styles";
+import React, {useState} from "react";
+import { styled } from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {
     Avatar,
@@ -8,43 +8,61 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography
-} from "@material-ui/core";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-import FormControl from "@material-ui/core/FormControl";
+    Typography,
+    Switch,
+    FormControl,
+    FormControlLabel
+} from "@mui/material";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import FeatureHelperText from "../../../common/help/FeatureHelperText";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
-const useStyles = makeStyles(theme => ({
-    root: {
+const PREFIX = 'ClientSelection';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    clientList: `${PREFIX}-clientList`,
+    itemAvatar: `${PREFIX}-itemAvatar`,
+    header: `${PREFIX}-header`,
+    listItem: `${PREFIX}-listItem`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.root}`]: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
     },
-    clientList: {
+
+    [`& .${classes.clientList}`]: {
         maxWidth: 800,
         margin: "auto",
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
     },
-    header: {
+
+    [`& .${classes.header}`]: {
         marginTop: theme.spacing(4),
         marginLeft: theme.spacing(2),
         marginBottom: theme.spacing(1),
     },
-    listItem: {
+
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray",
         padding: theme.spacing(),
-    },
+    }
 }));
 
 const ClientSelection = (props) => {
-    const classes = useStyles();
+
     const {selectedAccessPackage} = props;
     const clients = useSelector(state => state.client.clients);
     const accessPackages = useSelector(state => state.access_package.accessPackages);
@@ -81,7 +99,7 @@ const ClientSelection = (props) => {
     }
 
     return (
-        <div className={classes.root}>
+        <Root className={classes.root}>
             <List className={classes.clientList}>
                 <Typography variant="h4" className={classes.header}> Knytte tilgangspakken til klient
                 </Typography>
@@ -129,7 +147,7 @@ const ClientSelection = (props) => {
                 show={showWarning}
                 title={"Koble til klient"}/>
 
-        </div>
+        </Root>
     );
 };
 

@@ -1,19 +1,11 @@
 import React, {Component} from "react";
-import {
-    Avatar,
-    Card,
-    CardContent,
-    CardHeader,
-    Divider,
-    Grid,
-    Typography,
-    withStyles
-} from "@material-ui/core";
+import {styled} from "@mui/material/styles";
+import {Avatar, Card, CardContent, CardHeader, Divider, Grid, Typography,} from "@mui/material";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import AdapterIcon from "@material-ui/icons/Link";
-import ApiIcon from "@material-ui/icons/WebAsset";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
+import AdapterIcon from "@mui/icons-material/Link";
+import ApiIcon from "@mui/icons-material/WebAsset";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import {fetchAdapters} from "../../data/redux/dispatchers/adapter";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -23,26 +15,45 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import {withContext} from "../../data/context/withContext";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 
-const styles = theme => ({
-    root: {
+const PREFIX = 'Dashboard';
+
+const classes = {
+    styledDiv: `${PREFIX}-styledDiv`,
+    cardContent: `${PREFIX}-cardContent`,
+    cardLink: `${PREFIX}-cardLink`,
+    card: `${PREFIX}-card`,
+    cardHeader: `${PREFIX}-cardHeader`,
+    avatar: `${PREFIX}-avatar`
+};
+
+const StyledDiv = styled("div")((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.styledDiv}`]: {
         marginTop: theme.spacing(3),
         width: "100%",
         height: "100%"
     },
-    cardContent: {
+
+    [`& .${classes.cardContent}`]: {
         textAlign: "center"
     },
-    cardLink: {
+
+    [`& .${classes.cardLink}`]: {
         textDecoration: "none"
     },
-    card: {},
-    cardHeader: {},
-    avatar: {
+
+    [`& .${classes.card}`]: {},
+    [`& .${classes.cardHeader}`]: {},
+
+    [`& .${classes.avatar}`]: {
         margin: 10,
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
     }
-});
+}));
 
 class Dashboard extends Component {
     constructor(props) {
@@ -70,10 +81,10 @@ class Dashboard extends Component {
     };
 
     render() {
-        const {classes, clients, adapters, components} = this.props;
+        const { clients, adapters, components} = this.props;
         if (clients && adapters && components) {
             return (
-                <div className={classes.root}>
+                <StyledDiv className={classes.styledDiv}>
                     <Grid container spacing={10}>
                         <Grid item xs={12}>
                             <FeatureHelperText>
@@ -157,7 +168,7 @@ class Dashboard extends Component {
                             </Link>
                         </Grid>
                     </Grid>
-                </div>
+                </StyledDiv>
             );
         } else {
             return <LoadingProgress/>;
@@ -166,7 +177,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object
 };
 
 function mapStateToProps(state) {
@@ -188,7 +199,7 @@ function mapDispatchToProps(dispatch) {
     );
 }
 
-export default withStyles(styles)(
+export default (
     connect(
         mapStateToProps,
         mapDispatchToProps

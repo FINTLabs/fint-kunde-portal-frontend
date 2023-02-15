@@ -1,6 +1,6 @@
-import React from 'react';
-import TableCell from "@material-ui/core/TableCell";
-import {Checkbox, TableRow} from "@material-ui/core";
+import React from "react";
+import TableCell from "@mui/material/TableCell";
+import {Checkbox, TableRow} from "@mui/material";
 
 const EntityTable = (props) => {
     const {classes, entity, component, selectedAccessPackage, updateAccesses} = props;

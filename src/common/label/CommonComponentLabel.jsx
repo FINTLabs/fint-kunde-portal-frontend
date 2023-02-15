@@ -1,19 +1,26 @@
 import React from "react";
-import Chip from "@material-ui/core/Chip";
-import {withStyles} from "@material-ui/core";
-import Tooltip from "@material-ui/core/Tooltip";
+import { styled } from "@mui/material/styles";
+import { Chip, Tooltip} from "@mui/material";
+const PREFIX = 'CommonComponentLabel';
 
-const styles = theme => ({
-    chip: {
+const classes = {
+    chip: `${PREFIX}-chip`
+};
+
+const StyledTooltip = styled(Tooltip)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.chip}`]: {
         margin: theme.spacing(0.5),
     }
-});
+}));
 
 function CommonComponentLabel(props) {
-    const {classes} = props;
+    // const {classes} = props;
     return (
-
-        <Tooltip
+        <StyledTooltip
             placement="top"
             title="Dette er en felles løsning som ikke trenger adapter."
         >
@@ -23,8 +30,8 @@ function CommonComponentLabel(props) {
                 label="Felles"
                 className={classes.chip}
             />
-        </Tooltip>
+        </StyledTooltip>
     );
 }
 
-export default withStyles(styles)(CommonComponentLabel);
+export default (CommonComponentLabel);

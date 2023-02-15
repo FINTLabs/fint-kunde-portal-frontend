@@ -1,19 +1,30 @@
 import React from "react";
 import SwipeableViews from "react-swipeable-views";
-import AppBar from "@material-ui/core/AppBar";
-import { Tab, Tabs, withStyles } from "@material-ui/core";
+import AppBar from "@mui/material/AppBar";
+import { Tab, Tabs } from "@mui/material";
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import AssetTabAdapter from "./AssetTabAdapter";
 import AssetTabClient from "./AssetTabClient";
 import AssetTabGeneral from "./AssetTabGeneral";
+import {styled} from "@mui/material/styles";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AssetTabView';
+
+const classes = {
+  primaryAsset: `${PREFIX}-styledDiv`
+};
+
+const StyledDiv = styled('div')((
+    {
+      theme
+    }
+) => ({
+  [`& .${classes.styledDiv}`]: {
     backgroundColor: theme.palette.background.paper,
     width: "100%"
   }
-});
+}));
 
 class AssetTabView extends React.Component {
   handleChange = (event, value) => {
@@ -46,10 +57,10 @@ class AssetTabView extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
+    // const { classes, theme } = this.props;
 
     return (
-      <div className={classes.root}>
+      <StyledDiv className={classes.styledDiv}>
         <AppBar position="static" color="default">
           <Tabs
             value={this.state.value}
@@ -64,18 +75,19 @@ class AssetTabView extends React.Component {
           </Tabs>
         </AppBar>
         <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          // axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+            axis={"x"}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
         >
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AssetTabGeneral
               asset={this.props.asset}
               updateAssetState={this.props.updateAssetState}
             />
           </TabContainer>
 
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AssetTabAdapter
               asset={this.props.asset}
               notify={this.props.notify}
@@ -86,7 +98,7 @@ class AssetTabView extends React.Component {
             />
           </TabContainer>
 
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <AssetTabClient
               asset={this.state.asset}
               notify={this.props.notify}
@@ -96,18 +108,18 @@ class AssetTabView extends React.Component {
             />
           </TabContainer>
         </SwipeableViews>
-      </div>
+      </StyledDiv>
     );
   }
 }
 
 AssetTabView.propTypes = {
-  asset: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  asset: PropTypes.object,
+  classes: PropTypes.object,
+  theme: PropTypes.object,
   notify: PropTypes.func.isRequired,
   updateAssetState: PropTypes.func.isRequired,
   showUpdateButton: PropTypes.func.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(AssetTabView);
+export default (AssetTabView);

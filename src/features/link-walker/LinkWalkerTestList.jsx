@@ -1,51 +1,67 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import {styled} from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import ClearIcon from "@material-ui/icons/Clear";
-import DownloadReportIcon from "@material-ui/icons/GetApp";
+import {IconButton, Paper, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, Typography} from "@mui/material";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import ClearIcon from "@mui/icons-material/Clear";
+import DownloadReportIcon from "@mui/icons-material/GetApp";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import LinkWalkerTestView from "./LinkWalkerTestView";
 import TrafficLight from "../../common/status/TrafficLight";
-import Typography from "@material-ui/core/Typography";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
-import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'LinkWalkerTestList';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  table: `${PREFIX}-table`,
+  statusFailed: `${PREFIX}-statusFailed`,
+  statusRunning: `${PREFIX}-statusRunning`,
+  statusOk: `${PREFIX}-statusOk`,
+  button: `${PREFIX}-button`,
+  title: `${PREFIX}-title`,
+  help: `${PREFIX}-help`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     width: "90%",
     overflowX: "auto"
   },
-  table: {
+
+  [`& .${classes.table}`]: {
     minWidth: 700
   },
-  statusFailed: {
+
+  [`& .${classes.statusFailed}`]: {
     color: "red"
   },
-  statusRunning: {
+
+  [`& .${classes.statusRunning}`]: {
     color: "#f4a142"
   },
-  statusOk: {
+
+  [`& .${classes.statusOk}`]: {
     color: "green"
   },
-  button: {
+
+  [`& .${classes.button}`]: {
     margin: theme.spacing(1)
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1)
   },
-  help: {
+
+  [`& .${classes.help}`]: {
     margin: theme.spacing(1) / 2
   }
-});
+}));
 
 class LinkWalkerTestList extends Component {
   constructor(props) {
@@ -78,7 +94,7 @@ class LinkWalkerTestList extends Component {
           organisationName
         );
       } else {
-        this.props.notify("Oh shit, noe gikk galt!");
+        this.props.notify("Oh no, noe gikk galt!");
       }
     });
   };
@@ -93,9 +109,9 @@ class LinkWalkerTestList extends Component {
   };
 
   render() {
-    const { tests, classes } = this.props;
+    const { tests, } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <div className={classes.help}>
           <FeatureHelperText>
             En relasjonstest sjekker at alle relasjonene i en komponent virker.
@@ -170,14 +186,14 @@ class LinkWalkerTestList extends Component {
           test={this.state.test}
           organisationName={this.props.organisationName}
         />
-      </div>
+      </Root>
     );
   }
 }
 
 LinkWalkerTestList.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   tests: PropTypes.any.isRequired
 };
 
-export default withStyles(styles)(LinkWalkerTestList);
+export default (LinkWalkerTestList);

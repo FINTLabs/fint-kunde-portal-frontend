@@ -1,13 +1,25 @@
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import MenuItem from "@material-ui/core/MenuItem";
 import React from "react";
-import {makeStyles} from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import {
+    FormControl,
+    InputLabel,
+    Select,
+    OutlinedInput,
+    MenuItem
+} from "@mui/material";
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'OutlinedSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -16,31 +28,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function OutlinedSelector(props) {
-    const classes = useStyles();
+
     const {name, title, value, data, disabled = false} = props;
 
     const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [labelwidth, setLabelwidth] = React.useState(0);
     React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
-        <FormControl variant="outlined" className={classes.formControl} disabled={disabled}>
+        <StyledFormControl variant="outlined" className={classes.formControl} disabled={disabled}>
             <InputLabel ref={inputLabel} htmlFor={name}>
                 {title}
             </InputLabel>
             <Select
                 value={value}
                 onChange={props.onChange}
-                input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                input={<OutlinedInput name={name} id={name} label={title}/>}
             >
                 {data.map((type, i) => {
                     return (<MenuItem key={i} value={type.value}>{type.name}</MenuItem>);
                 })}
 
             </Select>
-        </FormControl>
+        </StyledFormControl>
     );
 
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {TextField} from "@material-ui/core";
+import {TextField} from "@mui/material";
 
 function ClientTabGeneral(props) {
     return (
         <div>
             <TextField
+                variant="standard"
                 autoFocus
                 name="shortDescription"
                 label="Kort beskrivelse"
@@ -15,6 +16,7 @@ function ClientTabGeneral(props) {
                 id={"shortDescriptionTextField"}
             />
             <TextField
+                variant="standard"
                 name="note"
                 label="Note"
                 multiline

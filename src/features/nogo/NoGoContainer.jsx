@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import NoGoMessage from "./NoGoMessage";
-import Grid from "../../../node_modules/@material-ui/core/Grid/Grid";
+import Grid from "../../../node_modules/@mui/material/Grid/Grid";
 
 class NoGoContainer extends Component {
   render() {
@@ -19,7 +19,7 @@ class NoGoContainer extends Component {
       buttonTitle = "Trykk her for å gå til Kundeportalen";
     }
     return (
-      <Grid container justify="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         <Grid item>
           <NoGoMessage
             message={message}

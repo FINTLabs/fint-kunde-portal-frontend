@@ -1,37 +1,45 @@
 import React, {useEffect, useRef, useState} from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import {makeStyles} from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput, IconButton } from "@mui/material";
 import PropTypes from "prop-types";
-import ClearIcon from '@material-ui/icons/Clear';
-import IconButton from "@material-ui/core/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
 
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'ResourceSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`,
+    menuItem: `${PREFIX}-menuItem`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     },
-    menuItem: {
+
+    [`& .${classes.menuItem}`]: {
         textTransform: "capitalize",
     }
 }));
+
 export default function ResourceSelector(props) {
 
-    const classes = useStyles();
+
     const {name, value, resources, disabled, required, error = false, onClear, component} = props;
 
     const inputLabel = useRef();
-    const [labelWidth, setLabelWidth] = useState(0);
+    const [labelwidth, setLabelwidth] = useState(0);
     useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+        setLabelwidth(inputLabel.current.offsetWidth);
     }, []);
 
     return (
-        <FormControl
+        <StyledFormControl
             disabled={disabled}
             variant="outlined"
             fullWidth
@@ -46,7 +54,7 @@ export default function ResourceSelector(props) {
                 className={classes.menuItem}
                 input={
                     <OutlinedInput
-                        labelWidth={labelWidth}
+                        label={"Ressurs"}
                         name={name}
                         id={name}
                         endAdornment={
@@ -80,8 +88,7 @@ export default function ResourceSelector(props) {
                 })}
             </Select>
 
-        </FormControl>
-
+        </StyledFormControl>
     );
 
 }

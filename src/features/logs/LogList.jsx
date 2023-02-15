@@ -1,29 +1,39 @@
 import React, {Component} from "react";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import LogIcon from "@material-ui/icons/Timeline";
-import {Box, Typography, withStyles} from "@material-ui/core";
+import {styled} from "@mui/material/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LogIcon from "@mui/icons-material/Timeline";
+import {Box, Typography, AccordionDetails, AccordionSummary, Accordion, Button, Divider} from "@mui/material";
 import moment from "moment";
 import LogEntry from "./LogEntry";
-import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 
-const styles = theme => ({
-    expansionPanelSummary: {
+const PREFIX = 'LogList';
+
+const classes = {
+    expansionPanelSummary: `${PREFIX}-expansionPanelSummary`,
+    expansionPanelBox: `${PREFIX}-expansionPanelBox`,
+    expansionPanelId: `${PREFIX}-expansionPanelId`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.expansionPanelSummary}`]: {
         display: "flex",
         flexDirection: "column",
     },
-    expansionPanelBox: {
+
+    [`& .${classes.expansionPanelBox}`]: {
         display: "flex",
         flexDirection: "row",
     },
-    expansionPanelId: {
+
+    [`& .${classes.expansionPanelId}`]: {
         display: "flex",
         flexDirection: "column",
-    },
-});
+    }
+}));
 
 class LogList extends Component {
     constructor(props, context) {
@@ -43,7 +53,7 @@ class LogList extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <Box w={1}>
+            <StyledBox w={1}>
                 {
                     this.distinct().length > 0 &&
                     <Box w={1} display='flex' justifyContent='flex-end' alignItems='center' m={1}>
@@ -111,9 +121,9 @@ class LogList extends Component {
                             </Accordion>
                         )
                 return null})}
-            </Box>
+            </StyledBox>
         );
     }
 }
 
-export default withStyles(styles)(LogList);
+export default (LogList);

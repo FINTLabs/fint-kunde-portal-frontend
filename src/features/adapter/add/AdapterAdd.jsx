@@ -1,22 +1,28 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { styled } from "@mui/material/styles";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { Add } from "@material-ui/icons";
+  Fab,
+  TextField,
+  Button
+} from "@mui/material";
+import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import AdapterApi from "../../../data/api/AdapterApi";
 import AssetApi from "../../../data/api/AssetApi";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'AdapterAdd';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -24,7 +30,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class AdapterAdd extends React.Component {
   updateAdapterState = event => {
@@ -113,9 +119,8 @@ class AdapterAdd extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -151,6 +156,7 @@ class AdapterAdd extends React.Component {
                 fullWidth
                 onChange={this.updateAdapterState}
                 id={"newAdapterShortDesc"}
+                variant="standard"
               />
               <TextField
                 name="note"
@@ -161,6 +167,7 @@ class AdapterAdd extends React.Component {
                 rows="4"
                 onChange={this.updateAdapterState}
                 id={"newAdapterNote"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
@@ -183,11 +190,11 @@ class AdapterAdd extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 AdapterAdd.propTypes = {};
 
-export default withStyles(styles)(AdapterAdd);
+export default (AdapterAdd);

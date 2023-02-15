@@ -1,30 +1,35 @@
-import React, {useState} from 'react';
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import {Avatar, DialogActions, ListItemAvatar, makeStyles} from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
+import React, {useState} from "react";
+import { styled } from "@mui/material/styles";
+import { DialogTitle, DialogContent, List, ListItem, ListItemText, Avatar, DialogActions, ListItemAvatar, Dialog, Button } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import LockIcon from "@material-ui/icons/LockOpen";
+import LockIcon from "@mui/icons-material/LockOpen";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
-import Button from "@material-ui/core/Button";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 
-const useStyles = makeStyles((theme) => ({
-    listItem: {
+const PREFIX = 'TemplateContainerDialog';
+
+const classes = {
+    listItem: `${PREFIX}-listItem`,
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledDialog = styled(Dialog)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray",
-        '&:first-child': {
+        '&:first-of-type': {
             borderTop: "1px dashed lightgray"
         },
         padding: theme.spacing(),
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.main
-    },
-
+    }
 }));
 
 const TemplateContainerDialog = (props) => {
@@ -35,7 +40,7 @@ const TemplateContainerDialog = (props) => {
     const accessPackages = useSelector(state => state.access_package.accessPackages);
     const warningMessageText = "Bekreft valget. Oppsettet på denne tilgangspakken vil endres til malen: " + pickedTemplate;
     const dispatch = useDispatch();
-    const classes = useStyles();
+
 
     function handlePickingTemplate(templateName) {
         setShowWarning(true);
@@ -68,7 +73,7 @@ const TemplateContainerDialog = (props) => {
     }
 
     return (
-        <Dialog
+        <StyledDialog
             open={templateSelectorOpen}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
@@ -106,7 +111,7 @@ const TemplateContainerDialog = (props) => {
                 onClose={handleTemplateChange}
                 message={warningMessageText}
                 title={"Endre til mal"}/>
-        </Dialog>
+        </StyledDialog>
     );
 };
 

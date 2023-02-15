@@ -7,11 +7,14 @@ describe('Testing adapters page', () => {
         cy.url().should('include', '/adapters');
     });
     it('Information about adapter should be available', () => {
+        cy.apiIntercept();
             cy.get("p").first().should('be.visible');
             //cy.get("p").first().contains("Ett adapter er påloggingsinformasjon");
         }
     );
     it('Adapter should show as expected', () => {
+        cy.apiIntercept();
+        // cy.goToHome();
             cy.get("#adapterList").should('be.visible');
         }
     );

@@ -1,5 +1,6 @@
 import React, {useContext, useState} from "react";
-import {Divider, List, makeStyles, Typography} from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import {Divider, List, Typography} from "@mui/material";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {useDispatch, useSelector} from "react-redux";
 import EditAccessPackageContainer from "./edit/EditAccessPackageContainer";
@@ -11,46 +12,73 @@ import SavedSuccessSnackbar from "./view/SavedSuccessSnackbar";
 import {setAccessPackageBeforeChanges, setSelectedForEditingPackage} from "../../data/redux/actions/access_package";
 import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
+const PREFIX = 'AccessPackageList';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    componentList: `${PREFIX}-componentList`,
+    title: `${PREFIX}-title`,
+    listItem: `${PREFIX}-listItem`,
+    itemAvatar: `${PREFIX}-itemAvatar`,
+    dialogButtons: `${PREFIX}-dialogButtons`,
+    buttonDeleteAccessPackage: `${PREFIX}-buttonDeleteAccessPackage`,
+    buttonDontDeleteAccessPackage: `${PREFIX}-buttonDontDeleteAccessPackage`,
+    dialogContent: `${PREFIX}-dialogContent`
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed. (done)
+const StyledDiv = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.root}`]: {
         display: "flex",
         justifyContent: "center"
     },
-    componentList: {
+
+    [`& .${classes.componentList}`]: {
         width: "75%"
     },
-    title: {
+
+    [`& .${classes.title}`]: {
         paddingLeft: theme.spacing(3),
         paddingBottom: theme.spacing(1)
     },
-    listItem: {
+
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray"
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
     },
-    dialogButtons: {
+
+    [`& .${classes.dialogButtons}`]: {
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
         alignSelf: "center"
     },
-    buttonDeleteAccessPackage: {
+
+    [`& .${classes.buttonDeleteAccessPackage}`]: {
         margin: theme.spacing(1),
         color: "#FFF",
         backgroundColor: theme.palette.primary.dark,
     },
-    buttonDontDeleteAccessPackage: {
+
+    [`& .${classes.buttonDontDeleteAccessPackage}`]: {
         margin: theme.spacing(1),
     },
-    dialogContent: {
+
+    [`& .${classes.dialogContent}`]: {
         display: "flex",
         flexDirection: "column"
     }
 }));
 
 const AccessPackageList = () => {
-    const classes = useStyles();
+
     const dispatch = useDispatch();
     const packages = useSelector(state => state.access_package.accessPackages);
     const oldAccessPackage = useSelector(state => state.access_package.selectedAccessPackageBeforeEdit);
@@ -149,7 +177,7 @@ const AccessPackageList = () => {
 
     if (packages) {
         return (
-            <div>
+            <StyledDiv>
                 <div className={classes.root}>
                     <div className={classes.componentList}>
                         <FeatureHelperText>
@@ -190,10 +218,10 @@ const AccessPackageList = () => {
                     <SavedSuccessSnackbar open={snackBarOpen} close={handleSnackBarClose}
                                           message={snackBarMessage}/>
                 </div>
-            </div>
+            </StyledDiv>
         );
     } else {
-        return (<></>);
+        return (<Root></Root>);
     }
 };
 export default AccessPackageList;

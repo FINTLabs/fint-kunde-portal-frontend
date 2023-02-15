@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import ComponentList from "./ComponentList";
 import { fetchComponents } from "../../data/redux/dispatchers/component";
@@ -10,10 +9,6 @@ import {
   unlinkComponentFromOrganisation
 } from "../../data/redux/dispatchers/organisation";
 import { withContext } from "../../data/context/withContext";
-
-const styles = () => ({
-  root: {}
-});
 
 class ComponentContainer extends React.Component {
   constructor(props) {
@@ -49,10 +44,9 @@ class ComponentContainer extends React.Component {
   }
 
   renderPosts() {
-    const { classes, components } = this.props;
-    //const components = this.getComponentsList();
+    const {  components } = this.props;
     return (
-      <div className={classes.root}>
+      <div>
         <ComponentList
           components={components}
           organisation={this.props.context.currentOrganisation}
@@ -88,7 +82,7 @@ function matchDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     matchDispatchToProps

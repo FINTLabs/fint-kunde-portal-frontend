@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
+import {createTheme, ThemeProvider} from "@mui/material/styles";
 import Main from "./main/Main";
 import {Provider} from "react-redux";
 import store from "./data/redux/store/configure-store";
@@ -8,8 +8,11 @@ import {CookiesProvider} from "react-cookie";
 import AppProvider from "./data/context/AppProvider";
 
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
+        background: {
+            default: '#fafafa',
+        },
         secondary: {
             light: '#7fb434',
             main: '#5FA202',
@@ -34,9 +37,9 @@ function App() {
         <Provider store={store}>
             <CookiesProvider>
                 <AppProvider>
-                    <MuiThemeProvider theme={theme}>
+                    <ThemeProvider theme={theme}>
                         <Main/>
-                    </MuiThemeProvider>
+                    </ThemeProvider>
                 </AppProvider>
             </CookiesProvider>
         </Provider>

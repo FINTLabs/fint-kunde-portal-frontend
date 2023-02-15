@@ -1,9 +1,7 @@
-import React from 'react';
-import {useTheme} from "@material-ui/core";
-import Chip from "@material-ui/core/Chip";
-import RolesIcon from "@material-ui/icons/LockOpenRounded";
+import React from "react";
+import { useTheme, Chip,  Box } from "@mui/material";
+import RolesIcon from "@mui/icons-material/LockOpenRounded";
 import PropTypes from "prop-types";
-import Box from "@material-ui/core/Box";
 
 const RoleTags = ({contactRoles, orgId, roleTypes}) => {
     const theme = useTheme();

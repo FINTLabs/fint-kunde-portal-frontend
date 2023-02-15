@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext} from "react";
 import {useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import {hasRoleInCurrentOrganisation} from "../../common/authorization/role-utilities";
 import AppContext from "../../data/context/AppContext";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import useFeatureEnabled from "../../common/feature-toggle/useFeatureEnabled";
 
 const Home = () => {

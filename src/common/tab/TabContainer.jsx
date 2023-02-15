@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 
 class TabContainer extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class TabContainer extends React.Component {
     return (
       <Typography
         component="div"
-        dir={this.props.dir}
         style={{ padding: 8 * 3 }}
       >
         {this.props.children}
@@ -22,8 +21,7 @@ class TabContainer extends React.Component {
 }
 
 TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  dir: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default TabContainer;

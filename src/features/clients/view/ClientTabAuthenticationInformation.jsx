@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
   Button,
@@ -7,47 +8,70 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  Tooltip,
-  withStyles
-} from "@material-ui/core";
-import ContentCopy from "@material-ui/icons/FileCopy";
+  Tooltip
+} from "@mui/material";
+import ContentCopy from "@mui/icons-material/FileCopy";
 import ClientApi from "../../../data/api/ClientApi";
 import * as PasswordGenerator from "generate-password";
-import GetSecretIcon from "@material-ui/icons/GetApp";
-import RefreshIcon from "@material-ui/icons/Refresh";
+import GetSecretIcon from "@mui/icons-material/GetApp";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { Link } from "react-router-dom";
 import { withContext } from "../../../data/context/withContext";
 import PropTypes from "prop-types";
 import WarningMessageBox from "../../../common/message-box/WarningMessageBox";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'ClientTabAuthenticationInformation';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  oauthSecret: `${PREFIX}-oauthSecret`,
+  auth: `${PREFIX}-auth`,
+  authSecret: `${PREFIX}-authSecret`,
+  close: `${PREFIX}-close`,
+  copyAllAuthButtonIcon: `${PREFIX}-copyAllAuthButtonIcon`,
+  gotoAssetButton: `${PREFIX}-gotoAssetButton`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     backgroundColor: theme.palette.background.paper,
     width: "100%"
   },
-  oauthSecret: {
-    width: "100%"
+
+  [`& .${classes.oauthSecret}`]: {
+    width: "100%",
+    padding: "10px"
   },
-  auth: {
+
+  [`& .${classes.auth}`]: {
     marginTop: "0px",
     marginBottom: "10px",
     padding: "10px"
   },
-  authSecret: {
-    width: "100%"
+
+  [`& .${classes.authSecret}`]: {
+    width: "100%",
+    padding: "10px"
   },
-  close: {
+
+  [`& .${classes.close}`]: {
     width: theme.spacing(4),
     height: theme.spacing(4)
   },
-  copyAllAuthButtonIcon: {
+
+  [`& .${classes.copyAllAuthButtonIcon}`]: {
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(2)
   },
-  gotoAssetButton: {
+
+  [`& .${classes.gotoAssetButton}`]: {
     marginTop: theme.spacing(1)
   }
-});
+}));
 
 class ClientTabAuthenticationInformation extends React.Component {
   constructor(props) {
@@ -127,9 +151,8 @@ class ClientTabAuthenticationInformation extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <WarningMessageBox
           show={this.state.askToResetPassword}
           message={this.state.message}
@@ -304,7 +327,7 @@ class ClientTabAuthenticationInformation extends React.Component {
             Kopier autentiseringsinformasjon
           </Button>
         </CopyToClipboard>
-      </div>
+      </Root>
     );
   }
 }
@@ -314,6 +337,6 @@ ClientTabAuthenticationInformation.propTypes = {
   notify: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(
+export default (
   withContext(ClientTabAuthenticationInformation)
 );

@@ -1,26 +1,23 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { CircularProgress, withStyles } from "@material-ui/core";
+import { CircularProgress } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const styles = theme => ({
-  progress: {
-    //margin: `0 ${theme.spacing(2)}px`,
-    position: "absolute",
-    top: "30%",
-    left: "50%",
-    marginRight: "-50%"
-    //transform: 'translate(-50%, -50%)'
-  }
-});
+const CustomCircularProgress = styled(CircularProgress)(({ theme }) => ({
+  position: "absolute",
+  top: "30%",
+  left: "50%",
+  marginRight: "-50%"
+}));
+
 
 class LoadingProgress extends React.Component {
   render() {
-    const { classes, color, size } = this.props;
+    const { color, size } = this.props;
 
     return (
-      <CircularProgress
+      <CustomCircularProgress
         color={color}
-        className={classes.progress}
         size={size}
       />
     );
@@ -38,4 +35,4 @@ LoadingProgress.defaultProps = {
   size: 125
 };
 
-export default withStyles(styles)(LoadingProgress);
+export default (LoadingProgress);

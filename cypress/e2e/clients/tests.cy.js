@@ -148,6 +148,7 @@ describe('Testing clients page', () => {
         cy.get("#addNewClientButton").click();
     });
     it('Confirm ok by snackbar', () => {
+        cy.apiIntercept();
         cy.get("#notifySnackbar").contains('Klienten ble opprettet');
     });
 });

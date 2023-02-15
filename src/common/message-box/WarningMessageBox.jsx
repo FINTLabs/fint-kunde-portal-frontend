@@ -1,25 +1,37 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { styled } from "@mui/material/styles";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
-} from "@material-ui/core";
+  DialogTitle,
+  Button
+} from "@mui/material";
 import PropTypes from "prop-types";
-import WarningIcon from "@material-ui/icons/Warning";
-import { withStyles } from "@material-ui/core";
+import WarningIcon from "@mui/icons-material/Warning";
 
-const styles = theme => ({
-  warningIcon: {
+const PREFIX = 'WarningMessageBox';
+
+const classes = {
+  warningIcon: `${PREFIX}-warningIcon`,
+  text: `${PREFIX}-text`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.warningIcon}`]: {
     color: theme.palette.primary.main,
     fontSize: "80px",
     float: "left",
     marginRight: theme.spacing(2)
   },
-  text: {}
-});
+
+  [`& .${classes.text}`]: {}
+}));
 
 class WarningMessageBox extends React.Component {
   handleClose = result => {
@@ -45,16 +57,20 @@ class WarningMessageBox extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          // onClose={this.handleClose}
+          onClose={(event, reason) => {
+            if (reason !== 'backdropClick') {
+              this.handleClose();
+            }
+          }}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           disableEscapeKeyDown
-          disableBackdropClick
+          // disableBackdropClick
         >
           <DialogTitle id="alert-dialog-title">{this.props.title}</DialogTitle>
           <DialogContent className={classes.content}>
@@ -85,7 +101,7 @@ class WarningMessageBox extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Root>
     );
   }
 }
@@ -101,4 +117,4 @@ WarningMessageBox.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired
 };
-export default withStyles(styles)(WarningMessageBox);
+export default (WarningMessageBox);

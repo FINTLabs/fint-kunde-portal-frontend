@@ -1,30 +1,44 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import {
   FormControl,
   FormHelperText,
   Input,
   InputLabel,
-  withStyles
-} from "@material-ui/core";
+    Grid,
+    Typography
+} from "@mui/material";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid/Grid";
-import Typography from "@material-ui/core/Typography/Typography";
 
-const styles = theme => ({
-  realm: {
+const PREFIX = 'UsernameValidationInput';
+
+const classes = {
+  realm: `${PREFIX}-realm`,
+  label: `${PREFIX}-label`,
+  input: `${PREFIX}-input`
+};
+
+const StyledFormControl = styled(FormControl)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.realm}`]: {
     width: "50%",
     display: "box",
     boxAlign: "center",
     fontSize: "1rem"
   },
-  label: {
+
+  [`& .${classes.label}`]: {
     width: "50%",
     position: "inherit"
   },
-  input: {
+
+  [`& .${classes.input}`]: {
     width: "50%"
   }
-});
+}));
 
 class UsernameValidationInput extends React.Component {
   onChangeUsername = event => {
@@ -48,9 +62,9 @@ class UsernameValidationInput extends React.Component {
   }
 
   render() {
-    const { name, title, realm, classes } = this.props;
+    const { name, title, realm, } = this.props;
     return (
-      <FormControl fullWidth error={!this.state.usernameValid} required>
+      <StyledFormControl fullWidth error={!this.state.usernameValid} required>
         <InputLabel className={classes.label} htmlFor={name}>
           {title}
         </InputLabel>
@@ -72,7 +86,7 @@ class UsernameValidationInput extends React.Component {
             ? ""
             : "Brukernavnet kan bare inneholde a-z, A-Z, 0-9, - og _. Det kan fra 3-128 tegn langt."}
         </FormHelperText>
-      </FormControl>
+      </StyledFormControl>
     );
   }
 }
@@ -87,4 +101,4 @@ UsernameValidationInput.propTypes = {
   title: PropTypes.string.isRequired,
   usernameIsValid: PropTypes.func.isRequired
 };
-export default withStyles(styles)(UsernameValidationInput);
+export default (UsernameValidationInput);

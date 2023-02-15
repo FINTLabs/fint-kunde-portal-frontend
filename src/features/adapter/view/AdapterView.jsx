@@ -1,17 +1,19 @@
 import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+} from "@mui/material";
 import AdapterTabView from "./AdapterTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
 
-const styles = () => ({});
+const PREFIX = 'AdapterView';
+const classes = {};
+const Root = styled('div')(() => ({}));
 
 class AdapterView extends React.Component {
   showUpdateButton = show => {
@@ -74,7 +76,7 @@ class AdapterView extends React.Component {
 
   render() {
     return (
-      <div>
+      <Root>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -119,7 +121,7 @@ class AdapterView extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
@@ -135,4 +137,4 @@ AdapterView.propTypes = {
   updateAdapter: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(AdapterView);
+export default (AdapterView);

@@ -1,21 +1,21 @@
 import React, {Component} from "react";
 import LogApi from "../../data/api/LogApi";
 import LogList from "./LogList";
-import {Box, Input, Typography} from "@material-ui/core";
+import {Box, Input, Typography} from "@mui/material";
 import {withContext} from "../../data/context/withContext";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import ComponentApi from "../../data/api/ComponentApi";
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@mui/material/IconButton";
 import LoadingProgress from "../../common/status/LoadingProgress";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import ClearIcon from '@material-ui/icons/Clear';
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
+import ClearIcon from "@mui/icons-material/Clear";
 import EntityApi from "../../data/api/EntityApi";
 import ResourceSelector from "../../common/test/ResourceSelector";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 
 class LogContainer extends Component {
 

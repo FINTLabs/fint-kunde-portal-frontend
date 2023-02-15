@@ -1,7 +1,7 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {
   createClient,
@@ -14,9 +14,15 @@ import ClientAdd from "./add/ClientAdd";
 import { withContext } from "../../data/context/withContext";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 
-const styles = () => ({
-  root: {}
-});
+const PREFIX = 'ClientsContainer';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')(() => ({
+  [`&.${classes.root}`]: {}
+}));
 
 class ClientsContainer extends React.Component {
   constructor(props) {
@@ -68,9 +74,8 @@ class ClientsContainer extends React.Component {
   }
 
   renderClients() {
-    const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -86,7 +91,7 @@ class ClientsContainer extends React.Component {
           notify={this.notify}
           afterAdd={this.afterAddClient}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -112,7 +117,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

@@ -1,22 +1,28 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { styled } from "@mui/material/styles";
 import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { Add } from "@material-ui/icons";
+  Fab,
+  TextField
+} from "@mui/material";
+import { Add } from "@mui/icons-material";
 import UsernameValidationInput from "../../../common/input-validation/UsernameValidationInput";
 import ClientApi from "../../../data/api/ClientApi";
 import AssetApi from "../../../data/api/AssetApi";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'ClientAdd';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -24,7 +30,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class ClientAdd extends React.Component {
   updateClientState = event => {
@@ -113,9 +119,8 @@ class ClientAdd extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -152,6 +157,7 @@ class ClientAdd extends React.Component {
                 fullWidth
                 onChange={this.updateClientState}
                 id={"newClientShortDesc"}
+                variant="standard"
               />
               <TextField
                 name="note"
@@ -162,6 +168,7 @@ class ClientAdd extends React.Component {
                 rows="4"
                 onChange={this.updateClientState}
                 id={"newClientNote"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
@@ -184,11 +191,11 @@ class ClientAdd extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 ClientAdd.propTypes = {};
 
-export default withStyles(styles)(ClientAdd);
+export default (ClientAdd);

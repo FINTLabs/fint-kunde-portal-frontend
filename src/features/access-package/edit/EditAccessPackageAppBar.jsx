@@ -1,10 +1,8 @@
-import React from 'react';
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar/AppBar";
+import React from "react";
+import { Toolbar, IconButton, Typography, Button, AppBar } from "@mui/material";
+
+import CloseIcon from "@mui/icons-material/Close";
+
 
 const EditAccessPackageAppBar = (props) => {
     const {classes, handleClose, handleSaveAccess, selectedAccessPackage} = props;

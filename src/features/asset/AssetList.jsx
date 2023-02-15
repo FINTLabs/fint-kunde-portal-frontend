@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   Divider,
@@ -8,40 +9,59 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import { Delete, Edit, InsertLink } from "@material-ui/icons";
+  Typography
+} from "@mui/material";
+import { Delete, Edit, InsertLink } from "@mui/icons-material";
 import AssetView from "./view/AssetView";
 import PropTypes from "prop-types";
 import { withContext } from "../../data/context/withContext";
 import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'AssetList';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  componentList: `${PREFIX}-componentList`,
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  primaryAsset: `${PREFIX}-primaryAsset`,
+  itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     display: "flex",
     justifyContent: "center"
   },
-  componentList: {
+
+  [`& .${classes.componentList}`]: {
     width: "75%"
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  primaryAsset: {
+
+  [`& .${classes.primaryAsset}`]: {
     borderBottom: "1px dashed lightgray",
     backgroundColor: theme.palette.grey[200]
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.light
   }
-});
+}));
 
 class AssetList extends Component {
   editAsset = asset => {
@@ -107,9 +127,8 @@ class AssetList extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <WarningMessageBox
           show={this.state.askToDeleteAsset}
           message={this.state.message}
@@ -179,7 +198,7 @@ class AssetList extends Component {
           onClose={this.onCloseEdit}
           updateAsset={this.updateAsset}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -188,4 +207,4 @@ AssetList.propTypes = {
   assets: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(withContext(AssetList));
+export default (withContext(AssetList));

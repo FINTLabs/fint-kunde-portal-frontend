@@ -1,8 +1,6 @@
-import React, {useContext, useState} from 'react';
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@material-ui/core";
+import React, {useContext, useState} from "react";
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,TextField,Button} from "@mui/material";
 import PackageNameValidationInput from "../../../common/input-validation/PackageIdValidationInput";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import AccessApi from "../../../data/api/AccessApi";
 import {fetchAccess} from "../../../data/redux/dispatchers/access_package";
 import AppContext from "../../../data/context/AppContext";
@@ -45,7 +43,7 @@ const AddAccessPackageForm = (props) => {
         >
             <DialogTitle id="form-dialog-title">Ny tilgangspakke</DialogTitle>
             <DialogContent>
-                <DialogContentText>
+                <DialogContentText sx={{pb:'5px'}}>
                     Vennligst fyll ut de obligatoriske feltene for å legge til ny
                     tilgangspakke.
                 </DialogContentText>
@@ -64,6 +62,7 @@ const AddAccessPackageForm = (props) => {
                     fullWidth
                     value={description}
                     onChange={updateDescription}
+                    variant="standard"
                 />
             </DialogContent>
             <DialogActions>

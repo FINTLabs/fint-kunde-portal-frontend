@@ -1,24 +1,31 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import { styled } from "@mui/material/styles";
 import {
+  Button,
+  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+  Fab,
+} from "@mui/material";
+
+import { Add } from "@mui/icons-material";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 import PropTypes from "prop-types";
 import ClientSelector from "../../common/test/ClientSelector";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import EnvironmentSelector from "../../common/test/EnvironmentSelector";
 
-const styles = () => ({
-  addButton: {
+const PREFIX = 'LinkWalkerAddTest';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`
+};
+
+const Root = styled('div')(() => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -26,7 +33,7 @@ const styles = () => ({
     right: 50,
     position: "fixed"
   }
-});
+}));
 
 class LinkWalkerAddTest extends React.Component {
   constructor(props) {
@@ -104,9 +111,9 @@ class LinkWalkerAddTest extends React.Component {
   };
 
   render() {
-    const { components, classes } = this.props;
+    const { components, } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -148,6 +155,7 @@ class LinkWalkerAddTest extends React.Component {
                 fullWidth
                 disabled={this.state.endpoint === ""}
                 onChange={this.handleChange}
+                variant="standard"
               />
 
               <ClientSelector
@@ -161,6 +169,7 @@ class LinkWalkerAddTest extends React.Component {
                   this.state.baseUrl === "" ||
                   this.state.endpoint === ""
                 }
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
@@ -182,13 +191,13 @@ class LinkWalkerAddTest extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 LinkWalkerAddTest.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   clients: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   fetchLinkWalkerTests: PropTypes.func.isRequired,
@@ -196,4 +205,4 @@ LinkWalkerAddTest.propTypes = {
   organisationName: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(LinkWalkerAddTest);
+export default (LinkWalkerAddTest);

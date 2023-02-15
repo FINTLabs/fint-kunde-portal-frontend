@@ -1,32 +1,46 @@
 import React, {Component} from "react";
-import {Divider, Grid, Typography, withStyles} from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import {Divider, Grid, Typography, Radio, RadioGroup, FormControlLabel, TextField, Button, Box} from "@mui/material";
 import PropTypes from "prop-types";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import {withContext} from "../../data/context/withContext";
 import ComponentApi from "../../data/api/ComponentApi";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import ZenDeskApi from "../../data/api/ZenDeskApi";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import OutlinedSelector from "./OutlinedSelector";
-import Box from "@material-ui/core/Box";
 import MeApi from "../../data/api/MeApi";
 import ReactPolling from "react-polling";
 import LoadingProgress from "../../common/status/LoadingProgress";
 
-const styles = theme => ({
-    root: {
+const PREFIX = 'SupportContainer';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    content: `${PREFIX}-content`,
+    ticketForm: `${PREFIX}-ticketForm`,
+    title: `${PREFIX}-title`,
+    component: `${PREFIX}-component`,
+    group: `${PREFIX}-group`,
+    buttons: `${PREFIX}-buttons`,
+    ticketType: `${PREFIX}-ticketType`
+};
+
+const StyledDiv = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.root}`]: {
         display: "flex",
         justifyContent: "center"
 
     },
-    content: {
+
+    [`& .${classes.content}`]: {
         width: "75%"
     },
-    ticketForm: {
+
+    [`& .${classes.ticketForm}`]: {
         border: "1px solid",
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
@@ -34,25 +48,30 @@ const styles = theme => ({
         borderRadius: theme.shape.borderRadius,
         borderColor: theme.palette.grey[400],
     },
-    title: {
+
+    [`& .${classes.title}`]: {
         paddingLeft: theme.spacing(0),
         paddingBottom: theme.spacing(1)
     },
-    component: {
+
+    [`& .${classes.component}`]: {
         display: "flex",
     },
-    group: {
+
+    [`& .${classes.group}`]: {
         marginBottom: theme.spacing(1),
     },
-    buttons: {
+
+    [`& .${classes.buttons}`]: {
         display: "flex",
         justifyContent: "flex-end",
     },
-    ticketType: {
+
+    [`& .${classes.ticketType}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     }
-});
+}));
 
 class SupportContainer extends Component {
 
@@ -266,7 +285,7 @@ class SupportContainer extends Component {
                     } else {
                         const {classes} = this.props;
                         return (
-                            <div className={classes.root}>
+                            <StyledDiv className={classes.root}>
                                 <div className={classes.content}>
                                     <Typography variant="h5" className={classes.title}>
                                         Sak #{this.state.newTicket.id} er opprettet
@@ -285,18 +304,18 @@ class SupportContainer extends Component {
                                         Opprett ny sak
                                     </Button>
                                 </div>
-                            </div>
+                            </StyledDiv>
                         );
                     }
                 }}
             />
-        )
+        );
     }
 
     renderTicketForm() {
-        const {classes} = this.props;
+        // const {classes} = this.props;
         return (
-            <div className={classes.root}>
+            <StyledDiv className={classes.root}>
                 <AutoHideNotification
                     showNotification={this.state.notify}
                     message={this.state.notifyMessage}
@@ -396,7 +415,7 @@ class SupportContainer extends Component {
                             margin="normal"
                             variant="outlined"
                             multiline
-                            rows={10}
+                            minRows={10}
                             fullWidth
                             required
                             error={this.state.descriptionError}
@@ -413,7 +432,7 @@ class SupportContainer extends Component {
                     </div>
 
                 </div>
-            </div>
+            </StyledDiv>
         );
     }
 
@@ -424,8 +443,8 @@ class SupportContainer extends Component {
 }
 
 SupportContainer.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object,
     context: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withContext(SupportContainer));
+export default (withContext(SupportContainer));

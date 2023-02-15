@@ -1,24 +1,44 @@
 import React from "react";
-import {FormControl, FormHelperText, Input, InputLabel, withStyles} from "@material-ui/core";
+import { styled } from "@mui/material/styles";
+import {
+    FormControl,
+    FormHelperText,
+    Input,
+    InputLabel,
+    Grid,
+    Typography
+} from "@mui/material";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid/Grid";
-import Typography from "@material-ui/core/Typography/Typography";
 
-const styles = theme => ({
-    realm: {
+const PREFIX = 'PackageIdValidationInput';
+
+const classes = {
+    realm: `${PREFIX}-realm`,
+    label: `${PREFIX}-label`,
+    input: `${PREFIX}-input`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.realm}`]: {
         width: "50%",
         display: "box",
         boxAlign: "center",
         fontSize: "1rem"
     },
-    label: {
+
+    [`& .${classes.label}`]: {
         width: "50%",
         position: "inherit"
     },
-    input: {
+
+    [`& .${classes.input}`]: {
         width: "50%"
     }
-});
+}));
 
 class PackageIdValidationInput extends React.Component {
     onChangeUsername = event => {
@@ -59,9 +79,9 @@ class PackageIdValidationInput extends React.Component {
     }
 
     render() {
-        const { name, title, realm, classes } = this.props;
+        const { name, title, realm, } = this.props;
         return (
-            <FormControl fullWidth error={!this.state.usernameValid} required>
+            <StyledFormControl fullWidth error={!this.state.usernameValid} required>
                 <InputLabel className={classes.label} htmlFor={name}>
                     {title}
                 </InputLabel>
@@ -82,7 +102,7 @@ class PackageIdValidationInput extends React.Component {
                         ? ""
                         : !this.state.nameMatchedOther ? "Navn er brukt i en annen tilgangspakke" :"Pakkenavn kan bare inneholde a-z, A-Z, 0-9, - og _. Det kan fra 3-128 tegn langt."}
                 </FormHelperText>
-            </FormControl>
+            </StyledFormControl>
         );
     }
 }
@@ -94,4 +114,4 @@ PackageIdValidationInput.propTypes = {
     packageNameIsValid: PropTypes.func.isRequired,
     packages: PropTypes.array.isRequired
 };
-export default withStyles(styles)(PackageIdValidationInput);
+export default (PackageIdValidationInput);

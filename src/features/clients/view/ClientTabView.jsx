@@ -1,28 +1,19 @@
 import React, {useState} from "react";
 import SwipeableViews from "react-swipeable-views";
-import AppBar from "@material-ui/core/AppBar";
-import {makeStyles, Tab, Tabs, useTheme} from "@material-ui/core";
+import AppBar from "@mui/material/AppBar";
+import { Tab, Tabs, useTheme} from "@mui/material";
 import TabContainer from "../../../common/tab/TabContainer";
 import PropTypes from "prop-types";
 import ClientTabComponent from "./ClientTabComponent";
 import ClientTabGeneral from "./ClientTabGeneral";
 import ClientTabAuthenticationInformation from "./ClientTabAuthenticationInformation";
 import ClientTabAccess from "./ClientTabAccess";
-import {createStyles} from "@material-ui/core/styles";
 import useFeatureEnabled from "../../../common/feature-toggle/useFeatureEnabled";
 import FeatureToggle from "../../../common/feature-toggle/FeatureToggle";
 
-const useStyles = makeStyles((theme) =>
-    createStyles({
-        root: {
-            backgroundColor: theme.palette.background.paper,
-            width: "100%"
-        }
-    }));
 
 const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) => {
     const [value, setValue] = useState(0);
-    const classes = useStyles();
     const theme = useTheme();
     const featureEnabled = useFeatureEnabled("access-packages");
 
@@ -41,7 +32,7 @@ const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) =>
 
 
     return (
-        <div className={classes.root}>
+        <div>
             <AppBar position="static" color="inherit">
                 <Tabs
                     value={value}

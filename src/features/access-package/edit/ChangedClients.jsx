@@ -1,25 +1,33 @@
-import React from 'react';
-import {Typography} from "@material-ui/core";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
-import {makeStyles} from "@material-ui/core/styles";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import AddIcon from "@material-ui/icons/AddCircleRounded";
-import RemoveIcon from "@material-ui/icons/RemoveCircleRounded";
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Typography, ListItem, ListItemText, List,ListItemIcon } from "@mui/material";
+import AddIcon from "@mui/icons-material/AddCircleRounded";
+import RemoveIcon from "@mui/icons-material/RemoveCircleRounded";
 
-const useStyles = makeStyles(theme => ({
-    addingText: {
+const PREFIX = 'ChangedClients';
+
+const classes = {
+    addingText: `${PREFIX}-addingText`,
+    removingText: `${PREFIX}-removingText`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.addingText}`]: {
         color: "green",
     },
-    removingText: {
+
+    [`& .${classes.removingText}`]: {
         color: "red",
     }
 }));
 
 const ChangedClients = (props) => {
     const {oldAccessPackage, newAccessPackage} = props;
-    const classes = useStyles();
+
     const clientList = [];
 
     function addDissimilarityToList(array, array2, list) {
@@ -41,7 +49,7 @@ const ChangedClients = (props) => {
 
 
     return (
-        <div>
+        <Root>
             <List dense>
                 {clientList.length > 0 ? <Typography>Klienter</Typography> : null}
                 {clientList.map(entry => {
@@ -59,7 +67,7 @@ const ChangedClients = (props) => {
                     )
                 })}
             </List>
-        </div>
+        </Root>
     );
 };
 

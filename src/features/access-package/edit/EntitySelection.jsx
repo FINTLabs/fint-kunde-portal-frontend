@@ -1,44 +1,61 @@
-import React from 'react';
-import {Box, TableBody} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Box, TableBody, Typography, Table, TableHead } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";
 import SelectAllEntitiesCheckboxes from "./SelectAllEntitiesCheckboxes";
 import EntityTable from "./EntityTable";
 import TableHeader from "./EntityTableHeader";
 
-const useStyles = makeStyles(theme => ({
-    accessBox: {
+const PREFIX = 'EntitySelection';
+
+const classes = {
+    accessBox: `${PREFIX}-accessBox`,
+    tableRow: `${PREFIX}-tableRow`,
+    icon: `${PREFIX}-icon`,
+    header: `${PREFIX}-header`,
+    chooseAllRow: `${PREFIX}-chooseAllRow`,
+    customWidth: `${PREFIX}-customWidth`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.accessBox}`]: {
         marginTop: theme.spacing(2),
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3),
         marginBottom: theme.spacing(2),
     },
-    tableRow: {
+
+    [`& .${classes.tableRow}`]: {
         '&:nth-of-type(even)': {
             backgroundColor: theme.palette.grey["100"],
         },
     },
-    icon: {
+
+    [`& .${classes.icon}`]: {
         margin: theme.spacing(1),
         verticalAlign: "middle",
     },
-    header: {
+
+    [`& .${classes.header}`]: {
         marginTop: theme.spacing(4),
     },
-    chooseAllRow: {
+
+    [`& .${classes.chooseAllRow}`]: {
         backgroundColor: theme.palette.secondary.light,
     },
-    customWidth: {
+
+    [`& .${classes.customWidth}`]: {
         maxWidth: 500,
-    },
+    }
 }));
 
 const EntitySelection = (props) => {
-    const classes = useStyles();
+
     const {selectedAccessPackage} = props;
     const dispatch = useDispatch();
     const accessPackages = useSelector(state => state.access_package.accessPackages);
@@ -105,7 +122,7 @@ const EntitySelection = (props) => {
     }
 
     return (
-        <Box width={1} mt={2} ml={3} mr={20}>
+        <StyledBox width={1} mt={2} ml={3} mr={20}>
 
             <Box className={classes.accessBox}>
                 <Typography variant="h4" className={classes.header}>Tilganger</Typography>
@@ -139,7 +156,7 @@ const EntitySelection = (props) => {
                     </TableBody>
                 </Table>
             </Box>
-        </Box>
+        </StyledBox>
     );
 };
 

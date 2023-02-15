@@ -1,31 +1,33 @@
 import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import { styled } from "@mui/material/styles";
+import { FormControl, InputLabel, Select, MenuItem, OutlinedInput } from "@mui/material";
 import PropTypes from "prop-types";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import {makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
-    formControl: {
+const PREFIX = 'EnvironmentSelector';
+
+const classes = {
+    formControl: `${PREFIX}-formControl`
+};
+
+const StyledFormControl = styled(FormControl)((
+    {
+        theme
+    }
+) => ({
+    [`&.${classes.formControl}`]: {
         margin: theme.spacing(1),
         minWidth: 120,
     }
 }));
 
 export default function EnvironmentSelector(props) {
-    const classes = useStyles();
+
     const {name, value} = props;
 
     const inputLabel = React.useRef();
-    const [labelWidth, setLabelWidth] = React.useState(0);
-    React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
-    }, []);
 
     return (
-        <FormControl
+        <StyledFormControl
             fullWidth
             required
             variant="outlined"
@@ -36,7 +38,7 @@ export default function EnvironmentSelector(props) {
                 id={"enviromentSelector"}
                 value={value}
                 onChange={props.handleChange}
-                input={<OutlinedInput labelWidth={labelWidth} name={name} id={name}/>}
+                input={<OutlinedInput label={"Miljø"} name={name} id={name}/>}
             >
                 <MenuItem value="https://play-with-fint.felleskomponent.no">
                     Play-With-FINT
@@ -46,7 +48,7 @@ export default function EnvironmentSelector(props) {
                     Produksjon
                 </MenuItem>
             </Select>
-        </FormControl>
+        </StyledFormControl>
     );
 
 }

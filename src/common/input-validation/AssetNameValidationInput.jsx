@@ -3,12 +3,11 @@ import {
   FormControl,
   FormHelperText,
   Input,
-  InputLabel,
-  withStyles
-} from "@material-ui/core";
+  InputLabel
+} from "@mui/material";
+
 import PropTypes from "prop-types";
 
-const styles = () => {};
 
 class AssetNameValidationInput extends React.Component {
   onChangeUsername = event => {
@@ -35,10 +34,10 @@ class AssetNameValidationInput extends React.Component {
     const { name, title, className } = this.props;
     return (
       <FormControl
-        fullWidth
-        error={!this.state.assetNameValid}
-        className={className}
-        required
+          sx={{width:"55%"}}
+          error={!this.state.assetNameValid}
+          className={className}
+          required
       >
         <InputLabel htmlFor={name}>{title}</InputLabel>
         <Input
@@ -65,4 +64,4 @@ AssetNameValidationInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   assetNameIsValid: PropTypes.func.isRequired
 };
-export default withStyles(styles)(AssetNameValidationInput);
+export default AssetNameValidationInput;

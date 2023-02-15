@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { styled } from "@mui/material/styles";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import ComponentApi from "../../data/api/ComponentApi";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import ComponentSelector from "../../common/test/ComponentSelector";
-import Typography from "@material-ui/core/Typography";
+import { Typography, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import EnvironmentSelector from "../../common/test/EnvironmentSelector";
 import ClientSelector from "../../common/test/ClientSelector";
 import PropTypes from "prop-types";
@@ -11,42 +12,57 @@ import { withContext } from "../../data/context/withContext";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchClients } from "../../data/redux/dispatchers/client";
-import { withStyles } from "@material-ui/core";
 import BasicTestApi from "../../data/api/BasicTestApi";
 import BasicTestRunButton from "./BasicTestRunButton";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import TrafficLight from "../../common/status/TrafficLight";
 import HealthTestApi from "../../data/api/HealthTestApi";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
 import TestAuthApi from "../../data/api/TestAuthApi";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'BasicTestContainer';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  testForm: `${PREFIX}-testForm`,
+  formControls: `${PREFIX}-formControls`,
+  formActions: `${PREFIX}-formActions`,
+  healthStatusLight: `${PREFIX}-healthStatusLight`,
+  healthStatusMessage: `${PREFIX}-healthStatusMessage`,
+  resourceCell: `${PREFIX}-resourceCell`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`&.${classes.root}`]: {
     display: "flex",
     justifyContent: "center"
   },
-  testForm: {
+
+  [`& .${classes.testForm}`]: {
     width: "75%"
   },
-  formControls: {
+
+  [`& .${classes.formControls}`]: {
     marginTop: theme.spacing(1)
   },
-  formActions: {
+
+  [`& .${classes.formActions}`]: {
     display: "inline-block",
     marginTop: theme.spacing(2),
     borderBottom: "lightgray dotted 1px",
     width: "100%"
   },
-  healthStatusLight: {},
-  healthStatusMessage: {},
-  resourceCell: {
+
+  [`& .${classes.healthStatusLight}`]: {},
+  [`& .${classes.healthStatusMessage}`]: {},
+
+  [`& .${classes.resourceCell}`]: {
     textTransform: "capitalize"
   }
-});
+}));
 
 class BasicTestContainer extends Component {
   constructor(props) {
@@ -195,10 +211,9 @@ class BasicTestContainer extends Component {
 
   renderContainer() {
     const { testCases, healthResult } = this.state;
-    const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -337,7 +352,7 @@ class BasicTestContainer extends Component {
             </Table>
           </div>
         </div>
-      </div>
+      </Root>
     );
   }
 }
@@ -367,7 +382,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

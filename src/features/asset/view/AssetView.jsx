@@ -1,12 +1,11 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+} from "@mui/material";
 import AssetTabView from "./AssetTabView";
 import AutoHideNotification from "../../../common/notification/AutoHideNotification";
 import { bindActionCreators } from "redux";
@@ -14,8 +13,6 @@ import { fetchAdapters } from "../../../data/redux/dispatchers/adapter";
 import { connect } from "react-redux";
 import { withContext } from "../../../data/context/withContext";
 import { fetchClients } from "../../../data/redux/dispatchers/client";
-
-const styles = () => ({});
 
 class AssetView extends React.Component {
   showUpdateButton = show => {
@@ -154,7 +151,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

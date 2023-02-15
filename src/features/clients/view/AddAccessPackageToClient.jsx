@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import {List} from "@material-ui/core";
+import { List } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import AppContext from "../../../data/context/AppContext";
 import {updateAccessPackages} from "../../../data/redux/actions/access_package";

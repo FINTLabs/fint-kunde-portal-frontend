@@ -1,12 +1,5 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle
-} from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   IconButton,
@@ -16,18 +9,40 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  withStyles,
-  Fab
-} from "@material-ui/core";
-import ContactIcon from "@material-ui/icons/Person";
-import AddIconCircle from "@material-ui/icons/AddCircle";
+  Fab,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button
+} from "@mui/material";
+import { Add } from "@mui/icons-material";
+import ContactIcon from "@mui/icons-material/Person";
+import AddIconCircle from "@mui/icons-material/AddCircle";
 import OrganisationApi from "../../../data/api/OrganisationApi";
 import InformationMessageBox from "../../../common/message-box/InformationMessageBox";
 import PropTypes from "prop-types";
 import { withContext } from "../../../data/context/withContext";
 
-const styles = theme => ({
-  addButton: {
+const PREFIX = 'ContactAddExisting';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`,
+  root: `${PREFIX}-root`,
+  dialog: `${PREFIX}-dialog`,
+  contactList: `${PREFIX}-contactList`,
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  itemAvatar: `${PREFIX}-itemAvatar`,
+  searchInput: `${PREFIX}-searchInput`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -35,31 +50,37 @@ const styles = theme => ({
     right: 50,
     position: "fixed"
   },
-  root: {},
-  dialog: {
+
+  [`&.${classes.root}`]: {},
+
+  [`& .${classes.dialog}`]: {
     height: "75%"
   },
-  contactList: {
+
+  [`& .${classes.contactList}`]: {
     marginRight: theme.spacing(2),
     marginLeft: theme.spacing(2)
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.main
   },
 
-  searchInput: {
+  [`& .${classes.searchInput}`]: {
     margin: theme.spacing(1),
     width: "80%"
   }
-});
+}));
 
 class ContactAddExisting extends React.Component {
   handleCancel = () => {
@@ -149,9 +170,8 @@ class ContactAddExisting extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <InformationMessageBox
           show={this.state.askToAddContact}
           message={this.state.message}
@@ -227,16 +247,16 @@ class ContactAddExisting extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Root>
     );
   }
 }
 
 ContactAddExisting.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   contacts: PropTypes.any.isRequired,
   fetchTechnicalContacts: PropTypes.any.isRequired,
   notify: PropTypes.any.isRequired
 };
 
-export default withStyles(styles)(withContext(ContactAddExisting));
+export default (withContext(ContactAddExisting));

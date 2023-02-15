@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
-import { withStyles } from "@material-ui/core";
 import { withContext } from "../../data/context/withContext";
 import LinkWalkerTestList from "./LinkWalkerTestList";
 import { connect } from "react-redux";
@@ -11,10 +10,6 @@ import LoadingProgress from "../../common/status/LoadingProgress";
 import LinkWalkerAddTest from "./LinkWalkerAddTest";
 import { fetchClients } from "../../data/redux/dispatchers/client";
 import ComponentApi from "../../data/api/ComponentApi";
-
-const styles = () => ({
-  root: {}
-});
 
 class LinkWalkerContainer extends Component {
   constructor(props) {
@@ -79,9 +74,8 @@ class LinkWalkerContainer extends Component {
   }
 
   renderTestList() {
-    const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <div>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -111,7 +105,7 @@ LinkWalkerContainer.defaultProps = {
 };
 
 LinkWalkerContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   clients: PropTypes.array,
   context: PropTypes.object.isRequired,
   fetchClients: PropTypes.func.isRequired,
@@ -136,7 +130,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

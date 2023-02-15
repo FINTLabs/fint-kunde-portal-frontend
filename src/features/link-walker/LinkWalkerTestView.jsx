@@ -1,40 +1,54 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { styled } from "@mui/material/styles";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  withStyles
-} from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+    Typography,
+    Divider
+} from "@mui/material";
 import PropTypes from "prop-types";
 import TrafficLight from "../../common/status/TrafficLight";
-import Typography from "../../../node_modules/@material-ui/core/Typography/Typography";
-import Divider from "../../../node_modules/@material-ui/core/Divider/Divider";
 import CvsReport from "./CvsReport";
 import downloadCsv from "download-csv";
 import dateFormat from "dateformat";
 import LinkWalkerApi from "../../data/api/LinkWalkerApi";
 
-const styles = theme => ({
-  root: {
+const PREFIX = 'LinkWalkerTestView';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  table: `${PREFIX}-table`,
+  tableHeader: `${PREFIX}-tableHeader`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     width: "100%",
     overflowX: "auto"
   },
-  table: {
+
+  [`& .${classes.table}`]: {
     minWidth: "100%"
   },
-  tableHeader: {
+
+  [`& .${classes.tableHeader}`]: {
     fontWeight: "bold",
     fontStyle: "italic"
   }
-});
+}));
 
 class LinkWalkerTestView extends React.Component {
   handleClose = () => {
@@ -80,11 +94,10 @@ class LinkWalkerTestView extends React.Component {
     if (this.props.test !== undefined) {
       return this.renderTestView();
     }
-    return <div />;
+    return <Root />;
   }
 
   renderTestView() {
-    const { classes } = this.props;
     const test = Object.assign({}, this.props.test);
     const relations = Object.entries(test.relations);
     return (
@@ -209,10 +222,10 @@ class LinkWalkerTestView extends React.Component {
 }
 
 LinkWalkerTestView.propTypes = {
-  classes: PropTypes.any.isRequired,
+  classes: PropTypes.any,
   closeTestView: PropTypes.any.isRequired,
   showLinkWalkerTestView: PropTypes.any.isRequired,
   test: PropTypes.any
 };
 
-export default withStyles(styles)(LinkWalkerTestView);
+export default (LinkWalkerTestView);

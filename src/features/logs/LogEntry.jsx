@@ -1,21 +1,27 @@
 import React, {Component} from "react";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import { styled } from "@mui/material/styles";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import moment from "moment";
 import LogApi from "../../data/api/LogApi";
-import Box from "@material-ui/core/Box";
-import {Typography, withStyles} from "@material-ui/core";
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 
+const PREFIX = 'LogEntry';
 
-const styles = theme => ({
-    tableMessage: {
+const classes = {
+    tableMessage: `${PREFIX}-tableMessage`
+};
+
+const StyledBox = styled(Box)((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.tableMessage}`]: {
         maxWidth: 120,
         overflow: "auto"
     }
-});
+}));
 
 class LogEntry extends Component {
     constructor(props) {
@@ -33,9 +39,8 @@ class LogEntry extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         return (
-            <Box width={1}>
+            <StyledBox width={1}>
                 {this.state.items.length>0 && <Typography variant={"body2"}
                                                           color={"primary"}>ID: {this.state.items[0].corrId}</Typography>}
                 <Table size="small" aria-label="a dense table">
@@ -61,10 +66,10 @@ class LogEntry extends Component {
                         ))}
                     </TableBody>
                 </Table>
-            </Box>
+            </StyledBox>
         );
     }
 }
 LogEntry.propTypes = {};
 
-export default withStyles(styles)(LogEntry);
+export default (LogEntry);

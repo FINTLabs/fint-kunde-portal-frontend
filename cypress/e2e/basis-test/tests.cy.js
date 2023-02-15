@@ -12,6 +12,7 @@ describe('Testing basis-test page', () => {
         }
     );
     it('Component list should have 5 items', () => {
+        cy.apiIntercept();
             cy.get("#componentSelector").click();
             cy.get("li")
                 .should(
@@ -56,19 +57,21 @@ describe('Testing basis-test page', () => {
         cy.get("#notifySnackbar").contains("Testen ble startet");
     });
     it('Health status should be OK', () => {
-        cy.get("#basisTestTooltip")
-            .first()
-            .find("span")
-            .invoke('attr', 'title')
-            .should('contain', 'OK');
+        cy.apiIntercept();
+        // cy.get("#basisTestTooltip")
+        cy.get(':nth-child(1) > .MuiTable-root > .MuiTableBody-root > .MuiTableRow-root > .MuiTableCell-sizeMedium > #basisTestTooltip > .TrafficLight-ok').should("be.visible")
+            // .first()
+            // .find("span")
+            // .invoke('attr', 'title')
+            // .should('contain', 'OK');
     });
-    it('Health status should be OK', () => {
-        cy.get("#basisTestTooltip")
-            .first()
-            .find("span")
-            .invoke('attr', 'title')
-            .should('contain', 'OK');
-    });
+    // it('Health status should be OK', () => {
+    //     cy.get("#basisTestTooltip")
+    //         .first()
+    //         .find("span")
+    //         .invoke('attr', 'title')
+    //         .should('contain', 'OK');
+    // });
     it('Health table is visible', () => {
         cy.get("#healthTable").should("be.visible");
     });

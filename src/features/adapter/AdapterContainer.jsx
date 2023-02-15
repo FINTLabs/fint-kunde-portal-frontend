@@ -1,7 +1,7 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withStyles } from "@material-ui/core";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {
   createAdapter,
@@ -14,9 +14,15 @@ import AdapterAdd from "./add/AdapterAdd";
 import { withContext } from "../../data/context/withContext";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 
-const styles = () => ({
-  root: {}
-});
+const PREFIX = 'AdapterContainer';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('div')(() => ({
+  [`&.${classes.root}`]: {}
+}));
 
 class AdapterContainer extends React.Component {
   constructor(props) {
@@ -68,9 +74,8 @@ class AdapterContainer extends React.Component {
   }
 
   renderAdapters() {
-    const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Root className={classes.root}>
         <AutoHideNotification
           showNotification={this.state.notify}
           message={this.state.notifyMessage}
@@ -87,7 +92,7 @@ class AdapterContainer extends React.Component {
           notify={this.notify}
           afterAdd={this.afterAddAdapter}
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -113,7 +118,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

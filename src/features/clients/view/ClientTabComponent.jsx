@@ -1,4 +1,5 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import {
   Avatar,
   List,
@@ -6,10 +7,9 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
-  Typography,
-  withStyles
-} from "@material-ui/core";
-import ComponentIcon from "@material-ui/icons/WebAsset";
+  Typography
+} from "@mui/material";
+import ComponentIcon from "@mui/icons-material/WebAsset";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchComponents } from "../../../data/redux/dispatchers/component";
@@ -26,19 +26,33 @@ import AddButton from "../../../common/button/AddButton";
 import TestAuthApi from "../../../data/api/TestAuthApi";
 import Sort from "../../../common/utils/Sort";
 
-const styles = theme => ({
-  title: {
+const PREFIX = 'ClientTabComponent';
+
+const classes = {
+  title: `${PREFIX}-title`,
+  listItem: `${PREFIX}-listItem`,
+  itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const StyledDiv = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.title}`]: {
     paddingLeft: theme.spacing(3),
     paddingBottom: theme.spacing(1)
   },
-  listItem: {
+
+  [`& .${classes.listItem}`]: {
     borderBottom: "1px dashed lightgray"
   },
-  itemAvatar: {
+
+  [`& .${classes.itemAvatar}`]: {
     color: "#fff",
     backgroundColor: theme.palette.secondary.main
   }
-});
+}));
 
 class ClientTabComponent extends React.Component {
   askToUnLinkComponent = component => {
@@ -169,11 +183,10 @@ class ClientTabComponent extends React.Component {
   }
 
   renderComponents() {
-    const { classes } = this.props;
     const organisationComponents = this.getOrganisationComponents();
     if (organisationComponents.length > 0) {
       return (
-        <div>
+        <StyledDiv>
           <WarningMessageBox
             show={this.state.askUnLink}
             message={this.state.message}
@@ -212,7 +225,7 @@ class ClientTabComponent extends React.Component {
               </ListItem>
             ))}
           </List>
-        </div>
+        </StyledDiv>
       );
     } else {
       return (
@@ -241,7 +254,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default withStyles(styles)(
+export default (
   connect(
     mapStateToProps,
     mapDispatchToProps

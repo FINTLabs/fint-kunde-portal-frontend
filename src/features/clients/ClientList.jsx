@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import {
     Avatar,
@@ -9,11 +10,10 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography,
-    withStyles
-} from "@material-ui/core";
-import {Delete, Edit} from "@material-ui/icons";
-import ClientIcon from "@material-ui/icons/ImportantDevices";
+    Typography
+} from "@mui/material";
+import {Delete, Edit} from "@mui/icons-material";
+import ClientIcon from "@mui/icons-material/ImportantDevices";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import ClientView from "./view/ClientView";
 import {withContext} from "../../data/context/withContext";
@@ -21,26 +21,44 @@ import FeatureHelperText from "../../common/help/FeatureHelperText";
 import WarningMessageBox from "../../common/message-box/WarningMessageBox";
 import Sort from "../../common/utils/Sort";
 
-const styles = theme => ({
-    root: {
+const PREFIX = 'ClientList';
+
+const classes = {
+    styledDiv: `${PREFIX}-root`,
+    componentList: `${PREFIX}-componentList`,
+    title: `${PREFIX}-title`,
+    listItem: `${PREFIX}-listItem`,
+    itemAvatar: `${PREFIX}-itemAvatar`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.root}`]: {
         display: "flex",
         justifyContent: "center"
     },
-    componentList: {
+
+    [`& .${classes.componentList}`]: {
         width: "75%"
     },
-    title: {
+
+    [`& .${classes.title}`]: {
         paddingLeft: theme.spacing(3),
         paddingBottom: theme.spacing(1)
     },
-    listItem: {
+
+    [`& .${classes.listItem}`]: {
         borderBottom: "1px dashed lightgray"
     },
-    itemAvatar: {
+
+    [`& .${classes.itemAvatar}`]: {
         color: "#fff",
         backgroundColor: theme.palette.secondary.light
     }
-});
+}));
 
 class ClientList extends Component {
     editClient = client => {
@@ -106,7 +124,7 @@ class ClientList extends Component {
     }
 
     render() {
-        const {classes} = this.props;
+        // const {classes} = this.props;
         const clients = this.props.clients.sort(Sort.alphabetically);
 
         return (
@@ -121,7 +139,10 @@ class ClientList extends Component {
                     message={this.state.message}
                     onClose={this.onCloseDelete}
                 />
-                <div className={classes.root}>
+                <Root sx={{
+                    display: "flex",
+                    justifyContent: "center"
+                }}>
                     <div className={classes.componentList}>
                         <FeatureHelperText>
                             <p>
@@ -171,7 +192,7 @@ class ClientList extends Component {
                             ))}
                         </List>
                     </div>
-                </div>
+                </Root>
                 <ClientView
                     open={this.state.open}
                     client={this.state.clientToEdit}
@@ -187,4 +208,4 @@ ClientList.propTypes = {
     clients: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(withContext(ClientList));
+export default (withContext(ClientList));

@@ -1,15 +1,24 @@
 import React from "react";
+import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import { TextField } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
+import { TextField } from "@mui/material";
+const PREFIX = 'AssetTabGeneral';
 
-const styles = theme => ({
-  primaryAsset: {
+const classes = {
+  primaryAsset: `${PREFIX}-primaryAsset`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.primaryAsset}`]: {
     backgroundColor: theme.palette.secondary.light,
     padding: theme.spacing(1),
     marginBottom: theme.spacing(1)
   }
-});
+}));
 
 class AssetTabGeneral extends React.Component {
   constructor(props) {
@@ -18,10 +27,9 @@ class AssetTabGeneral extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
 
     return (
-      <div>
+      <Root>
         {this.props.asset.primaryAsset === true && (
           <div className={classes.primaryAsset}>PRIMÆR RESSURS</div>
         )}
@@ -32,6 +40,7 @@ class AssetTabGeneral extends React.Component {
           value={this.props.asset.assetId}
           disabled
           fullWidth
+          variant="standard"
         />
         <TextField
           autoFocus
@@ -41,6 +50,7 @@ class AssetTabGeneral extends React.Component {
           onChange={this.props.updateAssetState}
           value={this.props.asset.description}
           id={"assetDescriptionTextField"}
+          variant="standard"
         />
         <TextField
           name="name"
@@ -49,8 +59,9 @@ class AssetTabGeneral extends React.Component {
           value={this.props.asset.name}
           disabled
           fullWidth
+          variant="standard"
         />
-      </div>
+      </Root>
     );
   }
 }
@@ -60,4 +71,4 @@ AssetTabGeneral.propTypes = {
   updateAssetState: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(AssetTabGeneral);
+export default (AssetTabGeneral);

@@ -1,21 +1,34 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  withStyles,
   Fab
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { Add } from "@material-ui/icons";
+} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { Add } from "@mui/icons-material";
 import { withContext } from "../../data/context/withContext";
 import AssetNameValidationInput from "../../common/input-validation/AssetNameValidationInput";
 
-const styles = theme => ({
-  addButton: {
+const PREFIX = 'AssetAdd';
+
+const classes = {
+  addButton: `${PREFIX}-addButton`,
+  assetName: `${PREFIX}-assetName`,
+  primaryAssetId: `${PREFIX}-primaryAssetId`,
+  dialog: `${PREFIX}-dialog`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.addButton}`]: {
     margin: 0,
     top: 100,
     left: "auto",
@@ -23,16 +36,19 @@ const styles = theme => ({
     right: 50,
     position: "fixed"
   },
-  assetName: {
+
+  [`& .${classes.assetName}`]: {
     width: "55%"
   },
-  primaryAssetId: {
+
+  [`& .${classes.primaryAssetId}`]: {
     width: "45%"
   },
-  dialog: {
+
+  [`& .${classes.dialog}`]: {
     //width: '50%',
   }
-});
+}));
 
 class AssetAdd extends React.Component {
   updateAssetState = event => {
@@ -102,9 +118,8 @@ class AssetAdd extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <Root>
         <div>
           <Fab
             color="secondary"
@@ -123,7 +138,7 @@ class AssetAdd extends React.Component {
           >
             <DialogTitle id="form-dialog-title">Ny ressurs</DialogTitle>
             <DialogContent>
-              <DialogContentText>
+              <DialogContentText sx={{pb:'5px'}}>
                 Vennligst fyll ut de obligatoriske feltene for å legge til ny
                 ressurs.
               </DialogContentText>
@@ -141,6 +156,7 @@ class AssetAdd extends React.Component {
                 InputProps={{
                   disableUnderline: true
                 }}
+                variant="standard"
               />
               <TextField
                 name="description"
@@ -149,6 +165,7 @@ class AssetAdd extends React.Component {
                 fullWidth
                 onChange={this.updateAssetState}
                 id={"description"}
+                variant="standard"
               />
             </DialogContent>
             <DialogActions>
@@ -171,11 +188,11 @@ class AssetAdd extends React.Component {
             </DialogActions>
           </Dialog>
         </div>
-      </div>
+      </Root>
     );
   }
 }
 
 AssetAdd.propTypes = {};
 
-export default withStyles(styles)(withContext(AssetAdd));
+export default (withContext(AssetAdd));
