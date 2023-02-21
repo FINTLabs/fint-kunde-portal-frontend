@@ -1,4 +1,4 @@
-FROM cypress/base:12 as TEST
+FROM cypress/base:16 as TEST
 WORKDIR /src
 COPY package.json .
 COPY . /src
