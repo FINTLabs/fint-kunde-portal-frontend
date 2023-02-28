@@ -10,7 +10,7 @@ const RoleTags = ({contactRoles, orgId, roleTypes}) => {
         return <Box width="80%">
 
             {contactRoles
-                .filter(role => role.endsWith(orgId))
+                .filter(role => role.endsWith(`@${orgId}`))
                 .map(role => role.replace(`@${orgId}`, ''))
                 .map(role => roleTypes.filter(r => r.id === role)[0])
                 .map(role => (
