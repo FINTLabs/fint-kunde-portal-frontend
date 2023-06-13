@@ -18,7 +18,7 @@ import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationM
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import Divider from "@mui/material/Divider";
-import SamtrykkeIcon from '@material-ui/icons/Security';
+import SamtrykkeIcon from '@mui/icons-material/Security';
 
 const MenuItems = () => {
     return (

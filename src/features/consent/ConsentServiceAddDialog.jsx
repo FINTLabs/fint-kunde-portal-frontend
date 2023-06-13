@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import {
     Dialog,
     DialogActions,
@@ -8,13 +7,11 @@ import {
     DialogTitle,
     withStyles,
     Fab,
-    Box, Tooltip, MenuItem, ListItemIcon, Menu
-} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import {Add, CreateNewFolder} from "@material-ui/icons";
-import VerifiedUser from '@material-ui/icons/VerifiedUser';
-import FormControl from "@material-ui/core/FormControl";
+    Box, Tooltip, MenuItem, ListItemIcon, Menu, Button, TextField, FormControl
+} from "@mui/material";
 
+import {Add, CreateNewFolder} from "@mui/icons-material";
+import VerifiedUser from '@mui/icons-material/VerifiedUser';
 
 const styles = () => ({
     addButton: {
@@ -224,5 +221,5 @@ class ConsentAddService extends React.Component {
 
 ConsentAddService.propTypes = {};
 
-// export default ConsentAddService;
-export default withStyles(styles)(ConsentAddService);
+export default ConsentAddService;
+// export default withStyles(styles)(ConsentAddService);

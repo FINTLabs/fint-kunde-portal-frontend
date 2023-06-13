@@ -6,9 +6,9 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-} from "@material-ui/core";
-import {AddCircleOutline, CameraAlt, Cancel, Description, Email, Error, House, Phone} from "@material-ui/icons";
-import Typography from "@material-ui/core/Typography";
+    Typography
+} from "@mui/material";
+import {AddCircleOutline, CameraAlt, Cancel, Description, Email, Error, House, Phone} from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 function renderListIcon(code) {

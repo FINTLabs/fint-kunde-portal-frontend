@@ -7,12 +7,12 @@ import {
     DialogContentText,
     DialogTitle,
     TextField,
-} from "@material-ui/core";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import MenuItem from "@material-ui/core/MenuItem";
+    Select,
+    InputLabel,
+    FormControl,
+    OutlinedInput,
+    MenuItem
+} from "@mui/material";
 
 class ConsentPolicyAddDialog extends React.Component {
 

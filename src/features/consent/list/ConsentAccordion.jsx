@@ -10,12 +10,12 @@ import {
     AccordionSummary,
     Accordion,
     Grid,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
     ExpandMore,
     FolderShared,
     AddCircle,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 
 import { withContext } from "../../../data/context/withContext";
 import ConsentPolicyAddDialog from "./ConsentPolicyAddDialog";
@@ -218,4 +218,5 @@ ConsentAccordion.propTypes = {
     personaldata: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(withContext(ConsentAccordion));
+// export default withStyles(styles)(withContext(ConsentAccordion));
+export default withContext(ConsentAccordion);

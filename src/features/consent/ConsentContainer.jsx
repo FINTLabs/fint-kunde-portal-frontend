@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {Divider, Typography, withStyles} from "@material-ui/core";
+import {Divider, Typography, withStyles} from "@mui/material";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchServices,createService} from "./data/redux/dispatchers/service";
 import {createPolicy, fetchPolicies} from "./data/redux/dispatchers/policy";
@@ -136,7 +136,8 @@ function mapDispatchToProps(dispatch) {
     );
 }
 
-export default withStyles(styles)(
+// export default withStyles(styles)(
+export default (
     connect(
         mapStateToProps,
         mapDispatchToProps

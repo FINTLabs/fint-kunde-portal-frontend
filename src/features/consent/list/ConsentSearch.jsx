@@ -1,12 +1,11 @@
 import React from 'react';
 import {
     FormControlLabel, Grid,
-    IconButton, Input,
-} from "@material-ui/core";
+    IconButton, Input, Box, Swtich
+} from "@mui/material";
 
-import Box from "@material-ui/core/Box";
-import {Clear} from "@material-ui/icons";
-import Switch from "@material-ui/core/Switch";
+import {Clear} from "@mui/icons-material";
+
 
 
 const ConsentSearch = (props) => {
