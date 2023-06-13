@@ -7,4 +7,6 @@ module.exports = function(app) {
     app.use(proxy('/policies', { target: 'http://localhost:8081/' }));
     app.use(proxy('/policypurpose', { target: 'http://localhost:8081/' }));
     app.use(proxy('/personaldata', { target: 'http://localhost:8081/' }));
+    app.use(proxy('/policy', { target: 'http://localhost:8081/' }));
+    app.use(proxy('/service', { target: 'http://localhost:8081/' }));
 };
