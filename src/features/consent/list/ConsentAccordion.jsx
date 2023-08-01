@@ -52,17 +52,13 @@ const ConsentAccordion = (props) => {
     const [showNonActive, setShowNonActive] = useState(false);
     const [showAddPolicyDialog, setShowAddPolicyDialog] = useState(false);
     const [services, setServices] = useState(props.services);
-    const [policypurpose] = useState(props.policypurpose);
-    const [personaldata] = useState(props.personaldata);
+    const [policypurpose, setPolicypurpose] = useState(props.policypurpose);
+    const [personaldata, setPersonaldata] = useState(props.personaldata);
     const [askToChangeActive, setAskToChangeActive] = useState(false);
     const [message, setMessage] = useState('');
     const [selectedService, setSelectedService] = useState(false);
     const [policyToChange, setPolicyToChange] = useState('');
 
-    useEffect(() => {
-        console.log("useEffect has been called!");
-        setServices(props.services);
-    },[props.services]);
 
     const updateSearchValue = event => {
         setSerchValue(event.target.value);
@@ -77,23 +73,21 @@ const ConsentAccordion = (props) => {
     };
 
     const handleOpenPolicy= (service) => {
-        console.log("jennifer", service.name);
         setShowAddPolicyDialog(true);
         setSelectedService(service);
     };
 
     const handleClosePolicy= () => {
-        console.log("jennifer close add policy dialog");
         setShowAddPolicyDialog(false);
         setSelectedService(null);
+        props.afterChange();
     };
 
 
     const handleAskToChangeActive = (policy) => {
-        console.log("jennifer - ask to change" + policy.active)
         setAskToChangeActive(true);
         setMessage( "Er du sikker på at du vil endre aktiv status på: \" " +
-            policy.description +
+            policy.formal +
             "\" ?");
         setPolicyToChange(policy);
     };
@@ -102,11 +96,9 @@ const ConsentAccordion = (props) => {
         setAskToChangeActive(false);
 
         if(result) {
-            // TODO remove this when we have real data
-            policyToChange.active = !policyToChange.active;
-            // TODO move this to the right place
             ConsentApi.setActive(policyToChange);
-
+            console.log("jennifer - changing in according");
+            props.afterChange();
             props.notify("Aktiv status endret");
         }
     };
@@ -141,11 +133,12 @@ const ConsentAccordion = (props) => {
             <div>
                 <div>
 
-                    {services ? services
-                        .filter(service => service.name.match(new RegExp(searchValue, "i")))
+                    {services &&
+                        services
+                            .filter(service => service.navn && service.navn.match(new RegExp(searchValue, "i")))
                         .map(service => (
 
-                            <Accordion key={service.systemId}>
+                            <Accordion key={service.id}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMore />}
                                     aria-controls="panel1bh-content"
@@ -157,7 +150,7 @@ const ConsentAccordion = (props) => {
                                         </Avatar>
                                     </ListItemAvatar>
                                     <Typography display="block">
-                                        {service.name}
+                                        {service.navn}
                                     </Typography>
 
                                 </AccordionSummary>
@@ -176,12 +169,12 @@ const ConsentAccordion = (props) => {
                                             >
                                                 <AddCircle />
                                             </IconButton>
-                                            <div>Legg behandling til {service.name}</div>
+                                            <div>Legg behandling til {service.navn}</div>
                                         </Grid>
                                         <Grid item xs={12}>
 
                                             <List id={"samtykkeList"} >
-                                                {service.policySystemIds
+                                                {service.behandlingIds
                                                     .map((data) => (
                                                         <ConsentPolicyListItem
                                                             key={data}
@@ -201,8 +194,7 @@ const ConsentAccordion = (props) => {
                                 </AccordionDetails>
                             </Accordion>
 
-                        )): "Error loading data"}
-
+                        ))}
                 </div>
 
             </div>
@@ -215,7 +207,8 @@ ConsentAccordion.propTypes = {
     services: PropTypes.array.isRequired,
     policies: PropTypes.array.isRequired,
     policypurpose: PropTypes.array.isRequired,
-    personaldata: PropTypes.array.isRequired
+    personaldata: PropTypes.array.isRequired,
+    afterChange: PropTypes.func.isRequired,
 };
 
 // export default withStyles(styles)(withContext(ConsentAccordion));

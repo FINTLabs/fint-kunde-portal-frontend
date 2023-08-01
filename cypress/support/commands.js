@@ -144,3 +144,15 @@ Cypress.Commands.add('removeClientFromAssetApiCall', () => {
         url: 'http://localhost:3000/api/assets/test_no/',
     }, {statusCode: 200, fixture: 'assets-after-remove-adapter.json'});
 });
+
+// CONSENT
+Cypress.Commands.add('getConsentData', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/services',
+    }, {statusCode: 200, fixture: 'serviceContext.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/api/policies/',
+    }, {statusCode: 200, fixture: 'policy.json'});
+});

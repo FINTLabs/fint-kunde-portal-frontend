@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     FormControlLabel, Grid,
-    IconButton, Input, Box, Swtich
+    IconButton, Input, Box, Swtich, Switch
 } from "@mui/material";
 
 import {Clear} from "@mui/icons-material";

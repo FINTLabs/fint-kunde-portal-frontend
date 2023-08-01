@@ -1,4 +1,4 @@
-// service
+// serviceContext
 export const tjeneste = [
     {id:1, name: "Lånekassen", bId: [1,2,3] },
     {id:2, name: "FPVS", bId: [2,4]},

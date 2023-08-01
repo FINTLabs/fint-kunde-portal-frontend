@@ -21,7 +21,7 @@ class ConsentPolicyAddDialog extends React.Component {
         this.state = {
             reasonId: null,
             personalDataId:null,
-            description:null,
+            formal:null,
         };
     }
 
@@ -32,20 +32,20 @@ class ConsentPolicyAddDialog extends React.Component {
     };
 
     handleAddPolicy = () => {
-
-            this.props.createPolicy(this.props.selectedService.systemId, this.state.reasonId, this.state.personalDataId, this.state.description)
+            this.props.createPolicy(this.props.selectedService.id, this.state.reasonId, this.state.personalDataId, this.state.formal)
             .then(() => {
                 this.props.notify(
                     // `Ressursen '${this.state.asset.description}' ble lagt til!`
                     "Ny behandling er lagret"
                 );
                 // this.props.fetchAssets(this.props.context.currentOrganisation.name);
+
                 this.props.onClose();
             });
     };
 
     formIsValid = () => {
-        return (this.state.reasonId && this.state.personalDataId, this.state.description);
+        return (this.state.reasonId && this.state.personalDataId, this.state.formal);
     };
 
     render() {
@@ -76,6 +76,7 @@ class ConsentPolicyAddDialog extends React.Component {
                                 <Select
                                     name={"personalDataId"}
                                     onChange={this.handleChange}
+                                    value={this.state.personalDataId}
                                     input={
                                         <OutlinedInput
                                             label={"Personopplysning"}
@@ -86,8 +87,8 @@ class ConsentPolicyAddDialog extends React.Component {
 
                                 {this.props.personaldata.map(x => {
                                     return (
-                                        <MenuItem value={x.systemId} key={x.systemId} >
-                                            {x.code}: {x.name}
+                                        <MenuItem value={x.id} key={x.id} >
+                                            {x.kode}: {x.navn}
                                         </MenuItem>
                                     );
                                 })}
@@ -104,6 +105,7 @@ class ConsentPolicyAddDialog extends React.Component {
                             <Select
                                 name={"reasonId"}
                                 onChange={this.handleChange}
+                                value={this.state.reasonId}
                                 input={
                                     <OutlinedInput
                                         label={"Behandlingsgrunnlag"}
@@ -113,8 +115,8 @@ class ConsentPolicyAddDialog extends React.Component {
                             >
                                 {this.props.policypurpose.map(x => {
                                     return (
-                                        <MenuItem value={x.systemId} key={x.systemId}>
-                                            {x.code}: {x.name}
+                                        <MenuItem value={x.id} key={x.id}>
+                                            {x.kode}: {x.navn}
                                         </MenuItem>
                                     );
                                 })}
@@ -122,8 +124,8 @@ class ConsentPolicyAddDialog extends React.Component {
                         </FormControl>
 
                         <TextField
-                            name="description"
-                            label="Description"
+                            name="formal"
+                            label="Formål"
                             required
                             fullWidth
                             multiline

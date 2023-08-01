@@ -34,36 +34,36 @@ class ConsentPolicyListItem extends React.Component {
 
     render() {
 
-        const policy = this.props.policies.find(element => element.systemId === this.props.idToFind);
-        const personalInfo = this.props.personaldata.find(element => element.systemId === policy.personalDataSystemIds[0]);
-        const reason = this.props.policypurpose.find(element => element.systemId === policy.policyPurposeSystemIds[0]);
+        const policy = this.props.policies.find(element => element.id === this.props.idToFind);
+        const personalInfo = this.props.personaldata.find(element => element.id === policy.personopplysningId);
+        const reason = this.props.policypurpose.find(element => element.id === policy.behandlingsgrunnlagId);
 
-        if (policy && (policy.active || this.props.showNonActive)) {
+        if (policy && (policy.aktiv || this.props.showNonActive)) {
             return <ListItem key={policy.systemId}>
                 <ListItemAvatar>
                     <Avatar>
                         {
-                            policy.active
-                                ? renderListIcon(personalInfo.code)
+                            policy.aktiv
+                                ? renderListIcon(personalInfo.kode)
                                 : renderListIcon('error')
                         }
                     </Avatar>
                 </ListItemAvatar>
                 <ListItemText
                     primary={
-                        policy.active
-                            ? <>{personalInfo.name}</>
-                            : <Typography style={{textDecoration: "line-through"}}> {personalInfo.name}</Typography>
+                        policy.aktiv
+                            ? <>{policy.formal} </>
+                            : <Typography style={{textDecoration: "line-through"}}> {policy.formal}</Typography>
                     }
-                    secondary={<>{reason.name}: {policy.description}</>}
+                    secondary={<> {personalInfo.kode}: {personalInfo.navn} {reason.kode}: {reason.navn} </>}
                 />
                 <ListItemSecondaryAction>
                     <IconButton
-                        aria-label="Delete"
+                        aria-label="Change status"
                         onClick={() => this.props.confirm(policy)}
                     >
                         {
-                            policy.active
+                            policy.aktiv
                                 ? <Cancel/>
                                 : <AddCircleOutline/>
                         }

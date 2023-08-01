@@ -1,7 +1,9 @@
+import {fetchPolicypurpose} from "./redux/dispatchers/policypurpose";
+
 class ConsentApi {
 
     static getServices() {
-        const url = `/services/`;
+        const url = `/samtykke/tjeneste`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -10,7 +12,7 @@ class ConsentApi {
     }
 
     static getPolicies() {
-        const url = `/policies/`;
+        const url = `/samtykke/behandling`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -18,7 +20,7 @@ class ConsentApi {
             .then(response => Promise.all([response, response.json()]));
     }
     static getPolicypurpose() {
-        const url = `/policypurpose/`;
+        const url = `/samtykke/behandlingsgrunnlag/`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -26,7 +28,7 @@ class ConsentApi {
             .then(response => Promise.all([response, response.json()]));
     }
     static getPersonaldata() {
-        const url = `/personaldata/`;
+        const url = `/samtykke/personopplysning/`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -35,7 +37,10 @@ class ConsentApi {
     }
 
     static setActive(policy) {
-        const request = new Request(`/policy/${policy.systemId}/${!policy.active}`, {
+        var setTo = true;
+        if(policy.aktiv) setTo = false;
+
+        const request = new Request(`/samtykke/behandling/${policy.id}/${setTo}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -45,30 +50,46 @@ class ConsentApi {
 
 
         return fetch(request).then(response => {
-            // if(response.ok)
-            // return response.json();
-            console.log("jennifer",response.status);
             return response.status;
         }).catch(error => {
-            console.log("jennifer - put request error", error.toString())
             return error;
         });
     }
 
     static createPolicy(serviceId, reasonId, personalDataId, description) {
-        console.log("jennifer create policy api");
-        const request = new Request(`/policy/add`, {
-            method: 'PUT',
+        const request = new Request(`/samtykke/behandling/`, {
+            method: 'POST',
             headers: {
                 // 'Accept': '*/*',
                 'Content-Type': 'application/json'
             },
             credentials: 'same-origin',
             body: JSON.stringify({
-                serviceId: serviceId,
-                personalDataSystemId: personalDataId,
-                policyPurposeSystemId: reasonId,
-                description: description,
+                aktiv: true,
+                formal: description,
+                behandlingsgrunnlagId: reasonId,
+                tjenesteId: serviceId,
+                personopplysningId: personalDataId,
+            })
+        });
+        return fetch(request).then(response => {
+            // return response.json();
+            return response.status;
+        }).catch(error => {
+            return error;
+        });
+    }
+
+    static createService(name) {
+        const request = new Request(`/samtykke/tjeneste/`, {
+            method: 'POST',
+            headers: {
+                'Accept': '*/*',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                name: name
             })
         });
         return fetch(request).then(response => {
@@ -79,17 +100,17 @@ class ConsentApi {
         });
     }
 
-    static createService(name) {
-        console.log("jennifer create service api");
-        const request = new Request(`/service/add`, {
-            method: 'PUT',
+    static createPolicypurpose(name, rCode) {
+        const request = new Request(`/samtykke/behandlingsgrunnlag/`, {
+            method: 'POST',
             headers: {
                 'Accept': '*/*',
                 'Content-Type': 'application/json'
             },
             credentials: 'same-origin',
             body: JSON.stringify({
-                name: name
+                name: name,
+                kode: rCode
             })
         });
         return fetch(request).then(response => {

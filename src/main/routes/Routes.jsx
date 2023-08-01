@@ -41,8 +41,8 @@ function Routes() {
                                  role="ROLE_SUPPORT"/>
             <RoleAuthorizedRoute path="/access_package" component={AccessPackageContainer}
                                  role="ROLE_ACCESS_PACKAGE"/>
-            {featureSamtykkeEnabled && <RoleAuthorizedRoute path="/samtykke" component={ConsentContainer}
-                                                            role="ROLE_DASHBOARD"/>}
+            <RoleAuthorizedRoute path="/consent" component={ConsentContainer}
+                                                            role="ROLE_DASHBOARD"/>
 
         </div>
     );

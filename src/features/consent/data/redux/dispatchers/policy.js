@@ -15,7 +15,6 @@ export function fetchPolicies() {
 }
 
 export function createPolicy(systemId, reasonId, personalDataId, description) {
-    console.log("jennifer - CHECK ID HERE",personalDataId);
     return function (dispatch) {
         return ConsentApi.createPolicy(systemId, reasonId, personalDataId, description).then(responsePolicy => {
             dispatch(createPolicySuccess(responsePolicy));

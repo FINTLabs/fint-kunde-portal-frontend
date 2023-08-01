@@ -12,6 +12,7 @@ import {
 
 import {Add, CreateNewFolder} from "@mui/icons-material";
 import VerifiedUser from '@mui/icons-material/VerifiedUser';
+import PropTypes from "prop-types";
 
 const styles = () => ({
     addButton: {
@@ -30,7 +31,6 @@ const styles = () => ({
 class ConsentAddService extends React.Component {
 
     showMenu = (event) => {
-        console.log('click event')
         this.setState({
             anchorEl: event.currentTarget,
             menuIsOpen: true,
@@ -56,9 +56,11 @@ class ConsentAddService extends React.Component {
         });
     };
 
-    handleChange= (event) => {
-        this.setState({serviceName: event.target.value});
-    }
+    handleChange = e => {
+        let change = {};
+        change[e.target.name] = e.target.value;
+        this.setState(change);
+    };
 
     handleAddService = () => {
         this.props
@@ -68,22 +70,38 @@ class ConsentAddService extends React.Component {
                     `Tjenste '${this.state.serviceName}' ble lagt til!`
                 );
                 // this.props.fetchAssets(this.props.context.currentOrganisation.name);
+                console.log("jennifer-in add serviceContext dialog and before change")
+                this.props.afterChange();
                 this.setState({
                     showAddService: false,
                 });
             });
     };
 
-    showAddPolicyDialog = () => {
+    showAddReasonDialog = () => {
         this.setState({
-            policyAddIsOpen: true,
+            showAddReason: true,
         });
     };
 
-    hideAddPolicyDialog = () => {
+    hideAddReasonDialog = () => {
         this.setState({
-            policyAddIsOpen: false,
+            showAddReason: false,
         });
+    };
+
+    handleAddReason = () => {
+        this.props
+            .createPolicypurpose(this.state.reasonName, this.state.rCode)
+            .then(() => {
+                this.props.notify(
+                    `behandlingsgrunnlag '${this.state.reasonName}' ble lagt til!`
+                );
+                this.props.afterChange();
+                this.setState({
+                    showAddReason: false,
+                });
+            });
     };
 
     constructor(props, context) {
@@ -92,7 +110,7 @@ class ConsentAddService extends React.Component {
             anchorEl: null,
             menuIsOpen: false,
             showAddService: false,
-            policyAddIsOpen: false,
+            showAddReason: false,
         };
     };
 
@@ -106,7 +124,15 @@ class ConsentAddService extends React.Component {
                         <Fab
                             onClick={this.showMenu}
                             color="secondary"
-                            className={classes.addButton}
+                            // className={classes.addButton}
+                            sx={{
+                                    margin: 0,
+                                    top: 100,
+                                    left: "auto",
+                                    bottom: "auto",
+                                    right: 50,
+                                    position: "fixed"
+                                }}
                         >
                             <Add />
                         </Fab>
@@ -128,7 +154,7 @@ class ConsentAddService extends React.Component {
                         </ListItemIcon>
                         Legg til Tjenster
                     </MenuItem>
-                    <MenuItem onClick={this.showAddPolicyDialog}>
+                    <MenuItem onClick={this.showAddReasonDialog}>
                         <ListItemIcon>
                             <VerifiedUser fontSize="small" />
                         </ListItemIcon>
@@ -148,11 +174,12 @@ class ConsentAddService extends React.Component {
                         <DialogContentText>
                             Legg til en ny tjeneste.
                         </DialogContentText>
-                        <FormControl className={classes.inputForm} id={"serviceFormControl"}>
+                        <FormControl id={"serviceFormControl"} sx={{width: "100%"}}>
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
+                                id="serviceName"
+                                name={"serviceName"}
                                 label="Tjenster name"
                                 type="text"
                                 fullWidth
@@ -171,8 +198,8 @@ class ConsentAddService extends React.Component {
                 </Dialog>
 
                 <Dialog
-                    open={this.state.policyAddIsOpen}
-                    onClose={this.hideAddPolicyDialog}
+                    open={this.state.showAddReason}
+                    onClose={this.hideAddReasonDialog}
                     aria-labelledby="form-dialog-title"
                     fullWidth={true}
                     maxWidth={'md'}
@@ -182,32 +209,36 @@ class ConsentAddService extends React.Component {
                         <DialogContentText>
                             Legg til en ny behandlingsgrunnlag.
                         </DialogContentText>
-                        <FormControl className={classes.inputForm} id={"serviceFormControl"}>
+                        <FormControl id={"serviceFormControl"} sx={{width: "100%"}}>
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
+                                id="rCode"
+                                name={"rCode"}
                                 label="Behandlings code"
                                 type="text"
                                 fullWidth
+                                onChange={this.handleChange}
                             />
                         </FormControl>
-                        <FormControl className={classes.inputForm} id={"serviceFormControl"}>
+                        <FormControl id={"serviceFormControl"} sx={{width: "100%"}}>
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
+                                id="reasonName"
+                                name={"reasonName"}
                                 label="Behandlings navn"
                                 type="text"
                                 fullWidth
+                                onChange={this.handleChange}
                             />
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.hideAddPolicyDialog} color="primary">
+                        <Button onClick={this.hideAddReasonDialog} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.hideAddPolicyDialog} color="primary">
+                        <Button onClick={this.handleAddReason} color="primary">
                             Add
                         </Button>
                     </DialogActions>
@@ -219,7 +250,8 @@ class ConsentAddService extends React.Component {
     }
 }
 
-ConsentAddService.propTypes = {};
+ConsentAddService.propTypes = {
+};
 
 export default ConsentAddService;
 // export default withStyles(styles)(ConsentAddService);

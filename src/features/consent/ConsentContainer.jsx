@@ -5,7 +5,7 @@ import {Divider, Typography, withStyles} from "@mui/material";
 import LoadingProgress from "../../common/status/LoadingProgress";
 import {fetchServices,createService} from "./data/redux/dispatchers/service";
 import {createPolicy, fetchPolicies} from "./data/redux/dispatchers/policy";
-import {fetchPolicypurpose} from "./data/redux/dispatchers/policypurpose";
+import {createPolicypurpose, fetchPolicypurpose} from "./data/redux/dispatchers/policypurpose";
 import {fetchPersonaldata} from "./data/redux/dispatchers/personaldata";
 import ConsentList from "./list/ConsentAccordion";
 import ConsentServiceAdd from "./ConsentServiceAddDialog";
@@ -53,6 +53,14 @@ class ConsentContainer extends React.Component {
         });
     };
 
+    afterChange = () => {
+        console.log("jennifer after change");
+        this.props.fetchPolicies();
+        this.props.fetchServices();
+        this.props.fetchPersonaldata();
+        this.props.fetchPolicypurpose();
+    };
+
     render() {
         if (
             this.props.personaldata === undefined ||
@@ -68,10 +76,10 @@ class ConsentContainer extends React.Component {
     }
 
     renderConsent() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <div className={classes.componentList}>
+            <div >
+                <div >
 
                     <AutoHideNotification
                         showNotification={this.state.notify}
@@ -86,7 +94,7 @@ class ConsentContainer extends React.Component {
                         </p>
                         <p>Klikk på plussikonet for å legge til en nye tjenester eller behandlingsgrunnlag.</p>
                     </FeatureHelperText>
-                    <Typography variant="h5" className={classes.title}>
+                    <Typography variant="h5" >
                         Samtykke
                     </Typography>
                     <Divider/>
@@ -97,11 +105,15 @@ class ConsentContainer extends React.Component {
                         policypurpose={this.props.policypurpose}
                         personaldata={this.props.personaldata}
                         createPolicy={this.props.createPolicy}
+                        afterChange={this.afterChange}
                     />
+
 
                     <ConsentServiceAdd
                         notify={this.notify}
                         createService={this.props.createService}
+                        createPolicypurpose={this.props.createPolicypurpose}
+                        afterChange={this.afterChange}
                     />
 
                 </div>
@@ -130,6 +142,7 @@ function mapDispatchToProps(dispatch) {
             fetchPolicypurpose: fetchPolicypurpose,
             fetchPersonaldata: fetchPersonaldata,
             createService: createService,
+            createPolicypurpose: createPolicypurpose,
             createPolicy: createPolicy,
         },
         dispatch

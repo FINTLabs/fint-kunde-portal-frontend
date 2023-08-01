@@ -1,5 +1,6 @@
 import ConsentApi from "../../ConsentApi";
 import {
+    createPolicypurposeSuccess,
     fetchPolicypurposeError,
     fetchPolicypurposeSuccess,
 } from "../actions/service"
@@ -16,3 +17,16 @@ export function fetchPolicypurpose() {
         })
     }
 }
+
+export function createPolicypurpose(name, code) {
+    return function (dispatch) {
+        return ConsentApi.createPolicypurpose(name,code).then(response => {
+            dispatch(createPolicypurposeSuccess(response));
+            return response;
+        }).catch(error => {
+            throw (error);
+        });
+    };
+}
+
+
