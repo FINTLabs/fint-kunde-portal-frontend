@@ -283,7 +283,7 @@ class SupportContainer extends Component {
                             <LoadingProgress/>
                         );
                     } else {
-                        const {classes} = this.props;
+                        //const {classes} = this.props;
                         return (
                             <StyledDiv className={classes.root}>
                                 <div className={classes.content}>
