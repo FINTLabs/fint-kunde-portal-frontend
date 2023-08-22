@@ -14,9 +14,11 @@ import access_package from "../reducers/access_package";
 import component_configuration from "../reducers/component-configuration";
 import access_package_template from "../reducers/access_package_template";
 import features from "../reducers/features";
+import consent from "../../../features/consent/data/redux/reducers/consent";
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 
 const store = createStore(
     combineReducers({
@@ -32,7 +34,8 @@ const store = createStore(
         component_configuration,
         roles,
         me,
-        features
+        features,
+            consent
     }),
     composeEnhancers(
         applyMiddleware(thunkMiddleware, logger))

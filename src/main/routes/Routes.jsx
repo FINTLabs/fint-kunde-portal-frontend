@@ -14,9 +14,11 @@ import LinkWalkerContainer from "../../features/link-walker/LinkWalkerContainer"
 import BasicTestContainer from "../../features/basic-test/BasicTestContainer";
 import SupportContainer from "../../features/support/SupportContainer";
 import AccessPackageContainer from "../../features/access-package/AccessPackageContainer";
+import ConsentContainer from "../../features/consent/ConsentContainer"
 
 function Routes() {
     const featureAuditLogEnabled = useFeatureEnabled("audit-log");
+    const featureSamtykkeEnabled = useFeatureEnabled("samtykke-admin");
 
     return (
         <div>
@@ -39,6 +41,9 @@ function Routes() {
                                  role="ROLE_SUPPORT"/>
             <RoleAuthorizedRoute path="/access_package" component={AccessPackageContainer}
                                  role="ROLE_ACCESS_PACKAGE"/>
+            <RoleAuthorizedRoute path="/consent" component={ConsentContainer}
+                                                            role="ROLE_DASHBOARD"/>
+
         </div>
     );
 }

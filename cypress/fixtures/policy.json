@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "active": true,
+    "description": "behandling purpose goes here...",
+    "gId": 1,
+    "pId": 1,
+    "tId": 1
+  },
+  {
+    "id": 2,
+    "active": true,
+    "description": "Personvernregler gjør at vi må innhente consent for å lagre bla... bla... bla....",
+    "gId": 1,
+    "pId": 2,
+    "tId": 1
+  },
+  {
+    "id": 3,
+    "active": false,
+    "description": "this is one that should not be active to test the not active stuff",
+    "gId": 2,
+    "pId": 3,
+    "tId": 1
+  },
+  {
+    "id": 4,
+    "active": true,
+    "description": "here is a picture one that is turned on!",
+    "gId": 2,
+    "pId": 3,
+    "tId": 1
+  }
+]

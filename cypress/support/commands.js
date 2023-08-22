@@ -144,3 +144,25 @@ Cypress.Commands.add('removeClientFromAssetApiCall', () => {
         url: 'http://localhost:3000/api/assets/test_no/',
     }, {statusCode: 200, fixture: 'assets-after-remove-adapter.json'});
 });
+
+// CONSENT
+Cypress.Commands.add('getConsentData', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/behandling/test_no',
+    }, {statusCode: 200, fixture: 'behandling.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/tjeneste/test_no',
+    }, {statusCode: 200, fixture: 'tjeneste.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/behandlingsgrunnlag/',
+    }, {statusCode: 200, fixture: 'behandlingsgrunnlag.json'});
+
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/personopplysning/',
+    }, {statusCode: 200, fixture: 'personopplysning.json'});
+});
+

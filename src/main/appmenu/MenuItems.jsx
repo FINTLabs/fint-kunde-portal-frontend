@@ -17,7 +17,8 @@ import LogIcon from "@mui/icons-material/Receipt";
 import RoleAuthorizationMenu from "../../common/authorization/RoleAuthorizationMenu";
 import FeatureToggle from "../../common/feature-toggle/FeatureToggle";
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import Divider from "@mui/material/Divider"
+import Divider from "@mui/material/Divider";
+import SamtrykkeIcon from '@mui/icons-material/Security';
 
 const MenuItems = () => {
     return (
@@ -104,6 +105,16 @@ const MenuItems = () => {
                     </ListItem>
                 </RoleAuthorizationMenu>
             </FeatureToggle>
+            <FeatureToggle feature="samtykke-admin">
+                <RoleAuthorizationMenu role="ROLE_LOG">
+                    <ListItem button component={Link} to="/consent">
+                        <ListItemIcon>
+                            <SamtrykkeIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary="Samtykke"/>
+                    </ListItem>
+                </RoleAuthorizationMenu>
+            </FeatureToggle>
             <RoleAuthorizationMenu role="ROLE_SUPPORT">
                 <ListItem button component={Link} to="/support/issue">
                     <ListItemIcon>
@@ -130,7 +141,6 @@ const MenuItems = () => {
                 </ListItemIcon>
                 <ListItemText primary="Logg ut"/>
             </ListItem>
-
         </List>
     );
 };
