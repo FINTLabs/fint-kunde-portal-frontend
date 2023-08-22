@@ -1,4 +1,4 @@
-name: publish image to ACR
+name: publish image to GHCR
 on:
   push:
     branches:
