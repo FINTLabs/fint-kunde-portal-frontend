@@ -32,7 +32,7 @@ class ConsentPolicyAddDialog extends React.Component {
     };
 
     handleAddPolicy = () => {
-            this.props.createPolicy(this.props.selectedService.id, this.state.reasonId, this.state.personalDataId, this.state.formal)
+            this.props.createPolicy(this.props.selectedService.id, this.state.reasonId, this.state.personalDataId, this.state.formal, this.props.currentOrg)
             .then(() => {
                 this.props.notify(
                     // `Ressursen '${this.state.asset.description}' ble lagt til!`
@@ -45,7 +45,13 @@ class ConsentPolicyAddDialog extends React.Component {
     };
 
     formIsValid = () => {
-        return (this.state.reasonId && this.state.personalDataId, this.state.formal);
+        return (
+            this.state.reasonId &&
+            this.state.reasonId !== "" &&
+            this.state.personalDataId  &&
+            this.state.personalDataId !== "" &&
+            this.state.formal !== ""
+        );
     };
 
     render() {
@@ -76,7 +82,7 @@ class ConsentPolicyAddDialog extends React.Component {
                                 <Select
                                     name={"personalDataId"}
                                     onChange={this.handleChange}
-                                    value={this.state.personalDataId}
+                                    value={this.state.personalDataId || ""}
                                     input={
                                         <OutlinedInput
                                             label={"Personopplysning"}
@@ -84,11 +90,11 @@ class ConsentPolicyAddDialog extends React.Component {
                                         />
                                     }
                                 >
-
-                                {this.props.personaldata.map(x => {
+                                    <MenuItem value="">None</MenuItem> {/* Blank option */}
+                                {this.props.personaldata?.map(x => {
                                     return (
                                         <MenuItem value={x.id} key={x.id} >
-                                            {x.kode}: {x.navn}
+                                            {x.kode}: {x.navn} {x.id}
                                         </MenuItem>
                                     );
                                 })}
@@ -105,7 +111,7 @@ class ConsentPolicyAddDialog extends React.Component {
                             <Select
                                 name={"reasonId"}
                                 onChange={this.handleChange}
-                                value={this.state.reasonId}
+                                value={this.state.reasonId || ""}
                                 input={
                                     <OutlinedInput
                                         label={"Behandlingsgrunnlag"}
@@ -113,10 +119,11 @@ class ConsentPolicyAddDialog extends React.Component {
                                     />
                                 }
                             >
-                                {this.props.policypurpose.map(x => {
+                                <MenuItem value="">None</MenuItem> {/* Blank option */}
+                                {this.props.policypurpose?.map(x => {
                                     return (
                                         <MenuItem value={x.id} key={x.id}>
-                                            {x.kode}: {x.navn}
+                                            {x.kode}: {x.navn} {x.id}
                                         </MenuItem>
                                     );
                                 })}
@@ -165,6 +172,7 @@ class ConsentPolicyAddDialog extends React.Component {
 
 ConsentPolicyAddDialog.defaultProps = {
     show: false,
+    currentOrg: null,
 };
 /* TODO: set up parameters here
 ConsentPolicyAddDialog.propTypes = {

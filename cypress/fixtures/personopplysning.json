@@ -1,0 +1,1722 @@
+[
+  {
+    "id": "no.fint.utdanning.utdanningsprogram.skole.skolenummer",
+    "kode": "skolenummer",
+    "navn": "Skolenummer"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.identifikator.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.dokumentobjekt",
+    "kode": "dokumentobjekt",
+    "navn": "Dokumentobjekt"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.postering.kontering",
+    "kode": "kontering",
+    "navn": "Kontering"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.vurdering.kommentar",
+    "kode": "kommentar",
+    "navn": "Kommentar"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.sjekksum",
+    "kode": "sjekksum",
+    "navn": "Sjekksum"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.personnavn.etternavn",
+    "kode": "etternavn",
+    "navn": "Etternavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.skjerming",
+    "kode": "skjerming",
+    "navn": "Skjerming"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.organisasjonselement.kortnavn",
+    "kode": "kortnavn",
+    "navn": "Kortnavn"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.behandling.aktiv",
+    "kode": "aktiv",
+    "navn": "Aktiv"
+  },
+  {
+    "id": "no.fint.arkiv.noark.part.partnavn",
+    "kode": "partnavn",
+    "navn": "PartNavn"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.matrikkelnummer.gårdsnummer",
+    "kode": "gårdsnummer",
+    "navn": "Gårdsnummer"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsprosent.fraværstimer",
+    "kode": "fraværstimer",
+    "navn": "Fraværstimer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturalinje.fritekst",
+    "kode": "fritekst",
+    "navn": "Fritekst"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.matrikkelnummer.adresse",
+    "kode": "adresse",
+    "navn": "Adresse"
+  },
+  {
+    "id": "no.fint.felles.kontaktperson.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.kodeverk.vare.kontering",
+    "kode": "kontering",
+    "navn": "Kontering"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.anmerkninger.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsregistrering.førespåvitnemål",
+    "kode": "førespåvitnemål",
+    "navn": "FøresPåVitnemål"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturautsteder.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppe.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.skjerming",
+    "kode": "skjerming",
+    "navn": "Skjerming"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevtilrettelegging.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.karakterhistorie.endretdato",
+    "kode": "endretdato",
+    "navn": "EndretDato"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturautsteder.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.rom.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.arbeidslokasjon.lokasjonskode",
+    "kode": "lokasjonskode",
+    "navn": "Lokasjonskode"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.kontaktinformasjon.epostadresse",
+    "kode": "epostadresse",
+    "navn": "Epostadresse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.mottattdato",
+    "kode": "mottattdato",
+    "navn": "MottattDato"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.periode.slutt",
+    "kode": "slutt",
+    "navn": "Slutt"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.organisasjonselement.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.elevfravar.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsoversikt.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fravar.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.matrikkelnummer.seksjonsnummer",
+    "kode": "seksjonsnummer",
+    "navn": "Seksjonsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.formatdetaljer",
+    "kode": "formatdetaljer",
+    "navn": "FormatDetaljer"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravar.førespåvitnemål",
+    "kode": "førespåvitnemål",
+    "navn": "FøresPåVitnemål"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.time.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsoversikt.halvår",
+    "kode": "halvår",
+    "navn": "Halvår"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsprosent.prosent",
+    "kode": "prosent",
+    "navn": "Prosent"
+  },
+  {
+    "id": "no.fint.utdanning.elev.skoleressurs.feidenavn",
+    "kode": "feidenavn",
+    "navn": "Feidenavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.opprettetdato",
+    "kode": "opprettetdato",
+    "navn": "OpprettetDato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.vurdering.endelig",
+    "kode": "endelig",
+    "navn": "Endelig"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.offentligtittel",
+    "kode": "offentligtittel",
+    "navn": "OffentligTittel"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.adresse.poststed",
+    "kode": "poststed",
+    "navn": "Poststed"
+  },
+  {
+    "id": "no.fint.arkiv.noark.administrativenhet.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevforhold.avbruddsdato",
+    "kode": "avbruddsdato",
+    "navn": "Avbruddsdato"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.korrespondansepartnavn",
+    "kode": "korrespondansepartnavn",
+    "navn": "KorrespondansepartNavn"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfartoy.kallesignal",
+    "kode": "kallesignal",
+    "navn": "Kallesignal"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.url",
+    "kode": "url",
+    "navn": "Url"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.hybeladresse",
+    "kode": "hybeladresse",
+    "navn": "Hybeladresse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.lønnsprosent",
+    "kode": "lønnsprosent",
+    "navn": "Lønnsprosent"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.avskrivning",
+    "kode": "avskrivning",
+    "navn": "Avskrivning"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.bilag",
+    "kode": "bilag",
+    "navn": "Bilag"
+  },
+  {
+    "id": "no.fint.arkiv.noark.avskrivning.avskrivningsmate",
+    "kode": "avskrivningsmate",
+    "navn": "Avskrivningsmate"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.ordrenummer",
+    "kode": "ordrenummer",
+    "navn": "Ordrenummer"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.kontaktinformasjon.nettsted",
+    "kode": "nettsted",
+    "navn": "Nettsted"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.fakturalinjer",
+    "kode": "fakturalinjer",
+    "navn": "Fakturalinjer"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.utdanningsforhold.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.aktor.postadresse",
+    "kode": "postadresse",
+    "navn": "Postadresse"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.sensor.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.forfatter",
+    "kode": "forfatter",
+    "navn": "Forfatter"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentfil.filnavn",
+    "kode": "filnavn",
+    "navn": "Filnavn"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.begrep.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.opprettetav",
+    "kode": "opprettetav",
+    "navn": "OpprettetAv"
+  },
+  {
+    "id": "no.fint.felles.kodeverk.valuta.bokstavkode",
+    "kode": "bokstavkode",
+    "navn": "Bokstavkode"
+  },
+  {
+    "id": "no.fint.okonomi.kodeverk.vare.pris",
+    "kode": "pris",
+    "navn": "Pris"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.sensor.sensornummer",
+    "kode": "sensornummer",
+    "navn": "Sensornummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.arkivdel.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.restbeløp",
+    "kode": "restbeløp",
+    "navn": "Restbeløp"
+  },
+  {
+    "id": "no.fint.utdanning.elev.undervisningsforhold.hovedskole",
+    "kode": "hovedskole",
+    "navn": "Hovedskole"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.adresse",
+    "kode": "adresse",
+    "navn": "Adresse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentfil.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.tilgang.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.klasse",
+    "kode": "klasse",
+    "navn": "Klasse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.fødselsnummer",
+    "kode": "fødselsnummer",
+    "navn": "Fødselsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfartoy.kulturminneid",
+    "kode": "kulturminneid",
+    "navn": "KulturminneId"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.kontaktinformasjon.mobiltelefonnummer",
+    "kode": "mobiltelefonnummer",
+    "navn": "Mobiltelefonnummer"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevforhold.hovedskole",
+    "kode": "hovedskole",
+    "navn": "Hovedskole"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.avskrivning.avskrivningsdato",
+    "kode": "avskrivningsdato",
+    "navn": "Avskrivningsdato"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.time.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.transaksjonsid",
+    "kode": "transaksjonsid",
+    "navn": "TransaksjonsId"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.variabellonn.antall",
+    "kode": "antall",
+    "navn": "Antall"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.identifikator.identifikatorverdi",
+    "kode": "identifikatorverdi",
+    "navn": "Identifikatorverdi"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.jobbtittel",
+    "kode": "jobbtittel",
+    "navn": "Jobbtittel"
+  },
+  {
+    "id": "no.fint.utdanning.elev.skoleressurs.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.noekkelord",
+    "kode": "noekkelord",
+    "navn": "Noekkelord"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.periode.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.kontert",
+    "kode": "kontert",
+    "navn": "Kontert"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfredabygningprivateie.bygningsnavn",
+    "kode": "bygningsnavn",
+    "navn": "Bygningsnavn"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.organisasjonselement.organisasjonsid",
+    "kode": "organisasjonsid",
+    "navn": "OrganisasjonsId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.nettobeløp",
+    "kode": "nettobeløp",
+    "navn": "Nettobeløp"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.filstorrelse",
+    "kode": "filstorrelse",
+    "navn": "Filstorrelse"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.begrep.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.okonomi.kodeverk.vare.enhet",
+    "kode": "enhet",
+    "navn": "Enhet"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.sendtdato",
+    "kode": "sendtdato",
+    "navn": "SendtDato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.anmerkninger.atferd",
+    "kode": "atferd",
+    "navn": "Atferd"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fravar.prosent",
+    "kode": "prosent",
+    "navn": "Prosent"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.begrep.kode",
+    "kode": "kode",
+    "navn": "Kode"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.ordensvurdering.vurderingsdato",
+    "kode": "vurderingsdato",
+    "navn": "Vurderingsdato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravar.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klasse.rekkefølge",
+    "kode": "rekkefølge",
+    "navn": "Rekkefølge"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.bilagsdato",
+    "kode": "bilagsdato",
+    "navn": "Bilagsdato"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.ansiennitet",
+    "kode": "ansiennitet",
+    "navn": "Ansiennitet"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.beløp",
+    "kode": "beløp",
+    "navn": "Beløp"
+  },
+  {
+    "id": "no.fint.felles.kontaktperson.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.periode",
+    "kode": "periode",
+    "navn": "Periode"
+  },
+  {
+    "id": "no.fint.utdanning.utdanningsprogram.skole.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.kildesystemid",
+    "kode": "kildesystemid",
+    "navn": "KildesystemId"
+  },
+  {
+    "id": "no.fint.okonomi.kodeverk.merverdiavgift.sats",
+    "kode": "sats",
+    "navn": "Sats"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.dispensasjonautomatiskfredakulturminne.søknadsnummer",
+    "kode": "søknadsnummer",
+    "navn": "Søknadsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.rom.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.sensor.aktiv",
+    "kode": "aktiv",
+    "navn": "Aktiv"
+  },
+  {
+    "id": "no.fint.felles.person.bostedsadresse",
+    "kode": "bostedsadresse",
+    "navn": "Bostedsadresse"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.referanse",
+    "kode": "referanse",
+    "navn": "Referanse"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfredabygningprivateie.matrikkelnummer",
+    "kode": "matrikkelnummer",
+    "navn": "Matrikkelnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.klasse",
+    "kode": "klasse",
+    "navn": "Klasse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.hovedstilling",
+    "kode": "hovedstilling",
+    "navn": "Hovedstilling"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.klasse",
+    "kode": "klasse",
+    "navn": "Klasse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.avskrivning.avskrevetav",
+    "kode": "avskrevetav",
+    "navn": "AvskrevetAv"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.adresse",
+    "kode": "adresse",
+    "navn": "Adresse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.autorisasjon.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.karakterhistorie.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.brukernavn",
+    "kode": "brukernavn",
+    "navn": "Brukernavn"
+  },
+  {
+    "id": "no.fint.utdanning.ot.otungdom.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.tilgang.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravar.gjelderperiode",
+    "kode": "gjelderperiode",
+    "navn": "GjelderPeriode"
+  },
+  {
+    "id": "no.fint.arkiv.noark.part.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.betalt",
+    "kode": "betalt",
+    "navn": "Betalt"
+  },
+  {
+    "id": "no.fint.arkiv.noark.part.adresse",
+    "kode": "adresse",
+    "navn": "Adresse"
+  },
+  {
+    "id": "no.fint.administrasjon.fullmakt.rolle.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevforhold.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.oppdateringstidspunkt",
+    "kode": "oppdateringstidspunkt",
+    "navn": "Oppdateringstidspunkt"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.anvist",
+    "kode": "anvist",
+    "navn": "Anvist"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.behandling.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.avsluttetdato",
+    "kode": "avsluttetdato",
+    "navn": "AvsluttetDato"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.data",
+    "kode": "data",
+    "navn": "Data"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.leverandor.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.adresse.postnummer",
+    "kode": "postnummer",
+    "navn": "Postnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.journalsekvensnummer",
+    "kode": "journalsekvensnummer",
+    "navn": "JournalSekvensnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.arkivdel.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.brukernavn",
+    "kode": "brukernavn",
+    "navn": "Brukernavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.journalar",
+    "kode": "journalar",
+    "navn": "JournalAr"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.leverandorgruppe.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.arbeidslokasjon.lokasjonsnavn",
+    "kode": "lokasjonsnavn",
+    "navn": "Lokasjonsnavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.larling.larling.kontraktstype",
+    "kode": "kontraktstype",
+    "navn": "Kontraktstype"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.periode.start",
+    "kode": "start",
+    "navn": "Start"
+  },
+  {
+    "id": "no.fint.arkiv.noark.part.kontaktperson",
+    "kode": "kontaktperson",
+    "navn": "Kontaktperson"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.dispensasjonautomatiskfredakulturminne.kulturminneid",
+    "kode": "kulturminneid",
+    "navn": "KulturminneId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.sjekksumalgoritme",
+    "kode": "sjekksumalgoritme",
+    "navn": "SjekksumAlgoritme"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.arkivnotat",
+    "kode": "arkivnotat",
+    "navn": "Arkivnotat"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.utdanningsforhold.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevforhold.tospråkligfagopplæring",
+    "kode": "tospråkligfagopplæring",
+    "navn": "TospråkligFagopplæring"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.samtykke.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.kreditert",
+    "kode": "kreditert",
+    "navn": "Kreditert"
+  },
+  {
+    "id": "no.fint.utdanning.utdanningsprogram.skole.juridisknavn",
+    "kode": "juridisknavn",
+    "navn": "JuridiskNavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.part",
+    "kode": "part",
+    "navn": "Part"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.dokumentnummer",
+    "kode": "dokumentnummer",
+    "navn": "Dokumentnummer"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.merknad.merknadsdato",
+    "kode": "merknadsdato",
+    "navn": "Merknadsdato"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.journalpost",
+    "kode": "journalpost",
+    "navn": "Journalpost"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.time.tidsrom",
+    "kode": "tidsrom",
+    "navn": "Tidsrom"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppemedlemskap.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.journaldato",
+    "kode": "journaldato",
+    "navn": "JournalDato"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturalinje.antall",
+    "kode": "antall",
+    "navn": "Antall"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.dokumentetsdato",
+    "kode": "dokumentetsdato",
+    "navn": "DokumentetsDato"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturalinje.pris",
+    "kode": "pris",
+    "navn": "Pris"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.nokkelord",
+    "kode": "nokkelord",
+    "navn": "Nokkelord"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsprosent.undervisningstimer",
+    "kode": "undervisningstimer",
+    "navn": "Undervisningstimer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.avsluttetav",
+    "kode": "avsluttetav",
+    "navn": "AvsluttetAv"
+  },
+  {
+    "id": "no.fint.arkiv.noark.administrativenhet.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.mappeid",
+    "kode": "mappeid",
+    "navn": "MappeId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsoversikt.skoleår",
+    "kode": "skoleår",
+    "navn": "Skoleår"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.matrikkelnummer.festenummer",
+    "kode": "festenummer",
+    "navn": "Festenummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.opprettetdato",
+    "kode": "opprettetdato",
+    "navn": "OpprettetDato"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.format",
+    "kode": "format",
+    "navn": "Format"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsregistrering.periode",
+    "kode": "periode",
+    "navn": "Periode"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.part",
+    "kode": "part",
+    "navn": "Part"
+  },
+  {
+    "id": "no.fint.utdanning.elev.medlemskap.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.begrep.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.enhet.organisasjonsnummer",
+    "kode": "organisasjonsnummer",
+    "navn": "Organisasjonsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.organisasjonsnummer",
+    "kode": "organisasjonsnummer",
+    "navn": "Organisasjonsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentfil.data",
+    "kode": "data",
+    "navn": "Data"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.organisasjonselement.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.administrasjon.fullmakt.rolle.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentfil.format",
+    "kode": "format",
+    "navn": "Format"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.skjerming",
+    "kode": "skjerming",
+    "navn": "Skjerming"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.kontostreng",
+    "kode": "kontostreng",
+    "navn": "Kontostreng"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.samtykke.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.avgiftsbeløp",
+    "kode": "avgiftsbeløp",
+    "navn": "Avgiftsbeløp"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.tilstedeprosent",
+    "kode": "tilstedeprosent",
+    "navn": "Tilstedeprosent"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.dato",
+    "kode": "dato",
+    "navn": "Dato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.ordensvurdering.kommentar",
+    "kode": "kommentar",
+    "navn": "Kommentar"
+  },
+  {
+    "id": "no.fint.administrasjon.fullmakt.fullmakt.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.administrasjon.organisasjon.organisasjonselement.organisasjonskode",
+    "kode": "organisasjonskode",
+    "navn": "OrganisasjonsKode"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.antallvedlegg",
+    "kode": "antallvedlegg",
+    "navn": "AntallVedlegg"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfartoy.søknadsnummer",
+    "kode": "søknadsnummer",
+    "navn": "Søknadsnummer"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.filnavn",
+    "kode": "filnavn",
+    "navn": "Filnavn"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.leverandor.leverandørnummer",
+    "kode": "leverandørnummer",
+    "navn": "Leverandørnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.forfallsdato",
+    "kode": "forfallsdato",
+    "navn": "ForfallsDato"
+  },
+  {
+    "id": "no.fint.utdanning.kodeverk.otstatus.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.arkivertdato",
+    "kode": "arkivertdato",
+    "navn": "ArkivertDato"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.sakssekvensnummer",
+    "kode": "sakssekvensnummer",
+    "navn": "Sakssekvensnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.ordensvurdering.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.samtykke.opprettet",
+    "kode": "opprettet",
+    "navn": "Opprettet"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfartoy.fartøynavn",
+    "kode": "fartøynavn",
+    "navn": "FartøyNavn"
+  },
+  {
+    "id": "no.fint.arkiv.samferdsel.soknaddrosjeloyve.organisasjonsnavn",
+    "kode": "organisasjonsnavn",
+    "navn": "Organisasjonsnavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.administrativenhet.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.skjerming",
+    "kode": "skjerming",
+    "navn": "Skjerming"
+  },
+  {
+    "id": "no.fint.administrasjon.fullmakt.fullmakt.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fasttillegg.beløp",
+    "kode": "beløp",
+    "navn": "Beløp"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.variabellonn.beløp",
+    "kode": "beløp",
+    "navn": "Beløp"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.part",
+    "kode": "part",
+    "navn": "Part"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.anmerkninger.orden",
+    "kode": "orden",
+    "navn": "Orden"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fravar.periode",
+    "kode": "periode",
+    "navn": "Periode"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fagvurdering.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.samferdsel.soknaddrosjeloyve.organisasjonsnummer",
+    "kode": "organisasjonsnummer",
+    "navn": "Organisasjonsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.enhet.organisasjonsnavn",
+    "kode": "organisasjonsnavn",
+    "navn": "Organisasjonsnavn"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.behandling.formål",
+    "kode": "formål",
+    "navn": "Formål"
+  },
+  {
+    "id": "no.fint.arkiv.noark.merknad.merknadstekst",
+    "kode": "merknadstekst",
+    "navn": "Merknadstekst"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.mottaker",
+    "kode": "mottaker",
+    "navn": "Mottaker"
+  },
+  {
+    "id": "no.fint.felles.kodeverk.valuta.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.felles.kontaktperson.type",
+    "kode": "type",
+    "navn": "Type"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentobjekt.versjonsnummer",
+    "kode": "versjonsnummer",
+    "navn": "Versjonsnummer"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppe.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.transaksjonstidspunkt",
+    "kode": "transaksjonstidspunkt",
+    "navn": "Transaksjonstidspunkt"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravar.kommentar",
+    "kode": "kommentar",
+    "navn": "Kommentar"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.postering.debet",
+    "kode": "debet",
+    "navn": "Debet"
+  },
+  {
+    "id": "no.fint.arkiv.noark.arkivressurs.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.timeplan.time.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.ansattnummer",
+    "kode": "ansattnummer",
+    "navn": "Ansattnummer"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.leverandorgruppe.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.person.fødselsnummer",
+    "kode": "fødselsnummer",
+    "navn": "Fødselsnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.merknad",
+    "kode": "merknad",
+    "navn": "Merknad"
+  },
+  {
+    "id": "no.fint.administrasjon.kodeverk.fravarstype.overføres",
+    "kode": "overføres",
+    "navn": "Overføres"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppe.periode",
+    "kode": "periode",
+    "navn": "Periode"
+  },
+  {
+    "id": "no.fint.administrasjon.kodeverk.lonnsart.kategori",
+    "kode": "kategori",
+    "navn": "Kategori"
+  },
+  {
+    "id": "no.fint.ressurser.tilganger.identitet.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fagvurdering.kommentar",
+    "kode": "kommentar",
+    "navn": "Kommentar"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.personnavn.mellomnavn",
+    "kode": "mellomnavn",
+    "navn": "Mellomnavn"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.arbeidsforholdsperiode",
+    "kode": "arbeidsforholdsperiode",
+    "navn": "Arbeidsforholdsperiode"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elevforhold.anmerkninger",
+    "kode": "anmerkninger",
+    "navn": "Anmerkninger"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.kontaktinformasjon.telefonnummer",
+    "kode": "telefonnummer",
+    "navn": "Telefonnummer"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.postering.beløp",
+    "kode": "beløp",
+    "navn": "Beløp"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.tjeneste.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.dispensasjonautomatiskfredakulturminne.tiltak",
+    "kode": "tiltak",
+    "navn": "Tiltak"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.referansearkivdel",
+    "kode": "referansearkivdel",
+    "navn": "ReferanseArkivDel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klasse.skjerming",
+    "kode": "skjerming",
+    "navn": "Skjerming"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.gjest",
+    "kode": "gjest",
+    "navn": "Gjest"
+  },
+  {
+    "id": "no.fint.felles.kodeverk.valuta.nummerkode",
+    "kode": "nummerkode",
+    "navn": "Nummerkode"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfredabygningprivateie.kulturminneid",
+    "kode": "kulturminneid",
+    "navn": "KulturminneId"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.bilag.bilagsnummer",
+    "kode": "bilagsnummer",
+    "navn": "Bilagsnummer"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.ansettelsesperiode",
+    "kode": "ansettelsesperiode",
+    "navn": "Ansettelsesperiode"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fagvurdering.vurderingsdato",
+    "kode": "vurderingsdato",
+    "navn": "Vurderingsdato"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.leverandor.kontonummer",
+    "kode": "kontonummer",
+    "navn": "Kontonummer"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.totalbeløp",
+    "kode": "totalbeløp",
+    "navn": "Totalbeløp"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.personnavn.fornavn",
+    "kode": "fornavn",
+    "navn": "Fornavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.avsluttetdato",
+    "kode": "avsluttetdato",
+    "navn": "AvsluttetDato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.vurdering.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.leveringsdato",
+    "kode": "leveringsdato",
+    "navn": "Leveringsdato"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fravar.godkjent",
+    "kode": "godkjent",
+    "navn": "Godkjent"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.journalpostnummer",
+    "kode": "journalpostnummer",
+    "navn": "JournalPostnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.registreringsid",
+    "kode": "registreringsid",
+    "navn": "RegistreringsId"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.elevnummer",
+    "kode": "elevnummer",
+    "navn": "Elevnummer"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.stillingsnummer",
+    "kode": "stillingsnummer",
+    "navn": "Stillingsnummer"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.personalressurs.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.utdanning.kodeverk.otstatus.type",
+    "kode": "type",
+    "navn": "Type"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.saksaar",
+    "kode": "saksaar",
+    "navn": "Saksaar"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.forfatter",
+    "kode": "forfatter",
+    "navn": "Forfatter"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.offentligtittel",
+    "kode": "offentligtittel",
+    "navn": "OffentligTittel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.tilknyttetdato",
+    "kode": "tilknyttetdato",
+    "navn": "TilknyttetDato"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fastlonn.prosent",
+    "kode": "prosent",
+    "navn": "Prosent"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.dokumentbeskrivelse",
+    "kode": "dokumentbeskrivelse",
+    "navn": "Dokumentbeskrivelse"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.kontaktinformasjon.sip",
+    "kode": "sip",
+    "navn": "Sip"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.korrespondansepart",
+    "kode": "korrespondansepart",
+    "navn": "Korrespondansepart"
+  },
+  {
+    "id": "no.fint.arkiv.personal.personalmappe.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.attestert",
+    "kode": "attestert",
+    "navn": "Attestert"
+  },
+  {
+    "id": "no.fint.utdanning.larling.larling.læretid",
+    "kode": "læretid",
+    "navn": "Læretid"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klasse.klasseid",
+    "kode": "klasseid",
+    "navn": "KlasseId"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.felles.kontaktperson.foreldreansvar",
+    "kode": "foreldreansvar",
+    "navn": "Foreldreansvar"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.enhet.forretningsadresse",
+    "kode": "forretningsadresse",
+    "navn": "Forretningsadresse"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.årslønn",
+    "kode": "årslønn",
+    "navn": "Årslønn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.beløp",
+    "kode": "beløp",
+    "navn": "Beløp"
+  },
+  {
+    "id": "no.fint.utdanning.utdanningsprogram.skole.domenenavn",
+    "kode": "domenenavn",
+    "navn": "Domenenavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klasse.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.tittel",
+    "kode": "tittel",
+    "navn": "Tittel"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.begrep.passiv",
+    "kode": "passiv",
+    "navn": "Passiv"
+  },
+  {
+    "id": "no.fint.felles.person.bilde",
+    "kode": "bilde",
+    "navn": "Bilde"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravar.dokumentert",
+    "kode": "dokumentert",
+    "navn": "Dokumentert"
+  },
+  {
+    "id": "no.fint.felles.basisklasser.aktor.kontaktinformasjon",
+    "kode": "kontaktinformasjon",
+    "navn": "Kontaktinformasjon"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.elevfravar.fravær",
+    "kode": "fravær",
+    "navn": "Fravær"
+  },
+  {
+    "id": "no.fint.arkiv.noark.arkivressurs.kildesystemid",
+    "kode": "kildesystemid",
+    "navn": "KildesystemId"
+  },
+  {
+    "id": "no.fint.felles.person.fødselsdato",
+    "kode": "fødselsdato",
+    "navn": "Fødselsdato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.eksamensgruppe.eksamensdato",
+    "kode": "eksamensdato",
+    "navn": "Eksamensdato"
+  },
+  {
+    "id": "no.fint.arkiv.noark.korrespondansepart.kontaktperson",
+    "kode": "kontaktperson",
+    "navn": "Kontaktperson"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.dispensasjonautomatiskfredakulturminne.matrikkelnummer",
+    "kode": "matrikkelnummer",
+    "navn": "Matrikkelnummer"
+  },
+  {
+    "id": "no.fint.arkiv.noark.dokumentbeskrivelse.referansearkivdel",
+    "kode": "referansearkivdel",
+    "navn": "ReferanseArkivdel"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppemedlemskap.gyldighetsperiode",
+    "kode": "gyldighetsperiode",
+    "navn": "Gyldighetsperiode"
+  },
+  {
+    "id": "no.fint.felles.kontaktperson.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.forfallsdato",
+    "kode": "forfallsdato",
+    "navn": "Forfallsdato"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.fravar.kildesystemid",
+    "kode": "kildesystemid",
+    "navn": "KildesystemId"
+  },
+  {
+    "id": "no.fint.utdanning.utdanningsprogram.skole.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.fakturagrunnlag.mottaker",
+    "kode": "mottaker",
+    "navn": "Mottaker"
+  },
+  {
+    "id": "no.fint.utdanning.larling.larling.systemid",
+    "kode": "systemid",
+    "navn": "SystemId"
+  },
+  {
+    "id": "no.fint.ressurser.tilganger.rettighet.beskrivelse",
+    "kode": "beskrivelse",
+    "navn": "Beskrivelse"
+  },
+  {
+    "id": "no.fint.arkiv.noark.registrering.opprettetdato",
+    "kode": "opprettetdato",
+    "navn": "OpprettetDato"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.lonn.opptjent",
+    "kode": "opptjent",
+    "navn": "Opptjent"
+  },
+  {
+    "id": "no.fint.arkiv.noark.klassifikasjonssystem.opprettetdato",
+    "kode": "opprettetdato",
+    "navn": "OpprettetDato"
+  },
+  {
+    "id": "no.fint.utdanning.vurdering.fravarsregistrering.kommentar",
+    "kode": "kommentar",
+    "navn": "Kommentar"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.utlaantdato",
+    "kode": "utlaantdato",
+    "navn": "UtlaantDato"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.matrikkelnummer.bruksnummer",
+    "kode": "bruksnummer",
+    "navn": "Bruksnummer"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.stillingstittel",
+    "kode": "stillingstittel",
+    "navn": "Stillingstittel"
+  },
+  {
+    "id": "no.fint.felles.person.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.administrasjon.personal.arbeidsforhold.ansettelsesprosent",
+    "kode": "ansettelsesprosent",
+    "navn": "Ansettelsesprosent"
+  },
+  {
+    "id": "no.fint.arkiv.noark.saksmappe.saksdato",
+    "kode": "saksdato",
+    "navn": "Saksdato"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.postering.posteringsid",
+    "kode": "posteringsid",
+    "navn": "PosteringsId"
+  },
+  {
+    "id": "no.fint.okonomi.regnskap.transaksjon.forfallsdato",
+    "kode": "forfallsdato",
+    "navn": "Forfallsdato"
+  },
+  {
+    "id": "no.fint.felles.virksomhet.virksomhetsid",
+    "kode": "virksomhetsid",
+    "navn": "VirksomhetsId"
+  },
+  {
+    "id": "no.fint.felles.kompleksedatatyper.adresse.adresselinje",
+    "kode": "adresselinje",
+    "navn": "Adresselinje"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.fakturanummer",
+    "kode": "fakturanummer",
+    "navn": "Fakturanummer"
+  },
+  {
+    "id": "no.fint.utdanning.elev.elev.feidenavn",
+    "kode": "feidenavn",
+    "navn": "Feidenavn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.mappe.merknad",
+    "kode": "merknad",
+    "navn": "Merknad"
+  },
+  {
+    "id": "no.fint.arkiv.kulturminnevern.tilskuddfredabygningprivateie.søknadsnummer",
+    "kode": "søknadsnummer",
+    "navn": "Søknadsnummer"
+  },
+  {
+    "id": "no.fint.utdanning.basisklasser.gruppe.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.arkiv.noark.journalpost.offentlighetsvurdertdato",
+    "kode": "offentlighetsvurdertdato",
+    "navn": "OffentlighetsvurdertDato"
+  },
+  {
+    "id": "no.fint.personvern.samtykke.tjeneste.navn",
+    "kode": "navn",
+    "navn": "Navn"
+  },
+  {
+    "id": "no.fint.okonomi.faktura.faktura.fakturert",
+    "kode": "fakturert",
+    "navn": "Fakturert"
+  }
+]

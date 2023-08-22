@@ -2,8 +2,8 @@ import {fetchPolicypurpose} from "./redux/dispatchers/policypurpose";
 
 class ConsentApi {
 
-    static getServices() {
-        const url = `/samtykke/tjeneste`;
+    static getServices(orgName) {
+        const url = `/consentadmin/tjeneste/${orgName}`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -11,24 +11,27 @@ class ConsentApi {
             .then(response => Promise.all([response, response.json()]));
     }
 
-    static getPolicies() {
-        const url = `/samtykke/behandling`;
+    static getPolicies(orgName) {
+        const url = `/consentadmin/behandling/${orgName}`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
         })
             .then(response => Promise.all([response, response.json()]));
     }
+
+
     static getPolicypurpose() {
-        const url = `/samtykke/behandlingsgrunnlag/`;
+        const url = `/consentadmin/behandlingsgrunnlag/`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
         })
             .then(response => Promise.all([response, response.json()]));
     }
+
     static getPersonaldata() {
-        const url = `/samtykke/personopplysning/`;
+        const url = `/consentadmin/personopplysning/`;
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -40,7 +43,7 @@ class ConsentApi {
         var setTo = true;
         if(policy.aktiv) setTo = false;
 
-        const request = new Request(`/samtykke/behandling/${policy.id}/${setTo}`, {
+        const request = new Request(`/consentadmin/behandling/${policy.id}/${setTo}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -56,8 +59,8 @@ class ConsentApi {
         });
     }
 
-    static createPolicy(serviceId, reasonId, personalDataId, description) {
-        const request = new Request(`/samtykke/behandling/`, {
+    static createPolicy(serviceId, reasonId, personalDataId, description, orgName) {
+        const request = new Request(`/consentadmin/behandling/${orgName}`, {
             method: 'POST',
             headers: {
                 // 'Accept': '*/*',
@@ -67,9 +70,9 @@ class ConsentApi {
             body: JSON.stringify({
                 aktiv: true,
                 formal: description,
-                behandlingsgrunnlagId: reasonId,
-                tjenesteId: serviceId,
-                personopplysningId: personalDataId,
+                behandlingsgrunnlagIds: [reasonId],
+                tjenesteIds: [serviceId],
+                personopplysningIds: [personalDataId],
             })
         });
         return fetch(request).then(response => {
@@ -80,8 +83,10 @@ class ConsentApi {
         });
     }
 
-    static createService(name) {
-        const request = new Request(`/samtykke/tjeneste/`, {
+    static createService(serviceName, orgName) {
+        console.log("Sending a api request with new service name: ", serviceName);
+
+        const request = new Request(`/consentadmin/tjeneste/${orgName}`, {
             method: 'POST',
             headers: {
                 'Accept': '*/*',
@@ -89,37 +94,37 @@ class ConsentApi {
             },
             credentials: 'same-origin',
             body: JSON.stringify({
-                name: name
+                navn: serviceName
+
             })
         });
         return fetch(request).then(response => {
-            return response.json();
-            // return response.status;
+            return response;
         }).catch(error => {
             return error;
         });
     }
 
-    static createPolicypurpose(name, rCode) {
-        const request = new Request(`/samtykke/behandlingsgrunnlag/`, {
-            method: 'POST',
-            headers: {
-                'Accept': '*/*',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({
-                name: name,
-                kode: rCode
-            })
-        });
-        return fetch(request).then(response => {
-            return response.json();
-            // return response.status;
-        }).catch(error => {
-            return error;
-        });
-    }
+    // static createPolicypurpose(name, rCode) {
+    //     const request = new Request(`/consentadmin/behandlingsgrunnlag/`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': '*/*',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         credentials: 'same-origin',
+    //         body: JSON.stringify({
+    //             name: name,
+    //             kode: rCode
+    //         })
+    //     });
+    //     return fetch(request).then(response => {
+    //         return response.json();
+    //         // return response.status;
+    //     }).catch(error => {
+    //         return error;
+    //     });
+    // }
 
 }
 

@@ -1,47 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
 import {
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
-    withStyles,
     Fab,
-    Box, Tooltip, MenuItem, ListItemIcon, Menu, Button, TextField, FormControl
+    Box,
+    Tooltip,
+    MenuItem,
+    ListItemIcon,
+    Menu,
+    Button,
+    TextField,
+    FormControl, CircularProgress,
 } from "@mui/material";
+import { Add,Check,Save } from "@mui/icons-material";
+import {green} from "@mui/material/colors";
 
-import {Add, CreateNewFolder} from "@mui/icons-material";
-import VerifiedUser from '@mui/icons-material/VerifiedUser';
-import PropTypes from "prop-types";
-
-const styles = () => ({
-    addButton: {
-        margin: 0,
-        top: 100,
-        left: "auto",
-        bottom: "auto",
-        right: 50,
-        position: "fixed"
-    },
-    inputForm: {
-        width: "100%"
-    },
-});
 
 class ConsentAddService extends React.Component {
 
-    showMenu = (event) => {
-        this.setState({
-            anchorEl: event.currentTarget,
-            menuIsOpen: true,
-        });
-    };
-
-    closeMenu = () => {
-        this.setState({
-            anchorEl: null,
-            menuIsOpen: false,
-        });
+    formIsValid = () => {
+        return (
+            this.state.serviceName &&
+            this.state.serviceName !== ""
+        );
     };
 
     showAddServiceDialog = () => {
@@ -63,46 +47,58 @@ class ConsentAddService extends React.Component {
     };
 
     handleAddService = () => {
+        this.setState({showSpinner: true});
+        this.hideAddServiceDialog();
         this.props
-            .createService(this.state.serviceName)
-            .then(() => {
-                this.props.notify(
-                    `Tjenste '${this.state.serviceName}' ble lagt til!`
-                );
-                // this.props.fetchAssets(this.props.context.currentOrganisation.name);
-                console.log("jennifer-in add serviceContext dialog and before change")
-                this.props.afterChange();
-                this.setState({
-                    showAddService: false,
-                });
+            .createService(this.state.serviceName, this.props.currentOrg)
+            .then((response) => {
+                this.setState({showAddService: false});
+                if (response.status === 201) {
+                    this.pollServiceStatus(response.headers.get("location"));
+                } else {
+                    this.setState({showSpinner: false});
+                    this.props.notify("Oisann, det gikk ikke helt etter planen. Prøv igjen.")
+                }
             });
     };
 
-    showAddReasonDialog = () => {
-        this.setState({
-            showAddReason: true,
-        });
-    };
-
-    hideAddReasonDialog = () => {
-        this.setState({
-            showAddReason: false,
-        });
-    };
-
-    handleAddReason = () => {
-        this.props
-            .createPolicypurpose(this.state.reasonName, this.state.rCode)
-            .then(() => {
-                this.props.notify(
-                    `behandlingsgrunnlag '${this.state.reasonName}' ble lagt til!`
-                );
-                this.props.afterChange();
-                this.setState({
-                    showAddReason: false,
+    pollServiceStatus = (statusUrl) => {
+        const pollInterval = setInterval(() => {
+            fetch(statusUrl)
+                // .then((response) => {
+                //     if (!response.ok) {
+                //         throw new Error('Network response was not ok');
+                //     }
+                //     return response;
+                // })
+                // .then((response) => response.status)
+                .then((response) => {
+                    console.log("jennifer - polling url: ", statusUrl);
+                    console.log("jennifer - polling status: ", response.status);
+                    if (response.status === 201) {
+                        clearInterval(pollInterval);
+                        this.setState({
+                            showSpinner: false,
+                            showSuccessAlert: true
+                        });
+                        this.props.notify(`Tjenste '${this.state.serviceName}' ble lagt til!`);
+                    } else if (response.status === 202) {
+                        // No action needed for status 202; continue polling
+                    } else {
+                        clearInterval(pollInterval);
+                        this.props.notify("Noe gikk galt under opprettelsen av tjenesten.");
+                        this.setState({showSpinner: false});
+                    }
+                })
+                .catch((error) => {
+                    clearInterval(pollInterval);
+                    console.error("Error while polling:", error);
+                    this.props.notify("Noe gikk galt under polling av tjenestestatus.");
+                    this.setState({showSpinner: false});
                 });
-            });
+        }, 3000);
     };
+
 
     constructor(props, context) {
         super(props, context);
@@ -110,57 +106,57 @@ class ConsentAddService extends React.Component {
             anchorEl: null,
             menuIsOpen: false,
             showAddService: false,
-            showAddReason: false,
+            showSpinner: false,
+            showSuccessAlert: false,
+            serviceName: null,
         };
     };
 
     render() {
-        const { classes } = this.props;
 
         return (
             <div>
-                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                    <Tooltip title="Legg til">
-                        <Fab
-                            onClick={this.showMenu}
-                            color="secondary"
-                            // className={classes.addButton}
-                            sx={{
-                                    margin: 0,
-                                    top: 100,
-                                    left: "auto",
-                                    bottom: "auto",
-                                    right: 50,
-                                    position: "fixed"
-                                }}
-                        >
-                            <Add />
-                        </Fab>
-                    </Tooltip>
-                </Box>
-                <Menu
-                    anchorEl={this.state.anchorEl}
-                    id="account-menu"
-                    open={this.state.menuIsOpen}
-                    onClose={this.closeMenu}
-                    onClick={this.closeMenu}
-                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                    // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                >
+                <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
+                    <Fab
+                        aria-label="save"
+                        color="primary"
+                        // sx={buttonSx}
+                        onClick={this.showAddServiceDialog}
+                        sx={{
+                            margin: 0,
+                            top: 100,
+                            left: "auto",
+                            bottom: "auto",
+                            right: 50,
+                            position: "fixed"
+                        }}
+                    >
+                        {this.state.showSpinner ? (
+                            <Save />
+                        ) : (
+                            this.state.showSuccessAlert ? (
+                                <Check />
+                            ) : (
+                                <Add />
+                            )
+                        )}
 
-                    <MenuItem onClick={this.showAddServiceDialog}>
-                        <ListItemIcon>
-                            <CreateNewFolder fontSize="small" />
-                        </ListItemIcon>
-                        Legg til Tjenster
-                    </MenuItem>
-                    <MenuItem onClick={this.showAddReasonDialog}>
-                        <ListItemIcon>
-                            <VerifiedUser fontSize="small" />
-                        </ListItemIcon>
-                        Legg til Behandlingsgrunnlag
-                    </MenuItem>
-                </Menu>
+                    </Fab>
+                    {this.state.showSpinner && (
+                        <CircularProgress
+                            size={68}
+                            sx={{
+                                color: green[500],
+                                margin: 0,
+                                top: 95,
+                                left: "auto",
+                                bottom: "auto",
+                                right: 45,
+                                position: "fixed"
+                            }}
+                        />
+                    )}
+                </Box>
 
                 <Dialog
                     open={this.state.showAddService}
@@ -180,7 +176,7 @@ class ConsentAddService extends React.Component {
                                 margin="dense"
                                 id="serviceName"
                                 name={"serviceName"}
-                                label="Tjenster name"
+                                label="Tjenster navn"
                                 type="text"
                                 fullWidth
                                 onChange={this.handleChange}
@@ -188,70 +184,39 @@ class ConsentAddService extends React.Component {
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.hideAddServiceDialog} color="primary">
+                        <Button
+                            onClick={this.hideAddServiceDialog}
+                            color="primary"
+                            variant="contained"
+                        >
                             Cancel
                         </Button>
-                        <Button onClick={this.handleAddService} color="primary">
+
+                        <Button
+                            onClick={this.handleAddService}
+                            color="primary"
+                            variant="contained"
+                            disabled={!this.formIsValid()}
+                        >
                             Add
                         </Button>
                     </DialogActions>
                 </Dialog>
 
-                <Dialog
-                    open={this.state.showAddReason}
-                    onClose={this.hideAddReasonDialog}
-                    aria-labelledby="form-dialog-title"
-                    fullWidth={true}
-                    maxWidth={'md'}
-                >
-                    <DialogTitle id="form-dialog-title">Behandlingsgrunnlag</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Legg til en ny behandlingsgrunnlag.
-                        </DialogContentText>
-                        <FormControl id={"serviceFormControl"} sx={{width: "100%"}}>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="rCode"
-                                name={"rCode"}
-                                label="Behandlings code"
-                                type="text"
-                                fullWidth
-                                onChange={this.handleChange}
-                            />
-                        </FormControl>
-                        <FormControl id={"serviceFormControl"} sx={{width: "100%"}}>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="reasonName"
-                                name={"reasonName"}
-                                label="Behandlings navn"
-                                type="text"
-                                fullWidth
-                                onChange={this.handleChange}
-                            />
-                        </FormControl>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.hideAddReasonDialog} color="primary">
-                            Cancel
-                        </Button>
-                        <Button onClick={this.handleAddReason} color="primary">
-                            Add
-                        </Button>
-                    </DialogActions>
-                </Dialog>
 
+                {/*{this.state.showSpinner && <CircularProgress/>}*/}
+                {this.state.showSpinner }
+                {this.state.showSuccessAlert && (
+                    <Alert severity="success">All good! Service added successfully.</Alert>
+                )}
             </div>
+
 
         )
     }
 }
 
-ConsentAddService.propTypes = {
-};
+ConsentAddService.propTypes = {};
 
 export default ConsentAddService;
 // export default withStyles(styles)(ConsentAddService);

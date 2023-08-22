@@ -32,8 +32,8 @@ class ConsentContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchPolicies();
-        this.props.fetchServices();
+        this.props.fetchPolicies(this.props.context.currentOrganisation.name);
+        this.props.fetchServices(this.props.context.currentOrganisation.name);
         this.props.fetchPersonaldata();
         this.props.fetchPolicypurpose(); //todo: change to plural
         // this.props.fetchServices(this.props.context.currentOrganisation.name);
@@ -106,6 +106,7 @@ class ConsentContainer extends React.Component {
                         personaldata={this.props.personaldata}
                         createPolicy={this.props.createPolicy}
                         afterChange={this.afterChange}
+                        currentOrg={this.props.context.currentOrganisation.name}
                     />
 
 
@@ -114,6 +115,7 @@ class ConsentContainer extends React.Component {
                         createService={this.props.createService}
                         createPolicypurpose={this.props.createPolicypurpose}
                         afterChange={this.afterChange}
+                        currentOrg={this.props.context.currentOrganisation.name}
                     />
 
                 </div>

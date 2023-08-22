@@ -128,6 +128,7 @@ const ConsentAccordion = (props) => {
                 policypurpose={policypurpose}
                 notify={props.notify}
                 createPolicy={props.createPolicy}
+                currentOrg={props.currentOrg}
             />
 
             <div>
@@ -135,7 +136,7 @@ const ConsentAccordion = (props) => {
 
                     {services &&
                         services
-                            .filter(service => service.navn && service.navn.match(new RegExp(searchValue, "i")))
+                            .filter(service => (searchValue && service.navn && service.navn.match(new RegExp(searchValue, "i"))) || !searchValue)
                         .map(service => (
 
                             <Accordion key={service.id}>
@@ -169,7 +170,7 @@ const ConsentAccordion = (props) => {
                                             >
                                                 <AddCircle />
                                             </IconButton>
-                                            <div>Legg behandling til {service.navn}</div>
+                                            <div>Legg behandling til {service.navn} </div>
                                         </Grid>
                                         <Grid item xs={12}>
 
@@ -201,7 +202,7 @@ const ConsentAccordion = (props) => {
         </div>
     );
 
-}
+};
 
 ConsentAccordion.propTypes = {
     services: PropTypes.array.isRequired,
@@ -209,6 +210,7 @@ ConsentAccordion.propTypes = {
     policypurpose: PropTypes.array.isRequired,
     personaldata: PropTypes.array.isRequired,
     afterChange: PropTypes.func.isRequired,
+    currentOrg: PropTypes.string,
 };
 
 // export default withStyles(styles)(withContext(ConsentAccordion));

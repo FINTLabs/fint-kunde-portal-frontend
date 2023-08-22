@@ -149,10 +149,20 @@ Cypress.Commands.add('removeClientFromAssetApiCall', () => {
 Cypress.Commands.add('getConsentData', () => {
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/api/services',
-    }, {statusCode: 200, fixture: 'serviceContext.json'});
+        url: 'http://localhost:3000/samtykke/behandling/test_no',
+    }, {statusCode: 200, fixture: 'behandling.json'});
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/api/policies/',
-    }, {statusCode: 200, fixture: 'policy.json'});
+        url: 'http://localhost:3000/samtykke/tjeneste/test_no',
+    }, {statusCode: 200, fixture: 'tjeneste.json'});
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/behandlingsgrunnlag/',
+    }, {statusCode: 200, fixture: 'behandlingsgrunnlag.json'});
+
+    cy.intercept({
+        method: 'GET',
+        url: 'http://localhost:3000/samtykke/personopplysning/',
+    }, {statusCode: 200, fixture: 'personopplysning.json'});
 });
+

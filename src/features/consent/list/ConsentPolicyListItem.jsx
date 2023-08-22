@@ -35,8 +35,8 @@ class ConsentPolicyListItem extends React.Component {
     render() {
 
         const policy = this.props.policies.find(element => element.id === this.props.idToFind);
-        const personalInfo = this.props.personaldata.find(element => element.id === policy.personopplysningId);
-        const reason = this.props.policypurpose.find(element => element.id === policy.behandlingsgrunnlagId);
+        const personalInfo = this.props.personaldata.find(element => element.id === (policy?.personopplysningId || null));
+        const reason = this.props.policypurpose.find(element => element.id === (policy?.behandlingsgrunnlagId || null));
 
         if (policy && (policy.aktiv || this.props.showNonActive)) {
             return <ListItem key={policy.systemId}>
@@ -44,7 +44,7 @@ class ConsentPolicyListItem extends React.Component {
                     <Avatar>
                         {
                             policy.aktiv
-                                ? renderListIcon(personalInfo.kode)
+                                ? renderListIcon(personalInfo?.kode || 'error')
                                 : renderListIcon('error')
                         }
                     </Avatar>
@@ -55,7 +55,9 @@ class ConsentPolicyListItem extends React.Component {
                             ? <>{policy.formal} </>
                             : <Typography style={{textDecoration: "line-through"}}> {policy.formal}</Typography>
                     }
-                    secondary={<> {personalInfo.kode}: {personalInfo.navn} {reason.kode}: {reason.navn} </>}
+                    secondary={
+                        <> {personalInfo?.kode || 'N/A'}: {personalInfo?.navn || 'N/A'} {reason?.kode || 'N/A'}: {reason?.navn || 'N/A'} </>
+                    }
                 />
                 <ListItemSecondaryAction>
                     <IconButton
