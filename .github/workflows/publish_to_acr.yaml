@@ -5,7 +5,8 @@ on:
       - master
 
 env:
-  REGISTRY_NAME: fintlabsacr
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
   NAMESPACE: default
 
 jobs:
@@ -14,23 +15,29 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v3.3.0
 
-      - name: Get repo name
-        id: get_repo
-        run: echo ::set-output name=REPO::${GITHUB_REPOSITORY#*/}
-
-      - name: Connect to Azure Container Registry (ACR)
-        uses: azure/docker-login@v1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2.1.0
         with:
-          login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Container build and push to a Azure Container Registry (ACR)
-        run: |
-          docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/kunde-portal-frontend:latest
-          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/kunde-portal-frontend:latest
+      - name: Extract metadata (tags, labels) for Docker
+        uses: docker/metadata-action@v4.3.0
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: type=sha,enable=true,priority=100,prefix=shaF-,suffix=,format=short
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       ## Uncomment to trigger a deployment
 #      - name: Start deployment workflow
