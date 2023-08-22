@@ -28,8 +28,10 @@ jobs:
         uses: docker/metadata-action@v4.3.0
         id: meta
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: type=sha,enable=true,priority=100,prefix=sha-,suffix=,format=short,latest
+          tags: |
+            type=sha,enable=true,priority=100,prefix=sha-,suffix=,format=short
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
