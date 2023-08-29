@@ -1,0 +1,39 @@
+apiVersion: fintlabs.no/v1alpha1
+kind: Application
+metadata:
+  name: fint-kunde-portal-frontend
+  namespace: fintlabs-no
+  labels:
+    app.kubernetes.io/name: fint-kunde-portal-frontend
+    app.kubernetes.io/instance: fint-kunde-portal-frontend_fintlabs_no
+    app.kubernetes.io/version: latest
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: fint-core
+    fintlabs.no/team: core
+    fintlabs.no/org-id: fintlabs.no
+spec:
+  port: 8080
+  imagePullPolicy: Always
+  orgId: fintlabs.no
+  image: ghcr.io/fintlabs/fint-kunde-portal-frontend:latest
+  url:
+    hostname: kunde-beta.felleskomponent.no
+  ingress:
+    enabled: true
+    middlewares:
+      - fint-kunde-portal-sso
+  env:
+    - name: JAVA_TOOL_OPTIONS
+      value: '-XX:+ExitOnOutOfMemoryError -Xmx400M'
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+  restartPolicy: Always
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
