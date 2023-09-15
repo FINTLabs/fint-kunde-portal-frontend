@@ -21,7 +21,6 @@ spec:
     basePath: /
   ingress:
     enabled: true
-    basePath: /
     middlewares:
       - fint-kunde-portal-sso
   env:
