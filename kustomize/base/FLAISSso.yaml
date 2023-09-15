@@ -11,5 +11,5 @@ metadata:
     fintlabs.no/team: core
     fintlabs.no/org-id: fintlabs.no
 spec:
-  hostname: flyt.vigoiks.no
+  hostname: kunde-beta.felleskomponent.no
   basePath: /
