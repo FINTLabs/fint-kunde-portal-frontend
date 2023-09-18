@@ -12,4 +12,3 @@ metadata:
     fintlabs.no/org-id: fintlabs.no
 spec:
   hostname: kunde-beta.felleskomponent.no
-  basePath: /_oauth
