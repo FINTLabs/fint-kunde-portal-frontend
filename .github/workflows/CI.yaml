@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.7.0
@@ -20,7 +20,7 @@ jobs:
           node-version: 16
 
       - name: Cache Node.js modules
-        uses: actions/cache@v3.2.1
+        uses: actions/cache@v3.3.2
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
