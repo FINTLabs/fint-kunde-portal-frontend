@@ -11,4 +11,7 @@ metadata:
     fintlabs.no/team: core
     fintlabs.no/org-id: fintlabs.no
 spec:
+  basePath: /
+  upnClaim: sub
   hostname: kunde-beta.felleskomponent.no
+  loggingLevel: debug
