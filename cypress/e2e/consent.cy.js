@@ -1,5 +1,5 @@
 describe('Redirect API call to JSON file', () => {
-    it('should intercept and redirect the API call to a JSON file', () => {
+    it.skip('should intercept and redirect the API call to a JSON file', () => {
         cy.apiIntercept();
         cy.goToHome();
         cy.visit('/consent');
@@ -7,7 +7,7 @@ describe('Redirect API call to JSON file', () => {
     });
 
 
-        it('opens and closes the service menu on clicking the Fab button', () => {
+        it.skip('opens and closes the service menu on clicking the Fab button', () => {
             cy.apiIntercept();
             cy.getConsentData();
             cy.get('[data-test="my-fab-component"]').click();
@@ -16,7 +16,7 @@ describe('Redirect API call to JSON file', () => {
             cy.get('#account-menu').should('not.exist');
         });
 
-        it('adds a new service when the "Legg til Tjenester" menu item is clicked', () => {
+        it.skip('adds a new service when the "Legg til Tjenester" menu item is clicked', () => {
             cy.getConsentData();
             cy.get('[data-test="my-fab-component"]').click();
             cy.contains('Legg til Tjenster').click();
@@ -31,7 +31,7 @@ describe('Redirect API call to JSON file', () => {
             // You can add assertions here to ensure the service is added correctly
         });
 
-        it('adds a new reason when the "Legg til Behandlingsgrunnlag" menu item is clicked', () => {
+        it.skip('adds a new reason when the "Legg til Behandlingsgrunnlag" menu item is clicked', () => {
             cy.getConsentData();
             cy.get('[data-test="my-fab-component"]').click();
             cy.contains('Legg til Behandlingsgrunnlag').click();

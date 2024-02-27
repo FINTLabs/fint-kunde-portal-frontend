@@ -155,4 +155,23 @@ describe('Testing adapters page', () => {
     it('Confirm ok by snackbar', () => {
         cy.get("#notifySnackbar").contains('Adapteret ble opprettet');
     });
+
+    it('Test new tabs', () => {
+        cy.contains('Manuelt opprettet').click();
+        cy.get("#adapterList")
+            .find('li')
+            .should(
+                ($tr) => {
+                    expect($tr).to.have.length(2)
+                }
+            )
+        cy.contains('Automatisk opprettet').click();
+        cy.get("#adapterList")
+            .find('li')
+            .should(
+                ($tr) => {
+                    expect($tr).to.have.length(1)
+                }
+            )
+    });
 });

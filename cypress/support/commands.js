@@ -6,6 +6,10 @@ Cypress.Commands.add('apiIntercept', () => {
     }, {fixture: 'me.json'});
     cy.intercept({
         method: 'GET',
+        url: 'http://localhost:3000/api/api/feature',
+    }, {fixture: 'features.json'});
+    cy.intercept({
+        method: 'GET',
         url: 'http://localhost:3000/api/contacts/organisations',
     }, {statusCode: 200, fixture: 'organisations.json'});
     cy.intercept({
@@ -34,7 +38,7 @@ Cypress.Commands.add('apiIntercept', () => {
         url: 'http://localhost:3000/api/assets/test_no/',
     }, {statusCode: 200, fixture: 'assets.json'});
     cy.intercept({
-        method: 'POST',
+        method: 'PUT',
         url: 'http://localhost:3000/api/assets/test_nr_to_no/',
     }, {statusCode: 200, fixture: 'assets.json'});
     cy.intercept({

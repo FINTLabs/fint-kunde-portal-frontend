@@ -10,7 +10,10 @@ import {
     ListItemAvatar,
     ListItemSecondaryAction,
     ListItemText,
-    Typography
+    Typography,
+    Tab,
+    Tabs,
+    Box
 } from "@mui/material";
 import {Delete, Edit} from "@mui/icons-material";
 import ClientIcon from "@mui/icons-material/ImportantDevices";
@@ -83,6 +86,12 @@ class ClientList extends Component {
         });
     };
 
+    handleChange = (event, newValue) => {
+        this.setState({
+                isManaged:newValue,
+            })
+    };
+
     askToDelete = client => {
         this.setState({
             askToDelete: true,
@@ -119,7 +128,8 @@ class ClientList extends Component {
             notify: false,
             clientDeletedName: null,
             askToDelete: false,
-            message: ""
+            message: "",
+            isManaged: false,
         };
     }
 
@@ -157,13 +167,32 @@ class ClientList extends Component {
                                 Påloggingsinformasjonen og informasjon om endepunkter må oppgis
                                 til den som skal installere og konfigurere integrasjonen.
                             </p>
+                            <p>
+                                Automatisk opprettede klienter er generert ved oppsett av nye tjenester,
+                                eliminerer behovet for manuell håndtering og utveksling av autentiseringsinformasjon.
+                                De blir etablert for å møte et tilgangsbehov i et undersystem i FINT.
+                            </p>
                         </FeatureHelperText>
                         <Typography variant="h5" className={classes.title}>
                             Klienter
                         </Typography>
                         <Divider/>
+
+                        <Box sx={{borderBottom: 1, borderBottomColor: "divider"}}>
+                            <Tabs
+                                value={this.state.isManaged}
+                                onChange={this.handleChange}
+                                aria-label="hvordan-client-er-opprettet"
+                            >
+                                <Tab value={false} label="Manuelt opprettet" />
+                                <Tab value={true} label="Automatisk opprettet" />
+                            </Tabs>
+                        </Box>
+
                         <List id={"clientList"}>
-                            {clients.map(client => (
+                            {clients
+                                .filter(client => client.managed === this.state.isManaged)
+                                .map(client => (
                                 <ListItem className={classes.listItem} key={client.dn}>
                                     <ListItemAvatar>
                                         <Avatar className={classes.itemAvatar}>
@@ -178,12 +207,14 @@ class ClientList extends Component {
                                         <IconButton
                                             aria-label="Edit"
                                             onClick={() => this.editClient(client)}
+                                            disabled={this.state.isManaged}
                                         >
                                             <Edit/>
                                         </IconButton>
                                         <IconButton
                                             aria-label="Delete"
                                             onClick={() => this.askToDelete(client)}
+                                            disabled={this.state.isManaged}
                                         >
                                             <Delete/>
                                         </IconButton>

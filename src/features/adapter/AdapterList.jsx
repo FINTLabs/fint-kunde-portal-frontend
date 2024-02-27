@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { styled } from "@mui/material/styles";
 import {
-  Avatar,
+  Avatar, Box,
   Divider,
   IconButton,
   List,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
-  ListItemText,
+  ListItemText, Tab, Tabs,
   Typography
 } from "@mui/material";
 import { Delete, Edit, InsertLink } from "@mui/icons-material";
@@ -60,6 +60,12 @@ const Root = styled('div')((
 }));
 
 class AdapterList extends Component {
+  handleChange = (event, newValue) => {
+    this.setState({
+      isManaged:newValue,
+    })
+  };
+
   editAdapter = adapter => {
     this.setState({
       open: true,
@@ -118,7 +124,8 @@ class AdapterList extends Component {
       notify: false,
       adapterDeletedName: null,
       askToDelete: false,
-      message: ""
+      message: "",
+      isManaged: false,
     };
   }
 
@@ -152,13 +159,32 @@ class AdapterList extends Component {
                 Påloggingsinformasjonen og informasjon om endepunkter må oppgis
                 til den som skal installere og konfigurere adapteret.
               </p>
+              <p>
+                Automatisk opprettede klienter er generert ved oppsett av nye tjenester,
+                eliminerer behovet for manuell håndtering og utveksling av autentiseringsinformasjon.
+                De blir etablert for å møte et tilgangsbehov i et undersystem i FINT.
+              </p>
             </FeatureHelperText>
             <Typography variant="h5" className={classes.title}>
               Adapter
             </Typography>
             <Divider />
+
+            <Box sx={{borderBottom: 1, borderBottomColor: "divider"}}>
+              <Tabs
+                  value={this.state.isManaged}
+                  onChange={this.handleChange}
+                  aria-label="hvordan-client-er-opprettet"
+              >
+                <Tab value={false} label="Manuelt opprettet" />
+                <Tab value={true} label="Automatisk opprettet" />
+              </Tabs>
+            </Box>
+
             <List id={"adapterList"}>
-              {adapters.map(adapter => (
+              {adapters
+                  .filter( adapter => adapter.managed === this.state.isManaged)
+                  .map(adapter => (
                 <ListItem className={classes.listItem} key={adapter.dn}>
                   <ListItemAvatar>
                     <Avatar className={classes.itemAvatar}>

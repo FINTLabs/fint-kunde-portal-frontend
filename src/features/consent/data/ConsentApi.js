@@ -1,5 +1,3 @@
-// import {fetchPolicypurpose} from "./redux/dispatchers/policypurpose";
-
 class ConsentApi {
 
     static getServices(orgName) {

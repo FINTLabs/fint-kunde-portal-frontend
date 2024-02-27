@@ -87,7 +87,7 @@ describe('Testing start page', () => {
     it('Card "Adapter" should contain correct amount of clients and correct text', () => {
             cy.get("#adapterCard").should("contain", "Adapter");
             cy.get("#adapterCard").should("contain", "Antall");
-            cy.get("#adapterCard").should("contain", "2");
+            cy.get("#adapterCard").should("contain", "3");
         }
     );
     it('Card "Komponenter" should contain correct amount of clients and correct text', () => {

@@ -1,0 +1,9 @@
+{
+  "samtykke-admin-new": false,
+  "roles": false,
+  "access-packages": false,
+  "audit-log-new": false,
+  "samtykke-admin": false,
+  "roles-init": false,
+  "audit-log": false
+}
