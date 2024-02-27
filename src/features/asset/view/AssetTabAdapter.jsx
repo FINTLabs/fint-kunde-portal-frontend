@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import {
-  Avatar,
+  Avatar, Box,
   List,
   ListItem,
   ListItemAvatar,
@@ -18,6 +18,7 @@ import InformationMessageBox from "../../../common/message-box/InformationMessag
 import { withContext } from "../../../data/context/withContext";
 import RemoveButton from "../../../common/button/RemoveButton";
 import AddButton from "../../../common/button/AddButton";
+import Button from "@mui/material/Button";
 
 const PREFIX = 'AssetTabAdapter';
 
@@ -165,7 +166,8 @@ class AssetTabAdapter extends React.Component {
     this.state = {
       askLink: false,
       askUnLink: false,
-      message: ""
+      message: "",
+      isManaged: false,
     };
   }
 
@@ -193,8 +195,27 @@ class AssetTabAdapter extends React.Component {
             message={this.state.message}
             onClose={this.onCloseLink}
           />
+          <Box>
+          <Button
+              onClick={() => this.setState({ isManaged: false })}
+              variant={this.state.isManaged === false ? "contained" : "outlined"}
+              aria-label="manuelt-opprettet"
+          >
+            Manuelt opprettet
+          </Button>
+          <Button
+              onClick={() => this.setState({ isManaged: true })}
+              variant={this.state.isManaged === true ? "contained" : "outlined"}
+              aria-label="automatisk-opprettet"
+          >
+            Automatisk opprettet
+          </Button>
+        </Box>
+
           <List id={"assetAdapterList"}>
-            {organisationAdapters.map(adapter => (
+            {organisationAdapters
+                .filter( adapter => adapter.managed === this.state.isManaged)
+                .map(adapter => (
               <ListItem className={classes.listItem} key={adapter.dn}>
                 <ListItemAvatar>
                   <Avatar className={classes.itemAvatar}>

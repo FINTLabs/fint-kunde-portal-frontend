@@ -11,7 +11,8 @@
       "ou=test_fullmakt,ou=components,o=test",
       "ou=test_kodeverk,ou=components,o=test",
       "ou=test_organisasjon,ou=components,o=test"
-    ]
+    ],
+    "managed": false
   },
   {
     "dn": "cn=test123@client.fintlabs.no,ou=clients,ou=test_no,ou=organisations,o=test",
@@ -25,6 +26,7 @@
       "ou=test_fullmakt,ou=components,o=test",
       "ou=test_kodeverk,ou=components,o=test",
       "ou=test_organisasjon,ou=components,o=test"
-    ]
+    ],
+    "managed": false
   }
 ]

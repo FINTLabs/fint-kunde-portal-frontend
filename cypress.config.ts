@@ -1,16 +1,24 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from "cypress";
 
 export default defineConfig({
-  projectId: 'ewa7an',
+  projectId: "ewa7an",
   video: false,
+
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
-    baseUrl: 'http://localhost:3000',
+    baseUrl: "http://localhost:3000",
     testIsolation: false,
 
     setupNodeEvents(on, config) {
-      return require('./cypress/plugins/index.js')(on, config)
+      return require("./cypress/plugins/index.js")(on, config);
     },
   },
-})
+
+  component: {
+    devServer: {
+      framework: "create-react-app",
+      bundler: "webpack",
+    },
+  },
+});

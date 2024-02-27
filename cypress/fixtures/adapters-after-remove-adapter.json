@@ -14,7 +14,8 @@
     ],
     "assetIds": [
       "test.no"
-    ]
+    ],
+    "managed": false
   },
   {
     "dn": "cn=test123@adapter.fintlabs.no,ou=adapters,ou=test_no,ou=organisations,o=test",
@@ -31,6 +32,7 @@
     ],
     "assetIds": [
       "test.no"
-    ]
+    ],
+    "managed": false
   }
 ]
