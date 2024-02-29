@@ -3,6 +3,6 @@ COPY . /src
 WORKDIR /src
 RUN yarn && yarn build
 
-FROM nginx:1.17.6
+FROM nginx:1.25.4
 COPY --from=builder /src/build/ /html/
 COPY nginx.conf mime.types /etc/nginx/
