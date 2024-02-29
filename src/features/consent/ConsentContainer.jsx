@@ -1,26 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import {Divider, Typography, withStyles} from "@mui/material";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {Divider, Typography} from "@mui/material";
 import LoadingProgress from "../../common/status/LoadingProgress";
-import {fetchServices,createService} from "./data/redux/dispatchers/service";
+import {createService, fetchServices} from "./data/redux/dispatchers/service";
 import {createPolicy, fetchPolicies} from "./data/redux/dispatchers/policy";
 import {createPolicypurpose, fetchPolicypurpose} from "./data/redux/dispatchers/policypurpose";
 import {fetchPersonaldata} from "./data/redux/dispatchers/personaldata";
 import ConsentList from "./list/ConsentAccordion";
 import ConsentServiceAdd from "./ConsentServiceAddDialog";
-import { withContext } from "../../data/context/withContext";
+import {withContext} from "../../data/context/withContext";
 import AutoHideNotification from "../../common/notification/AutoHideNotification";
 import FeatureHelperText from "../../common/help/FeatureHelperText";
-const styles = () => ({
-    root: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    componentList: {
-        width: "75%"
-    },
-});
 
 class ConsentContainer extends React.Component {
     constructor(props) {
@@ -28,6 +19,7 @@ class ConsentContainer extends React.Component {
         this.state = {
             notify: false,
             notifyMessage: "",
+            // key: 0,
         };
     }
 
@@ -36,7 +28,21 @@ class ConsentContainer extends React.Component {
         this.props.fetchServices(this.props.context.currentOrganisation.name);
         this.props.fetchPersonaldata();
         this.props.fetchPolicypurpose(); //todo: change to plural
-        // this.props.fetchServices(this.props.context.currentOrganisation.name);
+    }
+
+    componentDidUpdate(prevProps) {
+        // Check if the props have changed (for example, the services array)
+        if (this.props.services !== prevProps.services ||
+            this.props.policies !== prevProps.policies ||
+            this.props.policypurpose !== prevProps.policypurpose ||
+            this.props.personaldata !== prevProps.personaldata) {
+            // Update the state with the new props
+            this.setState({
+                services: this.props.services,
+                policypurpose: this.props.policypurpose,
+                personaldata: this.props.personaldata,
+            });
+        }
     }
 
     notify = message => {
@@ -54,11 +60,14 @@ class ConsentContainer extends React.Component {
     };
 
     afterChange = () => {
-        console.log("jennifer after change");
-        this.props.fetchPolicies();
-        this.props.fetchServices();
+        this.props.fetchPolicies(this.props.context.currentOrganisation.name);
+        this.props.fetchServices(this.props.context.currentOrganisation.name);
         this.props.fetchPersonaldata();
         this.props.fetchPolicypurpose();
+        // this.setState(prevState => ({
+        //     key: prevState.key + 1
+        // }));
+        console.log("jennifer afterChange");
     };
 
     render() {
@@ -98,6 +107,7 @@ class ConsentContainer extends React.Component {
                         Samtykke
                     </Typography>
                     <Divider/>
+
                     <ConsentList
                         notify={this.notify}
                         services={this.props.services}
@@ -107,8 +117,8 @@ class ConsentContainer extends React.Component {
                         createPolicy={this.props.createPolicy}
                         afterChange={this.afterChange}
                         currentOrg={this.props.context.currentOrganisation.name}
+                        // key={this.state.key}
                     />
-
 
                     <ConsentServiceAdd
                         notify={this.notify}

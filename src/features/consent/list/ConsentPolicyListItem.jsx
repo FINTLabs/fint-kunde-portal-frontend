@@ -1,54 +1,19 @@
 import React from 'react';
-import {
-    Avatar,
-    IconButton,
-    ListItem,
-    ListItemAvatar,
-    ListItemSecondaryAction,
-    ListItemText,
-    Typography
-} from "@mui/material";
-import {AddCircleOutline, CameraAlt, Cancel, Description, Email, Error, House, Phone} from "@mui/icons-material";
+import {IconButton, ListItem, ListItemSecondaryAction, ListItemText, Typography} from "@mui/material";
+import {AddCircleOutline, Cancel} from "@mui/icons-material";
 import PropTypes from "prop-types";
-
-function renderListIcon(code) {
-    switch(code) {
-        case 'numbers':
-            return (<Description/>);
-        case 'phone':
-            return (<Phone/>);
-        case 'picture':
-            return (<CameraAlt/>);
-        case 'email':
-            return (<Email/>);
-        case 'fnr':
-            return (<House/>);
-        case 'error':
-            return (<Error/>);
-        default:
-            return 'foo';
-    }
-}
 
 class ConsentPolicyListItem extends React.Component {
 
     render() {
 
         const policy = this.props.policies.find(element => element.id === this.props.idToFind);
-        const personalInfo = this.props.personaldata.find(element => element.id === (policy?.personopplysningId || null));
-        const reason = this.props.policypurpose.find(element => element.id === (policy?.behandlingsgrunnlagId || null));
+        const personalInfo = this.props.personaldata.find(element => element.id === (policy?.personopplysningIds[0] || null));
+        const reason = this.props.policypurpose.find(element => element.id === (policy?.behandlingsgrunnlagIds[0] || null));
 
         if (policy && (policy.aktiv || this.props.showNonActive)) {
             return <ListItem key={policy.systemId}>
-                <ListItemAvatar>
-                    <Avatar>
-                        {
-                            policy.aktiv
-                                ? renderListIcon(personalInfo?.kode || 'error')
-                                : renderListIcon('error')
-                        }
-                    </Avatar>
-                </ListItemAvatar>
+
                 <ListItemText
                     primary={
                         policy.aktiv

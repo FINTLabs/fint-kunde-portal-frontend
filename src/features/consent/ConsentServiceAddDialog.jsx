@@ -1,21 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import {
+    Box,
+    Button,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Fab,
-    Box,
-    Tooltip,
-    MenuItem,
-    ListItemIcon,
-    Menu,
-    Button,
+    FormControl,
     TextField,
-    FormControl, CircularProgress,
 } from "@mui/material";
-import { Add,Check,Save } from "@mui/icons-material";
+import {Add, Check, Save} from "@mui/icons-material";
 import {green} from "@mui/material/colors";
 
 
@@ -55,6 +52,7 @@ class ConsentAddService extends React.Component {
                 this.setState({showAddService: false});
                 if (response.status === 201) {
                     this.pollServiceStatus(response.headers.get("location"));
+                    console.log("jennifer - response.headers.get(location): ", response.headers.get("location"));
                 } else {
                     this.setState({showSpinner: false});
                     this.props.notify("Oisann, det gikk ikke helt etter planen. Prøv igjen.")
@@ -62,42 +60,43 @@ class ConsentAddService extends React.Component {
             });
     };
 
-    pollServiceStatus = (statusUrl) => {
-        const pollInterval = setInterval(() => {
-            fetch(statusUrl)
-                // .then((response) => {
-                //     if (!response.ok) {
-                //         throw new Error('Network response was not ok');
-                //     }
-                //     return response;
-                // })
-                // .then((response) => response.status)
-                .then((response) => {
-                    console.log("jennifer - polling url: ", statusUrl);
-                    console.log("jennifer - polling status: ", response.status);
-                    if (response.status === 201) {
-                        clearInterval(pollInterval);
-                        this.setState({
-                            showSpinner: false,
-                            showSuccessAlert: true
-                        });
-                        this.props.notify(`Tjenste '${this.state.serviceName}' ble lagt til!`);
-                    } else if (response.status === 202) {
-                        // No action needed for status 202; continue polling
-                    } else {
-                        clearInterval(pollInterval);
-                        this.props.notify("Noe gikk galt under opprettelsen av tjenesten.");
-                        this.setState({showSpinner: false});
-                    }
-                })
-                .catch((error) => {
-                    clearInterval(pollInterval);
-                    console.error("Error while polling:", error);
-                    this.props.notify("Noe gikk galt under polling av tjenestestatus.");
-                    this.setState({showSpinner: false});
-                });
-        }, 3000);
+    pollServiceStatus = async (statusUrl) => {
+        const checkStatus = async () => {
+            try {
+                const response = await fetch(statusUrl);
+                console.log("Polling status: ", response.status);
+                return response.status;
+            } catch (error) {
+                console.error("Error while polling:", error);
+                throw error; // Rethrow to handle it in the higher-level try-catch
+            }
+        };
+
+        try {
+            let status = await checkStatus();
+            while (status === 202) { // Assume 202 means "still processing"
+                await new Promise(resolve => setTimeout(resolve, 3000)); // Wait for 3 seconds before polling again
+                status = await checkStatus(); // Re-check status
+            }
+
+            if (status === 201) {
+                console.log('Service addition confirmed with status 201');
+                this.setState({ showSpinner: false });
+                this.props.notify(`Tjeneste '${this.state.serviceName}' ble lagt til!`);
+                this.props.afterChange(); // Execute afterChange only after confirming the service is added
+            } else {
+                // Handle other statuses if needed
+                this.setState({ showSpinner: false });
+                this.props.notify("Service addition failed or in uncertain state.");
+            }
+        } catch (error) {
+            // Handle any errors that occurred during polling
+            this.setState({ showSpinner: false });
+            this.props.notify("An error occurred during the polling process.");
+        }
     };
+
+
 
 
     constructor(props, context) {
@@ -202,13 +201,6 @@ class ConsentAddService extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-
-
-                {/*{this.state.showSpinner && <CircularProgress/>}*/}
-                {this.state.showSpinner }
-                {this.state.showSuccessAlert && (
-                    <Alert severity="success">All good! Service added successfully.</Alert>
-                )}
             </div>
 
 

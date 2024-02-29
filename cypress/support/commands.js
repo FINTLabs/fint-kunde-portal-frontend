@@ -153,20 +153,38 @@ Cypress.Commands.add('removeClientFromAssetApiCall', () => {
 Cypress.Commands.add('getConsentData', () => {
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/samtykke/behandling/test_no',
-    }, {statusCode: 200, fixture: 'behandling.json'});
+        url: 'http://localhost:3000/consent-admin/behandling/test_no',
+    }, {statusCode: 200, fixture: 'consent_behandling.json'});
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/samtykke/tjeneste/test_no',
-    }, {statusCode: 200, fixture: 'tjeneste.json'});
+        url: 'http://localhost:3000/consent-admin/tjeneste/test_no',
+    }, {statusCode: 200, fixture: 'consent_tjeneste.json'});
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/samtykke/behandlingsgrunnlag/',
-    }, {statusCode: 200, fixture: 'behandlingsgrunnlag.json'});
+        url: 'http://localhost:3000/consent-admin/behandlingsgrunnlag/',
+    }, {statusCode: 200, fixture: 'consent_behandlingsgrunnlag.json'});
 
     cy.intercept({
         method: 'GET',
-        url: 'http://localhost:3000/samtykke/personopplysning/',
-    }, {statusCode: 200, fixture: 'personopplysning.json'});
+        url: 'http://localhost:3000/consent-admin/personopplysning/',
+    }, {statusCode: 200, fixture: 'consent_personopplysning.json'});
+
+    cy.intercept('POST', 'http://localhost:3000/consent-admin/tjeneste/test_no', (req) => {
+        // You can modify the request or leave it as is
+        // Optionally, you can simulate a delay or respond with a mock response
+        req.reply({
+            statusCode: 201,
+            body: {
+                message: "Service created successfully",
+                location: "1234",
+            },
+        });
+    }).as('createService');
+
+    cy.intercept({
+        method: 'POST',
+        url: 'http://localhost:3000/consent-admin/behandling/test_no',
+    }, {statusCode: 201});
+
 });
 

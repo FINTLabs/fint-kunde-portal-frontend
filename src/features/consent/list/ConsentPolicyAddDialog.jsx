@@ -40,7 +40,9 @@ class ConsentPolicyAddDialog extends React.Component {
                 );
                 // this.props.fetchAssets(this.props.context.currentOrganisation.name);
 
+                console.log("jennifer added a policy");
                 this.props.onClose();
+
             });
     };
 

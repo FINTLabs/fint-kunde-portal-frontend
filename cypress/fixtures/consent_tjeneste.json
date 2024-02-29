@@ -1,0 +1,19 @@
+[
+  {
+    "id": "b2f6f3b0-1371-49ba-86e6-020ab5f2137e",
+    "orgId": "sesamestreet_org",
+    "navn": "Cookie Monster's Crumb Cleanup",
+    "behandlingIds": [
+      "88b28e53-3e5e-4864-b0de-d0296c2005d6",
+      "bdca6190-3665-40da-850e-9d2c1d411722",
+      "9ec487c5-edda-4211-a197-d78c85716a45",
+      "78bbea7b-d0ca-459d-a605-02342b127cd5"
+    ]
+  },
+  {
+    "id": "bfa675bf-598b-4b8e-b5c3-05410c585469",
+    "orgId": "sesamestreet_org",
+    "navn": "Oscars's Trash Can",
+    "behandlingIds": []
+  }
+]

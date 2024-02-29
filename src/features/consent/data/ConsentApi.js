@@ -37,11 +37,13 @@ class ConsentApi {
             .then(response => Promise.all([response, response.json()]));
     }
 
-    static setActive(policy) {
+    static setActive(orgName, policy) {
         var setTo = true;
         if(policy.aktiv) setTo = false;
 
-        const request = new Request(`/consent-admin/behandling/${policy.id}/${setTo}`, {
+        console.log(`jennifer /consent-admin/behandling/${orgName}/${policy.id}/${setTo}`);
+
+        const request = new Request(`/consent-admin/behandling/${orgName}/${policy.id}/${setTo}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json'
