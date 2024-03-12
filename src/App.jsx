@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import Main from "./main/Main";
@@ -6,6 +6,8 @@ import {Provider} from "react-redux";
 import store from "./data/redux/store/configure-store";
 import {CookiesProvider} from "react-cookie";
 import AppProvider from "./data/context/AppProvider";
+import {BrowserRouter} from "react-router-dom";
+import axios from "axios";
 
 
 const theme = createTheme({
@@ -33,12 +35,31 @@ const theme = createTheme({
 });
 
 function App() {
+    const [basePath, setBasePath] = useState('/');
+    useEffect(() => {
+        axios
+            .get('betaling/api/application/configuration')
+            .then((value) => {
+                axios.defaults.baseURL = value.data.basePath;
+                setBasePath(value.data.basePath);
+            })
+            .catch((reason) => {
+                // eslint-disable-next-line no-console
+                console.log(reason);
+                setBasePath('/');
+            });
+        // eslint-disable-next-line no-console
+        console.log('Base path:', basePath);
+    }, [basePath]);
+
     return (
         <Provider store={store}>
             <CookiesProvider>
                 <AppProvider>
                     <ThemeProvider theme={theme}>
-                        <Main/>
+                        <BrowserRouter basename={basePath}>
+                            <Main/>
+                        </BrowserRouter>
                     </ThemeProvider>
                 </AppProvider>
             </CookiesProvider>

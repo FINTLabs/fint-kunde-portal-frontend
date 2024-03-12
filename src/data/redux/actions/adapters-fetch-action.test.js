@@ -1,11 +1,11 @@
-import configureMockStore from "redux-mock-store'
-import thunk from "redux-thunk'
-import * as actions from "./adapter'
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import * as actions from "./adapter"
 import {
   FETCH_REQUEST,
   FETCH_SUCCESS,
   url
-} from "./adapter'
+} from "./adapter";
 import fetchMock from "fetch-mock";
 import {
   expectRedux,

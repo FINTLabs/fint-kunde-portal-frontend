@@ -1,7 +1,7 @@
 export default class ZenDeskApi {
 
     static getPriority() {
-        const url = "/tickets/priority";
+        const url = "/zendesk/tickets/priority";
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -10,7 +10,7 @@ export default class ZenDeskApi {
     }
 
     static getType() {
-        const url = "/tickets/type";
+        const url = "/zendesk/tickets/type";
         return fetch(url, {
             method: 'GET',
             credentials: 'same-origin',
@@ -19,7 +19,7 @@ export default class ZenDeskApi {
     }
 
     static createTicket(ticket) {
-        const request = new Request("/tickets", {
+        const request = new Request("/zendesk/tickets", {
             method: 'POST',
             headers: {
                 'Accept': '*/*',
