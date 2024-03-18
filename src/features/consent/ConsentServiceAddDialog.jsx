@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import {
+    Alert,
+    Box,
+    Button,
+    CircularProgress,
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Fab,
-    Box,
-    Tooltip,
-    MenuItem,
-    ListItemIcon,
-    Menu,
-    Button,
+    FormControl,
     TextField,
-    FormControl, CircularProgress,
 } from "@mui/material";
-import { Add,Check,Save } from "@mui/icons-material";
+import {Add, Check, Save} from "@mui/icons-material";
 import {green} from "@mui/material/colors";
 
 
@@ -216,7 +214,9 @@ class ConsentAddService extends React.Component {
     }
 }
 
-ConsentAddService.propTypes = {};
+// ConsentAddService.propTypes = {
+//     notify: PropTypes.func.isRequired,
+// };
 
 export default ConsentAddService;
 // export default withStyles(styles)(ConsentAddService);

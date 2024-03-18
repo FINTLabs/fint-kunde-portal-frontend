@@ -1,23 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
     Avatar,
+    Grid,
     IconButton,
     List,
     ListItemAvatar,
     Typography,
-    withStyles,
-    AccordionDetails,
-    AccordionSummary,
-    Accordion,
-    Grid,
 } from "@mui/material";
-import {
-    ExpandMore,
-    FolderShared,
-    AddCircle,
-} from "@mui/icons-material";
+import {AddCircle, ExpandMore, FolderShared,} from "@mui/icons-material";
 
-import { withContext } from "../../../data/context/withContext";
+import {withContext} from "../../../data/context/withContext";
 import ConsentPolicyAddDialog from "./ConsentPolicyAddDialog";
 import ConsentPolicyListItem from "./ConsentPolicyListItem";
 import ConsentSearch from "./ConsentSearch";
@@ -211,6 +206,7 @@ ConsentAccordion.propTypes = {
     personaldata: PropTypes.array.isRequired,
     afterChange: PropTypes.func.isRequired,
     currentOrg: PropTypes.string,
+    notify: PropTypes.func.isRequired,
 };
 
 // export default withStyles(styles)(withContext(ConsentAccordion));
