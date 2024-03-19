@@ -36,21 +36,21 @@ const theme = createTheme({
 
 function App() {
     const [basePath, setBasePath] = useState('/');
-    useEffect(() => {
-        axios
-            .get('betaling/api/application/configuration')
-            .then((value) => {
-                axios.defaults.baseURL = value.data.basePath;
-                setBasePath(value.data.basePath);
-            })
-            .catch((reason) => {
-                // eslint-disable-next-line no-console
-                console.log(reason);
-                setBasePath('/');
-            });
-        // eslint-disable-next-line no-console
-        console.log('Base path:', basePath);
-    }, [basePath]);
+    // useEffect(() => {
+    //     axios
+    //         .get('betaling/api/application/configuration')
+    //         .then((value) => {
+    //             axios.defaults.baseURL = value.data.basePath;
+    //             setBasePath(value.data.basePath);
+    //         })
+    //         .catch((reason) => {
+    //             // eslint-disable-next-line no-console
+    //             console.log(reason);
+    //             setBasePath('/');
+    //         });
+    //     // eslint-disable-next-line no-console
+    //     console.log('Base path:', basePath);
+    // }, [basePath]);
 
     return (
         <Provider store={store}>

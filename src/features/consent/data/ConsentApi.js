@@ -18,7 +18,6 @@ class ConsentApi {
             .then(response => Promise.all([response, response.json()]));
     }
 
-
     static getPolicypurpose() {
         const url = `/consent-admin/behandlingsgrunnlag/`;
         return fetch(url, {
