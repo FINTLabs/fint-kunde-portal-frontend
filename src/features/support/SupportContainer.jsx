@@ -201,7 +201,7 @@ class SupportContainer extends Component {
         const {currentOrganisation} = this.props.context;
         this.getOrganisationComponents(currentOrganisation.name);
         this.getTicketType();
-        this.getTicketPriority()
+        this.getTicketPriority();
 
         MeApi.getMe().then(response => {
             if (response.status === 200) {
@@ -282,7 +282,7 @@ class SupportContainer extends Component {
                         return (
                             <LoadingProgress/>
                         );
-                    } else if(this.state.newTicket.id.length < 1){
+                    } else if(!this.state.newTicket || !this.state.newTicket.id || this.state.newTicket.id.length < 1){
                        return(
                            <Typography variant="h5">
                                Oisann, det gikk ikke helt etter planen. Prøv igjen.
