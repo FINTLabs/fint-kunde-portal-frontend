@@ -71,7 +71,7 @@ const MenuItems = () => {
                     <ListItemText primary="Ressurser"/>
                 </ListItem>
             </RoleAuthorizationMenu>
-            <FeatureToggle feature="access-packages">
+            <FeatureToggle feature="access-packages-new">
                 <RoleAuthorizationMenu role="ROLE_ACCESS_PACKAGE">
                     <ListItem button component={Link} to="/access_package">
                         <ListItemIcon>
@@ -95,7 +95,7 @@ const MenuItems = () => {
                     <ListItemText primary="Relasjonstest"/>
                 </ListItem>
             </RoleAuthorizationMenu>
-            <FeatureToggle feature="audit-log">
+            <FeatureToggle feature="audit-log-new">
                 <RoleAuthorizationMenu role="ROLE_LOG">
                     <ListItem button component={Link} to="/logs">
                         <ListItemIcon>
