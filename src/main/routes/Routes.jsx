@@ -17,8 +17,8 @@ import AccessPackageContainer from "../../features/access-package/AccessPackageC
 import ConsentContainer from "../../features/consent/ConsentContainer"
 
 function Routes() {
-    const featureAuditLogEnabled = useFeatureEnabled("audit-log");
-    const featureSamtykkeEnabled = useFeatureEnabled("samtykke-admin");
+    const featureAuditLogEnabled = useFeatureEnabled("audit-log-new");
+    const featureSamtykkeEnabled = useFeatureEnabled("samtykke-admin-new");
 
     return (
         <div>
@@ -32,7 +32,9 @@ function Routes() {
             <RoleAuthorizedRoute path="/components" component={ComponentContainer}
                                  role="ROLE_COMPONENT"/>
            {featureAuditLogEnabled &&
-            <RoleAuthorizedRoute path="/logs" component={LogContainer} role="ROLE_LOG"/>}
+            <RoleAuthorizedRoute path="/logs" component={LogContainer} role="ROLE_LOG"/>
+           }
+
             <RoleAuthorizedRoute path="/test/linkwalker" component={LinkWalkerContainer}
                                  role="ROLE_TEST"/>
             <RoleAuthorizedRoute path="/test/basic" component={BasicTestContainer}
@@ -41,8 +43,9 @@ function Routes() {
                                  role="ROLE_SUPPORT"/>
             <RoleAuthorizedRoute path="/access_package" component={AccessPackageContainer}
                                  role="ROLE_ACCESS_PACKAGE"/>
+            {featureSamtykkeEnabled &&
             <RoleAuthorizedRoute path="/consent" component={ConsentContainer}
-                                                            role="ROLE_DASHBOARD"/>
+                                                            role="ROLE_DASHBOARD"/>}
 
         </div>
     );
