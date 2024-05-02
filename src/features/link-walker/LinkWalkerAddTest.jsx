@@ -92,6 +92,7 @@ class LinkWalkerAddTest extends React.Component {
     return {
       endpoint: `${this.state.endpoint}/${this.state.resource}`,
       baseUrl: this.state.baseUrl,
+      url: this.state.baseUrl + `${this.state.endpoint}/${this.state.resource}`,
       orgId: "pwf.no",
       client: this.state.client
     };
