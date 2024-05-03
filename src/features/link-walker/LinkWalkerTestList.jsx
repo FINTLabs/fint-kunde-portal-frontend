@@ -141,9 +141,9 @@ class LinkWalkerTestList extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Status</TableCell>
                 <TableCell>Tid</TableCell>
-                <TableCell>Ressurs</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>URL</TableCell>
                 <TableCell>Feilet</TableCell>
                 <TableCell align="right">Gjenstående sjekker</TableCell>
                 <TableCell>Last ned rapport</TableCell>
@@ -153,10 +153,10 @@ class LinkWalkerTestList extends Component {
               {tests.map(test => {
                 return (
                   <TableRow key={test.id} hover>
+                    <TableCell>{test.time}</TableCell>
                     <TableCell>
                       <TrafficLight status={test.status} />
                     </TableCell>
-                    <TableCell>{test.time}</TableCell>
                     <TableCell>
                       {test.url}
                     </TableCell>
