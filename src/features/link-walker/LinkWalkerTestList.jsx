@@ -156,11 +156,11 @@ class LinkWalkerTestList extends Component {
                     <TableCell>
                       <TrafficLight status={test.status} />
                     </TableCell>
-                    <TableCell>LOL XD</TableCell>
+                    <TableCell>test.tid</TableCell>
                     <TableCell>
                       {test.url}
                     </TableCell>
-                    <TableCell>Lol</TableCell>
+                    <TableCell>test.feil</TableCell>
                     <TableCell numeric>{test.requests}</TableCell>
                     <TableCell>
                       {test.status !== "STARTED" && (
