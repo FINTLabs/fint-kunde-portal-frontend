@@ -154,9 +154,7 @@ class LinkWalkerTestList extends Component {
                 return (
                   <TableRow key={test.id} hover>
                     <TableCell>{test.time}</TableCell>
-                    <TableCell>
-                      <TrafficLight status={test.status} />
-                    </TableCell>
+                    <TableCell>{test.status}</TableCell>
                     <TableCell>
                       {test.url}
                     </TableCell>
