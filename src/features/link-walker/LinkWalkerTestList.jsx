@@ -144,7 +144,7 @@ class LinkWalkerTestList extends Component {
                 <TableCell>Status</TableCell>
                 <TableCell>Tid</TableCell>
                 <TableCell>Ressurs</TableCell>
-                <TableCell>Beskrivelse av feil</TableCell>
+                <TableCell>Feilet</TableCell>
                 <TableCell align="right">Gjenstående sjekker</TableCell>
                 <TableCell>Last ned rapport</TableCell>
               </TableRow>
@@ -156,11 +156,11 @@ class LinkWalkerTestList extends Component {
                     <TableCell>
                       <TrafficLight status={test.status} />
                     </TableCell>
-                    <TableCell>test.tid</TableCell>
+                    <TableCell>{test.time}</TableCell>
                     <TableCell>
                       {test.url}
                     </TableCell>
-                    <TableCell>test.feil</TableCell>
+                    <TableCell>{test.status === "FAILED" ? "ja" : "nei" }</TableCell>
                     <TableCell numeric>{test.requests}</TableCell>
                     <TableCell>
                       {test.status !== "STARTED" && (
