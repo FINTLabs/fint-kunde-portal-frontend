@@ -156,14 +156,14 @@ class LinkWalkerTestList extends Component {
                     <TableCell>
                       <TrafficLight status={test.status} />
                     </TableCell>
-                    <TableCell>{test.time}</TableCell>
+                    <TableCell>LOL XD</TableCell>
                     <TableCell>
-                      {test.testRequest.baseUrl + test.testRequest.endpoint}
+                      {test.url}
                     </TableCell>
-                    <TableCell>{test.reason}</TableCell>
-                    <TableCell numeric>{test.remaining}</TableCell>
+                    <TableCell>Lol</TableCell>
+                    <TableCell numeric>{test.requests}</TableCell>
                     <TableCell>
-                      {test.status !== "RUNNING" && (
+                      {test.status !== "STARTED" && (
                         <Tooltip placement="top" title="Last ned rapport">
                           <a href={this.getDownloadUrl(test)}>
                             <IconButton component="span">
