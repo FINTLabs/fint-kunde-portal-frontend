@@ -1,5 +1,5 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
+import {css, styled} from "@mui/material/styles";
 import {
   Button,
   TextField,
@@ -136,17 +136,17 @@ class LinkWalkerAddTest extends React.Component {
                 test.
               </DialogContentText>
 
+              <EnvironmentSelector
+                  handleChange={this.handleChange}
+                  name="baseUrl"
+                  value={this.state.baseUrl}
+              />
+
               <ComponentSelector
                 components={components}
                 handleChange={this.handleChange}
                 name="endpoint"
                 value={this.state.endpoint}
-              />
-
-              <EnvironmentSelector
-                handleChange={this.handleChange}
-                name="baseUrl"
-                value={this.state.baseUrl}
               />
 
               <TextField
@@ -156,7 +156,10 @@ class LinkWalkerAddTest extends React.Component {
                 fullWidth
                 disabled={this.state.endpoint === ""}
                 onChange={this.handleChange}
-                variant="standard"
+                variant="outlined"
+                sx={{
+                  padding: '8px'
+                }}
               />
 
               <ClientSelector
