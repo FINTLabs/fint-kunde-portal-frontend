@@ -146,7 +146,7 @@ class LinkWalkerTestList extends Component {
                 <TableCell align="center">Miljø</TableCell>
                 <TableCell align="center">Ressurs</TableCell>
                 <TableCell align="center">Gjenstående sjekker</TableCell>
-                <!-- <TableCell align="center">Relasjonsfeil</TableCell> -->
+                <TableCell align="center">Relasjonsfeil</TableCell>
                 <TableCell align="center">Last ned rapport</TableCell>
               </TableRow>
             </TableHead>
@@ -154,7 +154,7 @@ class LinkWalkerTestList extends Component {
               {tests.map(test => {
                 return (
                   <TableRow key={test.id} hover>
-                    <TableCell align="center">{test.time}</TableCell>
+                    <TableCell align="center">{test.formattedTime}</TableCell>
                     <TableCell align="center">{test.status}</TableCell>
                     <TableCell align="center">{test.env}</TableCell>
                     <TableCell align="center">{test.uri }</TableCell>
