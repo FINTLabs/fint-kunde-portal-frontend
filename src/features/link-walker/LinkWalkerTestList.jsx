@@ -143,9 +143,10 @@ class LinkWalkerTestList extends Component {
               <TableRow>
                 <TableCell align="center">Tid</TableCell>
                 <TableCell align="center">Status</TableCell>
-                <TableCell align="center">URL</TableCell>
-                <TableCell align="center">Feilet</TableCell>
+                <TableCell align="center">Miljø</TableCell>
+                <TableCell align="center">Ressurs</TableCell>
                 <TableCell align="center">Gjenstående sjekker</TableCell>
+                <!-- <TableCell align="center">Relasjonsfeil</TableCell> -->
                 <TableCell align="center">Last ned rapport</TableCell>
               </TableRow>
             </TableHead>
@@ -155,8 +156,8 @@ class LinkWalkerTestList extends Component {
                   <TableRow key={test.id} hover>
                     <TableCell align="center">{test.time}</TableCell>
                     <TableCell align="center">{test.status}</TableCell>
-                    <TableCell align="center">{test.url}</TableCell>
-                    <TableCell align="center">{test.status === "FAILED" ? "ja" : "nei" }</TableCell>
+                    <TableCell align="center">{test.env}</TableCell>
+                    <TableCell align="center">{test.uri }</TableCell>
                     <TableCell align="center" numeric>{test.requests}</TableCell>
                     <TableCell align="center">
                       {test.status !== "STARTED" && (
