@@ -141,26 +141,24 @@ class LinkWalkerTestList extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Tid</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>URL</TableCell>
-                <TableCell>Feilet</TableCell>
-                <TableCell align="right">Gjenstående sjekker</TableCell>
-                <TableCell>Last ned rapport</TableCell>
+                <TableCell align="center">Tid</TableCell>
+                <TableCell align="center">Status</TableCell>
+                <TableCell align="center">URL</TableCell>
+                <TableCell align="center">Feilet</TableCell>
+                <TableCell align="center">Gjenstående sjekker</TableCell>
+                <TableCell align="center">Last ned rapport</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {tests.map(test => {
                 return (
                   <TableRow key={test.id} hover>
-                    <TableCell>{test.time}</TableCell>
-                    <TableCell>{test.status}</TableCell>
-                    <TableCell>
-                      {test.url}
-                    </TableCell>
-                    <TableCell>{test.status === "FAILED" ? "ja" : "nei" }</TableCell>
-                    <TableCell numeric>{test.requests}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">{test.time}</TableCell>
+                    <TableCell align="center">{test.status}</TableCell>
+                    <TableCell align="center">{test.url}</TableCell>
+                    <TableCell align="center">{test.status === "FAILED" ? "ja" : "nei" }</TableCell>
+                    <TableCell align="center" numeric>{test.requests}</TableCell>
+                    <TableCell align="center">
                       {test.status !== "STARTED" && (
                         <Tooltip placement="top" title="Last ned rapport">
                           <a href={this.getDownloadUrl(test)}>
