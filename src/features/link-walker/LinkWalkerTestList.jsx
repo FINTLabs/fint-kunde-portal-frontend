@@ -167,7 +167,7 @@ class LinkWalkerTestList extends Component {
               {tests.map(test => {
                 return (
                   <TableRow key={test.id} hover>
-                    <TableCell align="center">{test.formattedTime}</TableCell>
+                    <TableCell align="center">{test.time}</TableCell>
                     <TableCell align="center">{test.status}</TableCell>
                     <TableCell align="center">{test.env}</TableCell>
                     <TableCell align="center">{test.uri }</TableCell>
