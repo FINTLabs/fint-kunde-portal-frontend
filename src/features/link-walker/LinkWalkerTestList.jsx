@@ -101,7 +101,7 @@ class LinkWalkerTestList extends Component {
 
   getDownloadUrl = test => {
     const { organisationName } = this.props;
-    return `/link-walker/report/${organisationName}/${test.id}/download`;
+    return `/link-walker/tasks/${organisationName}/${test.id}/download`;
   };
 
   closeTestView = () => {
@@ -147,6 +147,7 @@ class LinkWalkerTestList extends Component {
                 <TableCell align="center">Ressurs</TableCell>
                 <TableCell align="center">Gjenstående sjekker</TableCell>
                 <TableCell align="center">Relasjonsfeil</TableCell>
+                <TableCell align="center">Sunne lenker</TableCell>
                 <TableCell align="center">Last ned rapport</TableCell>
               </TableRow>
             </TableHead>
@@ -159,6 +160,8 @@ class LinkWalkerTestList extends Component {
                     <TableCell align="center">{test.env}</TableCell>
                     <TableCell align="center">{test.uri }</TableCell>
                     <TableCell align="center" numeric>{test.requests}</TableCell>
+                    <TableCell align="center" numeric>{test.relationErrors}</TableCell>
+                    <TableCell align="center" numeric>{test.healthyRelations}</TableCell>
                     <TableCell align="center">
                       {test.status !== "STARTED" && (
                         <Tooltip placement="top" title="Last ned rapport">
