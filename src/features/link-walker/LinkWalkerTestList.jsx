@@ -67,8 +67,20 @@ class LinkWalkerTestList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLinkWalkerTestView: false
+      showLinkWalkerTestView: false,
+      intervalId: null,
     };
+  }
+
+  componentDidMount() {
+    const intervalId = setInterval(() => {
+      this.refreshTestList();
+    }, 3000);
+    this.setState({ intervalId });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
   }
 
   getStatusClass = status => {
