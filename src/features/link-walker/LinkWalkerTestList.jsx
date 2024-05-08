@@ -137,14 +137,6 @@ class LinkWalkerTestList extends Component {
           className={classes.button}
           aria-label="Refresh"
           color="primary"
-          onClick={() => this.refreshTestList()}
-        >
-          <RefreshIcon />
-        </IconButton>
-        <IconButton
-          className={classes.button}
-          aria-label="Refresh"
-          color="primary"
           onClick={() => this.clearTests()}
         >
           <ClearIcon />
