@@ -116,7 +116,7 @@ class LogContainer extends Component {
         LogApi.fetchLog(this.state.environment, this.getOrgId(), this.getSelectedComponent() && `${this.getSelectedComponent()}/${this.getAction()}`)
             .then(response => {
                 if (response.status === 404){
-                    alert("Komponenten du etterspørr finnes ikke i dette miljøet")
+                    this.props.notify("komponenten du spørr om finnes ikke i dette miljøet")
                 }else{
                 this.setState({
                     log: response[1],
