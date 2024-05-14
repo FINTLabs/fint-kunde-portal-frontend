@@ -115,10 +115,13 @@ class LogContainer extends Component {
         });
         LogApi.fetchLog(this.state.environment, this.getOrgId(), this.getSelectedComponent() && `${this.getSelectedComponent()}/${this.getAction()}`)
             .then(response => {
+                if (response.status === 404){
+                    alert("Komponenten du etterspørr finnes ikke i dette miljøet")
+                }else{
                 this.setState({
                     log: response[1],
                     loading: false
-                })
+                })}
             })
             .catch(error => console.log(error));
     };
