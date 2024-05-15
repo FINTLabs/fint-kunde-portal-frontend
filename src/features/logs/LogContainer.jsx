@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import LogApi from "../../data/api/LogApi";
 import LogList from "./LogList";
-import {Box, Input, Typography} from "@mui/material";
+import {Box, Input, Snackbar, Typography} from "@mui/material";
 import {withContext} from "../../data/context/withContext";
 import ComponentSelector from "../../common/test/ComponentSelector";
 import ComponentApi from "../../data/api/ComponentApi";
@@ -16,12 +16,14 @@ import ClearIcon from "@mui/icons-material/Clear";
 import EntityApi from "../../data/api/EntityApi";
 import ResourceSelector from "../../common/test/ResourceSelector";
 import Button from "@mui/material/Button";
+import {delay} from "lodash";
 
 class LogContainer extends Component {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
+            openSnackBar: false,
             log: [],
             searchString: '',
             searchIDString: '',
@@ -115,20 +117,29 @@ class LogContainer extends Component {
         });
         LogApi.fetchLog(this.state.environment, this.getOrgId(), this.getSelectedComponent() && `${this.getSelectedComponent()}/${this.getAction()}`)
             .then(response => {
-                if (response.status === 404){
-                    this.props.notify("komponenten du spørr om finnes ikke i dette miljøet")
-                }else{
                 this.setState({
                     log: response[1],
                     loading: false
-                })}
+                })
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                this.setState({
+                    loading: false,
+                    openSnackBar: true
+                })
+                console.log(error)});
     };
 
     render() {
         return (
             <Box display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
+                <Snackbar
+                    open={this.state.openSnackBar}
+                    autoHideDuration={3000}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    message="Komponenten finnes ikke i dette miljøet"
+                    onClose={() => this.setState({openSnackBar: false})}
+                />
                 <Typography variant="h5">
                     Søk i hendelseslogg
                 </Typography>

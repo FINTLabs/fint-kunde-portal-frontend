@@ -7,7 +7,12 @@ class LogApi {
         method: 'GET',
         credentials: 'same-origin',
       })
-      .then(response => Promise.all([response, response.json()]));
+  .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return Promise.all([response, response.json()]);
+    })
   }
 
   static fetchLogById(environment, organisation, corrId) {
