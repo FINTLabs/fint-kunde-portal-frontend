@@ -28,6 +28,7 @@ class LinkWalkerApi {
   }
 
   static addTest(test, organisationName) {
+    console.log(JSON.stringify(test))
     const request = new Request(`/link-walker/tasks/${organisationName}`, {
       method: 'POST',
       headers: {
