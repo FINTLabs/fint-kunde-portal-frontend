@@ -117,10 +117,13 @@ class LogContainer extends Component {
         });
         LogApi.fetchLog(this.state.environment, this.getOrgId(), this.getSelectedComponent() && `${this.getSelectedComponent()}/${this.getAction()}`)
             .then(response => {
+                let xyz = response[1]
                 this.setState({
-                    log: response[1],
+                    log: xyz.join(", ")
+                }, (() => this.setState({
                     loading: false
-                })
+                })))
+                console.log(xyz)
             })
             .catch(error => {
                 this.setState({
@@ -222,7 +225,7 @@ class LogContainer extends Component {
                         this.state.loading ?
                             <LoadingProgress/> :
                             <LogList log={this.state.log} environment={this.state.environment} orgName={this.getOrgId()}
-                                     onClear={() => this.setState({log: []})} id={this.state.searchIDString}/>
+                                      onClear={() => this.setState({log: []})} id={this.state.searchIDString}/>
                     }
                 </Box>
             </Box>
