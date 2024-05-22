@@ -117,6 +117,12 @@ class LogContainer extends Component {
         });
         LogApi.fetchLog(this.state.environment, this.getOrgId(), this.getSelectedComponent() && `${this.getSelectedComponent()}/${this.getAction()}`)
             .then(response => {
+                console.log(response)
+                if (Array.isArray(response[1]) && response[1].length === 0){
+                    this.setState({
+                        openSnackBar: true
+                    })
+                }
                 this.setState({
                     log: response[1],
                     loading: false
@@ -137,7 +143,7 @@ class LogContainer extends Component {
                     open={this.state.openSnackBar}
                     autoHideDuration={3000}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    message="Komponenten finnes ikke i dette miljøet"
+                    message="Fant ingen hendelser i dette miljøet"
                     onClose={() => this.setState({openSnackBar: false})}
                 />
                 <Typography variant="h5">

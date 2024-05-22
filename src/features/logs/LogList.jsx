@@ -8,32 +8,6 @@ import LogEntry from "./LogEntry";
 
 const PREFIX = 'LogList';
 
-const classes = {
-    expansionPanelSummary: `${PREFIX}-expansionPanelSummary`,
-    expansionPanelBox: `${PREFIX}-expansionPanelBox`,
-    expansionPanelId: `${PREFIX}-expansionPanelId`
-};
-
-const StyledBox = styled(Box)((
-    {
-        theme
-    }
-) => ({
-    [`& .${classes.expansionPanelSummary}`]: {
-        display: "flex",
-        flexDirection: "column",
-    },
-
-    [`& .${classes.expansionPanelBox}`]: {
-        display: "flex",
-        flexDirection: "row",
-    },
-
-    [`& .${classes.expansionPanelId}`]: {
-        display: "flex",
-        flexDirection: "column",
-    }
-}));
 
 class LogList extends Component {
     constructor(props, context) {
@@ -51,9 +25,8 @@ class LogList extends Component {
     };
 
     render() {
-        const {classes} = this.props;
         return (
-            <StyledBox w={1}>
+            <Box w={1}>
                 {
                     this.distinct().length > 0 &&
                     <Box w={1} display='flex' justifyContent='flex-end' alignItems='center' m={1}>
@@ -71,15 +44,14 @@ class LogList extends Component {
                                 <Accordion w={1} minWidth={1} TransitionProps={{unmountOnExit: true}}
                                                 key={log.corrId}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon/>}
-                                                           classes={{content: classes.expansionPanelSummary}}
                                     >
-                                        <Box className={classes.expansionPanelBox}><LogIcon/>
+                                        <Box ><LogIcon/>
                                             <Box mx={4}>
                                                 <Typography>
                                                     {moment(log.timestamp).format("HH:mm:ss")}
                                                 </Typography>
                                             </Box>
-                                            <Box className={classes.expansionPanelId}>
+                                            <Box>
                                                 <Typography>
                                                     {log.event.action}
                                                 </Typography>
@@ -99,15 +71,14 @@ class LogList extends Component {
                         return (
                             <Accordion w={1} TransitionProps={{unmountOnExit: true}} key={log.corrId}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon/>}
-                                                       classes={{content: classes.expansionPanelSummary}}
                                 >
-                                    <Box className={classes.expansionPanelBox}><LogIcon/>
+                                    <Box><LogIcon/>
                                         <Box mx={4}>
                                             <Typography>
                                                 {moment(log.timestamp).format("HH:mm:ss")}
                                             </Typography>
                                         </Box>
-                                        <Box className={classes.expansionPanelId}>
+                                        <Box>
                                             <Typography>{log.event.action}</Typography>
 
                                         </Box>
@@ -121,7 +92,7 @@ class LogList extends Component {
                             </Accordion>
                         )
                 return null})}
-            </StyledBox>
+           </Box>
         );
     }
 }
