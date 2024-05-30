@@ -1,4 +1,12 @@
 class LinkWalkerApi {
+  static getFintResources(){
+    const url = '/link-walker/resource';
+    return fetch(url, {
+      method: 'Get',
+      credentials: 'same-origin',
+    })
+        .then(response => Promise.all([response, response.json()]))
+  }
 
   static getTests(organisationName) {
     const url = `/link-walker/tasks/${organisationName}`;
