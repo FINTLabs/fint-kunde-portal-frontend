@@ -160,7 +160,7 @@ class AdapterAdd extends React.Component {
               />
               <TextField
                 name="note"
-                label="Note"
+                label="Beskrivelse"
                 fullWidth
                 required
                 multiline

@@ -136,7 +136,7 @@ class ClientAdd extends React.Component {
             aria-labelledby="form-dialog-title"
             maxWidth="md"
           >
-            <DialogTitle id="form-dialog-title">Nytt client</DialogTitle>
+            <DialogTitle id="form-dialog-title">Ny klient</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Vennligst fyll ut de obligatoriske feltene for å legge til en ny
@@ -161,7 +161,7 @@ class ClientAdd extends React.Component {
               />
               <TextField
                 name="note"
-                label="Note"
+                label="Beskrivelse"
                 fullWidth
                 required
                 multiline
