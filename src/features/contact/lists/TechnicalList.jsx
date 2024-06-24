@@ -53,7 +53,7 @@ const TechnicalList = props => {
     const {technicalContacts} = props;
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const dispatch = useDispatch();
-    const isRoleFeatureEnabled = useFeatureEnabled("roles-new∫");
+    const isRoleFeatureEnabled = useFeatureEnabled("roles-new");
     const roleTypes = useSelector(state => state.roles.roles);
     const orgId = useContext(AppContext).currentOrganisation.name;
 
