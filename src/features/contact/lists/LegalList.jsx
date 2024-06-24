@@ -44,7 +44,7 @@ const StyledBox = styled(Box)((
 }));
 
 function LegalList({ legalContact}) {
-    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+    const isRoleFeatureEnabled = useFeatureEnabled("roles-new");
     const roleTypes = useSelector(state => state.roles.roles);
     const orgId = useContext(AppContext).currentOrganisation.name;
     const [showRoleDialog, setShowRoleDialog] = useState(false);

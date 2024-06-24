@@ -10,7 +10,7 @@ import useFeatureEnabled from "../feature-toggle/useFeatureEnabled";
 const RoleAuthorizationMenu = ({children, role}) => {
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
-    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+    const isRoleFeatureEnabled = useFeatureEnabled("roles-new");
 
     const authorized = () => {
         if (!me) {

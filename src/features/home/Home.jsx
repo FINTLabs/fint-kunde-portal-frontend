@@ -10,7 +10,7 @@ import useFeatureEnabled from "../../common/feature-toggle/useFeatureEnabled";
 const Home = () => {
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
-    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+    const isRoleFeatureEnabled = useFeatureEnabled("roles-new");
 
     if (isRoleFeatureEnabled) {
         if (hasRoleInCurrentOrganisation(me, currentOrganisation)) {

@@ -9,7 +9,7 @@ const RoleAuthorizedRoute = ({path, component, role}) => {
 
     const me = useSelector(state => state.me.me);
     const currentOrganisation = useContext(AppContext).currentOrganisation.name;
-    const isRoleFeatureEnabled = useFeatureEnabled("roles");
+    const isRoleFeatureEnabled = useFeatureEnabled("roles-new");
 
     const getFullyQualifiedRole = (role) => {
         return `${role}@${currentOrganisation}`;

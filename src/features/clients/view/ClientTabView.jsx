@@ -15,7 +15,7 @@ import FeatureToggle from "../../../common/feature-toggle/FeatureToggle";
 const ClientTabView = ({showUpdateButton, client, updateClientState, notify}) => {
     const [value, setValue] = useState(0);
     const theme = useTheme();
-    const featureEnabled = useFeatureEnabled("access-packages");
+    const featureEnabled = useFeatureEnabled("access-packages-new");
 
     const handleChange = (event, value) => {
         setValue(value);
