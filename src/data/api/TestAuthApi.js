@@ -2,7 +2,7 @@ class TestAuthApi {
 
   static authInit(organisationName, client, test) {
 
-    const request = new Request(`/api/tests/${organisationName}/auth/init/${client}`, {
+    const request = new Request(`/api/test-runner/${organisationName}/auth/init/${client}`, {
       method: 'POST',
       headers: {
         'Accept': '*/*',
@@ -18,7 +18,7 @@ class TestAuthApi {
   }
 
   static clearAuth(organisationName) {
-    const url = `/api/tests/${organisationName}/auth/clear`;
+    const url = `/api/test-runner/${organisationName}/auth/clear`;
     return fetch(url, {
         method: 'DELETE',
         credentials: 'same-origin'
