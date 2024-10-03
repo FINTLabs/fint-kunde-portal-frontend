@@ -7,14 +7,7 @@ patches:
   - patch: |-
       - op: replace
         path: "/spec/url/hostname"
-        value: 'kunde.felleskomponent.no'
+        value: 'kunde-old.felleskomponent.no'
     target:
       kind: Application
       name: fint-kunde-portal-frontend-old
-  - patch: |-
-      - op: replace
-        path: "/spec/hostname"
-        value: 'kunde-old.felleskomponent.no'
-    target:
-      kind: FLAISSso
-      name: fint-kunde-portal-sso

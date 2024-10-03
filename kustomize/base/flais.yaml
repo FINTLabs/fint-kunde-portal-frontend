@@ -21,8 +21,6 @@ spec:
     basePath: /
   ingress:
     enabled: true
-    middlewares:
-      - fint-kunde-portal-sso
   resources:
     limits:
       memory: "512Mi"
