@@ -1,10 +1,10 @@
 apiVersion: fintlabs.no/v1alpha1
 kind: Application
 metadata:
-  name: fint-kunde-portal-frontend
+  name: fint-kunde-portal-frontend-old
   namespace: fintlabs-no
   labels:
-    app.kubernetes.io/name: fint-kunde-portal-frontend
+    app.kubernetes.io/name: fint-kunde-portal-frontend-old
     app.kubernetes.io/instance: fint-kunde-portal-frontend_fintlabs_no
     app.kubernetes.io/version: latest
     app.kubernetes.io/component: frontend
