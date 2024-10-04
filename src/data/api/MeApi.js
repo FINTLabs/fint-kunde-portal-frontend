@@ -2,7 +2,7 @@ import axios from "axios";
 
 class MeApi {
   static getMe() {
-      return axios.get('/api/me');
+      return axios.get('/me');
   }
 }
 
