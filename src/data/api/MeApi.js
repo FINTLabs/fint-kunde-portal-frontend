@@ -1,7 +1,7 @@
 import axios from "axios";
 class MeApi {
   static getMe() {
-      return axios.get(`http://fint-kunde-portal-backend:8080/api/me`);
+      return axios.get(`/api/me`);
   }
 }
 
