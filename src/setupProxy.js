@@ -6,7 +6,7 @@ module.exports = function(app) {
         createProxyMiddleware({
             target: 'http://fint-kunde-portal-backend:8080',
             changeOrigin: true,
-            secure: false,
+            secure: true,
             logLevel: 'debug',
         })
     );
