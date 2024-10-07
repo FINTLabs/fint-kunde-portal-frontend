@@ -11,3 +11,4 @@ module.exports = function(app) {
         })
     );
 };
+baseURL = 'http://fint-kunde-portal-backend:8080';
