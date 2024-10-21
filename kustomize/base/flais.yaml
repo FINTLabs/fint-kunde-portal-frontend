@@ -12,13 +12,6 @@ metadata:
     fintlabs.no/team: core
     fintlabs.no/org-id: fintlabs.no
 spec:
-  env:
-    - name: BASE_PATH
-      value: http://fint-kunde-portal-backend:8080
-    - name: LINKWALKER_API_URL
-      value: http://fint-link-walker:8080
-    - name: CONSENT_API_URL
-      value: http://fint-samtykke-admin-backend:8080
   port: 8000
   imagePullPolicy: Always
   orgId: fintlabs.no
