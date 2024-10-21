@@ -1,15 +1,9 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
-console.log("using a proxy");
-module.exports = function(app) {
+const proxy = require('http-proxy-middleware');
 
-    app.use(
-        '/api',
-        createProxyMiddleware({
-            target: 'http://fint-kunde-portal-backend:8080',
-            changeOrigin: true,
-            secure: true,
-            logLevel: 'debug',
-        })
-    );
+module.exports = function(app) {
+    app.use(proxy('/api', { target: 'http://fint-kunde-portal-backend:8080/' }));
+    app.use(proxy('/services', { target: 'http://localhost:8081/' }));
+    app.use(proxy('/consent-admin', { target: 'http://fint-samtykke-admin-backend:8080' }));
 };
-baseURL = 'http://fint-kunde-portal-backend:8080';
+// baseURL = 'http://localhost:8081/';
+//beta: https://kunde-beta.felleskomponent.no/
