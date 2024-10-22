@@ -1,8 +1,20 @@
 FROM node:18-alpine AS builder
-COPY . /src
 WORKDIR /src
-RUN yarn && yarn build
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+COPY . /src
+RUN yarn build
 
-FROM nginx:1.25.4
-COPY --from=builder /src/build/ /html/
-COPY nginx.conf mime.types /etc/nginx/
+FROM node:18.19.1-bookworm-slim
+WORKDIR /usr/src/app
+RUN mkdir -p server
+COPY server/package*.json server
+COPY server/yarn.lock*.json server
+COPY --from=builder /src/build/ build
+RUN yarn --cwd server install
+COPY server server
+
+EXPOSE 8000
+
+CMD [ "node", "server/index.js" ]
