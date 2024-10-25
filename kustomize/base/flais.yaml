@@ -33,3 +33,6 @@ spec:
 #  strategy:
 #    type: RollingUpdate
 #    rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
+  env:
+    - name: BASE_URL
+      value: https://kunde-old.felleskomponent.no

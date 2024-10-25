@@ -1,10 +1,15 @@
 import axios from "axios";
+
+const API_URL = process.env.BASE_URL
+const apiClient = axios.create({
+    baseURL: API_URL
+})
+
 class MeApi {
-  static getMe() {
-      const API_URL = process.env.BASE_PATH;
-      console.log("INSIDE ME CALL:", API_URL);
-      return axios.get(`http://fint-kunde-portal-backend:8080/api/me`);
-  }
+    static getMe() {
+        console.log("INSIDE ME CALL:", API_URL);
+        return apiClient.get(`/api/me`);
+    }
 }
 
 export default MeApi;
