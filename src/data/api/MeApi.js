@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = process.env.BASE_URL
-const apiClient = axios.create({
-    baseURL: API_URL
-})
+// const API_URL = process.env.BASE_URL
+// const apiClient = axios.create({
+//     baseURL: API_URL
+// })
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 class MeApi {
