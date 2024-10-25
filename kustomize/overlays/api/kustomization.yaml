@@ -3,6 +3,14 @@ kind: Kustomization
 namespace: fintlabs-no
 resources:
   - ../../base
+
+# Adding a ConfigMap for environment variables
+configMapGenerator:
+  - name: fint-kunde-portal-frontend-old-config
+    literals:
+      - REACT_APP_API_BASE_URL=http://fint-kunde-portal-backend:8080
+
+# Patch to replace hostname and inject environment variables into deployment
 patches:
   - patch: |-
       - op: replace
@@ -11,3 +19,12 @@ patches:
     target:
       kind: Application
       name: fint-kunde-portal-frontend-old
+  - target:
+      kind: Deployment
+      name: fint-kunde-portal-frontend-old
+    patch: |-
+      - op: add
+        path: "/spec/template/spec/containers/0/envFrom"
+        value:
+          - configMapRef:
+              name: fint-kunde-portal-frontend-old-config

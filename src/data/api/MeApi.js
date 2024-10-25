@@ -4,11 +4,12 @@ const API_URL = process.env.BASE_URL
 const apiClient = axios.create({
     baseURL: API_URL
 })
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 class MeApi {
     static getMe() {
-        console.log("INSIDE ME CALL:", API_URL);
-        return apiClient.get(`/api/me`);
+        console.log("INSIDE ME CALL: ", baseURL);
+        return axios.get(`/api/me`);
     }
 }
 
